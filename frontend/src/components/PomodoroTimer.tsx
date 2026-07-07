@@ -44,15 +44,15 @@ export const PomodoroTimer: React.FC = () => {
   };
 
   return (
-    <div className="glass-panel p-6 rounded-2xl border border-white/[0.06] min-h-[160px] flex flex-col justify-between transition-all duration-300 hover:border-white/[0.12]">
+    <div className="glass-panel p-6 rounded-2xl border border-brand-border min-h-[160px] flex flex-col justify-between transition-all duration-300 hover:border-brand-border">
       <div className="flex items-center justify-between">
         <span className="text-xs font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-1.5">
           <Flame className="h-3.5 w-3.5" /> Focus Engine
         </span>
-        <span className={`h-2 w-2 rounded-full ${isActive ? 'bg-emerald-500 animate-pulse' : 'bg-zinc-600'}`} />
+        <span className={`h-2 w-2 rounded-full ${isActive ? 'bg-emerald-500 animate-pulse' : 'bg-brand-surface-secondary'}`} />
       </div>
       
-      <h3 className="text-4xl font-black font-mono mt-2 tracking-tight text-white">
+      <h3 className="text-4xl font-black font-mono mt-2 tracking-tight text-brand-text-primary">
         {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
       </h3>
 
@@ -61,8 +61,8 @@ export const PomodoroTimer: React.FC = () => {
           onClick={toggleTimer}
           className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
             isActive 
-              ? 'bg-zinc-800 text-zinc-200 hover:bg-zinc-700' 
-              : 'bg-white text-zinc-950 hover:bg-zinc-200 shadow-md shadow-white/5'
+              ? 'bg-brand-surface text-brand-text-primary hover:bg-brand-surface-secondary' 
+              : 'bg-brand-primary text-white hover:bg-brand-surface-secondary shadow-md shadow-white/5'
           }`}
         >
           {isActive ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5 fill-current" />}
@@ -71,7 +71,7 @@ export const PomodoroTimer: React.FC = () => {
         
         <button
           onClick={resetTimer}
-          className="p-2 rounded-xl bg-zinc-900/60 border border-white/[0.06] text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors cursor-pointer"
+          className="p-2 rounded-xl bg-brand-bg/60 border border-brand-border text-brand-text-secondary hover:text-brand-text-primary hover:bg-brand-surface-secondary transition-colors cursor-pointer"
           title="Reset Timer"
         >
           <RotateCcw className="h-3.5 w-3.5" />

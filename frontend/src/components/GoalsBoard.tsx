@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from '../context/I18nContext';
 import { 
   Plus, 
   Trash2, 
@@ -28,10 +29,10 @@ interface GoalsBoardProps {
 }
 
 const COLUMNS: { id: Objective['status']; name: string; color: string; borderGlow: string }[] = [
-  { id: 'To Do', name: 'To Do', color: 'text-zinc-400', borderGlow: 'hover:border-zinc-800' },
-  { id: 'In Progress', name: 'In Progress', color: 'text-[#7c5cff]', borderGlow: 'hover:border-[#7c5cff]/30' },
-  { id: 'In Review', name: 'In Review', color: 'text-[#f59e0b]', borderGlow: 'hover:border-[#f59e0b]/30' },
-  { id: 'Completed', name: 'Completed', color: 'text-[#22c55e]', borderGlow: 'hover:border-[#22c55e]/30' },
+  { id: 'To Do', name: 'To Do', color: 'text-brand-text-secondary', borderGlow: 'hover:border-brand-border' },
+  { id: 'In Progress', name: 'In Progress', color: 'text-brand-primary', borderGlow: 'hover:border-brand-primary/30' },
+  { id: 'In Review', name: 'In Review', color: 'text-brand-warning', borderGlow: 'hover:border-brand-warning/30' },
+  { id: 'Completed', name: 'Completed', color: 'text-brand-success', borderGlow: 'hover:border-brand-success/30' },
 ];
 
 export const GoalsBoard: React.FC<GoalsBoardProps> = ({
@@ -41,6 +42,7 @@ export const GoalsBoard: React.FC<GoalsBoardProps> = ({
   onUpdateObjectiveStatus,
   onDeleteObjective,
 }) => {
+  const { t } = useTranslation();
   // Column-specific inline creator states
   const [activeCreatorCol, setActiveCreatorCol] = useState<Objective['status'] | null>(null);
   const [newTitle, setNewTitle] = useState('');
@@ -104,34 +106,34 @@ export const GoalsBoard: React.FC<GoalsBoardProps> = ({
       {/* Header Info */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <div className="flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-[#7c5cff] uppercase">
-            <FolderKanban className="h-3.5 w-3.5" /> Goals Tracker
+          <div className="flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-brand-primary uppercase">
+            <FolderKanban className="h-3.5 w-3.5" /> {t('goals.title')}
           </div>
-          <h1 className="text-4xl font-extrabold tracking-tight mt-1 bg-gradient-to-r from-white via-zinc-100 to-zinc-400 bg-clip-text text-transparent">
-            Your Goals
+          <h1 className="text-4xl font-extrabold tracking-tight mt-1 text-brand-text-primary">
+            {t('goals.title')}
           </h1>
-          <p className="text-sm text-[#a1a1aa] mt-2 font-medium">
-            Drag cards between columns to update your progress.
+          <p className="text-sm text-brand-text-secondary mt-2 font-medium">
+            {t('goals.subtitle')}
           </p>
         </div>
 
         {/* Global Board Progress Indicator */}
-        <div className="glass-card p-4 bg-[#111113]/40 border-white/[0.04] flex items-center gap-4 min-w-[240px]">
+        <div className="glass-card p-4 bg-brand-surface-secondary border-brand-border flex items-center gap-4 min-w-[240px]">
           <div className="flex-1 space-y-1.5 text-left">
             <div className="flex justify-between text-xs font-mono">
-              <span className="text-[#a1a1aa]">Goals Completed</span>
-              <span className="text-white font-bold">{progressPercent}%</span>
+              <span className="text-brand-text-secondary">{t('dash.goals.completed')}</span>
+              <span className="text-brand-text-primary font-bold">{progressPercent}%</span>
             </div>
-            <div className="h-1.5 w-full bg-white/[0.04] rounded-full overflow-hidden border border-white/[0.02]">
+            <div className="h-1.5 w-full bg-brand-surface-secondary rounded-full overflow-hidden border border-brand-border">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${progressPercent}%` }}
                 transition={{ duration: 0.8 }}
-                className="h-full bg-gradient-to-r from-[#7c5cff] to-[#22c55e]"
+                className="h-full bg-gradient-to-r from-brand-primary to-brand-success"
               />
             </div>
           </div>
-          <div className="h-9 w-9 rounded-xl bg-[#22c55e]/10 border border-[#22c55e]/20 flex items-center justify-center font-bold text-xs text-[#22c55e]">
+          <div className="h-9 w-9 rounded-xl bg-brand-success/10 border border-brand-success/30 flex items-center justify-center font-bold text-xs text-brand-success">
             {completed}/{total}
           </div>
         </div>
@@ -149,20 +151,20 @@ export const GoalsBoard: React.FC<GoalsBoardProps> = ({
               onDragOver={(e) => handleDragOver(e, col.id)}
               onDrop={(e) => handleDrop(e, col.id)}
               onDragLeave={() => setDragOverCol(null)}
-              className={`glass-card p-4 bg-[#111113]/40 border-white/[0.03] flex flex-col min-h-[500px] transition-all duration-300 ${
-                isOver ? 'border-[#7c5cff]/30 bg-[#7c5cff]/3' : ''
+              className={`glass-card p-4 bg-brand-surface-secondary border-brand-border flex flex-col min-h-[500px] transition-all duration-300 ${
+                isOver ? 'border-brand-primary/30 bg-brand-primary/10' : ''
               }`}
             >
               {/* Column Header */}
-              <div className="flex items-center justify-between mb-4 pb-2 border-b border-white/[0.03]">
+              <div className="flex items-center justify-between mb-4 pb-2 border-b border-brand-border">
                 <div className="flex items-center gap-2">
                   <span className={`h-1.5 w-1.5 rounded-full ${
-                    col.id === 'Completed' ? 'bg-[#22c55e]' : col.id === 'In Review' ? 'bg-[#f59e0b]' : col.id === 'In Progress' ? 'bg-[#7c5cff]' : 'bg-zinc-500'
+                    col.id === 'Completed' ? 'bg-brand-success' : col.id === 'In Review' ? 'bg-brand-warning' : col.id === 'In Progress' ? 'bg-brand-primary' : 'bg-brand-surface-secondary'
                   }`} />
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-white">
-                    {col.name}
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-brand-text-primary">
+                    {col.id === 'To Do' ? t('goals.status.todo') : col.id === 'In Progress' ? t('goals.status.inprogress') : col.id === 'In Review' ? t('goals.status.inreview') : t('goals.status.completed')}
                   </h3>
-                  <span className="text-[10px] font-bold font-mono px-1.5 py-0.5 rounded bg-white/[0.03] text-[#a1a1aa]">
+                  <span className="text-[10px] font-bold font-mono px-1.5 py-0.5 rounded bg-brand-surface-secondary text-brand-text-secondary">
                     {colCards.length}
                   </span>
                 </div>
@@ -170,7 +172,7 @@ export const GoalsBoard: React.FC<GoalsBoardProps> = ({
                 {/* Column Actions */}
                 <button
                   onClick={() => setActiveCreatorCol(activeCreatorCol === col.id ? null : col.id)}
-                  className="p-1 rounded hover:bg-white/[0.04] text-[#a1a1aa] hover:text-white transition-colors cursor-pointer"
+                  className="p-1 rounded hover:bg-brand-surface-secondary text-brand-text-secondary hover:text-brand-text-primary transition-colors cursor-pointer"
                   title="Create Goal In Column"
                 >
                   <Plus className="h-4 w-4" />
@@ -185,7 +187,7 @@ export const GoalsBoard: React.FC<GoalsBoardProps> = ({
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     onSubmit={(e) => handleSubmit(e, col.id)}
-                    className="mb-4 p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] space-y-3 overflow-hidden text-left"
+                    className="mb-4 p-3 rounded-xl bg-brand-surface-secondary border border-brand-border space-y-3 overflow-hidden text-left"
                   >
                     <input
                       type="text"
@@ -193,30 +195,30 @@ export const GoalsBoard: React.FC<GoalsBoardProps> = ({
                       placeholder="Goal title..."
                       value={newTitle}
                       onChange={(e) => setNewTitle(e.target.value)}
-                      className="w-full bg-[#09090b]/80 border border-white/[0.06] rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-[#7c5cff]/50 transition-colors"
+                      className="w-full bg-brand-bg border border-brand-border rounded-lg px-2.5 py-1.5 text-xs text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:border-brand-primary/30 transition-colors"
                     />
 
                     <div className="grid grid-cols-2 gap-2">
                       <div>
-                        <label className="text-[9px] font-bold text-[#a1a1aa] uppercase block mb-1">Priority</label>
+                        <label className="text-[9px] font-bold text-brand-text-secondary uppercase block mb-1">{t('cal.priority')}</label>
                         <select
                           value={priority}
                           onChange={(e) => setPriority(e.target.value as any)}
-                          className="w-full bg-[#09090b]/80 border border-white/[0.06] rounded-lg px-2 py-1.5 text-[11px] text-[#a1a1aa] focus:outline-none focus:border-[#7c5cff]/50 cursor-pointer"
+                          className="w-full bg-brand-bg border border-brand-border rounded-lg px-2 py-1.5 text-[11px] text-brand-text-secondary focus:outline-none focus:border-brand-primary/30 cursor-pointer"
                         >
-                          <option value="High">High</option>
-                          <option value="Medium">Medium</option>
-                          <option value="Low">Low</option>
+                          <option value="High">{t('goals.priority.high')}</option>
+                          <option value="Medium">{t('goals.priority.medium')}</option>
+                          <option value="Low">{t('goals.priority.low')}</option>
                         </select>
                       </div>
 
                       <div>
-                        <label className="text-[9px] font-bold text-[#a1a1aa] uppercase block mb-1">Due Date</label>
+                        <label className="text-[9px] font-bold text-brand-text-secondary uppercase block mb-1">{t('cal.date')}</label>
                         <input
                           type="date"
                           value={dueDate}
                           onChange={(e) => setDueDate(e.target.value)}
-                          className="w-full bg-[#09090b]/80 border border-white/[0.06] rounded-lg px-2 py-1.5 text-[11px] text-[#a1a1aa] focus:outline-none focus:border-[#7c5cff]/50 cursor-pointer"
+                          className="w-full bg-brand-bg border border-brand-border rounded-lg px-2 py-1.5 text-[11px] text-brand-text-secondary focus:outline-none focus:border-brand-primary/30 cursor-pointer"
                         />
                       </div>
                     </div>
@@ -224,16 +226,16 @@ export const GoalsBoard: React.FC<GoalsBoardProps> = ({
                     <div className="flex gap-2 pt-1">
                       <button
                         type="submit"
-                        className="flex-1 py-1.5 bg-white hover:bg-zinc-200 text-zinc-950 font-bold text-[11px] rounded-lg transition-colors cursor-pointer"
+                        className="flex-1 py-1.5 bg-brand-primary hover:bg-brand-primary-hover text-white border-brand-primary font-bold text-[11px] rounded-lg transition-colors cursor-pointer"
                       >
-                        Deploy
+                        {t('goals.add')}
                       </button>
                       <button
                         type="button"
                         onClick={() => setActiveCreatorCol(null)}
-                        className="px-2 py-1.5 bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.06] text-[#a1a1aa] hover:text-white text-[11px] rounded-lg transition-colors cursor-pointer"
+                        className="px-2 py-1.5 bg-brand-surface-secondary hover:bg-brand-surface-secondary border border-brand-border text-brand-text-secondary hover:text-brand-text-primary text-[11px] rounded-lg transition-colors cursor-pointer"
                       >
-                        Cancel
+                        {t('habits.cancel')}
                       </button>
                     </div>
                   </motion.form>
@@ -243,8 +245,8 @@ export const GoalsBoard: React.FC<GoalsBoardProps> = ({
               {/* Cards Container */}
               <div className="flex-1 space-y-3 overflow-y-auto pr-0.5 custom-scrollbar min-h-[400px]">
                 {colCards.length === 0 ? (
-                  <div className="h-full flex items-center justify-center border-2 border-dashed border-white/[0.01] rounded-2xl py-12 text-[11px] text-zinc-600 italic">
-                    Drop items here
+                  <div className="h-full flex items-center justify-center border-2 border-dashed border-brand-border rounded-2xl py-12 text-[11px] text-brand-text-secondary italic">
+                    {t('goals.placeholder')}
                   </div>
                 ) : (
                   <AnimatePresence initial={false}>
@@ -252,10 +254,10 @@ export const GoalsBoard: React.FC<GoalsBoardProps> = ({
                       const isHigh = card.priority === 'High';
                       const isMed = card.priority === 'Medium';
                       const priorityColor = isHigh 
-                        ? 'text-[#ef4444] bg-[#ef4444]/10 border-[#ef4444]/20'
+                        ? 'text-brand-danger bg-brand-danger/10 border-brand-danger/30'
                         : isMed
-                        ? 'text-[#f59e0b] bg-[#f59e0b]/10 border-[#f59e0b]/20'
-                        : 'text-[#7c5cff] bg-[#7c5cff]/10 border-[#7c5cff]/20';
+                        ? 'text-brand-warning bg-brand-warning/10 border-brand-warning/30'
+                        : 'text-brand-primary bg-brand-primary/10 border-brand-primary/30';
                       
                       // Calculate default progress bar fills
                       const barPercent = card.progress !== undefined 
@@ -278,62 +280,62 @@ export const GoalsBoard: React.FC<GoalsBoardProps> = ({
                         >
                           <motion.div
                             layoutId={`card-${card.id}`}
-                            className={`glass-card p-4 bg-[#111113]/80 border-white/[0.04] hover:border-white/[0.08] transition-all cursor-grab active:cursor-grabbing relative overflow-hidden group ${
+                            className={`glass-card p-4 bg-brand-surface-secondary border-brand-border hover:border-brand-border transition-all cursor-grab active:cursor-grabbing relative overflow-hidden group ${
                               draggingCardId === card.id ? 'opacity-30' : ''
                             }`}
                           >
                             {/* Priority Indicator Pill */}
                             <div className="flex justify-between items-start mb-2.5">
                               <span className={`text-[9px] font-mono px-2 py-0.5 rounded-full border font-semibold ${priorityColor}`}>
-                                {card.priority}
+                                {card.priority === 'High' ? t('goals.priority.high') : card.priority === 'Medium' ? t('goals.priority.medium') : t('goals.priority.low')}
                               </span>
 
                               <button
                                 onClick={() => onDeleteObjective(card.id)}
-                                className="opacity-0 group-hover:opacity-100 p-1 rounded hover:bg-white/[0.04] text-zinc-500 hover:text-[#ef4444] transition-all cursor-pointer"
-                                title="Delete Goal"
+                                className="opacity-0 group-hover:opacity-100 p-1 rounded hover:bg-brand-surface-secondary text-brand-text-secondary hover:text-brand-danger transition-all cursor-pointer"
+                                title={t('goals.delete')}
                               >
                                 <Trash2 className="h-3.5 w-3.5" />
                               </button>
                             </div>
 
                             {/* Card Content Title */}
-                            <p className="text-xs font-semibold text-white leading-relaxed tracking-wide text-left mb-3">
+                            <p className="text-xs font-semibold text-brand-text-primary leading-relaxed tracking-wide text-left mb-3">
                               {card.title}
                             </p>
 
                             {/* Progress Line */}
                             <div className="space-y-1 mb-3.5">
-                              <div className="flex justify-between text-[9px] font-mono text-[#a1a1aa]">
-                                <span>Status Yield</span>
+                              <div className="flex justify-between text-[9px] font-mono text-brand-text-secondary">
+                                <span>{t('goals.status.inprogress')}</span>
                                 <span>{barPercent}%</span>
                               </div>
-                              <div className="h-1 w-full bg-white/[0.04] rounded-full overflow-hidden">
+                              <div className="h-1 w-full bg-brand-surface-secondary rounded-full overflow-hidden">
                                 <div
                                   style={{ width: `${barPercent}%` }}
                                   className={`h-full rounded-full transition-all duration-500 ${
                                     card.status === 'Completed' 
-                                      ? 'bg-[#22c55e]' 
+                                      ? 'bg-brand-success' 
                                       : card.status === 'In Review'
-                                      ? 'bg-[#f59e0b]'
-                                      : 'bg-[#7c5cff]'
+                                      ? 'bg-brand-warning'
+                                      : 'bg-brand-primary'
                                   }`}
                                 />
                               </div>
                             </div>
 
                             {/* Footer Metrics */}
-                            <div className="flex items-center justify-between pt-2 border-t border-white/[0.03] text-[10px] text-[#a1a1aa] font-mono">
+                            <div className="flex items-center justify-between pt-2 border-t border-brand-border text-[10px] text-brand-text-secondary font-mono">
                               <span className="flex items-center gap-1 text-[9px]">
-                                <CalendarIcon className="h-3 w-3 text-zinc-500" />
+                                <CalendarIcon className="h-3 w-3 text-brand-text-secondary" />
                                 {card.dueDate}
                               </span>
 
                               {card.status !== 'Completed' && (
                                 <button
                                   onClick={() => onToggleObjective(card.id)}
-                                  className="h-4.5 w-4.5 rounded-md border border-zinc-700 hover:border-[#22c55e] flex items-center justify-center hover:bg-[#22c55e]/10 text-transparent hover:text-[#22c55e] transition-all cursor-pointer"
-                                  title="Quick Complete"
+                                  className="h-4.5 w-4.5 rounded-md border border-brand-border hover:border-brand-success flex items-center justify-center hover:bg-brand-success/10 text-transparent hover:text-brand-success transition-all cursor-pointer"
+                                  title={t('goals.complete.all')}
                                 >
                                   <Check className="h-3 w-3 stroke-[3]" />
                                 </button>

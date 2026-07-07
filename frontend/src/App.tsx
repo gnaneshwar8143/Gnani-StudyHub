@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from './context/AuthContext';
+import { useTranslation } from './context/I18nContext';
 import api from './lib/api';
-import { Zap, ArrowRight, Loader2, Eye, EyeOff, ArrowLeft } from 'lucide-react';
+import { ArrowRight, Loader2, Eye, EyeOff, ArrowLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Core layout & tracking imports
@@ -11,6 +12,7 @@ import { GoalsBoard } from './components/GoalsBoard';
 import { HabitsPage } from './components/HabitsPage';
 import { CalendarPage } from './components/CalendarPage';
 import { ProfileHub } from './components/ProfileHub';
+import { ResetPassword } from './pages/ResetPassword';
 
 import type { Objective } from './components/GoalsBoard';
 import type { Habit } from './components/HabitsPage';
@@ -32,6 +34,7 @@ const heroTransition = (delay: number) => ({
 
 export default function App() {
   const { login, user, accessToken } = useAuth();
+  const { t } = useTranslation();
   const [isLogin, setIsLogin] = useState(true);
   const [activeTab, setActiveTab] = useState('dashboard');
 
@@ -42,6 +45,7 @@ export default function App() {
 
   // Status reporting states
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   // Authentication & Security states
@@ -53,12 +57,22 @@ export default function App() {
   const [showResetModal, setShowResetModal] = useState(false);
   const [resetEmail, setResetEmail] = useState('');
   const [resetSuccess, setResetSuccess] = useState(false);
+  const [resetMessage, setResetMessage] = useState('');
+  const [resetError, setResetError] = useState('');
   const [failedAttempts, setFailedAttempts] = useState(0);
   const [isLocked, setIsLocked] = useState(false);
   const [lockTimer, setLockTimer] = useState(0);
   const [shakeKey, setShakeKey] = useState(0);
   const [socialLoading, setSocialLoading] = useState<'Google' | 'GitHub' | null>(null);
-
+  const [showOAuthModal, setShowOAuthModal] = useState<'Google' | 'GitHub' | null>(null);
+  const [customOAuthName, setCustomOAuthName] = useState('');
+  const [customOAuthEmail, setCustomOAuthEmail] = useState('');
+  const [showCustomOAuthForm, setShowCustomOAuthForm] = useState(false);
+  const [verifyToken, setVerifyToken] = useState<string | null>(null);
+  const [verificationState, setVerificationState] = useState<'verifying' | 'success' | 'error' | null>(null);
+  const [verificationMessage, setVerificationMessage] = useState('');
+  const [resetPasswordToken, setResetPasswordToken] = useState<string | null>(null);
+  
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const [motivationalQuote] = useState(
     () => MOTIVATIONAL_QUOTES[Math.floor(Math.random() * MOTIVATIONAL_QUOTES.length)]
@@ -112,90 +126,218 @@ export default function App() {
     }
   }, []);
 
-  // Lifted Objectives State
-  const [objectives, setObjectives] = useState<Objective[]>(() => {
-    const local = localStorage.getItem('lifeos_objectives');
-    if (local) {
-      try {
-        return JSON.parse(local);
-      } catch (e) {
-        // Fallback
-      }
+  // Handle verify-email and reset-password link checks
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const pathname = window.location.pathname;
+
+    // Check Verification token
+    const verifyTokenVal = params.get('token') || params.get('verifyToken');
+    const isVerify = pathname.includes('/verify-email') || params.has('verifyToken');
+
+    if (isVerify && verifyTokenVal) {
+      setVerifyToken(verifyTokenVal);
+      setVerificationState('verifying');
+      
+      api.post('/auth/verify-email', { token: verifyTokenVal })
+        .then((res) => {
+          setVerificationState('success');
+          setVerificationMessage(res.data.message);
+        })
+        .catch((err) => {
+          setVerificationState('error');
+          setVerificationMessage(err.response?.data?.message || 'Verification link invalid or expired.');
+        });
     }
-    return [
-      { id: '1', title: 'Complete daily code integration review', priority: 'High', status: 'In Progress', dueDate: new Date(Date.now() + 86400000 * 3).toISOString().split('T')[0], progress: 40 },
-      { id: '2', title: 'Plan high-fidelity frontend redesign structures', priority: 'Medium', status: 'To Do', dueDate: new Date(Date.now() + 86400000 * 5).toISOString().split('T')[0], progress: 0 },
-      { id: '3', title: 'Read 5 pages of system docs', priority: 'Low', status: 'Completed', dueDate: new Date().toISOString().split('T')[0], progress: 100 }
-    ];
+
+    // Check Reset Password token
+    let resetTokenVal = params.get('resetToken');
+    const isReset = pathname.includes('/reset-password');
+    
+    if (!resetTokenVal && pathname.includes('/reset-password/')) {
+      const parts = pathname.split('/reset-password/');
+      if (parts.length > 1 && parts[1]) {
+        resetTokenVal = parts[1];
+      }
+    } else if (!resetTokenVal && isReset) {
+      resetTokenVal = params.get('token');
+    }
+
+    if (resetTokenVal) {
+      setResetPasswordToken(resetTokenVal);
+    }
+  }, []);
+
+  // Lifted Objectives State
+  const [objectives, setObjectives] = useState<Objective[]>([]);
+
+  // Stats State
+  const [stats, setStats] = useState({
+    xp: 0,
+    studyTime: 0,
+    focusScore: 0,
+    totalSessions: 0,
+    totalCompletedTasks: 0
   });
 
-  useEffect(() => {
-    localStorage.setItem('lifeos_objectives', JSON.stringify(objectives));
-  }, [objectives]);
+  const fetchObjectives = async () => {
+    try {
+      const response = await api.get('/objectives');
+      const mapped = response.data.map((o: any) => ({ ...o, id: o._id }));
+      setObjectives(mapped);
+    } catch (err: any) {
+      console.error('Failed to fetch objectives:', err);
+    }
+  };
 
-  const handleAddObjective = (
+  const fetchStats = async () => {
+    try {
+      const response = await api.get('/user/stats');
+      setStats(response.data);
+    } catch (err) {
+      console.error('Failed to fetch stats:', err);
+    }
+  };
+
+  const handleUpdateStats = async (updatedFields: Partial<typeof stats>) => {
+    try {
+      const response = await api.put('/user/stats', updatedFields);
+      setStats(response.data);
+    } catch (err) {
+      console.error('Failed to update stats:', err);
+    }
+  };
+
+  const handleAddObjective = async (
     title: string, 
     priority: 'High' | 'Medium' | 'Low', 
     status: Objective['status'] = 'To Do', 
     dueDate?: string
   ) => {
-    const newObj: Objective = {
-      id: Date.now().toString(),
-      title,
-      priority,
-      status,
-      dueDate: dueDate || new Date(Date.now() + 86400000 * 3).toISOString().split('T')[0],
-      progress: status === 'Completed' ? 100 : status === 'In Review' ? 80 : status === 'In Progress' ? 40 : 0
-    };
-    setObjectives(prev => [...prev, newObj]);
+    try {
+      const response = await api.post('/objectives', {
+        title,
+        priority,
+        status,
+        dueDate: dueDate || new Date(Date.now() + 86400000 * 3).toISOString().split('T')[0],
+        taskType: activeTab === 'calendar' ? 'task' : 'goal',
+        progress: status === 'Completed' ? 100 : status === 'In Review' ? 80 : status === 'In Progress' ? 40 : 0
+      });
+      const newObj = { ...response.data, id: response.data._id };
+      setObjectives(prev => [...prev, newObj]);
+    } catch (err) {
+      console.error('Failed to add objective:', err);
+    }
   };
 
-  const handleToggleObjective = (id: string) => {
-    setObjectives(prev => prev.map(o => {
-      if (o.id === id) {
-        const nextStatus = o.status === 'Completed' ? 'In Progress' : 'Completed';
-        return { 
-          ...o, 
-          status: nextStatus,
-          progress: nextStatus === 'Completed' ? 100 : 40
-        };
+  const handleToggleObjective = async (id: string) => {
+    const objective = objectives.find(o => o.id === id);
+    if (!objective) return;
+    const nextStatus = objective.status === 'Completed' ? 'In Progress' : 'Completed';
+    const nextProgress = nextStatus === 'Completed' ? 100 : 40;
+    try {
+      const response = await api.put(`/objectives/${id}`, {
+        status: nextStatus,
+        progress: nextProgress,
+        completed: nextStatus === 'Completed'
+      });
+      const updated = { ...response.data, id: response.data._id };
+      setObjectives(prev => prev.map(o => o.id === id ? updated : o));
+      
+      if (nextStatus === 'Completed') {
+        await handleUpdateStats({ 
+          xp: stats.xp + 100, 
+          totalCompletedTasks: stats.totalCompletedTasks + 1 
+        });
+      } else {
+        await handleUpdateStats({
+          xp: Math.max(0, stats.xp - 100),
+          totalCompletedTasks: Math.max(0, stats.totalCompletedTasks - 1)
+        });
       }
-      return o;
-    }));
+    } catch (err) {
+      console.error('Failed to toggle objective:', err);
+    }
   };
 
-  const handleUpdateObjectiveStatus = (id: string, status: Objective['status']) => {
-    setObjectives(prev => prev.map(o => {
-      if (o.id === id) {
-        return { 
-          ...o, 
-          status,
-          progress: status === 'Completed' ? 100 : status === 'In Review' ? 80 : status === 'In Progress' ? 40 : 0
-        };
+  const handleUpdateObjectiveStatus = async (id: string, status: Objective['status']) => {
+    const objective = objectives.find(o => o.id === id);
+    if (!objective) return;
+    const progress = status === 'Completed' ? 100 : status === 'In Review' ? 80 : status === 'In Progress' ? 40 : 0;
+    try {
+      const response = await api.put(`/objectives/${id}`, {
+        status,
+        progress,
+        completed: status === 'Completed'
+      });
+      const updated = { ...response.data, id: response.data._id };
+      setObjectives(prev => prev.map(o => o.id === id ? updated : o));
+      
+      if (status === 'Completed' && objective.status !== 'Completed') {
+        await handleUpdateStats({ 
+          xp: stats.xp + 100, 
+          totalCompletedTasks: stats.totalCompletedTasks + 1 
+        });
+      } else if (status !== 'Completed' && objective.status === 'Completed') {
+        await handleUpdateStats({
+          xp: Math.max(0, stats.xp - 100),
+          totalCompletedTasks: Math.max(0, stats.totalCompletedTasks - 1)
+        });
       }
-      return o;
-    }));
+    } catch (err) {
+      console.error('Failed to update status:', err);
+    }
   };
 
-  const handleScheduleObjective = (id: string, date: string | undefined, time: string | undefined) => {
-    setObjectives(prev => prev.map(o => {
-      if (o.id === id) {
-        return {
-          ...o,
-          scheduledDate: date,
-          scheduledTime: time
-        };
-      }
-      return o;
-    }));
+  const handleScheduleObjective = async (id: string, date: string | undefined, time: string | undefined) => {
+    try {
+      const response = await api.put(`/objectives/${id}`, {
+        scheduledDate: date,
+        scheduledTime: time
+      });
+      const updated = { ...response.data, id: response.data._id };
+      setObjectives(prev => prev.map(o => o.id === id ? updated : o));
+    } catch (err) {
+      console.error('Failed to schedule objective:', err);
+    }
   };
 
-  const handleDeleteObjective = (id: string) => {
-    setObjectives(prev => prev.filter(o => o.id !== id));
+  const handleUpdateObjective = async (id: string, updates: Partial<Objective>) => {
+    try {
+      const response = await api.put(`/objectives/${id}`, updates);
+      const updated = { ...response.data, id: response.data._id };
+      setObjectives(prev => prev.map(o => o.id === id ? updated : o));
+    } catch (err) {
+      console.error('Failed to update objective:', err);
+    }
   };
 
-  const handleCompleteAllObjectives = () => {
-    setObjectives(prev => prev.map(o => ({ ...o, status: 'Completed', progress: 100 })));
+  const handleDeleteObjective = async (id: string) => {
+    try {
+      await api.delete(`/objectives/${id}`);
+      setObjectives(prev => prev.filter(o => o.id !== id));
+    } catch (err) {
+      console.error('Failed to delete objective:', err);
+    }
+  };
+
+  const handleCompleteAllObjectives = async () => {
+    try {
+      const incomplete = objectives.filter(o => o.status !== 'Completed');
+      const promises = incomplete.map(o => 
+        api.put(`/objectives/${o.id}`, { status: 'Completed', progress: 100, completed: true })
+      );
+      await Promise.all(promises);
+      
+      setObjectives(prev => prev.map(o => ({ ...o, status: 'Completed', progress: 100 })));
+      
+      await handleUpdateStats({
+        xp: stats.xp + (incomplete.length * 100),
+        totalCompletedTasks: stats.totalCompletedTasks + incomplete.length
+      });
+    } catch (err) {
+      console.error('Failed to complete all objectives:', err);
+    }
   };
 
   // Lifted Habits State
@@ -207,7 +349,8 @@ export default function App() {
     try {
       setHabitsError('');
       const response = await api.get('/habits');
-      setHabits(response.data);
+      const mapped = response.data.map((h: any) => ({ ...h, id: h._id }));
+      setHabits(mapped);
     } catch (err: any) {
       setHabitsError('Failed to fetch neuro-habit records.');
     } finally {
@@ -218,6 +361,18 @@ export default function App() {
   useEffect(() => {
     if (user) {
       fetchHabits();
+      fetchObjectives();
+      fetchStats();
+    } else {
+      setObjectives([]);
+      setHabits([]);
+      setStats({
+        xp: 0,
+        studyTime: 0,
+        focusScore: 0,
+        totalSessions: 0,
+        totalCompletedTasks: 0
+      });
     }
   }, [user]);
 
@@ -225,7 +380,11 @@ export default function App() {
     try {
       setHabitsError('');
       const response = await api.post('/habits', { name });
-      setHabits(prev => [...prev, response.data]);
+      const newHabit = { ...response.data, id: response.data._id };
+      setHabits(prev => [...prev, newHabit]);
+      
+      // Update XP for creating habit
+      await handleUpdateStats({ xp: stats.xp + 50 });
     } catch (err: any) {
       setHabitsError('Failed to record habit vector.');
       throw err;
@@ -236,7 +395,13 @@ export default function App() {
     try {
       setHabitsError('');
       const response = await api.put(`/habits/${id}/toggle`);
-      setHabits(prev => prev.map(h => h._id === id ? response.data : h));
+      const updated = response.data;
+      setHabits(prev => prev.map(h => h._id === id ? updated : h));
+      
+      // Update XP for completing habit
+      if (updated.completed) {
+        await handleUpdateStats({ xp: stats.xp + 50 });
+      }
     } catch (err: any) {
       setHabitsError('Failed to toggle completion state.');
       throw err;
@@ -289,7 +454,10 @@ export default function App() {
         login(response.data.accessToken, response.data.user);
       } else {
         const response = await api.post('/auth/signup', { name, email, password });
-        login(response.data.accessToken, response.data.user);
+        setIsLogin(true);
+        setPassword('');
+        setError('');
+        setSuccessMessage(response.data.message || 'Registration successful! Verification email sent.');
       }
     } catch (err: any) {
       const msg = err.response?.data?.message || 'Unable to sign in. Please check your email and password.';
@@ -313,36 +481,111 @@ export default function App() {
     }
   };
 
-  const handleSocialLogin = async (provider: 'Google' | 'GitHub') => {
+  const handleSocialLogin = (provider: 'Google' | 'GitHub') => {
     setSocialLoading(provider);
     setError('');
-    const email = `student@${provider.toLowerCase()}.com`;
-    const password = `oauth-${provider.toLowerCase()}-pwd-12345`;
-    const name = `${provider} Student`;
-
-    try {
-      // Simulate OAuth network latency
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      try {
-        const response = await api.post('/auth/login', { email, password });
-        login(response.data.accessToken, response.data.user);
-      } catch (loginErr) {
-        // If login failed, user doesn't exist, sign them up
-        const response = await api.post('/auth/signup', { name, email, password });
-        login(response.data.accessToken, response.data.user);
-      }
-    } catch (err: any) {
-      setError(`❌ Unable to sign in with ${provider}. Please try again.`);
-    } finally {
+    
+    setTimeout(() => {
       setSocialLoading(null);
-    }
+      setShowOAuthModal(provider);
+    }, 800);
   };
+
+  // Password Reset View Control
+  if (resetPasswordToken) {
+    return (
+      <ResetPassword 
+        token={resetPasswordToken} 
+        onBack={() => {
+          setResetPasswordToken(null);
+          window.history.replaceState({}, document.title, '/');
+        }}
+      />
+    );
+  }
+
+  // Email Verification View Control
+  if (verifyToken) {
+    return (
+      <div className="min-h-screen w-screen flex items-center justify-center bg-brand-bg text-brand-text-primary font-sans relative overflow-hidden p-4 antialiased">
+        <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-brand-primary/10 rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-primary/5 rounded-full blur-[130px] pointer-events-none" />
+
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.97 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="w-full max-w-md bg-brand-surface-secondary border border-brand-border rounded-3xl p-8 sm:p-10 shadow-2xl backdrop-blur-3xl relative z-10 text-center space-y-6"
+        >
+          <div className="flex justify-center select-none">
+            <img src="/gnani-logo.png" alt="Gnani Logo" className="h-[52px] w-[52px] object-contain" />
+          </div>
+
+          <h2 className="text-2xl font-black text-brand-text-primary">Gnani Verification</h2>
+
+          {verificationState === 'verifying' && (
+            <div className="space-y-4">
+              <div className="flex justify-center py-2">
+                <Loader2 className="h-7 w-7 animate-spin text-brand-primary" />
+              </div>
+              <p className="text-xs text-brand-text-secondary font-medium">Verifying your Gnani registration token...</p>
+            </div>
+          )}
+
+          {verificationState === 'success' && (
+            <div className="space-y-4">
+              <div className="p-3.5 rounded-xl bg-brand-success/10 border border-brand-success/30 text-xs text-brand-success font-semibold leading-relaxed">
+                {verificationMessage || 'Email address verified successfully!'}
+              </div>
+              <p className="text-xs text-brand-text-secondary leading-relaxed font-medium">
+                Your Gnani account is now active and ready.
+              </p>
+              <button
+                onClick={() => {
+                  setVerifyToken(null);
+                  window.history.replaceState({}, document.title, window.location.pathname);
+                }}
+                className="w-full py-2.5 bg-brand-primary hover:bg-brand-primary-hover text-white border-brand-primary text-xs font-bold rounded-xl transition-all cursor-pointer select-none"
+              >
+                Go to Login
+              </button>
+            </div>
+          )}
+
+          {verificationState === 'error' && (
+            <div className="space-y-4">
+              <div className="p-3.5 rounded-xl bg-brand-danger/10 border border-brand-danger/30 text-xs text-brand-danger font-semibold leading-relaxed">
+                {verificationMessage || 'Failed to verify email address.'}
+              </div>
+              <p className="text-xs text-brand-text-secondary leading-relaxed font-medium">
+                The verification link is invalid, has expired, or was already used.
+              </p>
+              <button
+                onClick={() => {
+                  setVerifyToken(null);
+                  window.history.replaceState({}, document.title, window.location.pathname);
+                }}
+                className="w-full py-2.5 bg-brand-surface-secondary hover:bg-brand-surface-secondary text-brand-text-primary text-xs font-bold rounded-xl transition-all border border-brand-border cursor-pointer select-none"
+              >
+                Go to Login
+              </button>
+            </div>
+          )}
+        </motion.div>
+      </div>
+    );
+  }
 
   // Authenticated State View Control
   if (user) {
+    const maxStreak = habits.length > 0 ? Math.max(...habits.map((h) => h.streak)) : 0;
+
     return (
-      <DashboardLayout activeTab={activeTab} setActiveTab={setActiveTab}>
+      <DashboardLayout 
+        activeTab={activeTab} 
+        setActiveTab={setActiveTab}
+        stats={stats}
+        maxStreak={maxStreak}
+      >
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -364,6 +607,8 @@ export default function App() {
                 onAddHabit={handleAddHabit}
                 onToggleHabit={handleToggleHabit}
                 onDeleteHabit={handleDeleteHabit}
+                stats={stats}
+                onUpdateStats={handleUpdateStats}
               />
             )}
             {activeTab === 'goals' && (
@@ -383,6 +628,7 @@ export default function App() {
                 onAddHabit={handleAddHabit}
                 onToggleHabit={handleToggleHabit}
                 onDeleteHabit={handleDeleteHabit}
+                stats={stats}
               />
             )}
             {activeTab === 'calendar' && (
@@ -392,6 +638,7 @@ export default function App() {
                 onAddObjective={handleAddObjective}
                 onToggleObjective={handleToggleObjective}
                 onDeleteObjective={handleDeleteObjective}
+                onUpdateObjective={handleUpdateObjective}
               />
             )}
             {activeTab === 'profile' && (
@@ -400,6 +647,8 @@ export default function App() {
                 habits={habits}
                 currentUser={{ id: user.id || '', name: user.name || '', email: user.email || '' }}
                 onUpdateProfile={handleUpdateProfile}
+                stats={stats}
+                onUpdateStats={handleUpdateStats}
               />
             )}
           </motion.div>
@@ -410,15 +659,15 @@ export default function App() {
 
   // Guest State Form View Control (Login / Signup)
   return (
-    <div className="min-h-screen w-screen flex items-center justify-center bg-[#09090b] text-[#ffffff] font-sans relative overflow-hidden p-4 antialiased">
+    <div className="min-h-screen w-screen flex items-center justify-center bg-brand-bg text-brand-text-primary font-sans relative overflow-hidden p-4 antialiased">
       {/* Background soft meshes */}
-      <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-[#7c5cff]/10 rounded-full blur-[130px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-[#4f46e5]/5 rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-brand-primary/10 rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-primary/5 rounded-full blur-[130px] pointer-events-none" />
 
       {/* Back to Home link */}
       <button 
         onClick={() => alert("Redirecting to home page...")}
-        className="absolute top-6 left-6 text-zinc-500 hover:text-white flex items-center gap-1.5 text-xs font-semibold transition-colors cursor-pointer bg-transparent border-none outline-none select-none"
+        className="absolute top-6 left-6 text-brand-text-secondary hover:text-brand-text-primary flex items-center gap-1.5 text-xs font-semibold transition-colors cursor-pointer bg-transparent border-none outline-none select-none"
         aria-label="Back to Home"
       >
         <ArrowLeft className="h-3.5 w-3.5" /> Back to Home
@@ -430,7 +679,7 @@ export default function App() {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.97 }}
         transition={{ duration: 0.3 }}
-        className="w-full max-w-md bg-[#111113]/85 border border-white/[0.06] rounded-3xl p-8 sm:p-10 shadow-2xl backdrop-blur-3xl relative z-10 space-y-8"
+        className="w-full max-w-md bg-brand-surface-secondary border border-brand-border rounded-3xl p-8 sm:p-10 shadow-2xl backdrop-blur-3xl relative z-10 space-y-8"
       >
         <motion.div
           animate={shakeKey > 0 ? { x: [0, -8, 8, -6, 6, -3, 3, 0] } : {}}
@@ -439,9 +688,9 @@ export default function App() {
         >
           {/* Social Loading Overlay */}
           {socialLoading && (
-            <div className="absolute -inset-4 bg-[#111113]/95 backdrop-blur-sm z-30 rounded-[18px] flex flex-col items-center justify-center space-y-3 select-none">
-              <Loader2 className="h-8 w-8 animate-spin text-[#7c5cff]" />
-              <span className="text-xs text-zinc-300 font-bold">Signing in with {socialLoading}...</span>
+            <div className="absolute -inset-4 bg-brand-surface-secondary backdrop-blur-sm z-30 rounded-[18px] flex flex-col items-center justify-center space-y-3 select-none">
+              <Loader2 className="h-8 w-8 animate-spin text-brand-primary" />
+              <span className="text-xs text-brand-text-secondary font-bold">Signing in with {socialLoading}...</span>
             </div>
           )}
           {/* Hero */}
@@ -450,27 +699,18 @@ export default function App() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={heroTransition(0)}
-              className="h-10 w-10 rounded-2xl bg-gradient-to-tr from-[#7c5cff] to-[#4f46e5] flex items-center justify-center shadow-lg shadow-[#7c5cff]/25 border border-[#a78bfa]/20 select-none"
+              className="select-none flex justify-center mb-2"
             >
-              <Zap className="h-4 w-4 text-white fill-white" />
+              <img src="/gnani-logo.png" alt="Gnani Logo" className="h-[52px] w-[52px] object-contain" />
             </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={heroTransition(0.08)}
-              className="text-5xl sm:text-6xl font-black tracking-tighter select-none bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-transparent"
-            >
-              NANI
-            </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={heroTransition(0.16)}
-              className="text-lg sm:text-xl font-semibold text-zinc-200 select-none"
+              className="text-lg sm:text-xl font-semibold text-brand-text-primary select-none"
             >
-              {isLogin ? 'Welcome Back 👋' : 'Get Started 👋'}
+              {isLogin ? t('auth.welcome') : t('auth.create')}
             </motion.p>
 
             {isLogin ? (
@@ -478,7 +718,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={heroTransition(0.24)}
-                className="text-sm sm:text-[15px] text-[#a78bfa]/90 italic leading-relaxed max-w-[280px] select-none"
+                className="text-sm sm:text-[15px] text-brand-primary/90 italic leading-relaxed max-w-[280px] select-none"
               >
                 &ldquo;{motivationalQuote}&rdquo;
               </motion.blockquote>
@@ -487,9 +727,9 @@ export default function App() {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={heroTransition(0.24)}
-                className="text-sm sm:text-[15px] text-[#a78bfa]/90 leading-relaxed max-w-[280px] select-none"
+                className="text-sm sm:text-[15px] text-brand-primary/90 leading-relaxed max-w-[280px] select-none"
               >
-                Your personal space for goals, habits, and focused progress.
+                {t('auth.create.sub')}
               </motion.p>
             )}
 
@@ -497,17 +737,17 @@ export default function App() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={heroTransition(0.32)}
-              className="text-xs sm:text-sm text-zinc-500 leading-relaxed max-w-xs select-none"
+              className="text-xs sm:text-sm text-brand-text-secondary leading-relaxed max-w-xs select-none"
             >
               {isLogin
-                ? 'Sign in to continue your productivity journey.'
-                : 'Create your account to begin your productivity journey.'}
+                ? t('auth.welcome.sub')
+                : t('auth.create.sub')}
             </motion.p>
           </div>
 
           {/* Rate Limiting Lockout Alert */}
           {isLocked && (
-            <div className="p-3 rounded-xl bg-[#ef4444]/10 border border-[#ef4444]/20 text-xs text-[#ef4444] font-semibold text-center select-none">
+            <div className="p-3 rounded-xl bg-brand-danger/10 border border-brand-danger/30 text-xs text-brand-danger font-semibold text-center select-none">
               ❌ Too many attempts. Login locked for {lockTimer}s.
             </div>
           )}
@@ -516,7 +756,7 @@ export default function App() {
           <form onSubmit={handleSubmit} className="space-y-4">
             {!isLogin && (
               <div className="space-y-1.5 text-left">
-                <label className="text-xs font-medium text-zinc-400 select-none">Your Name</label>
+                <label className="text-xs font-medium text-brand-text-secondary select-none">{t('auth.name')}</label>
                 <input
                   type="text"
                   required
@@ -524,14 +764,14 @@ export default function App() {
                   placeholder="e.g. John Doe"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-[#09090b]/80 border border-white/[0.06] rounded-xl px-4 py-2.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-[#7c5cff]/40 focus:border-[#7c5cff]/50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                  className="w-full bg-brand-bg border border-brand-border rounded-xl px-4 py-2.5 text-xs text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:ring-1 focus:ring-brand-primary/40 focus:border-brand-primary/30 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
                   aria-label="Your Name"
                 />
               </div>
             )}
 
             <div className="space-y-1.5 text-left">
-              <label className="text-xs font-medium text-zinc-400 select-none">Email Address</label>
+              <label className="text-xs font-medium text-brand-text-secondary select-none">{t('auth.email')}</label>
               <input
                 type="email"
                 required
@@ -539,8 +779,8 @@ export default function App() {
                 placeholder="you@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={`w-full bg-[#09090b]/80 border rounded-xl px-4 py-2.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-[#7c5cff]/40 disabled:opacity-40 disabled:cursor-not-allowed transition-all ${
-                  error && !isLogin ? 'border-red-500/50 focus:border-red-500' : 'border-white/[0.06] focus:border-[#7c5cff]/50'
+                className={`w-full bg-brand-bg border rounded-xl px-4 py-2.5 text-xs text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:ring-1 focus:ring-brand-primary/40 disabled:opacity-40 disabled:cursor-not-allowed transition-all ${
+                  error && !isLogin ? 'border-red-500/50 focus:border-red-500' : 'border-brand-border focus:border-brand-primary/30'
                 }`}
                 aria-label="Email Address"
               />
@@ -548,7 +788,7 @@ export default function App() {
 
             <div className="space-y-1.5 text-left">
               <div className="flex justify-between items-center select-none">
-                <label className="text-xs font-medium text-zinc-400">Password</label>
+                <label className="text-xs font-medium text-brand-text-secondary">{t('auth.password')}</label>
                 {isLogin && (
                   <button
                     type="button"
@@ -556,11 +796,13 @@ export default function App() {
                       setShowResetModal(true);
                       setResetSuccess(false);
                       setResetEmail('');
+                      setResetMessage('');
+                      setResetError('');
                     }}
-                    className="text-xs text-zinc-500 hover:text-[#7c5cff] font-medium transition-colors cursor-pointer bg-transparent border-none outline-none"
+                    className="text-xs text-brand-text-secondary hover:text-brand-primary font-medium transition-colors cursor-pointer bg-transparent border-none outline-none"
                     aria-label="Forgot Password"
                   >
-                    Forgot Password?
+                    {t('auth.forgot')}
                   </button>
                 )}
               </div>
@@ -576,8 +818,8 @@ export default function App() {
                   onChange={(e) => setPassword(e.target.value)}
                   onKeyDown={handlePasswordKeyDown}
                   onKeyUp={handlePasswordKeyDown}
-                  className={`w-full bg-[#09090b]/80 border rounded-xl pl-4 pr-10 py-2.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-[#7c5cff]/40 disabled:opacity-40 disabled:cursor-not-allowed transition-all ${
-                    error ? 'border-[#ef4444]/60 focus:border-[#ef4444]' : 'border-white/[0.06] focus:border-[#7c5cff]/50'
+                  className={`w-full bg-brand-bg border rounded-xl pl-4 pr-10 py-2.5 text-xs text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:ring-1 focus:ring-brand-primary/40 disabled:opacity-40 disabled:cursor-not-allowed transition-all ${
+                    error ? 'border-brand-danger/30 focus:border-brand-danger' : 'border-brand-border focus:border-brand-primary/30'
                   }`}
                   aria-label="Password"
                 />
@@ -586,7 +828,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-2.5 text-zinc-600 hover:text-white transition-colors cursor-pointer"
+                  className="absolute right-3 top-2.5 text-brand-text-secondary hover:text-brand-text-primary transition-colors cursor-pointer"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -606,6 +848,13 @@ export default function App() {
                   {error}
                 </div>
               )}
+              
+              {/* Inline Success Message */}
+              {successMessage && (
+                <div className="text-[11px] text-brand-success font-bold mt-2 text-left flex items-start gap-1 select-none leading-relaxed bg-brand-success/10 border border-brand-success/30 p-2 rounded-xl">
+                  {successMessage}
+                </div>
+              )}
             </div>
 
             {/* Remember me select checkbox */}
@@ -617,10 +866,10 @@ export default function App() {
                   disabled={isLoading || isLocked}
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-                  className="h-3.5 w-3.5 rounded bg-[#09090b] border-white/[0.06] text-[#7c5cff] focus:ring-[#7c5cff]/30 focus:ring-opacity-25 transition-all cursor-pointer"
+                  className="h-3.5 w-3.5 rounded bg-brand-bg border-brand-border text-brand-primary focus:ring-brand-primary/40 focus:ring-opacity-25 transition-all cursor-pointer"
                 />
-                <label htmlFor="remember_me" className="text-[11px] text-zinc-400 font-semibold cursor-pointer">
-                  Remember Me
+                <label htmlFor="remember_me" className="text-[11px] text-brand-text-secondary font-semibold cursor-pointer">
+                  {t('auth.remember')}
                 </label>
               </div>
             )}
@@ -629,17 +878,17 @@ export default function App() {
             <button
               type="submit"
               disabled={isLoading || isLocked}
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-white hover:bg-zinc-200 disabled:bg-zinc-900 disabled:text-zinc-600 text-zinc-950 text-xs font-bold rounded-xl transition-all shadow-lg shadow-white/5 hover:shadow-white/10 disabled:shadow-none mt-6 cursor-pointer glow-btn"
+              className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-brand-card hover:bg-brand-surface-secondary disabled:bg-brand-bg disabled:text-brand-text-secondary text-brand-text-primary text-xs font-bold rounded-xl transition-all shadow-lg shadow-white/5 hover:shadow-white/10 disabled:shadow-none mt-6 cursor-pointer glow-btn"
               aria-label={isLogin ? "Sign in" : "Sign up"}
             >
               {isLoading ? (
                 <>
                   <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                  <span>Signing in...</span>
+                  <span>{t('msg.verifying')}</span>
                 </>
               ) : (
                 <>
-                  <span>{isLogin ? 'Sign In' : 'Create Account'}</span>
+                  <span>{isLogin ? t('auth.signin') : t('auth.signup')}</span>
                   <ArrowRight className="h-3.5 w-3.5" />
                 </>
               )}
@@ -650,9 +899,9 @@ export default function App() {
           {isLogin && (
             <div className="space-y-4">
               <div className="flex items-center gap-3 select-none">
-                <div className="h-px bg-white/[0.04] flex-1" />
-                <span className="text-[9px] text-zinc-600 font-black tracking-[0.2em] uppercase">OR</span>
-                <div className="h-px bg-white/[0.04] flex-1" />
+                <div className="h-px bg-brand-surface-secondary flex-1" />
+                <span className="text-[9px] text-brand-text-secondary font-black tracking-[0.2em] uppercase">OR</span>
+                <div className="h-px bg-brand-surface-secondary flex-1" />
               </div>
 
               <div className="grid grid-cols-1 gap-3">
@@ -660,7 +909,7 @@ export default function App() {
                   type="button"
                   disabled={isLoading || isLocked}
                   onClick={() => handleSocialLogin('Google')}
-                  className="flex items-center justify-center gap-2.5 py-2.5 px-4 bg-[#09090b]/80 hover:bg-[#09090b] border border-white/[0.06] hover:border-[#7c5cff]/30 rounded-xl text-xs font-semibold text-zinc-300 hover:text-white transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed select-none"
+                  className="flex items-center justify-center gap-2.5 py-2.5 px-4 bg-brand-bg hover:bg-brand-bg border border-brand-border hover:border-brand-primary/30 rounded-xl text-xs font-semibold text-brand-text-secondary hover:text-brand-text-primary transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed select-none"
                   aria-label="Continue with Google"
                 >
                   <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
@@ -676,10 +925,10 @@ export default function App() {
                   type="button"
                   disabled={isLoading || isLocked}
                   onClick={() => handleSocialLogin('GitHub')}
-                  className="flex items-center justify-center gap-2.5 py-2.5 px-4 bg-[#09090b]/80 hover:bg-[#09090b] border border-white/[0.06] hover:border-[#7c5cff]/30 rounded-xl text-xs font-semibold text-zinc-300 hover:text-white transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed select-none"
+                  className="flex items-center justify-center gap-2.5 py-2.5 px-4 bg-brand-bg hover:bg-brand-bg border border-brand-border hover:border-brand-primary/30 rounded-xl text-xs font-semibold text-brand-text-secondary hover:text-brand-text-primary transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed select-none"
                   aria-label="Continue with GitHub"
                 >
-                  <svg className="h-4 w-4 shrink-0 fill-current text-white" viewBox="0 0 24 24">
+                  <svg className="h-4 w-4 shrink-0 fill-current text-brand-text-primary" viewBox="0 0 24 24">
                     <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
                   </svg>
                   <span>Continue with GitHub</span>
@@ -689,45 +938,47 @@ export default function App() {
           )}
 
           {/* Alternate flow toggle button links */}
-          <div className="text-center pt-2 border-t border-white/[0.04] text-[11px] text-[#a1a1aa] font-medium select-none">
+          <div className="text-center pt-2 border-t border-brand-border text-[11px] text-brand-text-secondary font-medium select-none">
             {isLogin ? (
               <span>
-                Don't have an account?{' '}
+                {t('auth.noaccount')}{' '}
                 <button
                   type="button"
                   onClick={() => {
                     setIsLogin(false);
                     setError('');
+                    setSuccessMessage('');
                   }}
-                  className="text-[#7c5cff] hover:text-[#a78bfa] font-bold cursor-pointer transition-colors bg-transparent border-none outline-none"
+                  className="text-brand-primary hover:text-brand-primary font-bold cursor-pointer transition-colors bg-transparent border-none outline-none"
                   aria-label="Create account"
                 >
-                  Create Account
+                  {t('auth.signup')}
                 </button>
               </span>
             ) : (
               <span>
-                Already registered?{' '}
+                {t('auth.hasaccount')}{' '}
                 <button
                   type="button"
                   onClick={() => {
                     setIsLogin(true);
                     setError('');
+                    setSuccessMessage('');
                   }}
-                  className="text-[#7c5cff] hover:text-[#a78bfa] font-bold cursor-pointer transition-colors bg-transparent border-none outline-none"
+                  className="text-brand-primary hover:text-brand-primary font-bold cursor-pointer transition-colors bg-transparent border-none outline-none"
                   aria-label="Sign in"
                 >
-                  Sign in
+                  {t('auth.signin')}
                 </button>
               </span>
             )}
           </div>
 
           {/* Footer terms policies */}
-          <div className="text-[9px] text-zinc-600 font-bold uppercase tracking-[0.1em] flex items-center justify-center gap-3 select-none">
-            <span className="hover:text-zinc-400 transition-colors cursor-pointer">Terms of Service</span>
-            <span className="h-1 w-1 rounded-full bg-zinc-800" />
-            <span className="hover:text-zinc-400 transition-colors cursor-pointer">Privacy Policy</span>
+          <div className="text-[9px] text-brand-text-secondary font-bold uppercase tracking-[0.1em] flex items-center justify-center gap-3 select-none">
+            <span className="hover:text-brand-text-secondary transition-colors cursor-pointer">Terms of Service</span>
+            <span className="h-1 w-1 rounded-full bg-brand-surface" />
+            <span className="hover:text-brand-text-secondary transition-colors cursor-pointer">Privacy Policy</span>
           </div>
         </motion.div>
       </motion.div>
@@ -738,50 +989,267 @@ export default function App() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="w-full max-w-sm bg-[#111113] border border-white/[0.08] rounded-[18px] p-6 shadow-2xl space-y-4 text-left"
+            className="w-full max-w-sm bg-brand-surface border border-brand-border rounded-[18px] p-6 shadow-2xl space-y-4 text-left"
           >
-            <h3 className="text-base font-bold text-white">Reset Password</h3>
-            <p className="text-xs text-zinc-400 leading-relaxed">
+            <h3 className="text-base font-bold text-brand-text-primary">Reset Password</h3>
+            <p className="text-xs text-brand-text-secondary leading-relaxed">
               Enter your email address and we&apos;ll send you a link to reset your password.
             </p>
             
             {resetSuccess ? (
-              <div className="p-3.5 rounded-xl bg-[#22c55e]/15 border border-[#22c55e]/30 text-xs text-[#22c55e] font-semibold leading-relaxed">
-                We've sent a password reset link to your email.
+              <div className="space-y-3">
+                <div className="p-3.5 rounded-xl bg-brand-success/10 border border-brand-success/30 text-xs text-brand-success font-semibold leading-relaxed">
+                  {resetMessage || "We've sent a password reset link to your email."}
+                </div>
               </div>
             ) : (
               <form
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault();
                   if (!resetEmail.trim()) return;
-                  setResetSuccess(true);
+                  setIsLoading(true);
+                  setResetError('');
+                  try {
+                    const response = await api.post('/auth/forgot-password', { email: resetEmail });
+                    setResetSuccess(true);
+                    setResetMessage(response.data.message);
+                  } catch (err: any) {
+                    setResetError(err.response?.data?.message || 'Failed to send reset link. Please check your network.');
+                  } finally {
+                    setIsLoading(false);
+                  }
                 }}
                 className="space-y-3"
               >
+                {resetError && (
+                  <div className="p-3.5 rounded-xl bg-brand-danger/10 border border-brand-danger/30 text-xs text-brand-danger font-semibold leading-relaxed">
+                    {resetError}
+                  </div>
+                )}
                 <input
                   type="email"
                   required
                   placeholder="you@example.com"
                   value={resetEmail}
                   onChange={(e) => setResetEmail(e.target.value)}
-                  className="w-full bg-[#09090b] border border-white/[0.06] rounded-xl px-3 py-2 text-xs text-white placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-[#7c5cff]/40 focus:border-[#7c5cff]/50"
+                  className="w-full bg-brand-bg border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:ring-1 focus:ring-brand-primary/40 focus:border-brand-primary/30"
                   aria-label="Reset Email"
                 />
                 <button
                   type="submit"
-                  className="w-full py-2 px-3 bg-white hover:bg-zinc-200 text-zinc-950 text-xs font-bold rounded-xl transition-all cursor-pointer"
+                  disabled={isLoading}
+                  className="w-full py-2 px-3 bg-brand-primary hover:bg-brand-primary-hover text-white border-brand-primary text-xs font-bold rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1.5"
                 >
-                  Send Reset Link
+                  {isLoading && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
+                  {isLoading ? 'Sending...' : 'Send Reset Link'}
                 </button>
               </form>
             )}
             
             <button
               onClick={() => setShowResetModal(false)}
-              className="w-full py-2 text-xs text-zinc-500 hover:text-white transition-colors cursor-pointer text-center font-semibold bg-transparent border-none outline-none"
+              className="w-full py-2 text-xs text-brand-text-secondary hover:text-brand-text-primary transition-colors cursor-pointer text-center font-semibold bg-transparent border-none outline-none"
             >
               Cancel
             </button>
+          </motion.div>
+        </div>
+      )}
+
+      {/* Simulated OAuth Consent / Account Selector Modals */}
+      {showOAuthModal && (
+        <div className="fixed inset-0 bg-black/75 backdrop-blur-md flex items-center justify-center z-50 p-4 select-none">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            className="w-full max-w-md bg-brand-surface border border-brand-border rounded-[18px] p-6 shadow-2xl space-y-5 text-center relative overflow-hidden"
+          >
+            {/* Top branding logo */}
+            {showOAuthModal === 'Google' ? (
+              <div className="space-y-3">
+                <div className="flex justify-center">
+                  <svg className="w-8 h-8" viewBox="0 0 24 24">
+                    <path
+                      fill="#EA4335"
+                      d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.2-5.136 4.2A5.64 5.64 0 0 1 8.31 13c0-3.11 2.53-5.64 5.68-5.64 1.48 0 2.82.57 3.84 1.5l3.22-3.22A10.15 10.15 0 0 0 14 0C7.7 0 2.5 5.2 2.5 11.5S7.7 23 14 23c6.54 0 10.87-4.6 10.87-11.07 0-.74-.08-1.3-.2-1.65H12.24z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-base font-extrabold text-brand-text-primary">Google Accounts Sign-In</h3>
+                <p className="text-xs text-brand-text-secondary">Choose an account to continue to <strong>Gnani</strong></p>
+
+                {showCustomOAuthForm ? (
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      if (!customOAuthName.trim() || !customOAuthEmail.trim()) return;
+                      const customUser = {
+                        id: `oauth-google-${customOAuthEmail.toLowerCase().replace(/[^a-z0-9]/g, '-')}`,
+                        name: customOAuthName.trim(),
+                        email: customOAuthEmail.trim(),
+                        preferences: { theme: 'violet', timezone: 'UTC' }
+                      };
+                      login(`mock-google-token-${Date.now()}`, customUser);
+                      setShowOAuthModal(null);
+                      setShowCustomOAuthForm(false);
+                    }}
+                    className="space-y-3.5 text-left pt-3"
+                  >
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold text-brand-text-secondary uppercase">Your Name</label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="e.g. Pocha"
+                        value={customOAuthName}
+                        onChange={(e) => setCustomOAuthName(e.target.value)}
+                        className="w-full bg-brand-bg border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:ring-1 focus:ring-brand-primary/40"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold text-brand-text-secondary uppercase">Gmail Address</label>
+                      <input
+                        type="email"
+                        required
+                        placeholder="e.g. pocha@gmail.com"
+                        value={customOAuthEmail}
+                        onChange={(e) => setCustomOAuthEmail(e.target.value)}
+                        className="w-full bg-brand-bg border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:ring-1 focus:ring-brand-primary/40"
+                      />
+                    </div>
+                    <div className="flex gap-2 pt-2">
+                      <button
+                        type="submit"
+                        className="flex-1 py-2 px-3 bg-brand-primary hover:bg-brand-primary-hover text-white border-brand-primary text-xs font-bold rounded-xl transition-all cursor-pointer"
+                      >
+                        Sign In
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setShowCustomOAuthForm(false)}
+                        className="flex-1 py-2 px-3 bg-brand-surface-secondary hover:bg-brand-surface-secondary text-brand-text-primary text-xs font-bold rounded-xl transition-all border border-brand-border cursor-pointer"
+                      >
+                        Back
+                      </button>
+                    </div>
+                  </form>
+                ) : (
+                  <div className="space-y-2 pt-3">
+                    {[
+                      { name: 'Pocha Student', email: 'pocha.student@gmail.com' },
+                      { name: 'Pocha Developer', email: 'pocha.dev@gmail.com' }
+                    ].map((account) => (
+                      <button
+                        key={account.email}
+                        onClick={() => {
+                          const mockUser = {
+                            id: `oauth-google-${account.email.split('@')[0]}`,
+                            name: account.name,
+                            email: account.email,
+                            preferences: { theme: 'violet', timezone: 'UTC' }
+                          };
+                          login(`mock-google-token-${Date.now()}`, mockUser);
+                          setShowOAuthModal(null);
+                        }}
+                        className="w-full flex items-center gap-3 p-3 rounded-xl bg-brand-surface-secondary border border-brand-border hover:bg-brand-surface-secondary hover:border-brand-primary/30 text-left transition-all cursor-pointer"
+                      >
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-brand-primary to-brand-primary flex items-center justify-center font-bold text-xs text-brand-text-primary">
+                          {account.name.split(' ').map(n => n[0]).join('')}
+                        </div>
+                        <div>
+                          <div className="text-xs font-bold text-brand-text-primary">{account.name}</div>
+                          <div className="text-[10px] text-brand-text-secondary">{account.email}</div>
+                        </div>
+                      </button>
+                    ))}
+                    
+                    <button
+                      onClick={() => {
+                        setCustomOAuthName('');
+                        setCustomOAuthEmail('');
+                        setShowCustomOAuthForm(true);
+                      }}
+                      className="w-full flex items-center gap-3 p-3 rounded-xl bg-transparent border border-dashed border-brand-border hover:border-brand-primary/30 hover:bg-brand-surface-secondary text-left transition-all cursor-pointer"
+                    >
+                      <div className="w-8 h-8 rounded-full bg-brand-surface-secondary border border-brand-border flex items-center justify-center font-bold text-xs text-brand-text-secondary">
+                        ＋
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-brand-text-secondary">Use another account</div>
+                        <div className="text-[9px] text-brand-text-secondary">Sign in with a custom profile</div>
+                      </div>
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <div className="flex justify-center items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-brand-surface border border-brand-border flex items-center justify-center text-xl">
+                    🐙
+                  </div>
+                  <span className="text-brand-text-secondary text-lg font-bold">⇄</span>
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-primary to-brand-primary flex items-center justify-center font-bold text-brand-text-primary text-xs">
+                    OS
+                  </div>
+                </div>
+                <h3 className="text-base font-extrabold text-brand-text-primary">Authorize Gnani</h3>
+                <p className="text-xs text-brand-text-secondary leading-relaxed">
+                  <strong>pocha/nani</strong> is requesting permission to access your public profile and email address.
+                </p>
+
+                <div className="bg-brand-surface-secondary border border-brand-border rounded-xl p-3.5 text-left space-y-2">
+                  <div className="text-[10px] font-bold text-brand-text-secondary uppercase tracking-wider">Permissions Requested:</div>
+                  <div className="flex items-start gap-2 text-xs text-brand-text-secondary">
+                    <span className="text-emerald-400">✔</span>
+                    <div>
+                      <div className="font-bold">Public profile data</div>
+                      <div className="text-[10px] text-brand-text-secondary">GitHub username, avatar, and public profile link.</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2 text-xs text-brand-text-secondary">
+                    <span className="text-emerald-400">✔</span>
+                    <div>
+                      <div className="font-bold">Email address</div>
+                      <div className="text-[10px] text-brand-text-secondary">Your primary verified GitHub email address.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex gap-2 pt-2">
+                  <button
+                    onClick={() => {
+                      const mockUser = {
+                        id: 'oauth-github-student',
+                        name: 'GitHub Student',
+                        email: 'student@github.com',
+                        preferences: { theme: 'violet', timezone: 'UTC' }
+                      };
+                      login(`mock-github-token-${Date.now()}`, mockUser);
+                      setShowOAuthModal(null);
+                    }}
+                    className="flex-1 py-2 px-3 bg-brand-success hover:bg-brand-success text-brand-text-primary text-xs font-bold rounded-xl transition-all cursor-pointer border border-brand-success/30"
+                  >
+                    Authorize Gnani
+                  </button>
+                  <button
+                    onClick={() => setShowOAuthModal(null)}
+                    className="flex-1 py-2 px-3 bg-brand-surface-secondary hover:bg-brand-surface-secondary text-brand-text-primary text-xs font-bold rounded-xl transition-all border border-brand-border cursor-pointer"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            )}
+            
+            {!showCustomOAuthForm && (
+              <button
+                onClick={() => setShowOAuthModal(null)}
+                className="w-full py-2 text-xs text-brand-text-secondary hover:text-brand-text-primary transition-colors cursor-pointer text-center font-semibold bg-transparent border-none outline-none mt-2"
+              >
+                Go Back
+              </button>
+            )}
           </motion.div>
         </div>
       )}

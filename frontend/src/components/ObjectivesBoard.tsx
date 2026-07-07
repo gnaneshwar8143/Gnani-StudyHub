@@ -47,13 +47,13 @@ export const ObjectivesBoard: React.FC = () => {
   };
 
   return (
-    <div className="glass-panel p-6 rounded-2xl border border-white/[0.06] min-h-[160px] flex flex-col justify-between transition-all duration-300 hover:border-white/[0.12]">
+    <div className="glass-panel p-6 rounded-2xl border border-brand-border min-h-[160px] flex flex-col justify-between transition-all duration-300 hover:border-brand-border">
       <div>
         <div className="flex items-center justify-between mb-4">
           <span className="text-xs font-bold uppercase tracking-widest text-amber-400 flex items-center gap-1.5">
             <Target className="h-3.5 w-3.5" /> Objectives
           </span>
-          <span className="text-xs font-mono text-zinc-500">
+          <span className="text-xs font-mono text-brand-text-secondary">
             {objectives.filter(o => o.status === 'Completed').length} Cleared
           </span>
         </div>
@@ -61,25 +61,25 @@ export const ObjectivesBoard: React.FC = () => {
         {/* Dynamic Targets List */}
         <div className="space-y-2 max-h-[180px] overflow-y-auto pr-1">
           {objectives.length === 0 ? (
-            <p className="text-sm text-zinc-600 mt-4 italic">No active targets loaded...</p>
+            <p className="text-sm text-brand-text-secondary mt-4 italic">No active targets loaded...</p>
           ) : (
             objectives.map((obj) => (
               <div 
                 key={obj.id}
-                className="flex items-center justify-between p-2 rounded-xl bg-white/[0.02] border border-white/[0.04] group"
+                className="flex items-center justify-between p-2 rounded-xl bg-brand-surface-secondary border border-brand-border group"
               >
                 <div className="flex items-center gap-3 min-w-0">
                   <button 
                     onClick={() => toggleObjective(obj.id)}
-                    className="text-zinc-500 hover:text-emerald-400 transition-colors cursor-pointer flex-shrink-0"
+                    className="text-brand-text-secondary hover:text-emerald-400 transition-colors cursor-pointer flex-shrink-0"
                   >
                     {obj.status === 'Completed' ? (
                       <CheckCircle2 className="h-4.5 w-4.5 text-emerald-500" />
                     ) : (
-                      <Circle className="h-4.5 w-4.5 text-zinc-600" />
+                      <Circle className="h-4.5 w-4.5 text-brand-text-secondary" />
                     )}
                   </button>
-                  <span className={`text-sm truncate ${obj.status === 'Completed' ? 'text-zinc-600 line-through' : 'text-zinc-200'}`}>
+                  <span className={`text-sm truncate ${obj.status === 'Completed' ? 'text-brand-text-secondary line-through' : 'text-brand-text-primary'}`}>
                     {obj.title}
                   </span>
                 </div>
@@ -90,7 +90,7 @@ export const ObjectivesBoard: React.FC = () => {
                   </span>
                   <button
                     onClick={() => deleteObjective(obj.id)}
-                    className="text-zinc-600 hover:text-rose-400 opacity-0 group-hover:opacity-100 p-1 transition-all cursor-pointer"
+                    className="text-brand-text-secondary hover:text-rose-400 opacity-0 group-hover:opacity-100 p-1 transition-all cursor-pointer"
                   >
                     <Trash2 className="h-3.5 w-3.5" />
                   </button>
@@ -108,12 +108,12 @@ export const ObjectivesBoard: React.FC = () => {
           placeholder="Deploy active target..."
           value={newTitle}
           onChange={(e) => setNewTitle(e.target.value)}
-          className="flex-1 bg-zinc-950 border border-white/[0.06] rounded-xl px-3 py-1.5 text-xs text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-amber-500/50 transition-colors"
+          className="flex-1 bg-brand-bg border border-brand-border rounded-xl px-3 py-1.5 text-xs text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:border-amber-500/50 transition-colors"
         />
         <select
           value={priority}
           onChange={(e) => setPriority(e.target.value as any)}
-          className="bg-zinc-950 border border-white/[0.06] rounded-xl px-2 py-1.5 text-xs text-zinc-400 focus:outline-none focus:border-amber-500/50 cursor-pointer"
+          className="bg-brand-bg border border-brand-border rounded-xl px-2 py-1.5 text-xs text-brand-text-secondary focus:outline-none focus:border-amber-500/50 cursor-pointer"
         >
           <option value="High">High</option>
           <option value="Medium">Med</option>
@@ -121,7 +121,7 @@ export const ObjectivesBoard: React.FC = () => {
         </select>
         <button 
           type="submit"
-          className="p-1.5 rounded-xl bg-zinc-900 border border-white/[0.06] text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors cursor-pointer"
+          className="p-1.5 rounded-xl bg-brand-bg border border-brand-border text-brand-text-secondary hover:text-brand-text-primary hover:bg-brand-surface-secondary transition-colors cursor-pointer"
         >
           <Plus className="h-4 w-4" />
         </button>

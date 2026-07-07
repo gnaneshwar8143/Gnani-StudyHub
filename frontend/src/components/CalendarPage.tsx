@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useTranslation } from '../context/I18nContext';
 import { 
   ChevronLeft, 
   ChevronRight, 
   Plus, 
+  Trash2, 
+  Check, 
+  Edit2, 
   Calendar, 
   Clock, 
-  Check, 
-  Trash2, 
-  HelpCircle,
+  AlertTriangle, 
   Inbox
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -19,8 +21,9 @@ export interface Objective {
   status: 'To Do' | 'In Progress' | 'In Review' | 'Completed';
   dueDate: string;
   progress?: number;
-  scheduledDate?: string; // YYYY-MM-DD
-  scheduledTime?: string; // HH:00
+  scheduledDate?: string;
+  scheduledTime?: string;
+  taskType?: 'Due Date' | 'Reminder' | 'Repeat Schedule';
 }
 
 interface CalendarPageProps {
@@ -29,12 +32,8 @@ interface CalendarPageProps {
   onAddObjective: (title: string, priority: 'High' | 'Medium' | 'Low', status?: Objective['status'], dueDate?: string) => void;
   onToggleObjective: (id: string) => void;
   onDeleteObjective: (id: string) => void;
+  onUpdateObjective?: (id: string, updates: Partial<Objective>) => void;
 }
-
-const HOURS = Array.from({ length: 14 }).map((_, i) => {
-  const hour = i + 8; // 08:00 to 21:00
-  return `${hour.toString().padStart(2, '0')}:00`;
-});
 
 export const CalendarPage: React.FC<CalendarPageProps> = ({
   objectives,
@@ -42,391 +41,696 @@ export const CalendarPage: React.FC<CalendarPageProps> = ({
   onAddObjective,
   onToggleObjective,
   onDeleteObjective,
+  onUpdateObjective,
 }) => {
+  const { t, formatDate } = useTranslation();
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [weekDays, setWeekDays] = useState<Date[]>([]);
-  const [selectedSlot, setSelectedSlot] = useState<{ dateStr: string; timeStr: string } | null>(null);
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  
+  // Modals / Editors
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState<Objective | null>(null);
+
+  // Form states
   const [newTitle, setNewTitle] = useState('');
   const [newPriority, setNewPriority] = useState<'High' | 'Medium' | 'Low'>('Medium');
-  
-  // Track current hour for live timeline marker
-  const [currentHourMinute, setCurrentHourMinute] = useState({ hour: 0, minute: 0 });
+  const [newType, setNewType] = useState<'Due Date' | 'Reminder' | 'Repeat Schedule'>('Due Date');
+  const [newTime, setNewTime] = useState('09:00');
 
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setCurrentHourMinute({ hour: now.getHours(), minute: now.getMinutes() });
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 60000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Compute days of the current week (Mon - Sun)
-  useEffect(() => {
-    const startOfWeek = new Date(currentDate);
-    const day = startOfWeek.getDay();
-    const diff = startOfWeek.getDate() - day + (day === 0 ? -6 : 1); // Adjust to Monday
-    startOfWeek.setDate(diff);
-
-    const days = [];
-    for (let i = 0; i < 7; i++) {
-      const nextDay = new Date(startOfWeek);
-      nextDay.setDate(startOfWeek.getDate() + i);
-      days.push(nextDay);
-    }
-    setWeekDays(days);
-  }, [currentDate]);
+  // Edit form states
+  const [editTitle, setEditTitle] = useState('');
+  const [editPriority, setEditPriority] = useState<'High' | 'Medium' | 'Low'>('Medium');
+  const [editType, setEditType] = useState<'Due Date' | 'Reminder' | 'Repeat Schedule'>('Due Date');
+  const [editDate, setEditDate] = useState('');
+  const [editTime, setEditTime] = useState('');
 
   const formatDateKey = (date: Date) => {
-    return date.toISOString().split('T')[0];
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   };
 
-  const handlePrevWeek = () => {
-    const prev = new Date(currentDate);
-    prev.setDate(currentDate.getDate() - 7);
-    setCurrentDate(prev);
+  const selectedDateStr = formatDateKey(selectedDate);
+  const todayStr = formatDateKey(new Date());
+
+  // Navigation handlers
+  const handlePrevMonth = () => {
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
   };
 
-  const handleNextWeek = () => {
-    const next = new Date(currentDate);
-    next.setDate(currentDate.getDate() + 7);
-    setCurrentDate(next);
+  const handleNextMonth = () => {
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
   };
 
   const handleToday = () => {
-    setCurrentDate(new Date());
+    const now = new Date();
+    setCurrentDate(now);
+    setSelectedDate(now);
   };
 
-  // Drag & Drop Handlers
-  const handleDragStart = (e: React.DragEvent, id: string) => {
-    e.dataTransfer.setData('text/plain', id);
-    e.dataTransfer.effectAllowed = 'move';
-  };
+  // Month days generation
+  const getDaysInMonth = (date: Date) => {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const startDayOfWeek = firstDay.getDay(); // 0 (Sun) to 6 (Sat)
+    const totalDays = new Date(year, month + 1, 0).getDate();
+    const prevMonthDays = new Date(year, month, 0).getDate();
 
-  const handleDropOnSlot = (e: React.DragEvent, dateStr: string, timeStr: string) => {
-    e.preventDefault();
-    const id = e.dataTransfer.getData('text/plain');
-    if (id) {
-      onScheduleObjective(id, dateStr, timeStr);
+    const cells: { date: Date; isCurrentMonth: boolean; key: string }[] = [];
+
+    // Prev month padding
+    for (let i = startDayOfWeek - 1; i >= 0; i--) {
+      const d = new Date(year, month - 1, prevMonthDays - i);
+      cells.push({ date: d, isCurrentMonth: false, key: `prev-${d.getDate()}` });
     }
-  };
 
-  const handleDropOnBacklog = (e: React.DragEvent) => {
-    e.preventDefault();
-    const id = e.dataTransfer.getData('text/plain');
-    if (id) {
-      onScheduleObjective(id, undefined, undefined);
+    // Current month days
+    for (let i = 1; i <= totalDays; i++) {
+      const d = new Date(year, month, i);
+      cells.push({ date: d, isCurrentMonth: true, key: `curr-${i}` });
     }
+
+    // Next month padding to fill full grid
+    const totalSlots = cells.length > 35 ? 42 : 35;
+    const nextMonthPadding = totalSlots - cells.length;
+    for (let i = 1; i <= nextMonthPadding; i++) {
+      const d = new Date(year, month + 1, i);
+      cells.push({ date: d, isCurrentMonth: false, key: `next-${i}` });
+    }
+
+    return cells;
   };
 
-  const handleCreateOnSlot = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newTitle.trim() || !selectedSlot) return;
+  const calendarCells = getDaysInMonth(currentDate);
 
-    // Create the objective
-    const newId = Date.now().toString();
-    onAddObjective(newTitle.trim(), newPriority, 'To Do', selectedSlot.dateStr);
-    
-    // We scheduled it, so we call the scheduler helper right after creating it to assign date & time
-    // But since onAddObjective is async or local, let's wait a tiny bit or just schedule it by matching the ID
-    // Actually, to make it seamless, let's adjust App.tsx to accept scheduled values or trigger scheduling
-    onScheduleObjective(newId, selectedSlot.dateStr, selectedSlot.timeStr);
-    
-    // Fallback: we schedule it by passing the values. We will update onAddObjective inside App.tsx to support passing scheduled properties!
-    // For now, let's close slot
+  // Filter tasks relative to the selected date
+  const getTasksForSelectedDate = () => {
+    return objectives.filter(o => o.dueDate === selectedDateStr || o.scheduledDate === selectedDateStr);
+  };
+
+  const getUpcomingTasks = () => {
+    return objectives.filter(o => {
+      const dateStr = o.dueDate || o.scheduledDate;
+      return dateStr && dateStr > selectedDateStr && o.status !== 'Completed';
+    });
+  };
+
+
+  const getMissedTasks = () => {
+    return objectives.filter(o => {
+      const dateStr = o.dueDate || o.scheduledDate;
+      return dateStr && dateStr < todayStr && o.status !== 'Completed';
+    });
+  };
+
+  const handleCreateTask = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newTitle.trim()) return;
+
+    const taskDateStr = selectedDateStr;
+    const tempId = Date.now().toString();
+
+    // Call standard add
+    onAddObjective(newTitle.trim(), newPriority, 'To Do', taskDateStr);
+
+    // Schedule time & custom taskType properties if update API is available
+    if (onUpdateObjective) {
+      setTimeout(() => {
+        // Find newly added item from states or update it
+        // To make it fully seamless, we can schedule the block and save custom attributes:
+        onScheduleObjective(tempId, taskDateStr, newTime);
+        onUpdateObjective(tempId, { taskType: newType });
+      }, 50);
+    } else {
+      onScheduleObjective(tempId, taskDateStr, newTime);
+    }
+
     setNewTitle('');
-    setSelectedSlot(null);
+    setShowAddModal(false);
   };
 
-  // Filter lists
-  const scheduledObjectives = objectives.filter(o => o.scheduledDate && o.scheduledTime);
-  const unscheduledObjectives = objectives.filter(o => !o.scheduledDate || !o.scheduledTime);
+  const handleEditClick = (task: Objective) => {
+    setShowEditModal(task);
+    setEditTitle(task.title);
+    setEditPriority(task.priority);
+    setEditType(task.taskType || 'Due Date');
+    setEditDate(task.dueDate || task.scheduledDate || selectedDateStr);
+    setEditTime(task.scheduledTime || '09:00');
+  };
 
-  const getPriorityColor = (priority: string) => {
+  const handleSaveEdit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!showEditModal || !editTitle.trim()) return;
+
+    if (onUpdateObjective) {
+      onUpdateObjective(showEditModal.id, {
+        title: editTitle.trim(),
+        priority: editPriority,
+        taskType: editType,
+        dueDate: editDate,
+        scheduledDate: editDate,
+        scheduledTime: editTime,
+      });
+    } else {
+      // Fallback updating via scheduler
+      onScheduleObjective(showEditModal.id, editDate, editTime);
+    }
+
+    setShowEditModal(null);
+  };
+
+
+  const getPriorityTagStyle = (priority: string) => {
     switch (priority) {
-      case 'High': return 'bg-[#ef4444]/10 border-[#ef4444]/30 text-[#ef4444] shadow-[#ef4444]/10';
-      case 'Medium': return 'bg-[#f59e0b]/10 border-[#f59e0b]/30 text-[#f59e0b] shadow-[#f59e0b]/10';
-      default: return 'bg-[#7c5cff]/10 border-[#7c5cff]/30 text-[#7c5cff] shadow-[#7c5cff]/10';
+      case 'High': return 'bg-brand-danger/10 text-brand-danger border-brand-danger/30';
+      case 'Medium': return 'bg-brand-warning/10 text-brand-warning border-brand-warning/30';
+      default: return 'bg-brand-primary/10 text-brand-primary border-brand-primary/30';
+    }
+  };
+
+  const getTypeIcon = (type?: string) => {
+    switch (type) {
+      case 'Reminder': return '🔔';
+      case 'Repeat Schedule': return '🔁';
+      default: return '📅';
     }
   };
 
   return (
     <div className="space-y-6 pb-12">
-      {/* Header Info */}
+      {/* Header section */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <div className="flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-[#a78bfa] uppercase">
-            <Clock className="h-3.5 w-3.5" /> Temporal Timeline
+          <div className="flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-brand-primary uppercase">
+            <Calendar className="h-3.5 w-3.5" /> {t('cal.title')}
           </div>
-          <h1 className="text-4xl font-extrabold tracking-tight mt-1 bg-gradient-to-r from-white via-zinc-100 to-zinc-400 bg-clip-text text-transparent">
-            Calendar Feed
+          <h1 className="text-4xl font-extrabold tracking-tight mt-1 text-brand-text-primary">
+            {t('cal.title')}
           </h1>
-          <p className="text-sm text-[#a1a1aa] mt-2 font-medium">
-            Drag objectives onto time slots to coordinate daily cognitive blocks.
+          <p className="text-sm text-brand-text-secondary mt-2 font-medium">
+            {t('cal.subtitle')}
           </p>
         </div>
 
-        {/* Navigation Actions */}
+        {/* Navigation Toolbar */}
         <div className="flex items-center gap-2">
           <button
             onClick={handleToday}
-            className="px-4 py-2 bg-white/[0.02] border border-white/[0.08] hover:bg-white/[0.04] text-xs font-bold text-white rounded-xl transition-all cursor-pointer"
+            className="px-4 py-2 bg-brand-surface-secondary border border-brand-border hover:bg-brand-surface-secondary text-xs font-bold text-brand-text-primary rounded-xl transition-all cursor-pointer"
           >
-            Today
+            {t('cal.today')}
           </button>
-          <div className="flex items-center bg-[#111113]/60 border border-white/[0.06] rounded-xl p-0.5">
+          <div className="flex items-center bg-brand-surface-secondary border border-brand-border rounded-xl p-0.5">
             <button
-              onClick={handlePrevWeek}
-              className="p-1.5 hover:bg-white/[0.04] rounded-lg text-[#a1a1aa] hover:text-white transition-colors cursor-pointer"
+              onClick={handlePrevMonth}
+              className="p-1.5 hover:bg-brand-surface-secondary rounded-lg text-brand-text-secondary hover:text-brand-text-primary transition-colors cursor-pointer"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
-            <span className="text-[11px] font-bold font-mono px-3 text-[#a1a1aa] min-w-[160px] text-center select-none">
-              {weekDays[0] && weekDays[0].toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-              {' — '}
-              {weekDays[6] && weekDays[6].toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+            <span className="text-[11px] font-bold font-mono px-3 text-brand-text-secondary min-w-[120px] text-center select-none">
+              {formatDate(currentDate, { month: 'long', year: 'numeric' })}
             </span>
             <button
-              onClick={handleNextWeek}
-              className="p-1.5 hover:bg-white/[0.04] rounded-lg text-[#a1a1aa] hover:text-white transition-colors cursor-pointer"
+              onClick={handleNextMonth}
+              className="p-1.5 hover:bg-brand-surface-secondary rounded-lg text-brand-text-secondary hover:text-brand-text-primary transition-colors cursor-pointer"
             >
               <ChevronRight className="h-4 w-4" />
             </button>
           </div>
+          <button
+            onClick={() => setShowAddModal(true)}
+            className="p-2 bg-brand-primary hover:bg-brand-primary-hover text-brand-text-primary rounded-xl transition-colors cursor-pointer flex items-center gap-1.5 text-xs font-bold shadow-md shadow-[#7c5cff]/20"
+          >
+            <Plus className="h-4 w-4" /> {t('cal.add.task')}
+          </button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
-        {/* Backlog / Unscheduled Panel */}
-        <div 
-          onDragOver={(e) => e.preventDefault()}
-          onDrop={handleDropOnBacklog}
-          className="glass-card p-5 bg-[#111113]/80 border-white/[0.04] space-y-4 flex flex-col min-h-[500px]"
-        >
-          <div>
-            <span className="text-xs font-bold uppercase tracking-widest text-[#a1a1aa] flex items-center gap-1.5">
-              <Inbox className="h-3.5 w-3.5" /> Task Backlog
-            </span>
-            <p className="text-[10px] text-zinc-500 mt-0.5">Drag scheduled cards back here to unschedule them.</p>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        {/* Monthly Calendar View */}
+        <div className="lg:col-span-8 glass-card bg-brand-surface-secondary border-brand-border p-5">
+          {/* Weekday Labels */}
+          <div className="grid grid-cols-7 gap-1 text-center mb-2">
+            {Array.from({ length: 7 }).map((_, i) => {
+              const d = new Date(2026, 0, 4 + i); // Jan 4, 2026 is a Sunday
+              const weekdayName = formatDate(d, { weekday: 'short' });
+              return (
+                <span key={i} className="text-[10px] font-extrabold text-brand-text-secondary uppercase tracking-widest py-1 font-mono">
+                  {weekdayName}
+                </span>
+              );
+            })}
           </div>
 
-          <div className="flex-1 overflow-y-auto space-y-2 pr-1 max-h-[480px] custom-scrollbar">
-            {unscheduledObjectives.length === 0 ? (
-              <div className="h-48 border border-dashed border-white/[0.04] rounded-xl flex flex-col items-center justify-center text-center p-4">
-                <HelpCircle className="h-7 w-7 text-zinc-700 mb-2" />
-                <span className="text-[10px] text-zinc-600 font-medium">All objectives scheduled.</span>
-              </div>
-            ) : (
-              unscheduledObjectives.map((obj) => (
-                <div
-                  key={obj.id}
-                  draggable
-                  onDragStart={(e) => handleDragStart(e, obj.id)}
-                  className={`p-3 rounded-xl border flex flex-col justify-between hover:scale-[1.02] cursor-grab active:cursor-grabbing transition-all ${getPriorityColor(obj.priority)}`}
+          {/* Day Grid Cells */}
+          <div className="grid grid-cols-7 gap-1">
+            {calendarCells.map((cell) => {
+              const dateStr = formatDateKey(cell.date);
+              const isSelected = dateStr === selectedDateStr;
+              const isToday = dateStr === todayStr;
+              
+              // Filter objectives due on this day
+              const dayTasks = objectives.filter(
+                (o) => o.dueDate === dateStr || o.scheduledDate === dateStr
+              );
+              
+              // Count priority types
+              const highCount = dayTasks.filter(t => t.priority === 'High').length;
+              const medCount = dayTasks.filter(t => t.priority === 'Medium').length;
+              const lowCount = dayTasks.filter(t => t.priority === 'Low').length;
+
+              return (
+                <button
+                  key={cell.key}
+                  onClick={() => setSelectedDate(cell.date)}
+                  className={`min-h-[85px] p-2 rounded-xl flex flex-col justify-between text-left transition-all border outline-none cursor-pointer ${
+                    cell.isCurrentMonth 
+                      ? 'bg-brand-surface-secondary hover:bg-brand-surface-secondary' 
+                      : 'bg-brand-surface-secondary opacity-30 hover:opacity-50'
+                  } ${
+                    isSelected 
+                      ? 'border-brand-primary/30 bg-brand-primary/10 shadow-sm shadow-[#7c5cff]/10 scale-[1.01]' 
+                      : isToday 
+                        ? 'border-brand-border bg-brand-surface-secondary' 
+                        : 'border-brand-border hover:border-brand-border'
+                  }`}
                 >
-                  <div className="flex justify-between items-start gap-2">
-                    <span className="text-xs font-bold leading-snug text-white truncate max-w-[160px] text-left">{obj.title}</span>
-                    <button
-                      onClick={() => onToggleObjective(obj.id)}
-                      className={`h-4.5 w-4.5 rounded border flex items-center justify-center flex-shrink-0 cursor-pointer ${
-                        obj.status === 'Completed'
-                          ? 'bg-[#7c5cff] border-[#7c5cff] text-white'
-                          : 'border-zinc-700 hover:border-zinc-500 bg-transparent'
-                      }`}
-                    >
-                      {obj.status === 'Completed' && <Check className="h-3.5 w-3.5 stroke-[3]" />}
-                    </button>
+                  <div className="flex justify-between items-center w-full">
+                    <span className={`text-xs font-bold font-mono ${
+                      isToday 
+                        ? 'h-5 w-5 rounded-full bg-brand-primary text-brand-text-primary flex items-center justify-center font-black shadow shadow-[#7c5cff]/30' 
+                        : isSelected 
+                          ? 'text-brand-primary' 
+                          : 'text-brand-text-secondary'
+                    }`}>
+                      {cell.date.getDate()}
+                    </span>
+                    {dayTasks.length > 0 && (
+                      <span className="text-[9px] font-bold text-brand-text-secondary font-mono">
+                        {dayTasks.length} {dayTasks.length === 1 ? 'task' : 'tasks'}
+                      </span>
+                    )}
                   </div>
-                  <div className="flex justify-between items-center mt-3 text-[9px] font-mono font-bold text-zinc-500">
-                    <span>{obj.priority.toUpperCase()}</span>
-                    <button
-                      onClick={() => onDeleteObjective(obj.id)}
-                      className="hover:text-[#ef4444] transition-colors cursor-pointer"
-                    >
-                      <Trash2 className="h-3 w-3" />
-                    </button>
+
+                  {/* Task Indicator Badges */}
+                  <div className="space-y-1 mt-2">
+                    {dayTasks.slice(0, 2).map((t) => (
+                      <div 
+                        key={t.id} 
+                        className={`text-[8px] font-bold px-1.5 py-0.5 rounded truncate text-brand-text-primary/95 flex items-center gap-1 ${
+                          t.status === 'Completed' 
+                            ? 'bg-brand-surface/80 text-brand-text-secondary line-through' 
+                            : t.priority === 'High' 
+                              ? 'bg-brand-danger/10 border border-brand-danger/30 text-brand-danger' 
+                              : t.priority === 'Medium' 
+                                ? 'bg-brand-warning/10 border border-brand-warning/30 text-brand-warning' 
+                                : 'bg-brand-primary/10 border border-brand-primary/30 text-brand-primary'
+                        }`}
+                        title={t.title}
+                      >
+                        <span className="text-[9px] flex-shrink-0">{getTypeIcon(t.taskType)}</span>
+                        <span className="truncate">{t.title}</span>
+                      </div>
+                    ))}
+                    {dayTasks.length > 2 && (
+                      <div className="text-[8px] text-brand-text-secondary font-bold font-mono pl-1">
+                        + {dayTasks.length - 2} more
+                      </div>
+                    )}
                   </div>
-                </div>
-              ))
-            )}
+
+                  {/* Priority Indicator Dots */}
+                  <div className="flex gap-1 mt-1 justify-end w-full">
+                    {highCount > 0 && <span className="h-1 w-1 rounded-full bg-brand-danger" />}
+                    {medCount > 0 && <span className="h-1 w-1 rounded-full bg-brand-warning" />}
+                    {lowCount > 0 && <span className="h-1 w-1 rounded-full bg-brand-primary" />}
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* Weekly Timeline Grid */}
-        <div className="lg:col-span-3 glass-card bg-[#111113]/40 border-white/[0.04] p-6 overflow-x-auto custom-scrollbar">
-          <div className="min-w-[700px] select-none relative">
-            
-            {/* Header Columns */}
-            <div className="grid grid-cols-8 border-b border-white/[0.04] pb-3 text-center">
-              <div className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest flex items-center justify-center font-mono">Time</div>
-              {weekDays.map((day, idx) => {
-                const isToday = day.toDateString() === new Date().toDateString();
-                return (
-                  <div key={idx} className="space-y-1">
-                    <div className={`text-[10px] font-bold uppercase tracking-wider ${isToday ? 'text-[#7c5cff]' : 'text-[#a1a1aa]'}`}>
-                      {day.toLocaleDateString('en-US', { weekday: 'short' })}
-                    </div>
-                    <div className={`text-xs font-black font-mono h-6 w-6 mx-auto rounded-full flex items-center justify-center ${isToday ? 'bg-[#7c5cff] text-white shadow-lg shadow-[#7c5cff]/30' : 'text-zinc-500'}`}>
-                      {day.getDate()}
-                    </div>
-                  </div>
-                );
-              })}
+        {/* Selected Day Agenda Side Drawer */}
+        <div className="lg:col-span-4 space-y-6">
+          <div className="glass-card p-5 bg-brand-surface-secondary border-brand-border space-y-5 flex flex-col min-h-[500px]">
+            {/* Agenda Header */}
+            <div className="border-b border-brand-border pb-3 text-left">
+              <span className="text-[10px] font-bold text-brand-text-secondary uppercase tracking-widest font-mono select-none">
+                {t('cal.agenda')}
+              </span>
+              <h2 className="text-base font-extrabold text-brand-text-primary mt-1">
+                {formatDate(selectedDate, { weekday: 'long', month: 'short', day: 'numeric' })}
+              </h2>
             </div>
 
-            {/* Grid Slots */}
-            <div className="relative mt-2">
-              {HOURS.map((hourStr, hourIdx) => {
-                const hourValue = parseInt(hourStr.split(':')[0]);
-                
-                return (
-                  <div key={hourIdx} className="grid grid-cols-8 items-stretch border-b border-white/[0.02] min-h-[48px] relative group/row">
-                    
-                    {/* Hour label */}
-                    <div className="text-[10px] font-bold text-zinc-600 font-mono flex items-center justify-center border-r border-white/[0.02]">
-                      {hourStr}
-                    </div>
+            {/* List Agenda Sections */}
+            <div className="flex-1 overflow-y-auto space-y-5 pr-1 max-h-[460px] custom-scrollbar text-left">
+              {/* Today's Tasks */}
+              <div>
+                <div className="text-[10px] font-extrabold text-brand-text-secondary uppercase tracking-wider mb-2.5 flex items-center justify-between">
+                  <span>📅 {t('cal.scheduled.today')}</span>
+                  <span className="text-brand-text-secondary font-mono">({getTasksForSelectedDate().length})</span>
+                </div>
 
-                    {/* Week day cells */}
-                    {weekDays.map((day, dayIdx) => {
-                      const dateStr = formatDateKey(day);
-                      
-                      // Find items scheduled in this slot
-                      const slotObjectives = scheduledObjectives.filter(
-                        o => o.scheduledDate === dateStr && o.scheduledTime === hourStr
-                      );
-
-                      return (
-                        <div
-                          key={dayIdx}
-                          onDragOver={(e) => e.preventDefault()}
-                          onDrop={(e) => handleDropOnSlot(e, dateStr, hourStr)}
-                          onClick={() => setSelectedSlot({ dateStr, timeStr: hourStr })}
-                          className={`relative border-r border-white/[0.02] last:border-r-0 p-1 flex flex-col gap-1 transition-colors cursor-crosshair group hover:bg-white/[0.01]`}
-                        >
-                          {/* Plus sign overlay on hover */}
-                          <div className="absolute right-1 top-1 opacity-0 group-hover:opacity-100 transition-opacity p-0.5 rounded bg-white/[0.04] border border-white/[0.08]">
-                            <Plus className="h-2.5 w-2.5 text-zinc-400" />
-                          </div>
-
-                          {/* Event Cards inside cell */}
-                          {slotObjectives.map((obj) => (
-                            <div
-                              key={obj.id}
-                              draggable
-                              onClick={(e) => e.stopPropagation()} // Prevent opening dialog
-                              onDragStart={(e) => handleDragStart(e, obj.id)}
-                              className={`p-1.5 rounded-lg border flex flex-col justify-between text-left cursor-grab active:cursor-grabbing transition-all select-none hover:scale-[1.03] ${getPriorityColor(obj.priority)}`}
-                              title={obj.title}
-                            >
-                              <div className="flex justify-between items-start gap-1">
-                                <span className="text-[9px] font-bold leading-tight text-white line-clamp-2">{obj.title}</span>
-                                <button
-                                  onClick={() => onToggleObjective(obj.id)}
-                                  className={`h-3 w-3 rounded border flex items-center justify-center flex-shrink-0 cursor-pointer ${
-                                    obj.status === 'Completed'
-                                      ? 'bg-[#7c5cff] border-[#7c5cff] text-white'
-                                      : 'border-zinc-700 hover:border-zinc-500 bg-transparent'
-                                  }`}
-                                >
-                                  {obj.status === 'Completed' && <Check className="h-2 w-2 stroke-[3]" />}
-                                </button>
-                              </div>
-                              <div className="flex justify-between items-center mt-1.5 text-[7px] font-mono font-bold text-zinc-500">
-                                <span>{obj.priority.substring(0, 1)}</span>
-                                <button
-                                  onClick={() => onDeleteObjective(obj.id)}
-                                  className="hover:text-[#ef4444] transition-colors cursor-pointer"
-                                >
-                                  <Trash2 className="h-2.5 w-2.5" />
-                                </button>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      );
-                    })}
-
-                    {/* Live Time Tracker Line (rendered if current hour matches) */}
-                    {currentHourMinute.hour === hourValue && (
+                {getTasksForSelectedDate().length === 0 ? (
+                  <div className="py-6 border border-dashed border-brand-border rounded-xl flex flex-col items-center justify-center text-center p-4 mb-4 select-none">
+                    <Inbox className="h-6 w-6 text-brand-text-primary mb-1.5" />
+                    <span className="text-[10px] text-brand-text-secondary font-medium">{t('cal.no.tasks')}</span>
+                  </div>
+                ) : (
+                  <div className="space-y-2 mb-4">
+                    {getTasksForSelectedDate().map((obj) => (
                       <div 
-                        className="absolute left-[12.5%] right-0 h-0.5 bg-[#ef4444]/60 z-30 pointer-events-none shadow-md shadow-[#ef4444]/30"
-                        style={{ top: `${(currentHourMinute.minute / 60) * 100}%` }}
+                        key={obj.id} 
+                        className="flex items-center justify-between p-3 rounded-xl bg-brand-surface-secondary border border-brand-border hover:border-brand-border transition-all group"
                       >
-                        <div className="absolute left-[-4px] top-[-3px] w-2.5 h-2.5 rounded-full bg-[#ef4444] border border-[#09090b] shadow shadow-[#ef4444]/50" />
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <button
+                            onClick={() => onToggleObjective(obj.id)}
+                            className={`h-4.5 w-4.5 rounded-lg border flex items-center justify-center transition-all cursor-pointer flex-shrink-0 ${
+                              obj.status === 'Completed'
+                                ? 'bg-emerald-500 border-emerald-500 text-brand-text-primary'
+                                : 'border-brand-border hover:border-brand-primary bg-transparent text-transparent'
+                            }`}
+                          >
+                            {obj.status === 'Completed' && <Check className="h-3 w-3 stroke-[3]" />}
+                          </button>
+                          
+                          <div className="min-w-0">
+                            <p className={`text-xs truncate font-bold ${
+                              obj.status === 'Completed' ? 'text-brand-text-secondary line-through' : 'text-brand-text-primary'
+                            }`}>
+                              {obj.title}
+                            </p>
+                            <span className="text-[9px] text-brand-text-secondary font-bold font-mono flex items-center gap-1.5 mt-0.5">
+                              <span>{getTypeIcon(obj.taskType)} {obj.taskType || 'Due Date'}</span>
+                              {obj.scheduledTime && (
+                                <span className="flex items-center gap-0.5">
+                                  <Clock className="h-2.5 w-2.5" /> {obj.scheduledTime}
+                                </span>
+                              )}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-1.5 flex-shrink-0">
+                          <span className={`text-[8px] px-1.5 py-0.5 rounded font-black border ${getPriorityTagStyle(obj.priority)}`}>
+                            {obj.priority}
+                          </span>
+                          <button
+                            onClick={() => handleEditClick(obj)}
+                            className="text-brand-text-secondary hover:text-brand-text-primary transition-colors cursor-pointer"
+                            title="Edit task"
+                          >
+                            <Edit2 className="h-3 w-3" />
+                          </button>
+                          <button
+                            onClick={() => onDeleteObjective(obj.id)}
+                            className="text-brand-text-secondary hover:text-red-400 transition-colors cursor-pointer"
+                            title="Delete task"
+                          >
+                            <Trash2 className="h-3 w-3" />
+                          </button>
+                        </div>
                       </div>
-                    )}
-
+                    ))}
                   </div>
-                );
-              })}
-            </div>
+                )}
+              </div>
 
+              {/* Missed Tasks Alert */}
+              {getMissedTasks().length > 0 && (
+                <div>
+                  <div className="text-[10px] font-extrabold text-brand-danger uppercase tracking-wider mb-2.5 flex items-center gap-1 select-none">
+                    <AlertTriangle className="h-3.5 w-3.5 stroke-[2.5]" /> Missed Backlog
+                  </div>
+                  <div className="space-y-2 mb-4">
+                    {getMissedTasks().map((obj) => (
+                      <div 
+                        key={obj.id} 
+                        className="flex items-center justify-between p-3 rounded-xl bg-brand-danger/10 border border-brand-danger/30 hover:border-brand-danger/30 transition-all group"
+                      >
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <button
+                            onClick={() => onToggleObjective(obj.id)}
+                            className="h-4.5 w-4.5 rounded-lg border border-brand-danger/30 hover:border-brand-danger flex items-center justify-center transition-all cursor-pointer flex-shrink-0 bg-transparent text-transparent"
+                          >
+                            <Check className="h-3 w-3 stroke-[3]" />
+                          </button>
+                          
+                          <div className="min-w-0">
+                            <p className="text-xs truncate font-bold text-brand-text-primary">
+                              {obj.title}
+                            </p>
+                            <span className="text-[9px] text-brand-danger font-bold font-mono mt-0.5 block">
+                              Due: {obj.dueDate || obj.scheduledDate}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-1.5 flex-shrink-0">
+                          <button
+                            onClick={() => onDeleteObjective(obj.id)}
+                            className="text-brand-text-secondary hover:text-red-400 transition-colors cursor-pointer"
+                          >
+                            <Trash2 className="h-3 w-3" />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Upcoming Tasks */}
+              {getUpcomingTasks().length > 0 && (
+                <div>
+                  <div className="text-[10px] font-extrabold text-brand-primary uppercase tracking-wider mb-2.5 select-none">
+                    🚀 Upcoming Milestones
+                  </div>
+                  <div className="space-y-2">
+                    {getUpcomingTasks().slice(0, 4).map((obj) => (
+                      <div 
+                        key={obj.id} 
+                        className="flex items-center justify-between p-3 rounded-xl bg-brand-surface-secondary border border-brand-border hover:border-brand-border transition-all group"
+                      >
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <button
+                            onClick={() => onToggleObjective(obj.id)}
+                            className="h-4.5 w-4.5 rounded-lg border border-brand-border hover:border-brand-primary flex items-center justify-center transition-all cursor-pointer flex-shrink-0 bg-transparent text-transparent"
+                          >
+                            <Check className="h-3 w-3 stroke-[3]" />
+                          </button>
+                          
+                          <div className="min-w-0">
+                            <p className="text-xs truncate font-bold text-brand-text-secondary">
+                              {obj.title}
+                            </p>
+                            <span className="text-[9px] text-brand-text-secondary font-bold font-mono mt-0.5 block">
+                              {obj.dueDate || obj.scheduledDate}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-1.5 flex-shrink-0">
+                          <span className={`text-[8px] px-1 py-0.5 rounded font-black border ${getPriorityTagStyle(obj.priority)}`}>
+                            {obj.priority}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Inline Slot Creator Modal Dialog */}
       <AnimatePresence>
-        {selectedSlot && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        {showAddModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="w-full max-w-sm glass-card p-6 bg-[#111113] border-white/[0.08] space-y-4"
+              className="w-full max-w-sm glass-card p-6 bg-brand-surface border-brand-border space-y-4"
             >
-              <div className="flex justify-between items-center pb-2 border-b border-white/[0.04]">
-                <h3 className="text-xs font-bold uppercase tracking-widest text-[#a78bfa] flex items-center gap-1.5">
-                  <Calendar className="h-3.5 w-3.5" /> Block Time Coordinate
+              <div className="flex justify-between items-center pb-2 border-b border-brand-border">
+                <h3 className="text-xs font-bold uppercase tracking-widest text-brand-primary flex items-center gap-1.5">
+                  <Calendar className="h-3.5 w-3.5" /> Allocate New Task
                 </h3>
                 <button 
-                  onClick={() => setSelectedSlot(null)}
-                  className="text-xs font-bold text-zinc-500 hover:text-white uppercase tracking-wider cursor-pointer"
+                  onClick={() => setShowAddModal(false)}
+                  className="text-xs font-bold text-brand-text-secondary hover:text-brand-text-primary uppercase tracking-wider cursor-pointer bg-transparent border-none outline-none"
                 >
                   Cancel
                 </button>
               </div>
 
-              <div className="space-y-1 text-left">
-                <span className="text-[10px] font-mono text-[#a1a1aa] font-bold">COORDINATE</span>
-                <p className="text-xs font-bold text-white font-mono">
-                  {new Date(selectedSlot.dateStr).toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })} @ {selectedSlot.timeStr}
+              <div className="space-y-1 text-left select-none">
+                <span className="text-[10px] font-mono text-brand-text-secondary font-bold">TARGET DATE</span>
+                <p className="text-xs font-bold text-brand-text-primary font-mono">
+                  {selectedDate.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' })}
                 </p>
               </div>
 
-              <form onSubmit={handleCreateOnSlot} className="space-y-4">
+              <form onSubmit={handleCreateTask} className="space-y-4">
                 <div className="space-y-1.5 text-left">
-                  <label className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">Block Title</label>
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-brand-text-secondary">Task Title</label>
                   <input
                     type="text"
                     required
-                    placeholder="Focus target name..."
+                    placeholder="Input task objective..."
                     value={newTitle}
                     onChange={(e) => setNewTitle(e.target.value)}
-                    className="w-full bg-[#09090b]/80 border border-white/[0.06] rounded-xl px-3 py-2 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-[#7c5cff]/50 transition-colors"
+                    className="w-full bg-brand-bg border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:border-brand-primary/30 transition-colors"
                   />
                 </div>
 
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-1.5 text-left">
+                    <label className="text-[10px] font-bold uppercase tracking-wider text-brand-text-secondary">Priority</label>
+                    <select
+                      value={newPriority}
+                      onChange={(e) => setNewPriority(e.target.value as any)}
+                      className="w-full bg-brand-bg border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-text-primary focus:outline-none focus:border-brand-primary/30 transition-colors"
+                    >
+                      <option value="High">High</option>
+                      <option value="Medium">Medium</option>
+                      <option value="Low">Low</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-1.5 text-left">
+                    <label className="text-[10px] font-bold uppercase tracking-wider text-brand-text-secondary">Task Type</label>
+                    <select
+                      value={newType}
+                      onChange={(e) => setNewType(e.target.value as any)}
+                      className="w-full bg-brand-bg border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-text-primary focus:outline-none focus:border-brand-primary/30 transition-colors"
+                    >
+                      <option value="Due Date">Due Date</option>
+                      <option value="Reminder">Reminder</option>
+                      <option value="Repeat Schedule">Repeat Schedule</option>
+                    </select>
+                  </div>
+                </div>
+
                 <div className="space-y-1.5 text-left">
-                  <label className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">Priority Vector</label>
-                  <select
-                    value={newPriority}
-                    onChange={(e) => setNewPriority(e.target.value as any)}
-                    className="w-full bg-[#09090b]/80 border border-white/[0.06] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#7c5cff]/50 transition-colors"
-                  >
-                    <option value="High">High</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Low">Low</option>
-                  </select>
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-brand-text-secondary">Schedule Time</label>
+                  <input
+                    type="time"
+                    value={newTime}
+                    onChange={(e) => setNewTime(e.target.value)}
+                    className="w-full bg-brand-bg border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-text-primary focus:outline-none focus:border-brand-primary/30 transition-colors"
+                  />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-2 bg-white hover:bg-zinc-200 text-zinc-950 text-xs font-bold rounded-xl transition-colors cursor-pointer"
+                  className="w-full py-2 bg-brand-primary hover:bg-brand-primary-hover text-white border-brand-primary text-xs font-bold rounded-xl transition-colors cursor-pointer select-none"
                 >
-                  Schedule Block
+                  Create Objective
+                </button>
+              </form>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Edit Task Modal Dialog */}
+      <AnimatePresence>
+        {showEditModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="w-full max-w-sm glass-card p-6 bg-brand-surface border-brand-border space-y-4"
+            >
+              <div className="flex justify-between items-center pb-2 border-b border-brand-border">
+                <h3 className="text-xs font-bold uppercase tracking-widest text-brand-primary flex items-center gap-1.5">
+                  <Edit2 className="h-3.5 w-3.5" /> Modify Task
+                </h3>
+                <button 
+                  onClick={() => setShowEditModal(null)}
+                  className="text-xs font-bold text-brand-text-secondary hover:text-brand-text-primary uppercase tracking-wider cursor-pointer bg-transparent border-none outline-none"
+                >
+                  Cancel
+                </button>
+              </div>
+
+              <form onSubmit={handleSaveEdit} className="space-y-4">
+                <div className="space-y-1.5 text-left">
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-brand-text-secondary">Task Title</label>
+                  <input
+                    type="text"
+                    required
+                    value={editTitle}
+                    onChange={(e) => setEditTitle(e.target.value)}
+                    className="w-full bg-brand-bg border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-text-primary focus:outline-none focus:border-brand-primary/30 transition-colors"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-1.5 text-left">
+                    <label className="text-[10px] font-bold uppercase tracking-wider text-brand-text-secondary">Priority</label>
+                    <select
+                      value={editPriority}
+                      onChange={(e) => setEditPriority(e.target.value as any)}
+                      className="w-full bg-brand-bg border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-text-primary focus:outline-none focus:border-brand-primary/30 transition-colors"
+                    >
+                      <option value="High">High</option>
+                      <option value="Medium">Medium</option>
+                      <option value="Low">Low</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-1.5 text-left">
+                    <label className="text-[10px] font-bold uppercase tracking-wider text-brand-text-secondary">Task Type</label>
+                    <select
+                      value={editType}
+                      onChange={(e) => setEditType(e.target.value as any)}
+                      className="w-full bg-brand-bg border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-text-primary focus:outline-none focus:border-brand-primary/30 transition-colors"
+                    >
+                      <option value="Due Date">Due Date</option>
+                      <option value="Reminder">Reminder</option>
+                      <option value="Repeat Schedule">Repeat Schedule</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-1.5 text-left">
+                    <label className="text-[10px] font-bold uppercase tracking-wider text-brand-text-secondary">Due Date</label>
+                    <input
+                      type="date"
+                      value={editDate}
+                      onChange={(e) => setEditDate(e.target.value)}
+                      className="w-full bg-brand-bg border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-text-primary focus:outline-none focus:border-brand-primary/30 transition-colors"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5 text-left">
+                    <label className="text-[10px] font-bold uppercase tracking-wider text-brand-text-secondary">Schedule Time</label>
+                    <input
+                      type="time"
+                      value={editTime}
+                      onChange={(e) => setEditTime(e.target.value)}
+                      className="w-full bg-brand-bg border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-text-primary focus:outline-none focus:border-brand-primary/30 transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full py-2 bg-brand-primary hover:bg-brand-primary-hover text-brand-text-primary text-xs font-bold rounded-xl transition-colors cursor-pointer select-none"
+                >
+                  Save Changes
                 </button>
               </form>
             </motion.div>

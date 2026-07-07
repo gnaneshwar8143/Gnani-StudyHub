@@ -6,15 +6,39 @@ import connectDB from './config/db';
 import habitRoutes from './routes/habitRoutes';
 import objectiveRoutes from './routes/objectiveRoutes';
 import authRoutes from './routes/authRoutes';
+import profileRoutes from './routes/profileRoutes';
+import userRoutes from './routes/userRoutes';
 
 // Configure and mount runtime environment maps
 dotenv.config();
 
+const requiredEnvVars = [
+  'SMTP_HOST',
+  'SMTP_PORT',
+  'SMTP_USER',
+  'SMTP_PASS',
+  'SMTP_FROM',
+  'JWT_SECRET',
+  'CLIENT_URL'
+];
+
+requiredEnvVars.forEach((envVar) => {
+  if (!process.env[envVar]) {
+    console.error(`[CRITICAL STARTUP ERROR] Missing required environment variable: ${envVar}`);
+    process.exit(1);
+  }
+});
+
 const app = express();
 
-// Enable Cross-Origin Resource Sharing for your Vite development server port
+const allowedOrigins = ['http://localhost:5173'];
+if (process.env.CLIENT_URL) {
+  allowedOrigins.push(process.env.CLIENT_URL);
+  allowedOrigins.push(process.env.CLIENT_URL.replace(/\/$/, ''));
+}
+
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: allowedOrigins,
   credentials: true
 }));
 
@@ -28,9 +52,11 @@ connectDB();
 app.use('/api/auth', authRoutes);
 app.use('/api/habits', habitRoutes);
 app.use('/api/objectives', objectiveRoutes);
+app.use('/api/profile', profileRoutes);
+app.use('/api/user', userRoutes);
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`LifeOS Engine running securely on port ${PORT}`);
+  console.log(`NANI Engine running securely on port ${PORT}`);
 });

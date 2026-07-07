@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 interface UserPreferences {
   theme: string;
   timezone: string;
+  language?: string;
 }
 
 interface User {

@@ -3,8 +3,12 @@ import mongoose, { Schema, Document } from 'mongoose';
 export interface IHabit extends Document {
   user: mongoose.Types.ObjectId;
   name: string;
-  completed: boolean;
+  category: string;
+  goal: string;
+  targetStreak: number;
   streak: number;
+  completed: boolean;
+  lastCompleted?: Date;
   lastUpdated?: Date;
   createdAt: Date;
   updatedAt: Date;
@@ -22,13 +26,28 @@ const habitSchema: Schema = new Schema(
       required: true,
       trim: true
     },
-    completed: {
-      type: Boolean,
-      default: false
+    category: {
+      type: String,
+      default: 'General'
+    },
+    goal: {
+      type: String,
+      default: 'Daily'
+    },
+    targetStreak: {
+      type: Number,
+      default: 30
     },
     streak: {
       type: Number,
       default: 0
+    },
+    completed: {
+      type: Boolean,
+      default: false
+    },
+    lastCompleted: {
+      type: Date
     },
     lastUpdated: {
       type: Date

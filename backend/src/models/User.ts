@@ -7,8 +7,21 @@ const userSchema = new Schema({
   password: { type: String, required: true, minlength: 8 },
   preferences: {
     theme: { type: String, enum: ['light', 'dark'], default: 'dark' },
-    timezone: { type: String, default: 'UTC' }
+    timezone: { type: String, default: 'UTC' },
+    language: { type: String, enum: ['en', 'te', 'hi', 'fr'], default: 'en' }
   },
+  stats: {
+    xp: { type: Number, default: 0 },
+    studyTime: { type: Number, default: 0 },
+    focusScore: { type: Number, default: 0 },
+    totalSessions: { type: Number, default: 0 },
+    totalCompletedTasks: { type: Number, default: 0 }
+  },
+  achievements: [{ type: String }],
+  isVerified: { type: Boolean, default: false },
+  verificationToken: { type: String },
+  resetPasswordToken: { type: String },
+  resetPasswordExpires: { type: Date },
   refreshToken: { type: String }
 }, { timestamps: true });
 
