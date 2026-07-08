@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.resetPassword = exports.verifyEmail = exports.forgotPassword = exports.login = exports.signup = void 0;
+exports.oauthLogin = exports.resetPassword = exports.verifyEmail = exports.forgotPassword = exports.login = exports.signup = void 0;
 const User_1 = require("../models/User");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const crypto_1 = __importDefault(require("crypto"));
@@ -270,4 +270,48 @@ const resetPassword = async (req, res) => {
     }
 };
 exports.resetPassword = resetPassword;
+const oauthLogin = async (req, res) => {
+    try {
+        const { name, email, provider } = req.body;
+        if (!email) {
+            res.status(400).json({ message: 'Email is required for social login' });
+            return;
+        }
+        // Try to find user by email
+        let user = await User_1.User.findOne({ email });
+        if (!user) {
+            // Create user if they don't exist
+            user = new User_1.User({
+                name: name || email.split('@')[0],
+                email,
+                isVerified: true, // Social login verifies email automatically
+                preferences: { theme: 'violet', timezone: 'UTC' }
+            });
+            // We don't need a password for social login users
+            await user.save();
+        }
+        // Generate valid JWT tokens for this user
+        const { accessToken, refreshToken } = generateTokens(user._id.toString());
+        user.refreshToken = refreshToken;
+        await user.save();
+        res.status(200).json({
+            accessToken,
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                preferences: user.preferences,
+                stats: user.stats || { xp: 0, studyTime: 0, focusScore: 0, totalSessions: 0, totalCompletedTasks: 0 },
+                achievements: user.achievements || []
+            }
+        });
+    }
+    catch (error) {
+        console.error("OAuth Login Error:", error);
+        res.status(500).json({
+            message: error.message || 'Internal server error during social login.'
+        });
+    }
+};
+exports.oauthLogin = oauthLogin;
 //# sourceMappingURL=authController.js.map

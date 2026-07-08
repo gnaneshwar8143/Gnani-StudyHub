@@ -486,26 +486,60 @@ export default function App() {
     }
   };
 
-  const handleSocialLogin = (provider: 'Google' | 'GitHub', forceChooser: boolean = false) => {
+  const handleOAuthLoginComplete = async (name: string, email: string, provider: 'Google' | 'GitHub') => {
+    setError('');
+    setIsLoading(true);
+    try {
+      const response = await api.post('/auth/oauth-login', {
+        name,
+        email,
+        provider: provider.toLowerCase()
+      });
+      
+      const { accessToken, user: backendUser } = response.data;
+      
+      localStorage.setItem(`oauth_${provider.toLowerCase()}_authorized`, 'true');
+      localStorage.setItem(`oauth_${provider.toLowerCase()}_user`, JSON.stringify(backendUser));
+      
+      login(accessToken, backendUser);
+      setShowOAuthModal(null);
+      setShowCustomOAuthForm(false);
+    } catch (err: any) {
+      setError(err.response?.data?.message || err.message || 'OAuth authentication failed.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSocialLogin = async (provider: 'Google' | 'GitHub', forceChooser: boolean = false) => {
     setSocialLoading(provider);
     setError('');
     
+    const isAuthorized = localStorage.getItem(`oauth_${provider.toLowerCase()}_authorized`) === 'true';
+    const storedUserRaw = localStorage.getItem(`oauth_${provider.toLowerCase()}_user`);
+    
+    if (isAuthorized && storedUserRaw && !forceChooser) {
+      try {
+        const storedUser = JSON.parse(storedUserRaw);
+        // Authenticate persistent session silently via backend
+        const response = await api.post('/auth/oauth-login', {
+          name: storedUser.name,
+          email: storedUser.email,
+          provider: provider.toLowerCase()
+        });
+        
+        const { accessToken, user: backendUser } = response.data;
+        localStorage.setItem(`oauth_${provider.toLowerCase()}_user`, JSON.stringify(backendUser));
+        login(accessToken, backendUser);
+        setSocialLoading(null);
+        return;
+      } catch (e) {
+        // Fallback to manual selection if silent authentication fails
+      }
+    }
+    
     setTimeout(() => {
       setSocialLoading(null);
-      
-      const isAuthorized = localStorage.getItem(`oauth_${provider.toLowerCase()}_authorized`) === 'true';
-      const storedUserRaw = localStorage.getItem(`oauth_${provider.toLowerCase()}_user`);
-      
-      if (isAuthorized && storedUserRaw && !forceChooser) {
-        try {
-          const storedUser = JSON.parse(storedUserRaw);
-          login(`mock-${provider.toLowerCase()}-token-${Date.now()}`, storedUser);
-          return;
-        } catch (e) {
-          // Fallback to modal if JSON parsing fails
-        }
-      }
-      
       setOauthForceChooser(forceChooser);
       setShowOAuthModal(provider);
     }, 800);
@@ -1163,17 +1197,7 @@ export default function App() {
                     onSubmit={(e) => {
                       e.preventDefault();
                       if (!customOAuthName.trim() || !customOAuthEmail.trim()) return;
-                      const customUser = {
-                        id: `oauth-google-${customOAuthEmail.toLowerCase().replace(/[^a-z0-9]/g, '-')}`,
-                        name: customOAuthName.trim(),
-                        email: customOAuthEmail.trim(),
-                        preferences: { theme: 'violet', timezone: 'UTC' }
-                      };
-                      localStorage.setItem('oauth_google_authorized', 'true');
-                      localStorage.setItem('oauth_google_user', JSON.stringify(customUser));
-                      login(`mock-google-token-${Date.now()}`, customUser);
-                      setShowOAuthModal(null);
-                      setShowCustomOAuthForm(false);
+                      handleOAuthLoginComplete(customOAuthName.trim(), customOAuthEmail.trim(), 'Google');
                     }}
                     className="space-y-3.5 text-left pt-3"
                   >
@@ -1224,16 +1248,7 @@ export default function App() {
                       <button
                         key={account.email}
                         onClick={() => {
-                          const mockUser = {
-                            id: `oauth-google-${account.email.split('@')[0]}`,
-                            name: account.name,
-                            email: account.email,
-                            preferences: { theme: 'violet', timezone: 'UTC' }
-                          };
-                          localStorage.setItem('oauth_google_authorized', 'true');
-                          localStorage.setItem('oauth_google_user', JSON.stringify(mockUser));
-                          login(`mock-google-token-${Date.now()}`, mockUser);
-                          setShowOAuthModal(null);
+                          handleOAuthLoginComplete(account.name, account.email, 'Google');
                         }}
                         className="w-full flex items-center gap-3 p-3 rounded-xl bg-brand-surface-secondary border border-brand-border hover:bg-brand-surface-secondary hover:border-brand-primary/30 text-left transition-all cursor-pointer"
                       >
@@ -1303,16 +1318,7 @@ export default function App() {
                 <div className="flex gap-2 pt-2">
                   <button
                     onClick={() => {
-                      const mockUser = {
-                        id: 'oauth-github-student',
-                        name: 'GitHub Student',
-                        email: 'student@github.com',
-                        preferences: { theme: 'violet', timezone: 'UTC' }
-                      };
-                      localStorage.setItem('oauth_github_authorized', 'true');
-                      localStorage.setItem('oauth_github_user', JSON.stringify(mockUser));
-                      login(`mock-github-token-${Date.now()}`, mockUser);
-                      setShowOAuthModal(null);
+                      handleOAuthLoginComplete('GitHub Student', 'student@github.com', 'GitHub');
                     }}
                     className="flex-1 py-2 px-3 bg-brand-success hover:bg-brand-success text-brand-text-primary text-xs font-bold rounded-xl transition-all cursor-pointer border border-brand-success/30"
                   >

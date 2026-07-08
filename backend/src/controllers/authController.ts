@@ -301,3 +301,51 @@ export const resetPassword = async (req: Request, res: Response): Promise<void> 
     res.status(500).json({ message: error.message || 'Internal server error during password reset.' });
   }
 };
+
+export const oauthLogin = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { name, email, provider } = req.body;
+
+    if (!email) {
+      res.status(400).json({ message: 'Email is required for social login' });
+      return;
+    }
+
+    // Try to find user by email
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      // Create user if they don't exist
+      user = new User({
+        name: name || email.split('@')[0],
+        email,
+        isVerified: true, // Social login verifies email automatically
+        preferences: { theme: 'violet', timezone: 'UTC' }
+      });
+      // We don't need a password for social login users
+      await user.save();
+    }
+
+    // Generate valid JWT tokens for this user
+    const { accessToken, refreshToken } = generateTokens(user._id.toString());
+    user.refreshToken = refreshToken;
+    await user.save();
+
+    res.status(200).json({
+      accessToken,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        preferences: user.preferences,
+        stats: user.stats || { xp: 0, studyTime: 0, focusScore: 0, totalSessions: 0, totalCompletedTasks: 0 },
+        achievements: user.achievements || []
+      }
+    });
+  } catch (error: any) {
+    console.error("OAuth Login Error:", error);
+    res.status(500).json({
+      message: error.message || 'Internal server error during social login.'
+    });
+  }
+};

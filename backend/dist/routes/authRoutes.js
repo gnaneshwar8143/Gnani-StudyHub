@@ -9,5 +9,6 @@ router.post('/login', authController_1.login);
 router.post('/forgot-password', authController_1.forgotPassword);
 router.post('/verify-email', authController_1.verifyEmail);
 router.post('/reset-password', authController_1.resetPassword);
+router.post('/oauth-login', authController_1.oauthLogin);
 exports.default = router;
 //# sourceMappingURL=authRoutes.js.map
