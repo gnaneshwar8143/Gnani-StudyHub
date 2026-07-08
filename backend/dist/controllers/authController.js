@@ -318,10 +318,10 @@ const googleCallback = async (req, res) => {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
                 });
-                const { id_token, access_token } = tokenRes.data;
-                const userRes = await axios_1.default.get(`https://www.googleapis.com/oauth2/v2/userinfo?alt=json&access_token=${access_token}`, {
+                const { access_token } = tokenRes.data;
+                const userRes = await axios_1.default.get('https://www.googleapis.com/oauth2/v2/userinfo', {
                     headers: {
-                        Authorization: `Bearer ${id_token}`,
+                        Authorization: `Bearer ${access_token}`,
                     },
                 });
                 googleUser = userRes.data;
@@ -429,6 +429,7 @@ const githubCallback = async (req, res) => {
                 const userRes = await axios_1.default.get('https://api.github.com/user', {
                     headers: {
                         Authorization: `Bearer ${access_token}`,
+                        'User-Agent': 'Gnani-StudyHub'
                     },
                 });
                 githubUser = userRes.data;
@@ -437,6 +438,7 @@ const githubCallback = async (req, res) => {
                     const emailsRes = await axios_1.default.get('https://api.github.com/user/emails', {
                         headers: {
                             Authorization: `Bearer ${access_token}`,
+                            'User-Agent': 'Gnani-StudyHub'
                         },
                     });
                     const primaryEmail = emailsRes.data.find((e) => e.primary && e.verified);
