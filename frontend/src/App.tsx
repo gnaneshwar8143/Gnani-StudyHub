@@ -548,7 +548,7 @@ export default function App() {
           className="w-full max-w-md bg-brand-surface-secondary border border-brand-border rounded-3xl p-8 sm:p-10 shadow-2xl backdrop-blur-3xl relative z-10 text-center space-y-6"
         >
           <div className="flex justify-center select-none">
-            <AnimatedLogo type="login" size={52} />
+            <AnimatedLogo type="login" />
           </div>
 
           <h2 className="text-2xl font-black text-brand-text-primary">Gnani Verification</h2>
@@ -728,14 +728,9 @@ export default function App() {
           )}
           {/* Hero */}
           <div className="flex flex-col items-center text-center space-y-5 px-1">
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={heroTransition(0)}
-              className="select-none flex justify-center mb-2"
-            >
-              <img src="/gnani-logo.png" alt="Gnani Logo" className="h-[52px] w-[52px] object-contain" />
-            </motion.div>
+            <div className="select-none flex justify-center mb-2">
+              <AnimatedLogo type="login" />
+            </div>
 
             <motion.p
               initial={{ opacity: 0, y: 14 }}

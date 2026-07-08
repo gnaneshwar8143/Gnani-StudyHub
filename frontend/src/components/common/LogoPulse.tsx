@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
 
 interface LogoPulseProps {
   children: React.ReactNode;
@@ -10,30 +9,8 @@ interface LogoPulseProps {
 
 export const LogoPulse: React.FC<LogoPulseProps> = ({
   children,
-  duration = 2,
-  scale = 1.05,
   className = '',
 }) => {
-  const shouldReduceMotion = useReducedMotion();
-
-  if (shouldReduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
-  return (
-    <motion.div
-      animate={{
-        scale: [1, scale, 1],
-      }}
-      transition={{
-        duration,
-        repeat: Infinity,
-        ease: 'easeInOut',
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={className}>{children}</div>;
 };
 export default LogoPulse;

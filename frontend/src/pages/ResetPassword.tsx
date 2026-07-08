@@ -75,7 +75,7 @@ export const ResetPassword: React.FC<ResetPasswordProps> = ({ token, onBack }) =
       >
         <div className="flex flex-col items-center text-center space-y-5 px-1">
           <div className="flex justify-center select-none">
-            <AnimatedLogo type="login" size={52} />
+            <AnimatedLogo type="login" />
           </div>
 
           <h1 className="text-3xl font-black tracking-tight text-brand-text-primary select-none">

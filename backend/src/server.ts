@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+dotenv.config({ override: true });
 import cors from 'cors';
 // @ts-ignore
 import connectDB from './config/db';
@@ -27,9 +28,6 @@ console.error = (...args: any[]) => {
   if (systemLogs.length > 200) systemLogs.shift();
   originalError.apply(console, args);
 };
-
-// Configure and mount runtime environment maps
-dotenv.config({ override: true });
 
 const requiredEnvVars = [
   'SMTP_HOST',
