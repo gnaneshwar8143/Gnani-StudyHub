@@ -71,6 +71,7 @@ interface DashboardProps {
     totalCompletedTasks: number;
   };
   onUpdateStats: (updates: Partial<DashboardProps['stats']>) => Promise<void>;
+  onRetryHabits?: () => void;
 }
 
 
@@ -98,6 +99,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
   onDeleteHabit,
   stats,
   onUpdateStats,
+  onRetryHabits,
 }) => {
   const { user } = useAuth();
   const { t, language, formatDate } = useTranslation();
@@ -460,11 +462,11 @@ export const Dashboard: React.FC<DashboardProps> = ({
           <div className="w-full grid grid-cols-2 gap-2 mt-6 pt-4 border-t border-brand-border">
             <div className="text-center">
               <p className="text-[10px] text-brand-text-secondary font-bold uppercase tracking-wider mb-0.5">Tasks Done</p>
-              <p className="text-sm font-black text-brand-text-primary">{completedObjectives}/{objectives.length || 3}</p>
+              <p className="text-sm font-black text-brand-text-primary">{completedObjectives}/{objectives.length}</p>
             </div>
             <div className="text-center border-l border-brand-border">
-              <p className="text-[10px] text-brand-text-secondary font-bold uppercase tracking-wider mb-0.5">XP Earned</p>
-              <p className="text-sm font-black text-brand-success">+150 XP</p>
+              <p className="text-[10px] text-brand-text-secondary font-bold uppercase tracking-wider mb-0.5">Total XP</p>
+              <p className="text-sm font-black text-brand-success">{stats.xp} XP</p>
             </div>
           </div>
         </motion.div>
@@ -603,7 +605,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
               </span>
             </div>
             <span className="text-[10px] font-bold text-brand-success bg-brand-success/10 px-2.5 py-1 rounded-full select-none">
-              +12% Growth
+              {weeklyData.length > 0 ? Math.round(weeklyData.reduce((acc, curr) => acc + curr.focus, 0) / weeklyData.length) : 0}% Avg Focus
             </span>
           </div>
           <div className="flex-1 min-h-0">
@@ -797,8 +799,17 @@ export const Dashboard: React.FC<DashboardProps> = ({
           </div>
 
           {habitsError && (
-            <div className="mb-2 p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-[10px] text-red-400 text-left">
-              {habitsError}
+            <div className="mb-2 p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-[10px] text-red-400 text-left flex items-center justify-between">
+              <span>{habitsError}</span>
+              {onRetryHabits && (
+                <button
+                  type="button"
+                  onClick={onRetryHabits}
+                  className="px-2 py-0.5 bg-red-500/20 hover:bg-red-500/30 text-red-400 rounded cursor-pointer transition-colors border-none text-[9px] font-bold"
+                >
+                  Retry
+                </button>
+              )}
             </div>
           )}
 

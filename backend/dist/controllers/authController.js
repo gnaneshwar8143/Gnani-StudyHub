@@ -281,13 +281,14 @@ const oauthLogin = async (req, res) => {
         let user = await User_1.User.findOne({ email });
         if (!user) {
             // Create user if they don't exist
+            const randomPassword = crypto_1.default.randomBytes(32).toString('hex');
             user = new User_1.User({
                 name: name || email.split('@')[0],
                 email,
+                password: randomPassword,
                 isVerified: true, // Social login verifies email automatically
-                preferences: { theme: 'violet', timezone: 'UTC' }
+                preferences: { theme: 'dark', timezone: 'UTC' }
             });
-            // We don't need a password for social login users
             await user.save();
         }
         // Generate valid JWT tokens for this user

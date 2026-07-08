@@ -9,6 +9,25 @@ import authRoutes from './routes/authRoutes';
 import profileRoutes from './routes/profileRoutes';
 import userRoutes from './routes/userRoutes';
 
+// Captured System Logs for Production Diagnostics
+export const systemLogs: string[] = [];
+const originalLog = console.log;
+const originalError = console.error;
+
+console.log = (...args: any[]) => {
+  const msg = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg) : arg).join(' ');
+  systemLogs.push(`[LOG] ${new Date().toISOString()}: ${msg}`);
+  if (systemLogs.length > 200) systemLogs.shift();
+  originalLog.apply(console, args);
+};
+
+console.error = (...args: any[]) => {
+  const msg = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg) : arg).join(' ');
+  systemLogs.push(`[ERROR] ${new Date().toISOString()}: ${msg}`);
+  if (systemLogs.length > 200) systemLogs.shift();
+  originalError.apply(console, args);
+};
+
 // Configure and mount runtime environment maps
 dotenv.config();
 
@@ -67,6 +86,13 @@ app.use('/api/habits', habitRoutes);
 app.use('/api/objectives', objectiveRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/user', userRoutes);
+
+app.get('/api/system-logs', (req: any, res: any) => {
+  if (req.query.secret !== 'gnani-debug-123') {
+    return res.status(403).json({ message: 'Forbidden' });
+  }
+  res.json({ logs: systemLogs });
+});
 
 const PORT = process.env.PORT || 5000;
 

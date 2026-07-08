@@ -316,13 +316,14 @@ export const oauthLogin = async (req: Request, res: Response): Promise<void> => 
 
     if (!user) {
       // Create user if they don't exist
+      const randomPassword = crypto.randomBytes(32).toString('hex');
       user = new User({
         name: name || email.split('@')[0],
         email,
+        password: randomPassword,
         isVerified: true, // Social login verifies email automatically
-        preferences: { theme: 'violet', timezone: 'UTC' }
+        preferences: { theme: 'dark', timezone: 'UTC' }
       });
-      // We don't need a password for social login users
       await user.save();
     }
 

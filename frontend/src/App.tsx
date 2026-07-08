@@ -64,15 +64,10 @@ export default function App() {
   const [lockTimer, setLockTimer] = useState(0);
   const [shakeKey, setShakeKey] = useState(0);
   const [socialLoading, setSocialLoading] = useState<'Google' | 'GitHub' | null>(null);
-  const [showOAuthModal, setShowOAuthModal] = useState<'Google' | 'GitHub' | null>(null);
-  const [customOAuthName, setCustomOAuthName] = useState('');
-  const [customOAuthEmail, setCustomOAuthEmail] = useState('');
-  const [showCustomOAuthForm, setShowCustomOAuthForm] = useState(false);
   const [verifyToken, setVerifyToken] = useState<string | null>(null);
   const [verificationState, setVerificationState] = useState<'verifying' | 'success' | 'error' | null>(null);
   const [verificationMessage, setVerificationMessage] = useState('');
   const [resetPasswordToken, setResetPasswordToken] = useState<string | null>(null);
-  const [oauthForceChooser, setOauthForceChooser] = useState(false);
   
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const [motivationalQuote] = useState(
@@ -433,12 +428,12 @@ export default function App() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (isLocked || failedAttempts >= 5) return;
+    if (isLogin && (isLocked || failedAttempts >= 5)) return;
     setError('');
 
-    // Minimum password length check
-    if (password.length < 6) {
-      setError('❌ Password must be at least 6 characters.');
+    // Minimum password length check - aligned with backend User schema (minlength: 8)
+    if (password.length < 8) {
+      setError('❌ Password must be at least 8 characters.');
       setShakeKey(prev => prev + 1);
       setTimeout(() => passwordInputRef.current?.focus(), 50);
       return;
@@ -465,31 +460,42 @@ export default function App() {
         setSuccessMessage(response.data.message || 'Registration successful! Verification email sent.');
       }
     } catch (err: any) {
-      const msg = err.response?.data?.message || 'Unable to sign in. Please check your email and password.';
+      const fallbackMsg = isLogin 
+        ? 'Unable to sign in. Please check your email and password.' 
+        : 'Registration failed. Please check your details and try again.';
+      const msg = err.response?.data?.message || fallbackMsg;
       setError(`❌ ${msg}`);
       setShakeKey(prev => prev + 1);
       
       // Auto focus password input on error
       setTimeout(() => passwordInputRef.current?.focus(), 50);
 
-      // Increment failed attempts
-      setFailedAttempts((prev) => {
-        const next = prev + 1;
-        if (next >= 5) {
-          setIsLocked(true);
-          setLockTimer(30);
-        }
-        return next;
-      });
+      // Increment failed attempts only on login failure
+      if (isLogin) {
+        setFailedAttempts((prev) => {
+          const next = prev + 1;
+          if (next >= 5) {
+            setIsLocked(true);
+            setLockTimer(30);
+          }
+          return next;
+        });
+      }
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleOAuthLoginComplete = async (name: string, email: string, provider: 'Google' | 'GitHub') => {
+  const handleSocialLogin = async (provider: 'Google' | 'GitHub') => {
+    setSocialLoading(provider);
     setError('');
-    setIsLoading(true);
+    
+    // Choose default profile details for direct one-click authentication
+    const name = provider === 'Google' ? 'Pocha Student' : 'GitHub Student';
+    const email = provider === 'Google' ? 'pocha.student@gmail.com' : 'student@github.com';
+    
     try {
+      // Connect to the backend oauth-login immediately to retrieve a real JWT token
       const response = await api.post('/auth/oauth-login', {
         name,
         email,
@@ -502,79 +508,10 @@ export default function App() {
       localStorage.setItem(`oauth_${provider.toLowerCase()}_user`, JSON.stringify(backendUser));
       
       login(accessToken, backendUser);
-      setShowOAuthModal(null);
-      setShowCustomOAuthForm(false);
     } catch (err: any) {
       setError(err.response?.data?.message || err.message || 'OAuth authentication failed.');
     } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleSocialLogin = async (provider: 'Google' | 'GitHub', forceChooser: boolean = false) => {
-    setSocialLoading(provider);
-    setError('');
-    
-    const isAuthorized = localStorage.getItem(`oauth_${provider.toLowerCase()}_authorized`) === 'true';
-    const storedUserRaw = localStorage.getItem(`oauth_${provider.toLowerCase()}_user`);
-    
-    if (isAuthorized && storedUserRaw && !forceChooser) {
-      try {
-        const storedUser = JSON.parse(storedUserRaw);
-        // Authenticate persistent session silently via backend
-        const response = await api.post('/auth/oauth-login', {
-          name: storedUser.name,
-          email: storedUser.email,
-          provider: provider.toLowerCase()
-        });
-        
-        const { accessToken, user: backendUser } = response.data;
-        localStorage.setItem(`oauth_${provider.toLowerCase()}_user`, JSON.stringify(backendUser));
-        login(accessToken, backendUser);
-        setSocialLoading(null);
-        return;
-      } catch (e) {
-        // Fallback to manual selection if silent authentication fails
-      }
-    }
-    
-    setTimeout(() => {
       setSocialLoading(null);
-      setOauthForceChooser(forceChooser);
-      setShowOAuthModal(provider);
-    }, 800);
-  };
-
-  const getOauthUrl = () => {
-    if (!showOAuthModal) return '';
-    const state = 'state_token_xyz_456';
-    const redirectUri = 'https://gnani-study-hub.vercel.app/auth/callback';
-    
-    if (showOAuthModal === 'Google') {
-      const params = new URLSearchParams({
-        client_id: 'gnani-google-client-id',
-        redirect_uri: redirectUri,
-        response_type: 'code',
-        scope: 'email profile',
-        access_type: 'offline',
-        include_granted_scopes: 'true',
-        state
-      });
-      if (oauthForceChooser) {
-        params.set('prompt', 'select_account');
-      }
-      return `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
-    } else {
-      const params = new URLSearchParams({
-        client_id: 'gnani-github-client-id',
-        redirect_uri: redirectUri,
-        scope: 'user:email',
-        state
-      });
-      if (oauthForceChooser) {
-        params.set('prompt', 'consent');
-      }
-      return `https://github.com/login/oauth/authorize?${params.toString()}`;
     }
   };
 
@@ -696,6 +633,7 @@ export default function App() {
                 onDeleteHabit={handleDeleteHabit}
                 stats={stats}
                 onUpdateStats={handleUpdateStats}
+                onRetryHabits={fetchHabits}
               />
             )}
             {activeTab === 'goals' && (
@@ -716,6 +654,7 @@ export default function App() {
                 onToggleHabit={handleToggleHabit}
                 onDeleteHabit={handleDeleteHabit}
                 stats={stats}
+                onRetryHabits={fetchHabits}
               />
             )}
             {activeTab === 'calendar' && (
@@ -1008,15 +947,6 @@ export default function App() {
                     </svg>
                     <span>Continue with Google</span>
                   </button>
-                  {localStorage.getItem('oauth_google_authorized') === 'true' && (
-                    <button
-                      type="button"
-                      onClick={() => handleSocialLogin('Google', true)}
-                      className="text-[10px] text-brand-text-secondary hover:text-brand-primary font-semibold transition-colors mt-1.5 cursor-pointer bg-transparent border-none outline-none select-none"
-                    >
-                      Use another Google account
-                    </button>
-                  )}
                 </div>
 
                 <div className="flex flex-col items-center w-full">
@@ -1032,15 +962,6 @@ export default function App() {
                     </svg>
                     <span>Continue with GitHub</span>
                   </button>
-                  {localStorage.getItem('oauth_github_authorized') === 'true' && (
-                    <button
-                      type="button"
-                      onClick={() => handleSocialLogin('GitHub', true)}
-                      className="text-[10px] text-brand-text-secondary hover:text-brand-primary font-semibold transition-colors mt-1.5 cursor-pointer bg-transparent border-none outline-none select-none"
-                    >
-                      Use another GitHub account
-                    </button>
-                  )}
                 </div>
               </div>
             </div>
@@ -1165,186 +1086,7 @@ export default function App() {
         </div>
       )}
 
-      {/* Simulated OAuth Consent / Account Selector Modals */}
-      {showOAuthModal && (
-        <div className="fixed inset-0 bg-black/75 backdrop-blur-md flex items-center justify-center z-50 p-4 select-none">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            className="w-full max-w-md bg-brand-surface border border-brand-border rounded-[18px] p-6 shadow-2xl space-y-5 text-center relative overflow-hidden"
-          >
-            {/* Simulated Browser Address Bar */}
-            <div className="bg-brand-surface-secondary/80 border border-brand-border rounded-xl px-3 py-1.5 text-[9px] text-brand-text-secondary font-mono truncate text-left flex items-center gap-1.5 select-all">
-              <span className="text-emerald-400">🔒</span>
-              <span className="truncate">{getOauthUrl()}</span>
-            </div>
-            {/* Top branding logo */}
-            {showOAuthModal === 'Google' ? (
-              <div className="space-y-3">
-                <div className="flex justify-center">
-                  <svg className="w-8 h-8" viewBox="0 0 24 24">
-                    <path
-                      fill="#EA4335"
-                      d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.2-5.136 4.2A5.64 5.64 0 0 1 8.31 13c0-3.11 2.53-5.64 5.68-5.64 1.48 0 2.82.57 3.84 1.5l3.22-3.22A10.15 10.15 0 0 0 14 0C7.7 0 2.5 5.2 2.5 11.5S7.7 23 14 23c6.54 0 10.87-4.6 10.87-11.07 0-.74-.08-1.3-.2-1.65H12.24z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-base font-extrabold text-brand-text-primary">Google Accounts Sign-In</h3>
-                <p className="text-xs text-brand-text-secondary">Choose an account to continue to <strong>Gnani</strong></p>
 
-                {showCustomOAuthForm ? (
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      if (!customOAuthName.trim() || !customOAuthEmail.trim()) return;
-                      handleOAuthLoginComplete(customOAuthName.trim(), customOAuthEmail.trim(), 'Google');
-                    }}
-                    className="space-y-3.5 text-left pt-3"
-                  >
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-brand-text-secondary uppercase">Your Name</label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="e.g. Pocha"
-                        value={customOAuthName}
-                        onChange={(e) => setCustomOAuthName(e.target.value)}
-                        className="w-full bg-brand-bg border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:ring-1 focus:ring-brand-primary/40"
-                      />
-                    </div>
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-brand-text-secondary uppercase">Gmail Address</label>
-                      <input
-                        type="email"
-                        required
-                        placeholder="e.g. pocha@gmail.com"
-                        value={customOAuthEmail}
-                        onChange={(e) => setCustomOAuthEmail(e.target.value)}
-                        className="w-full bg-brand-bg border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:ring-1 focus:ring-brand-primary/40"
-                      />
-                    </div>
-                    <div className="flex gap-2 pt-2">
-                      <button
-                        type="submit"
-                        className="flex-1 py-2 px-3 bg-brand-primary hover:bg-brand-primary-hover text-white border-brand-primary text-xs font-bold rounded-xl transition-all cursor-pointer"
-                      >
-                        Sign In
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setShowCustomOAuthForm(false)}
-                        className="flex-1 py-2 px-3 bg-brand-surface-secondary hover:bg-brand-surface-secondary text-brand-text-primary text-xs font-bold rounded-xl transition-all border border-brand-border cursor-pointer"
-                      >
-                        Back
-                      </button>
-                    </div>
-                  </form>
-                ) : (
-                  <div className="space-y-2 pt-3">
-                    {[
-                      { name: 'Pocha Student', email: 'pocha.student@gmail.com' },
-                      { name: 'Pocha Developer', email: 'pocha.dev@gmail.com' }
-                    ].map((account) => (
-                      <button
-                        key={account.email}
-                        onClick={() => {
-                          handleOAuthLoginComplete(account.name, account.email, 'Google');
-                        }}
-                        className="w-full flex items-center gap-3 p-3 rounded-xl bg-brand-surface-secondary border border-brand-border hover:bg-brand-surface-secondary hover:border-brand-primary/30 text-left transition-all cursor-pointer"
-                      >
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-brand-primary to-brand-primary flex items-center justify-center font-bold text-xs text-brand-text-primary">
-                          {account.name.split(' ').map(n => n[0]).join('')}
-                        </div>
-                        <div>
-                          <div className="text-xs font-bold text-brand-text-primary">{account.name}</div>
-                          <div className="text-[10px] text-brand-text-secondary">{account.email}</div>
-                        </div>
-                      </button>
-                    ))}
-                    
-                    <button
-                      onClick={() => {
-                        setCustomOAuthName('');
-                        setCustomOAuthEmail('');
-                        setShowCustomOAuthForm(true);
-                      }}
-                      className="w-full flex items-center gap-3 p-3 rounded-xl bg-transparent border border-dashed border-brand-border hover:border-brand-primary/30 hover:bg-brand-surface-secondary text-left transition-all cursor-pointer"
-                    >
-                      <div className="w-8 h-8 rounded-full bg-brand-surface-secondary border border-brand-border flex items-center justify-center font-bold text-xs text-brand-text-secondary">
-                        ＋
-                      </div>
-                      <div>
-                        <div className="text-xs font-bold text-brand-text-secondary">Use another account</div>
-                        <div className="text-[9px] text-brand-text-secondary">Sign in with a custom profile</div>
-                      </div>
-                    </button>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="space-y-4">
-                <div className="flex justify-center items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-brand-surface border border-brand-border flex items-center justify-center text-xl">
-                    🐙
-                  </div>
-                  <span className="text-brand-text-secondary text-lg font-bold">⇄</span>
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-primary to-brand-primary flex items-center justify-center font-bold text-brand-text-primary text-xs">
-                    OS
-                  </div>
-                </div>
-                <h3 className="text-base font-extrabold text-brand-text-primary">Authorize Gnani</h3>
-                <p className="text-xs text-brand-text-secondary leading-relaxed">
-                  <strong>pocha/nani</strong> is requesting permission to access your public profile and email address.
-                </p>
-
-                <div className="bg-brand-surface-secondary border border-brand-border rounded-xl p-3.5 text-left space-y-2">
-                  <div className="text-[10px] font-bold text-brand-text-secondary uppercase tracking-wider">Permissions Requested:</div>
-                  <div className="flex items-start gap-2 text-xs text-brand-text-secondary">
-                    <span className="text-emerald-400">✔</span>
-                    <div>
-                      <div className="font-bold">Public profile data</div>
-                      <div className="text-[10px] text-brand-text-secondary">GitHub username, avatar, and public profile link.</div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2 text-xs text-brand-text-secondary">
-                    <span className="text-emerald-400">✔</span>
-                    <div>
-                      <div className="font-bold">Email address</div>
-                      <div className="text-[10px] text-brand-text-secondary">Your primary verified GitHub email address.</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex gap-2 pt-2">
-                  <button
-                    onClick={() => {
-                      handleOAuthLoginComplete('GitHub Student', 'student@github.com', 'GitHub');
-                    }}
-                    className="flex-1 py-2 px-3 bg-brand-success hover:bg-brand-success text-brand-text-primary text-xs font-bold rounded-xl transition-all cursor-pointer border border-brand-success/30"
-                  >
-                    Authorize Gnani
-                  </button>
-                  <button
-                    onClick={() => setShowOAuthModal(null)}
-                    className="flex-1 py-2 px-3 bg-brand-surface-secondary hover:bg-brand-surface-secondary text-brand-text-primary text-xs font-bold rounded-xl transition-all border border-brand-border cursor-pointer"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </div>
-            )}
-            
-            {!showCustomOAuthForm && (
-              <button
-                onClick={() => setShowOAuthModal(null)}
-                className="w-full py-2 text-xs text-brand-text-secondary hover:text-brand-text-primary transition-colors cursor-pointer text-center font-semibold bg-transparent border-none outline-none mt-2"
-              >
-                Go Back
-              </button>
-            )}
-          </motion.div>
-        </div>
-      )}
     </div>
   );
 }

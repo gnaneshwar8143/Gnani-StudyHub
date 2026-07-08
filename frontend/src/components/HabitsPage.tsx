@@ -42,6 +42,7 @@ interface HabitsPageProps {
     totalSessions: number;
     totalCompletedTasks: number;
   };
+  onRetryHabits?: () => void;
 }
 
 interface LocalHabitConfig {
@@ -58,6 +59,7 @@ export const HabitsPage: React.FC<HabitsPageProps> = ({
   onToggleHabit,
   onDeleteHabit,
   stats,
+  onRetryHabits,
 }) => {
   const { t } = useTranslation();
   const [newHabitName, setNewHabitName] = useState('');
@@ -415,7 +417,18 @@ export const HabitsPage: React.FC<HabitsPageProps> = ({
         {habitsLoading ? (
           <div className="py-12 text-center text-xs text-brand-text-secondary">{t('msg.verifying')}</div>
         ) : habitsError ? (
-          <div className="p-4 rounded-xl bg-brand-danger/10 border border-brand-danger/30 text-xs text-brand-danger">{habitsError}</div>
+          <div className="p-4 rounded-xl bg-brand-danger/10 border border-brand-danger/30 text-xs text-brand-danger flex items-center justify-between">
+            <span>{habitsError}</span>
+            {onRetryHabits && (
+              <button
+                type="button"
+                onClick={onRetryHabits}
+                className="px-3 py-1 bg-brand-danger/20 hover:bg-brand-danger/30 text-brand-danger rounded-lg cursor-pointer transition-colors border-none text-xs font-bold"
+              >
+                Retry
+              </button>
+            )}
+          </div>
         ) : habits.length === 0 ? (
           <div className="py-16 text-center text-brand-text-secondary glass-card border-dashed border-brand-border rounded-2xl flex flex-col items-center justify-center space-y-4 px-4">
             <div className="h-12 w-12 rounded-full bg-brand-surface-secondary border border-brand-border flex items-center justify-center text-xl select-none">

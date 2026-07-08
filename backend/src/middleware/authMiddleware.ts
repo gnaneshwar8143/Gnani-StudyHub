@@ -14,7 +14,7 @@ export const protect = async (req: AuthenticatedRequest, res: Response, next: Ne
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     try {
       token = req.headers.authorization.split(' ')[1];
-      const secret: string = process.env.JWT_SECRET || process.env.JWT_ACCESS_SECRET || 'fallback_secret';
+      const secret: string = process.env.JWT_SECRET || process.env.JWT_ACCESS_SECRET || 'fallback_secret_123';
 
       // Typecasting the verify method as any avoids legacy module typing blockages
       const decoded = (jwt.verify as any)(token, secret) as { id?: string; userId?: string };

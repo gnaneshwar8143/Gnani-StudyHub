@@ -3,8 +3,24 @@ import bcrypt from 'bcryptjs';
 
 const userSchema = new Schema({
   name: { type: String, required: true, trim: true },
-  email: { type: String, required: true, unique: true, lowercase: true, trim: true },
-  password: { type: String, required: true, minlength: 8 },
+  email: { 
+    type: String, 
+    required: [true, 'Email is required'], 
+    unique: true, 
+    lowercase: true, 
+    trim: true,
+    validate: {
+      validator: function(v: string) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      },
+      message: 'Please enter a valid email address'
+    }
+  },
+  password: { 
+    type: String, 
+    required: [true, 'Password is required'], 
+    minlength: [8, 'Password must be at least 8 characters long'] 
+  },
   preferences: {
     theme: { type: String, enum: ['light', 'dark'], default: 'dark' },
     timezone: { type: String, default: 'UTC' },
