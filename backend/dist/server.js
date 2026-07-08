@@ -33,7 +33,7 @@ console.error = (...args) => {
     originalError.apply(console, args);
 };
 // Configure and mount runtime environment maps
-dotenv_1.default.config();
+dotenv_1.default.config({ override: true });
 const requiredEnvVars = [
     'SMTP_HOST',
     'SMTP_PORT',

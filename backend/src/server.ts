@@ -29,7 +29,7 @@ console.error = (...args: any[]) => {
 };
 
 // Configure and mount runtime environment maps
-dotenv.config();
+dotenv.config({ override: true });
 
 const requiredEnvVars = [
   'SMTP_HOST',
