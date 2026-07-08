@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 export const connectDB = async (): Promise<void> => {
   try {
+    mongoose.set('debug', true);
     const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/lifeos');
     console.log(`📡 MongoDB Connected Globally: ${conn.connection.host}`);
   } catch (error) {

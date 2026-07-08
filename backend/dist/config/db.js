@@ -7,6 +7,7 @@ exports.connectDB = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const connectDB = async () => {
     try {
+        mongoose_1.default.set('debug', true);
         const conn = await mongoose_1.default.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/lifeos');
         console.log(`📡 MongoDB Connected Globally: ${conn.connection.host}`);
     }

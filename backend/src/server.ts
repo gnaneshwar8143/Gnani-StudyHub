@@ -31,7 +31,10 @@ requiredEnvVars.forEach((envVar) => {
 
 const app = express();
 
-const allowedOrigins = ['http://localhost:5173'];
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://gnani-study-hub.vercel.app'
+];
 if (process.env.CLIENT_URL) {
   allowedOrigins.push(process.env.CLIENT_URL);
   allowedOrigins.push(process.env.CLIENT_URL.replace(/\/$/, ''));
@@ -44,6 +47,16 @@ app.use(cors({
 
 // Request body payload parsing middleware
 app.use(express.json());
+
+// Request Logging Middleware
+app.use((req: any, res: any, next: any) => {
+  const start = Date.now();
+  res.on('finish', () => {
+    const duration = Date.now() - start;
+    console.log(`[REQUEST] ${req.method} ${req.originalUrl} - Status: ${res.statusCode} - User ID: ${req.user?.id || 'Unauthenticated'} - Duration: ${duration}ms`);
+  });
+  next();
+});
 
 // Establish connection matrix to MongoDB database instance
 connectDB();

@@ -31,7 +31,10 @@ requiredEnvVars.forEach((envVar) => {
     }
 });
 const app = (0, express_1.default)();
-const allowedOrigins = ['http://localhost:5173'];
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://gnani-study-hub.vercel.app'
+];
 if (process.env.CLIENT_URL) {
     allowedOrigins.push(process.env.CLIENT_URL);
     allowedOrigins.push(process.env.CLIENT_URL.replace(/\/$/, ''));
@@ -42,6 +45,15 @@ app.use((0, cors_1.default)({
 }));
 // Request body payload parsing middleware
 app.use(express_1.default.json());
+// Request Logging Middleware
+app.use((req, res, next) => {
+    const start = Date.now();
+    res.on('finish', () => {
+        const duration = Date.now() - start;
+        console.log(`[REQUEST] ${req.method} ${req.originalUrl} - Status: ${res.statusCode} - User ID: ${req.user?.id || 'Unauthenticated'} - Duration: ${duration}ms`);
+    });
+    next();
+});
 // Establish connection matrix to MongoDB database instance
 (0, db_1.default)();
 // Core Route Middleware Mount Arrays

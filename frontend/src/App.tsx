@@ -352,7 +352,8 @@ export default function App() {
       const mapped = response.data.map((h: any) => ({ ...h, id: h._id }));
       setHabits(mapped);
     } catch (err: any) {
-      setHabitsError('Failed to fetch neuro-habit records.');
+      const errMsg = err.response?.data?.message || err.message || 'Failed to fetch neuro-habit records.';
+      setHabitsError(errMsg);
     } finally {
       setHabitsLoading(false);
     }
@@ -386,7 +387,8 @@ export default function App() {
       // Update XP for creating habit
       await handleUpdateStats({ xp: stats.xp + 50 });
     } catch (err: any) {
-      setHabitsError('Failed to record habit vector.');
+      const errMsg = err.response?.data?.message || err.message || 'Failed to record habit vector.';
+      setHabitsError(errMsg);
       throw err;
     }
   };
@@ -403,7 +405,8 @@ export default function App() {
         await handleUpdateStats({ xp: stats.xp + 50 });
       }
     } catch (err: any) {
-      setHabitsError('Failed to toggle completion state.');
+      const errMsg = err.response?.data?.message || err.message || 'Failed to toggle completion state.';
+      setHabitsError(errMsg);
       throw err;
     }
   };
@@ -414,7 +417,8 @@ export default function App() {
       await api.delete(`/habits/${id}`);
       setHabits(prev => prev.filter(h => h._id !== id));
     } catch (err: any) {
-      setHabitsError('Failed to delete habit vector.');
+      const errMsg = err.response?.data?.message || err.message || 'Failed to delete habit vector.';
+      setHabitsError(errMsg);
       throw err;
     }
   };
