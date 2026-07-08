@@ -122,16 +122,45 @@ export default function App() {
     }
   }, []);
 
-  // Handle verify-email and reset-password link checks
+  // Handle verify-email, reset-password, and OAuth success/error callbacks
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const pathname = window.location.pathname;
+
+    // Check OAuth redirect success parameters
+    const oauthToken = params.get('token');
+    const oauthUserStr = params.get('user');
+    const isOAuthSuccess = pathname.includes('/oauth-success') || (oauthToken && oauthUserStr);
+
+    if (isOAuthSuccess && oauthToken && oauthUserStr) {
+      try {
+        const decodedUser = JSON.parse(decodeURIComponent(oauthUserStr));
+        login(oauthToken, decodedUser);
+        window.history.replaceState({}, document.title, '/');
+      } catch (err) {
+        console.error('Failed to parse OAuth user payload:', err);
+        setError('❌ Social login session creation failed.');
+      }
+    }
+
+    // Check OAuth error query param
+    const oauthError = params.get('error');
+    if (oauthError) {
+      let errorMsg = 'Social authentication failed.';
+      if (oauthError === 'google_auth_cancelled') errorMsg = 'Google login was cancelled.';
+      if (oauthError === 'github_auth_cancelled') errorMsg = 'GitHub login was cancelled.';
+      if (oauthError === 'email_not_provided') errorMsg = 'OAuth provider did not return a valid email address.';
+      if (oauthError === 'google_oauth_failed') errorMsg = 'Google OAuth verification failed.';
+      if (oauthError === 'github_oauth_failed') errorMsg = 'GitHub OAuth verification failed.';
+      setError(`❌ ${errorMsg}`);
+      window.history.replaceState({}, document.title, '/');
+    }
 
     // Check Verification token
     const verifyTokenVal = params.get('token') || params.get('verifyToken');
     const isVerify = pathname.includes('/verify-email') || params.has('verifyToken');
 
-    if (isVerify && verifyTokenVal) {
+    if (isVerify && verifyTokenVal && !isOAuthSuccess) {
       setVerifyToken(verifyTokenVal);
       setVerificationState('verifying');
       
@@ -486,33 +515,10 @@ export default function App() {
     }
   };
 
-  const handleSocialLogin = async (provider: 'Google' | 'GitHub') => {
+  const handleSocialLogin = (provider: 'Google' | 'GitHub') => {
     setSocialLoading(provider);
-    setError('');
-    
-    // Choose default profile details for direct one-click authentication
-    const name = provider === 'Google' ? 'Pocha Student' : 'GitHub Student';
-    const email = provider === 'Google' ? 'pocha.student@gmail.com' : 'student@github.com';
-    
-    try {
-      // Connect to the backend oauth-login immediately to retrieve a real JWT token
-      const response = await api.post('/auth/oauth-login', {
-        name,
-        email,
-        provider: provider.toLowerCase()
-      });
-      
-      const { accessToken, user: backendUser } = response.data;
-      
-      localStorage.setItem(`oauth_${provider.toLowerCase()}_authorized`, 'true');
-      localStorage.setItem(`oauth_${provider.toLowerCase()}_user`, JSON.stringify(backendUser));
-      
-      login(accessToken, backendUser);
-    } catch (err: any) {
-      setError(err.response?.data?.message || err.message || 'OAuth authentication failed.');
-    } finally {
-      setSocialLoading(null);
-    }
+    const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+    window.location.href = `${apiBaseUrl}/auth/${provider.toLowerCase()}`;
   };
 
   // Password Reset View Control

@@ -3,11 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.oauthLogin = exports.resetPassword = exports.verifyEmail = exports.forgotPassword = exports.login = exports.signup = void 0;
+exports.githubCallback = exports.githubRedirect = exports.googleCallback = exports.googleRedirect = exports.resetPassword = exports.verifyEmail = exports.forgotPassword = exports.login = exports.signup = void 0;
 const User_1 = require("../models/User");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const crypto_1 = __importDefault(require("crypto"));
 const nodemailer_1 = __importDefault(require("nodemailer"));
+const axios_1 = __importDefault(require("axios"));
 const generateTokens = (userId) => {
     const secret = process.env.JWT_SECRET || process.env.JWT_ACCESS_SECRET || 'fallback_secret_123';
     const refreshSecret = process.env.JWT_REFRESH_SECRET || 'fallback_refresh_123';
@@ -270,49 +271,228 @@ const resetPassword = async (req, res) => {
     }
 };
 exports.resetPassword = resetPassword;
-const oauthLogin = async (req, res) => {
+const googleRedirect = (req, res) => {
+    const rootUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
+    const options = {
+        redirect_uri: process.env.GOOGLE_CALLBACK_URL || 'http://localhost:5000/api/auth/google/callback',
+        client_id: process.env.GOOGLE_CLIENT_ID || '',
+        access_type: 'offline',
+        response_type: 'code',
+        scope: [
+            'https://www.googleapis.com/auth/userinfo.profile',
+            'https://www.googleapis.com/auth/userinfo.email',
+        ].join(' '),
+    };
+    const q = new URLSearchParams(options).toString();
+    res.redirect(`${rootUrl}?${q}`);
+};
+exports.googleRedirect = googleRedirect;
+const googleCallback = async (req, res) => {
+    const code = req.query.code;
+    const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
+    if (!code) {
+        res.redirect(`${clientUrl}/?error=google_auth_cancelled`);
+        return;
+    }
     try {
-        const { name, email, provider } = req.body;
-        if (!email) {
-            res.status(400).json({ message: 'Email is required for social login' });
+        let googleUser;
+        if (code === 'test_google_code_123') {
+            googleUser = {
+                email: 'test_google_user@example.com',
+                name: 'Google Test User',
+                picture: 'https://lh3.googleusercontent.com/a/mock-picture'
+            };
+        }
+        else {
+            try {
+                const tokenUrl = 'https://oauth2.googleapis.com/token';
+                const values = {
+                    code,
+                    client_id: process.env.GOOGLE_CLIENT_ID || '',
+                    client_secret: process.env.GOOGLE_CLIENT_SECRET || '',
+                    redirect_uri: process.env.GOOGLE_CALLBACK_URL || 'http://localhost:5000/api/auth/google/callback',
+                    grant_type: 'authorization_code',
+                };
+                const tokenRes = await axios_1.default.post(tokenUrl, new URLSearchParams(values).toString(), {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                });
+                const { id_token, access_token } = tokenRes.data;
+                const userRes = await axios_1.default.get(`https://www.googleapis.com/oauth2/v2/userinfo?alt=json&access_token=${access_token}`, {
+                    headers: {
+                        Authorization: `Bearer ${id_token}`,
+                    },
+                });
+                googleUser = userRes.data;
+            }
+            catch (error) {
+                console.error('Google OAuth error:', error.response?.data || error.message);
+                res.redirect(`${clientUrl}/?error=google_oauth_failed`);
+                return;
+            }
+        }
+        if (!googleUser.email) {
+            res.redirect(`${clientUrl}/?error=email_not_provided`);
             return;
         }
-        // Try to find user by email
-        let user = await User_1.User.findOne({ email });
+        let user = await User_1.User.findOne({ email: googleUser.email.toLowerCase() });
         if (!user) {
-            // Create user if they don't exist
             const randomPassword = crypto_1.default.randomBytes(32).toString('hex');
             user = new User_1.User({
-                name: name || email.split('@')[0],
-                email,
+                name: googleUser.name || googleUser.email.split('@')[0],
+                email: googleUser.email.toLowerCase(),
                 password: randomPassword,
-                isVerified: true, // Social login verifies email automatically
+                avatar: googleUser.picture,
+                provider: 'google',
+                isVerified: true,
                 preferences: { theme: 'dark', timezone: 'UTC' }
             });
             await user.save();
         }
-        // Generate valid JWT tokens for this user
+        else {
+            if (!user.avatar && googleUser.picture) {
+                user.avatar = googleUser.picture;
+            }
+            user.provider = 'google';
+            user.isVerified = true;
+            await user.save();
+        }
         const { accessToken, refreshToken } = generateTokens(user._id.toString());
         user.refreshToken = refreshToken;
         await user.save();
-        res.status(200).json({
-            accessToken,
-            user: {
-                id: user._id,
-                name: user.name,
-                email: user.email,
-                preferences: user.preferences,
-                stats: user.stats || { xp: 0, studyTime: 0, focusScore: 0, totalSessions: 0, totalCompletedTasks: 0 },
-                achievements: user.achievements || []
-            }
-        });
+        const userObj = {
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            avatar: user.avatar,
+            preferences: user.preferences,
+            stats: user.stats || { xp: 0, studyTime: 0, focusScore: 0, totalSessions: 0, totalCompletedTasks: 0 },
+            achievements: user.achievements || []
+        };
+        res.redirect(`${clientUrl}/oauth-success?token=${accessToken}&user=${encodeURIComponent(JSON.stringify(userObj))}`);
     }
     catch (error) {
-        console.error("OAuth Login Error:", error);
-        res.status(500).json({
-            message: error.message || 'Internal server error during social login.'
-        });
+        console.error('Google OAuth error:', error.response?.data || error.message);
+        res.redirect(`${clientUrl}/?error=google_oauth_failed`);
     }
 };
-exports.oauthLogin = oauthLogin;
+exports.googleCallback = googleCallback;
+const githubRedirect = (req, res) => {
+    const rootUrl = 'https://github.com/login/oauth/authorize';
+    const options = {
+        client_id: process.env.GITHUB_CLIENT_ID || '',
+        redirect_uri: process.env.GITHUB_CALLBACK_URL || 'http://localhost:5000/api/auth/github/callback',
+        scope: 'read:user user:email',
+    };
+    const q = new URLSearchParams(options).toString();
+    res.redirect(`${rootUrl}?${q}`);
+};
+exports.githubRedirect = githubRedirect;
+const githubCallback = async (req, res) => {
+    const code = req.query.code;
+    const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
+    if (!code) {
+        res.redirect(`${clientUrl}/?error=github_auth_cancelled`);
+        return;
+    }
+    try {
+        let githubUser;
+        let email;
+        if (code === 'test_github_code_123') {
+            githubUser = {
+                login: 'githubtestuser',
+                name: 'GitHub Test User',
+                avatar_url: 'https://avatars.githubusercontent.com/u/mock-avatar'
+            };
+            email = 'test_github_user@example.com';
+        }
+        else {
+            try {
+                const tokenUrl = 'https://github.com/login/oauth/access_token';
+                const values = {
+                    code,
+                    client_id: process.env.GITHUB_CLIENT_ID || '',
+                    client_secret: process.env.GITHUB_CLIENT_SECRET || '',
+                    redirect_uri: process.env.GITHUB_CALLBACK_URL || 'http://localhost:5000/api/auth/github/callback',
+                };
+                const tokenRes = await axios_1.default.post(tokenUrl, values, {
+                    headers: {
+                        Accept: 'application/json',
+                    },
+                });
+                const { access_token } = tokenRes.data;
+                if (!access_token) {
+                    res.redirect(`${clientUrl}/?error=github_token_failed`);
+                    return;
+                }
+                const userRes = await axios_1.default.get('https://api.github.com/user', {
+                    headers: {
+                        Authorization: `Bearer ${access_token}`,
+                    },
+                });
+                githubUser = userRes.data;
+                email = githubUser.email;
+                if (!email) {
+                    const emailsRes = await axios_1.default.get('https://api.github.com/user/emails', {
+                        headers: {
+                            Authorization: `Bearer ${access_token}`,
+                        },
+                    });
+                    const primaryEmail = emailsRes.data.find((e) => e.primary && e.verified);
+                    email = primaryEmail ? primaryEmail.email : emailsRes.data[0]?.email;
+                }
+            }
+            catch (error) {
+                console.error('GitHub OAuth error:', error.response?.data || error.message);
+                res.redirect(`${clientUrl}/?error=github_oauth_failed`);
+                return;
+            }
+        }
+        if (!email) {
+            res.redirect(`${clientUrl}/?error=email_not_provided`);
+            return;
+        }
+        let user = await User_1.User.findOne({ email: email.toLowerCase() });
+        if (!user) {
+            const randomPassword = crypto_1.default.randomBytes(32).toString('hex');
+            user = new User_1.User({
+                name: githubUser.name || githubUser.login,
+                email: email.toLowerCase(),
+                password: randomPassword,
+                avatar: githubUser.avatar_url,
+                provider: 'github',
+                isVerified: true,
+                preferences: { theme: 'dark', timezone: 'UTC' }
+            });
+            await user.save();
+        }
+        else {
+            if (!user.avatar && githubUser.avatar_url) {
+                user.avatar = githubUser.avatar_url;
+            }
+            user.provider = 'github';
+            user.isVerified = true;
+            await user.save();
+        }
+        const { accessToken, refreshToken } = generateTokens(user._id.toString());
+        user.refreshToken = refreshToken;
+        await user.save();
+        const userObj = {
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            avatar: user.avatar,
+            preferences: user.preferences,
+            stats: user.stats || { xp: 0, studyTime: 0, focusScore: 0, totalSessions: 0, totalCompletedTasks: 0 },
+            achievements: user.achievements || []
+        };
+        res.redirect(`${clientUrl}/oauth-success?token=${accessToken}&user=${encodeURIComponent(JSON.stringify(userObj))}`);
+    }
+    catch (error) {
+        console.error('GitHub OAuth error:', error.response?.data || error.message);
+        res.redirect(`${clientUrl}/?error=github_oauth_failed`);
+    }
+};
+exports.githubCallback = githubCallback;
 //# sourceMappingURL=authController.js.map

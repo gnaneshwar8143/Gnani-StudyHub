@@ -38,7 +38,9 @@ const userSchema = new Schema({
   verificationToken: { type: String },
   resetPasswordToken: { type: String },
   resetPasswordExpires: { type: Date },
-  refreshToken: { type: String }
+  refreshToken: { type: String },
+  avatar: { type: String },
+  provider: { type: String, default: 'local' }
 }, { timestamps: true });
 
 // Explicitly typing 'next' to satisfy strict compiler configurations

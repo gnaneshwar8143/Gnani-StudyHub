@@ -5,6 +5,7 @@ export declare const User: import("mongoose").Model<{
     password: string;
     achievements: string[];
     isVerified: boolean;
+    provider: string;
     preferences?: {
         theme: "light" | "dark";
         timezone: string;
@@ -21,6 +22,7 @@ export declare const User: import("mongoose").Model<{
     resetPasswordToken?: string | null | undefined;
     resetPasswordExpires?: NativeDate | null | undefined;
     refreshToken?: string | null | undefined;
+    avatar?: string | null | undefined;
 } & import("mongoose").DefaultTimestampProps, {}, {}, {
     id: string;
 }, import("mongoose").Document<unknown, {}, {
@@ -29,6 +31,7 @@ export declare const User: import("mongoose").Model<{
     password: string;
     achievements: string[];
     isVerified: boolean;
+    provider: string;
     preferences?: {
         theme: "light" | "dark";
         timezone: string;
@@ -45,6 +48,7 @@ export declare const User: import("mongoose").Model<{
     resetPasswordToken?: string | null | undefined;
     resetPasswordExpires?: NativeDate | null | undefined;
     refreshToken?: string | null | undefined;
+    avatar?: string | null | undefined;
 } & import("mongoose").DefaultTimestampProps, {
     id: string;
 }, {
@@ -55,6 +59,7 @@ export declare const User: import("mongoose").Model<{
     password: string;
     achievements: string[];
     isVerified: boolean;
+    provider: string;
     preferences?: {
         theme: "light" | "dark";
         timezone: string;
@@ -71,6 +76,7 @@ export declare const User: import("mongoose").Model<{
     resetPasswordToken?: string | null | undefined;
     resetPasswordExpires?: NativeDate | null | undefined;
     refreshToken?: string | null | undefined;
+    avatar?: string | null | undefined;
 } & import("mongoose").DefaultTimestampProps & {
     _id: import("mongoose").Types.ObjectId;
 } & {
@@ -85,6 +91,7 @@ export declare const User: import("mongoose").Model<{
     password: string;
     achievements: string[];
     isVerified: boolean;
+    provider: string;
     preferences?: {
         theme: "light" | "dark";
         timezone: string;
@@ -101,12 +108,14 @@ export declare const User: import("mongoose").Model<{
     resetPasswordToken?: string | null | undefined;
     resetPasswordExpires?: NativeDate | null | undefined;
     refreshToken?: string | null | undefined;
+    avatar?: string | null | undefined;
 } & import("mongoose").DefaultTimestampProps, import("mongoose").Document<unknown, {}, {
     name: string;
     email: string;
     password: string;
     achievements: string[];
     isVerified: boolean;
+    provider: string;
     preferences?: {
         theme: "light" | "dark";
         timezone: string;
@@ -123,6 +132,7 @@ export declare const User: import("mongoose").Model<{
     resetPasswordToken?: string | null | undefined;
     resetPasswordExpires?: NativeDate | null | undefined;
     refreshToken?: string | null | undefined;
+    avatar?: string | null | undefined;
 } & import("mongoose").DefaultTimestampProps, {
     id: string;
 }, Omit<import("mongoose").DefaultSchemaOptions, "timestamps"> & {
@@ -133,6 +143,7 @@ export declare const User: import("mongoose").Model<{
     password: string;
     achievements: string[];
     isVerified: boolean;
+    provider: string;
     preferences?: {
         theme: "light" | "dark";
         timezone: string;
@@ -149,6 +160,7 @@ export declare const User: import("mongoose").Model<{
     resetPasswordToken?: string | null | undefined;
     resetPasswordExpires?: NativeDate | null | undefined;
     refreshToken?: string | null | undefined;
+    avatar?: string | null | undefined;
 } & import("mongoose").DefaultTimestampProps & {
     _id: import("mongoose").Types.ObjectId;
 } & {
@@ -161,6 +173,7 @@ export declare const User: import("mongoose").Model<{
     password: string;
     achievements: string[];
     isVerified: boolean;
+    provider: string;
     preferences?: {
         theme: "light" | "dark";
         timezone: string;
@@ -177,6 +190,7 @@ export declare const User: import("mongoose").Model<{
     resetPasswordToken?: string | null | undefined;
     resetPasswordExpires?: NativeDate | null | undefined;
     refreshToken?: string | null | undefined;
+    avatar?: string | null | undefined;
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
@@ -189,6 +203,7 @@ export declare const User: import("mongoose").Model<{
     password: string;
     achievements: string[];
     isVerified: boolean;
+    provider: string;
     preferences?: {
         theme: "light" | "dark";
         timezone: string;
@@ -205,6 +220,7 @@ export declare const User: import("mongoose").Model<{
     resetPasswordToken?: string | null | undefined;
     resetPasswordExpires?: NativeDate | null | undefined;
     refreshToken?: string | null | undefined;
+    avatar?: string | null | undefined;
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {

@@ -9,6 +9,9 @@ router.post('/login', authController_1.login);
 router.post('/forgot-password', authController_1.forgotPassword);
 router.post('/verify-email', authController_1.verifyEmail);
 router.post('/reset-password', authController_1.resetPassword);
-router.post('/oauth-login', authController_1.oauthLogin);
+router.get('/google', authController_1.googleRedirect);
+router.get('/google/callback', authController_1.googleCallback);
+router.get('/github', authController_1.githubRedirect);
+router.get('/github/callback', authController_1.githubCallback);
 exports.default = router;
 //# sourceMappingURL=authRoutes.js.map
