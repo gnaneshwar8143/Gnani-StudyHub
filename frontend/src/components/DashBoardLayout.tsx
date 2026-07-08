@@ -4,7 +4,6 @@ import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { useTranslation } from '../context/I18nContext';
 import { motion } from 'framer-motion';
-import { AnimatedLogo } from './common/AnimatedLogo';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -50,11 +49,6 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
       {/* Sidebar */}
       <aside className="w-64 border-r border-brand-border bg-brand-sidebar flex flex-col justify-between p-5 flex-shrink-0 z-10">
         <div>
-          {/* Brand */}
-          <div className="flex justify-center select-none mb-8">
-            <AnimatedLogo type="sidebar" />
-          </div>
-
           {/* Navigation */}
           <nav className="space-y-2">
             {navigation.map((item) => {
@@ -176,7 +170,16 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 
       {/* Main content */}
       <main className="flex-1 overflow-y-auto relative p-6 md:p-8 lg:p-10 z-10 custom-scrollbar bg-brand-bg">
-        <div className="max-w-[1400px] mx-auto w-full">
+        {/* Background Watermark */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0">
+          <img 
+            src="/gnani-logo.png" 
+            alt="Dashboard Watermark" 
+            className="w-[70%] max-w-[600px] aspect-square object-contain opacity-[0.04] dark:opacity-[0.05] filter blur-[1.5px] saturate-0 dark:saturate-[0.6] dark:brightness-[1.1] transition-all duration-300"
+          />
+        </div>
+
+        <div className="max-w-[1400px] mx-auto w-full relative z-10">
           {children}
         </div>
       </main>
