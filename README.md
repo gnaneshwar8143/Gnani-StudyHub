@@ -1,356 +1,234 @@
 <div align="center">
 
 # 🧠 GNANI
-### Gain • New • Abilities • Never • Idle
+### **Gain • New • Abilities • Never • Idle**
 
-<img src="./assets/logo.png" width="180"/>
+<img src="./frontend/public/gnani-logo.png" width="160" alt="GNANI Metallic Logo" style="border-radius: 20%; margin: 20px 0;"/>
 
-### 🚀 Premium AI-Powered Productivity Workspace
+### 🚀 Premium Personal Productivity & Study Workspace
 
 **Learn • Evolve • Achieve**
 
-![React](https://img.shields.io/badge/React-19-blue?logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)
-![Vite](https://img.shields.io/badge/Vite-Frontend-646CFF?logo=vite)
-![Node.js](https://img.shields.io/badge/Node.js-Backend-green?logo=node.js)
-![Express](https://img.shields.io/badge/Express-API-black?logo=express)
-![MongoDB](https://img.shields.io/badge/MongoDB-Database-green?logo=mongodb)
-![JWT](https://img.shields.io/badge/JWT-Authentication-orange)
-![License](https://img.shields.io/badge/License-MIT-blue)
-
----
-
-**GNANI is a modern productivity platform that helps students stay focused, build habits, manage goals, organize tasks, and improve consistency through an elegant and intelligent workspace.**
+[![React](https://img.shields.io/badge/React-19.2-blue?style=for-the-badge&logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-8.1-646CFF?style=for-the-badge&logo=vite)](https://vite.dev/)
+[![Node.js](https://img.shields.io/badge/Node.js-20.x-green?style=for-the-badge&logo=node.js)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express-5.2-black?style=for-the-badge&logo=express)](https://expressjs.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-9.7-green?style=for-the-badge&logo=mongodb)](https://www.mongodb.com/)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 </div>
 
 ---
 
-# ✨ Features
+## 📌 Project Overview
 
-## 🔐 Authentication
-
-- Email & Password Authentication
-- Google OAuth Login
-- GitHub OAuth Login
-- Forgot Password
-- Reset Password
-- JWT Authentication
-- Secure Sessions
+**GNANI** is a premium, open-source productivity environment tailored for students and modern learners. It brings together habit tracking, task boards, calendars, Pomodoro study focus sessions, and statistics visualization under a single, highly refined interface. Equipped with state-of-the-art authentication flows (OAuth, verified signup, token security) and a robust localized vocabulary engine, GNANI empowers you to establish routines, maintain streak consistency, and level up your skills.
 
 ---
 
-## 📊 Dashboard
+## ⚡ Core Features
 
-- Beautiful Modern Dashboard
-- Focus Score
-- Study Session Timer
-- XP System
-- Daily Progress
-- Weekly Progress
-- Today's Goals
-- Quote of the Day
-- Quick Actions
-- User Profile Card
-- Multi-language Support
+### 🔐 Authentication & Identity
+*   **Email Sign-Up & Verification:** Registration flow requiring secure email OTP verification to prevent dummy accounts.
+*   **OAuth Integrations:** Fully configured Google OAuth and GitHub OAuth single-sign-on (SSO) systems.
+*   **Security Protocols:** High-entropy JWT session tokens, bcrypt password hashing, forgot-password email loops, and strict CORS rules.
 
----
+### 📊 Dashboard & Metrics
+*   **Time-Adaptive Greetings:** Custom greeting banners reflecting the current time of day.
+*   **Productivity Metrics:** Real-time metrics visualization cards tracking **Focus Score**, **XP Earned**, **Tasks Completed**, **Streaks**, and **Total Study Time**.
+*   **Analytical Visualizations:** Dynamic Area Charts plotting weekly study, focus, and experience point progress using Recharts.
+*   **Motivational Quotes:** Hand-crafted quote panel supporting categorization, rating, saving to favorites, and text sharing.
 
-## 🎯 Goal Management
+### 🎯 Habits & Routine Builder
+*   **Streak-Tracking Engine:** Automatic streak calculation rewards daily consistency with experience points (XP).
+*   **Flexible Recurrence:** Define habits that recur daily, weekly, or on specific days of the week.
+*   **Visual History:** Clean calendar matrices illustrating complete completion histories.
 
-- Create Goals
-- Track Progress
-- Daily Targets
-- Completion Status
-- Goal Analytics
+### 📋 Objectives Board (Kanban)
+*   **Task Status Columns:** Move tasks across *To Do*, *In Progress*, *In Review*, and *Completed*.
+*   **Priority Hierarchy:** Segment focus by *High*, *Medium*, and *Low* priority settings.
+*   **Due Dates & Categories:** Set hard targets with built-in due-date countdowns.
 
----
+### ⏱ Pomodoro Timer
+*   **Focus Intervals:** Configure study blocks, short breaks, and long breaks.
+*   **Browser-Tab Synchronization:** Tab titles display countdown ticks dynamically so you can track time while browsing.
 
-## 📖 Habit Tracker
-
-- Daily Habit Tracking
-- Weekly Progress
-- Monthly Summary
-- Streak System
-- XP Rewards
-- Completion Analytics
+### 🌍 Localization & Theme Engine
+*   **Four Languages:** Support for **English**, **Telugu**, **Hindi**, and **French** using an inline dictionary system.
+*   **Accent & Mode Adjustments:** Fluid transitions between **Light**, **Dark**, and **System Default** themes.
 
 ---
 
-## 📅 Calendar Planner
+## 🛠 Tech Stack
 
-- Monthly Calendar
-- Task Scheduling
-- Daily Agenda
-- Reminder Planning
-- Productivity Calendar
-
----
-
-## ⚙️ Profile Settings
-
-- Profile Management
-- Theme Switching
-- Accent Colors
-- Language Selection
-- Timezone Settings
-- Email Preferences
-- Push Notifications
-- Weekly Reports
-- Monthly Reports
-- Password Management
-- Two Factor Authentication
-- Active Session Management
+| Component | Technology | Version | Key Libraries / Utilities |
+| :--- | :--- | :--- | :--- |
+| **Frontend** | React | `^19.2.7` | Vite, React Router, Recharts, Framer Motion, Axios |
+| **Styling** | Tailwind CSS | `^4.3.2` | Tailwind-merge, PostCSS, Autoprefixer |
+| **Backend** | Node.js / Express | `^5.2.1` | ts-node-dev, cors, helmet, express-rate-limit |
+| **Database** | MongoDB | `^9.7.3` | Mongoose ODM, MongoDB Compass |
+| **Mailing** | Nodemailer | `^9.0.3` | Custom verification SMTP transport templates |
+| **Security** | JSON Web Tokens | `^9.0.3` | bcryptjs, secure CORS headers, environment overrides |
 
 ---
 
-## 🌍 Multi Language
+## 📐 System Architecture
 
-- 🇺🇸 English
-- 🇮🇳 Telugu
+The database schema and service layers interact through the following topology:
 
-Switch languages instantly without restarting the application.
-
----
-
-## 🌙 Theme Support
-
-- Light Mode
-- Dark Mode
-- System Theme Detection
-
----
-
-## 🔐 Login
-
-![Login](./screenshots/login.png)
-
-## 🌙 Dashboard (Dark Mode)
-
-![Dashboard](./screenshots/dashboard-dark.png)
-
-## 🌍 Telugu Dashboard
-
-![Telugu Dashboard](./screenshots/dashboard-telugu.png)
-
-## 📖 Habits
-
-![Habits](./screenshots/habits.png)
-
-## 📅 Calendar
-
-![Calendar](./screenshots/calendar.png)
-
-## ⚙️ Preferences
-
-![Preferences](./screenshots/preferences.png)
-
-## 🎨 Appearance
-
-![Appearance](./screenshots/appearance.png)
-
-## 🔒 Security
-
-![Security](./screenshots/security.png)
-
-# 🛠 Tech Stack
-
-## Frontend
-
-- React 19
-- TypeScript
-- Vite
-- Tailwind CSS
-- React Router
-- Framer Motion
-- Axios
+```mermaid
+graph TD
+    Client[React Frontend - Port 5173] -->|API Requests / JWT| Express[Express API - Port 5000]
+    Express -->|Middleware Validation| Protect[Auth Middleware]
+    Protect -->|Route Mapping| Controllers[Controller Handlers]
+    Controllers -->|Query ODM| Mongoose[Mongoose Schemas]
+    Mongoose -->|Save/Update| MongoDB[(MongoDB Database)]
+    Controllers -->|OAuth Handshake| AuthProviders[Google & GitHub API]
+    Controllers -->|SMTP Service| Mailer[Nodemailer SMTP]
+```
 
 ---
 
-## Backend
-
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- JWT
-- bcrypt
-- Nodemailer
-
----
-
-## Authentication
-
-- Email Login
-- Google OAuth
-- GitHub OAuth
-- JWT Tokens
-
----
-
-## APIs
-
-- Quote API
-- Weather API
-- Email Service
-- Google OAuth API
-- GitHub OAuth API
-
----
-
-# 📂 Project Structure
+## 📂 Folder Structure
 
 ```
-GNANI
-│
-├── frontend
-│   ├── src
-│   ├── assets
-│   ├── components
-│   ├── pages
-│   ├── hooks
-│   ├── services
-│   └── utils
-│
-├── backend
-│   ├── config
-│   ├── controllers
-│   ├── middleware
-│   ├── models
-│   ├── routes
-│   ├── services
-│   └── utils
-│
+GNANI/
+├── backend/
+│   ├── src/
+│   │   ├── config/             # MongoDB database connection configuration
+│   │   ├── controllers/        # Express handlers (auth, habits, objectives, profile)
+│   │   ├── middleware/         # Auth verification and logging middleware
+│   │   ├── models/             # Mongoose schemas (User, Habit, Objective)
+│   │   ├── routes/             # Core endpoints (auth, habits, objectives, profiles)
+│   │   └── server.ts           # REST API server mount point
+│   ├── package.json
+│   └── tsconfig.json
+├── frontend/
+│   ├── public/                 # Branding assets, favicons, PWA icons, manifest files
+│   ├── src/
+│   │   ├── assets/             # Static graphics
+│   │   ├── components/         # Interactive UI components
+│   │   │   ├── common/         # Premium branding components (watermarks, logos)
+│   │   │   └── ...
+│   │   ├── context/            # Global contexts (Auth, Theme, I18n translations)
+│   │   ├── data/               # Local static dictionary and mock datasets
+│   │   ├── lib/                # API client connection configurations
+│   │   ├── pages/              # Password recovery flow layout
+│   │   ├── App.tsx             # Primary app layout controller
+│   │   ├── main.tsx            # DOM node mounting loader
+│   │   └── index.css           # Global Tailwind stylesheet
+│   ├── package.json
+│   └── vite.config.ts
 └── README.md
 ```
 
 ---
 
-# 🚀 Installation
+## 🚀 Getting Started
 
-## Clone Repository
-
-```bash
-git clone https://github.com/yourusername/gnani.git
-```
-
-```
-cd gnani
-```
+### 📋 Prerequisites
+Ensure you have the following installed locally:
+*   [Node.js](https://nodejs.org/) (v18.x or above)
+*   [MongoDB](https://www.mongodb.com/) (running instance or Atlas connection URI)
+*   [Git](https://git-scm.com/)
 
 ---
 
-## Frontend
+### 🔧 Installation Steps
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/gnaneshwar8143/Gnani-StudyHub.git
+    cd Gnani-StudyHub
+    ```
 
----
+2.  **Configure Environment Variables:**
+    Create a `.env` file in the `backend/` directory based on the template below:
+    ```env
+    PORT=5000
+    MONGODB_URI=mongodb://localhost:27017/lifeos
+    JWT_SECRET=your_jwt_high_entropy_secret_key
+    CLIENT_URL=http://localhost:5173
+    
+    # Nodemailer SMTP Configuration
+    SMTP_HOST=smtp.yourmail.com
+    SMTP_PORT=587
+    SMTP_USER=verification@yourdomain.com
+    SMTP_PASS=your_secure_smtp_password
+    SMTP_FROM=GNANI Team <verification@yourdomain.com>
+    
+    # OAuth Configurations
+    GOOGLE_CLIENT_ID=your_google_client_id.apps.googleusercontent.com
+    GOOGLE_CLIENT_SECRET=your_google_client_secret
+    GITHUB_CLIENT_ID=your_github_client_id
+    GITHUB_CLIENT_SECRET=your_github_client_secret
+    ```
 
-## Backend
+3.  **Launch the Backend Server:**
+    ```bash
+    cd backend
+    npm install
+    npm run dev
+    ```
+    The server will connect to MongoDB and start on `http://localhost:5000`.
 
-```bash
-cd backend
-npm install
-npm run dev
-```
-
----
-
-# 🔑 Environment Variables
-
-Backend `.env`
-
-```env
-PORT=5000
-
-MONGO_URI=
-
-JWT_SECRET=
-JWT_REFRESH_SECRET=
-
-SMTP_HOST=
-SMTP_PORT=
-SMTP_USER=
-SMTP_PASS=
-SMTP_FROM=
-
-CLIENT_URL=http://localhost:5173
-
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-
-GITHUB_CLIENT_ID=
-GITHUB_CLIENT_SECRET=
-```
-
----
-
-# 📈 Upcoming Features
-
-- 🤖 AI Study Assistant
-- 🧠 AI Goal Suggestions
-- 📚 AI Learning Planner
-- 🎤 Voice Assistant
-- 📱 Mobile App
-- 🔔 Smart Notifications
-- ☁ Cloud Sync
-- 📄 PDF Reports
-- 👥 Team Workspace
-- 📊 Advanced Analytics
-- 🎖 Achievement System
-- 📈 Productivity Insights
+4.  **Launch the Frontend App:**
+    ```bash
+    cd ../frontend
+    npm install
+    npm run dev
+    ```
+    Open your browser to `http://localhost:5173`.
 
 ---
 
-# 🎯 Project Vision
+## ⚡ API Overview
 
-GNANI is built to become an intelligent productivity ecosystem for students and lifelong learners.
+All routes are prefixed with `/api`. Protected routes require a valid JWT token in the `Authorization: Bearer <Token>` header.
 
-The objective is to combine:
-
-- Goal Management
-- Habit Building
-- Focus Sessions
-- Calendar Planning
-- Analytics
-- AI Assistance
-
-into one modern workspace.
-
----
-
-# 👨‍💻 Developer
-
-## Gnaneshwar Pochammala
-
-**GNANI**
-
-> Gain New Abilities Never Idle
+| Endpoint | Method | Authentication | Description |
+| :--- | :--- | :--- | :--- |
+| `/auth/signup` | POST | Public | Registers a new user and triggers verification mail |
+| `/auth/login` | POST | Public | Validates credentials and returns JWT token |
+| `/auth/verify-email` | POST | Public | Confirms register token to activate user account |
+| `/auth/google` | GET | Public | Redirects user to Google OAuth platform |
+| `/auth/github` | GET | Public | Redirects user to GitHub OAuth platform |
+| `/habits` | GET | Protected | Retrieves active habits checklist |
+| `/habits/:id/toggle` | PUT | Protected | Marks a habit complete for today, updating streaks |
+| `/objectives` | GET | Protected | Fetches Kanban study board items |
+| `/user/stats` | GET | Protected | Fetches user experience level, hours, and xp metrics |
 
 ---
 
-# ⭐ Support
+## 🔒 Security & Performance Features
 
-If you like this project,
-
-⭐ Star the repository
-
-🍴 Fork the repository
-
-💡 Contribute improvements
+*   **Secure Hashing:** bcryptjs comparison for password verification on backend server layers.
+*   **Security Headers:** Helmet integration inside Express maps out standard security headers to prevent sniffing.
+*   **CORS Protection:** Requests are bounded exclusively to allowed Origins (`localhost:5173` and production hooks).
+*   **Session Isolation:** Stateless token management blocks session hijack attempts on frontend layers.
 
 ---
 
-<div align="center">
+## 🤝 Contributing
 
-# 🧠 GNANI
+Contributions are welcome! Please follow these guidelines:
+1. Fork the Project.
+2. Create a Feature Branch (`git checkout -b feature/NewFeature`).
+3. Commit your changes (`git commit -m 'Add some NewFeature'`).
+4. Push to the Branch (`git push origin feature/NewFeature`).
+5. Open a Pull Request.
 
-### Learn • Evolve • Achieve
+---
 
-**Made with ❤️ using React, TypeScript, Node.js & MongoDB**
+## 📄 License
 
-</div>
+Distributed under the MIT License. See [LICENSE](LICENSE) for more details.
+
+---
+
+## 👨‍💻 Author
+
+**Gnaneshwar Pochammala**
+*   GitHub: [@gnaneshwar8143](https://github.com/gnaneshwar8143)
+*   Vision: *Creating high-performance productivity frameworks for modern learners.*
