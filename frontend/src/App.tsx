@@ -13,6 +13,7 @@ import { HabitsPage } from './components/HabitsPage';
 import { CalendarPage } from './components/CalendarPage';
 import { ProfileHub } from './components/ProfileHub';
 import { ResetPassword } from './pages/ResetPassword';
+import { AnimatedLogo } from './components/common/AnimatedLogo';
 
 import type { Objective } from './components/GoalsBoard';
 import type { Habit } from './components/HabitsPage';
@@ -547,7 +548,7 @@ export default function App() {
           className="w-full max-w-md bg-brand-surface-secondary border border-brand-border rounded-3xl p-8 sm:p-10 shadow-2xl backdrop-blur-3xl relative z-10 text-center space-y-6"
         >
           <div className="flex justify-center select-none">
-            <img src="/gnani-logo.png" alt="Gnani Logo" className="h-[52px] w-[52px] object-contain" />
+            <AnimatedLogo type="login" size={52} />
           </div>
 
           <h2 className="text-2xl font-black text-brand-text-primary">Gnani Verification</h2>

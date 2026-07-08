@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { useTranslation } from '../context/I18nContext';
 import { motion } from 'framer-motion';
+import { AnimatedLogo } from './common/AnimatedLogo';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -51,7 +52,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         <div>
           {/* Brand */}
           <div className="flex justify-center select-none mb-8">
-            <img src="/gnani-logo.png" alt="Gnani Logo" className="h-[52px] w-[52px] object-contain drop-shadow-sm" />
+            <AnimatedLogo type="sidebar" />
           </div>
 
           {/* Navigation */}

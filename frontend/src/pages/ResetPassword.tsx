@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import api from '../lib/api';
+import { AnimatedLogo } from '../components/common/AnimatedLogo';
 
 interface ResetPasswordProps {
   token: string;
@@ -74,7 +75,7 @@ export const ResetPassword: React.FC<ResetPasswordProps> = ({ token, onBack }) =
       >
         <div className="flex flex-col items-center text-center space-y-5 px-1">
           <div className="flex justify-center select-none">
-            <img src="/gnani-logo.png" alt="Gnani Logo" className="h-[52px] w-[52px] object-contain" />
+            <AnimatedLogo type="login" size={52} />
           </div>
 
           <h1 className="text-3xl font-black tracking-tight text-brand-text-primary select-none">
