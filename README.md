@@ -121,57 +121,37 @@ Switch languages instantly without restarting the application.
 
 ---
 
-# 📸 Screenshots
+## 🔐 Login
 
-## 🔐 Login Page
-
-![Login](screenshots/login.png)
-
----
+![Login](./screenshots/login.png)
 
 ## 🌙 Dashboard (Dark Mode)
 
-![Dashboard Dark](screenshots/dashboard-dark.png)
-
----
+![Dashboard](./screenshots/dashboard-dark.png)
 
 ## 🌍 Telugu Dashboard
 
-![Dashboard Telugu](screenshots/dashboard-telugu.png)
-
----
+![Telugu Dashboard](./screenshots/dashboard-telugu.png)
 
 ## 📖 Habits
 
-![Habits](screenshots/habits.png)
+![Habits](./screenshots/habits.png)
 
----
+## 📅 Calendar
 
-## 📅 Calendar Planner
+![Calendar](./screenshots/calendar.png)
 
-![Calendar](screenshots/calendar.png)
+## ⚙️ Preferences
 
----
+![Preferences](./screenshots/preferences.png)
 
-## ⚙️ Profile Settings
+## 🎨 Appearance
 
-### Preferences
+![Appearance](./screenshots/appearance.png)
 
-![Preferences](screenshots/preferences.png)
+## 🔒 Security
 
----
-
-### Appearance
-
-![Appearance](screenshots/appearance.png)
-
----
-
-### Password & Security
-
-![Security](screenshots/security.png)
-
----
+![Security](./screenshots/security.png)
 
 # 🛠 Tech Stack
 
