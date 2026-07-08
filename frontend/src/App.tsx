@@ -72,6 +72,7 @@ export default function App() {
   const [verificationState, setVerificationState] = useState<'verifying' | 'success' | 'error' | null>(null);
   const [verificationMessage, setVerificationMessage] = useState('');
   const [resetPasswordToken, setResetPasswordToken] = useState<string | null>(null);
+  const [oauthForceChooser, setOauthForceChooser] = useState(false);
   
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const [motivationalQuote] = useState(
@@ -505,8 +506,42 @@ export default function App() {
         }
       }
       
+      setOauthForceChooser(forceChooser);
       setShowOAuthModal(provider);
     }, 800);
+  };
+
+  const getOauthUrl = () => {
+    if (!showOAuthModal) return '';
+    const state = 'state_token_xyz_456';
+    const redirectUri = 'https://gnani-study-hub.vercel.app/auth/callback';
+    
+    if (showOAuthModal === 'Google') {
+      const params = new URLSearchParams({
+        client_id: 'gnani-google-client-id',
+        redirect_uri: redirectUri,
+        response_type: 'code',
+        scope: 'email profile',
+        access_type: 'offline',
+        include_granted_scopes: 'true',
+        state
+      });
+      if (oauthForceChooser) {
+        params.set('prompt', 'select_account');
+      }
+      return `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
+    } else {
+      const params = new URLSearchParams({
+        client_id: 'gnani-github-client-id',
+        redirect_uri: redirectUri,
+        scope: 'user:email',
+        state
+      });
+      if (oauthForceChooser) {
+        params.set('prompt', 'consent');
+      }
+      return `https://github.com/login/oauth/authorize?${params.toString()}`;
+    }
   };
 
   // Password Reset View Control
@@ -1104,6 +1139,11 @@ export default function App() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             className="w-full max-w-md bg-brand-surface border border-brand-border rounded-[18px] p-6 shadow-2xl space-y-5 text-center relative overflow-hidden"
           >
+            {/* Simulated Browser Address Bar */}
+            <div className="bg-brand-surface-secondary/80 border border-brand-border rounded-xl px-3 py-1.5 text-[9px] text-brand-text-secondary font-mono truncate text-left flex items-center gap-1.5 select-all">
+              <span className="text-emerald-400">🔒</span>
+              <span className="truncate">{getOauthUrl()}</span>
+            </div>
             {/* Top branding logo */}
             {showOAuthModal === 'Google' ? (
               <div className="space-y-3">
