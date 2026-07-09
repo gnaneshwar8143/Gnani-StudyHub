@@ -30,13 +30,19 @@ console.error = (...args: any[]) => {
 };
 
 const requiredEnvVars = [
+  'MONGODB_URI',
+  'JWT_SECRET',
+  'JWT_REFRESH_SECRET',
   'SMTP_HOST',
   'SMTP_PORT',
   'SMTP_USER',
   'SMTP_PASS',
   'SMTP_FROM',
-  'JWT_SECRET',
-  'CLIENT_URL'
+  'CLIENT_URL',
+  'GOOGLE_CLIENT_ID',
+  'GOOGLE_CLIENT_SECRET',
+  'GITHUB_CLIENT_ID',
+  'GITHUB_CLIENT_SECRET'
 ];
 
 requiredEnvVars.forEach((envVar) => {
@@ -48,14 +54,11 @@ requiredEnvVars.forEach((envVar) => {
 
 const app = express();
 
-const allowedOrigins = [
+const allowedOrigins = Array.from(new Set([
   'http://localhost:5173',
-  'https://gnani-study-hub.vercel.app'
-];
-if (process.env.CLIENT_URL) {
-  allowedOrigins.push(process.env.CLIENT_URL);
-  allowedOrigins.push(process.env.CLIENT_URL.replace(/\/$/, ''));
-}
+  'https://gnani-study-hub.vercel.app',
+  ...(process.env.CLIENT_URL ? [process.env.CLIENT_URL, process.env.CLIENT_URL.replace(/\/$/, '')] : [])
+]));
 
 app.use(cors({
   origin: allowedOrigins,
