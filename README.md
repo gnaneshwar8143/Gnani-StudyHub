@@ -24,6 +24,7 @@
 ## 📌 Project Overview
 
 **GNANI** is a premium, open-source productivity environment tailored for students and modern learners. It brings together habit tracking, task boards, calendars, Pomodoro study focus sessions, and statistics visualization under a single, highly refined interface. Equipped with state-of-the-art authentication flows (OAuth, verified signup, token security) and a robust localized vocabulary engine, GNANI empowers you to establish routines, maintain streak consistency, and level up your skills.
+Live:https://gnani-study-hub.vercel.app/
 
 ---
 
