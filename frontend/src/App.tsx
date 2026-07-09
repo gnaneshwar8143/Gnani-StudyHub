@@ -518,7 +518,10 @@ export default function App() {
 
   const handleSocialLogin = (provider: 'Google' | 'GitHub') => {
     setSocialLoading(provider);
-    const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+    const rawApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+    const apiBaseUrl = rawApiUrl.includes('/api') 
+      ? rawApiUrl.replace(/\/$/, '') 
+      : `${rawApiUrl.replace(/\/$/, '')}/api`;
     window.location.href = `${apiBaseUrl}/auth/${provider.toLowerCase()}`;
   };
 
