@@ -123,99 +123,161 @@ GNANI/
 │   └── vite.config.ts
 └── README.md
 ```
-# 📸 Application Screenshots
+## 📸 Application Preview
 
 ---
 
-## 🌙 Dashboard (Dark Mode)
+### 🔐 Login Page
+![Login](images/login.jpeg)
 
-The dark-themed dashboard provides an immersive study environment with AI-powered insights, focus timer, quick actions, productivity statistics, motivational quotes, and weekly progress tracking.
+The secure authentication gateway for Gnani. Users can sign in using Email/Password or OAuth providers like Google and GitHub. The interface supports dark mode with a clean and modern design.
 
-<p align="center">
-  <img src="images/dashboard-dark.jpeg" alt="Dashboard Dark" width="100%">
-</p>
-
----
-
-## ☀️ Dashboard (Light Mode)
-
-The light-themed dashboard offers the same productivity features with a clean and modern interface, making it comfortable for daytime usage.
-
-<p align="center">
-  <img src="images/dashboard-light.jpeg" alt="Dashboard Light" width="100%">
-</p>
+**Features**
+- Email & Password Authentication
+- Google OAuth Login
+- GitHub OAuth Login
+- Remember Me
+- Responsive UI
+- Dark Theme
 
 ---
 
-## 👤 Profile Settings
+### 🏠 Dashboard
+![Dashboard](images/dashboard-dark.jpeg)
 
-Manage your personal profile by updating your profile picture, name, and account information. Users can easily customize their identity and manage account preferences.
+The productivity dashboard provides an overview of daily progress, study sessions, goals, focus score, and motivational quotes.
 
-<p align="center">
-  <img src="images/profile-settings.jpeg" alt="Profile Settings" width="100%">
-</p>
-
----
-
-## 🎨 Appearance Settings
-
-Personalize the application with Light Mode, Dark Mode, or System Theme. Users can also choose custom accent colors to match their preferred interface style.
-
-<p align="center">
-  <img src="images/appearance-settings.jpeg" alt="Appearance Settings" width="100%">
-</p>
-
----
-
-## ⚙️ User Preferences
-
-Configure language preferences, timezone, email notifications, push notifications, and weekly/monthly productivity reports to personalize the overall experience.
-
-<p align="center">
-  <img src="images/preferences.jpeg" alt="Preferences" width="100%">
-</p>
+**Features**
+- Personalized Greeting
+- Pomodoro Study Timer
+- Focus Score
+- XP & Level System
+- Weekly Progress Graph
+- Today's Goals
+- Quick Actions
+- Motivational Quotes
+- Weather Widget
+- Dark Theme
 
 ---
 
-## 🔒 Password & Security
+### 🌐 Multi-Language Support
+![Multi Language](images/dashboard-light.jpeg)
 
-Enhance account security with password management, Two-Factor Authentication (2FA), active session monitoring, and secure device management.
+Gnani supports multiple languages, allowing users to switch the entire interface instantly.
 
-<p align="center">
-  <img src="images/security.jpeg" alt="Security Settings" width="100%">
-</p>
-
----
-
-## 📅 Calendar Planner
-
-Organize daily, weekly, and monthly study schedules with an interactive calendar. Users can add tasks, manage deadlines, and keep track of upcoming activities.
-
-<p align="center">
-  <img src="images/calendar.jpeg" alt="Calendar Planner" width="100%">
-</p>
+**Features**
+- English Support
+- Telugu Support
+- Dynamic Translation
+- Localized Quotes
+- Language Preference Saving
 
 ---
 
-## 📈 Habit Tracker
+### 🎯 Habit Tracker
+![Habits](images/habits.jpeg)
 
-Track study habits, monitor streaks, analyze weekly performance, earn XP, and maintain consistency through an intuitive habit management system.
+Track daily habits, monitor streaks, and visualize weekly and monthly consistency.
 
-<p align="center">
-  <img src="images/habits.jpeg" alt="Habit Tracker" width="100%">
-</p>
+**Features**
+- Daily Habit Checklist
+- Weekly Progress
+- Monthly Summary
+- XP Rewards
+- Habit Completion Rate
+- Streak Tracking
+- Journal Entries
+
+---
+
+### 📅 Calendar Planner
+![Calendar](images/calendar.jpeg)
+
+A built-in productivity calendar for planning study schedules, reminders, and upcoming tasks.
+
+**Features**
+- Monthly Calendar View
+- Daily Agenda
+- Add Tasks
+- Schedule Planner
+- Productivity Timeline
 
 ---
 
-## 🔑 Authentication System
+### 👤 Profile Settings
+![Profile Settings](images/profile-settings.jpeg)
 
-A secure authentication page supporting Email & Password login, Google OAuth, GitHub OAuth, Remember Me functionality, and password recovery.
+Manage your personal information and account profile.
 
-<p align="center">
-  <img src="images/login.jpeg" alt="Login Page" width="100%">
-</p>
+**Features**
+- Upload Profile Picture
+- Edit Name
+- View Email
+- Change Password
+- Save Profile
+- Account Management
 
 ---
+
+### 🎨 Appearance Settings
+![Appearance](images/appearance-settings.jpeg)
+
+Customize the application's appearance according to your preference.
+
+**Features**
+- Dark Mode
+- Light Mode
+- System Theme
+- Accent Color Selection
+- Live Theme Preview
+
+---
+
+### ⚙️ Preferences
+![Preferences](images/preferences.jpeg)
+
+Personalize application behavior with language, timezone, and notification preferences.
+
+**Features**
+- Language Selection
+- Timezone Configuration
+- Email Notifications
+- Push Notifications
+- Weekly Reports
+- Monthly Reports
+
+---
+
+### 🔒 Security Center
+![Security](images/security.jpeg)
+
+Advanced security settings designed to protect your account.
+
+**Features**
+- Change Password
+- Forgot Password
+- Two-Factor Authentication (2FA)
+- Active Sessions
+- Device Management
+- Logout From Other Devices
+
+---
+
+## ✨ Highlights
+
+- 🎯 Productivity Dashboard
+- 📅 Smart Calendar Planner
+- ✅ Habit Tracking System
+- ⏱️ Pomodoro Focus Timer
+- 🌍 Multi-Language Support
+- 🎨 Theme Customization
+- 🔐 Secure Authentication
+- 👤 Profile Management
+- 🛡️ Two-Factor Authentication
+- 📈 XP & Gamification System
+- 📊 Analytics & Progress Tracking
+- 📱 Fully Responsive Design
 
 ## 🚀 Getting Started
 
