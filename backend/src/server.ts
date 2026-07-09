@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-dotenv.config({ override: true });
+dotenv.config();
 import cors from 'cors';
 // @ts-ignore
 import connectDB from './config/db';
