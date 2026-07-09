@@ -146,23 +146,27 @@ Ensure you have the following installed locally:
 2.  **Configure Environment Variables:**
     Create a `.env` file in the `backend/` directory based on the template below:
     ```env
-    PORT=5000
-    MONGODB_URI=mongodb://localhost:27017/lifeos
-    JWT_SECRET=your_jwt_high_entropy_secret_key
-    CLIENT_URL=http://localhost:5173
-    
-    # Nodemailer SMTP Configuration
-    SMTP_HOST=smtp.yourmail.com
-    SMTP_PORT=587
-    SMTP_USER=verification@yourdomain.com
-    SMTP_PASS=your_secure_smtp_password
-    SMTP_FROM=GNANI Team <verification@yourdomain.com>
-    
-    # OAuth Configurations
-    GOOGLE_CLIENT_ID=your_google_client_id.apps.googleusercontent.com
-    GOOGLE_CLIENT_SECRET=your_google_client_secret
-    GITHUB_CLIENT_ID=your_github_client_id
-    GITHUB_CLIENT_SECRET=your_github_client_secret
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.example.mongodb.net/lifeos
+JWT_SECRET=your_jwt_secret_here
+JWT_ACCESS_SECRET=your_jwt_secret_here
+JWT_REFRESH_SECRET=your_super_secret_refresh_key_54321
+
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+
+SMTP_USER=your_email_here
+SMTP_PASS=your_app_password_here
+
+SMTP_FROM=your_email_here
+
+CLIENT_URL=https://gnani-study-hub.vercel.app
+GOOGLE_CLIENT_ID=your_google_client_id_here
+GOOGLE_CLIENT_SECRET=your_google_client_secret_here
+GOOGLE_CALLBACK_URL=http://localhost:5000/api/auth/google/callback
+
+GITHUB_CLIENT_ID=your_github_client_id_here
+GITHUB_CLIENT_SECRET=your_github_client_secret_here
+GITHUB_CALLBACK_URL=http://localhost:5000/api/auth/github/callback
     ```
 
 3.  **Launch the Backend Server:**
