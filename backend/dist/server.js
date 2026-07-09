@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.systemLogs = void 0;
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config({ override: true });
+dotenv_1.default.config();
 const cors_1 = __importDefault(require("cors"));
 // @ts-ignore
 const db_1 = __importDefault(require("./config/db"));
