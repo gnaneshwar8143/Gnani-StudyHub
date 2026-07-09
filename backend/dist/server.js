@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.systemLogs = void 0;
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config({ override: true });
 const cors_1 = __importDefault(require("cors"));
 // @ts-ignore
 const db_1 = __importDefault(require("./config/db"));
@@ -32,16 +33,20 @@ console.error = (...args) => {
         exports.systemLogs.shift();
     originalError.apply(console, args);
 };
-// Configure and mount runtime environment maps
-dotenv_1.default.config({ override: true });
 const requiredEnvVars = [
+    'MONGODB_URI',
+    'JWT_SECRET',
+    'JWT_REFRESH_SECRET',
     'SMTP_HOST',
     'SMTP_PORT',
     'SMTP_USER',
     'SMTP_PASS',
     'SMTP_FROM',
-    'JWT_SECRET',
-    'CLIENT_URL'
+    'CLIENT_URL',
+    'GOOGLE_CLIENT_ID',
+    'GOOGLE_CLIENT_SECRET',
+    'GITHUB_CLIENT_ID',
+    'GITHUB_CLIENT_SECRET'
 ];
 requiredEnvVars.forEach((envVar) => {
     if (!process.env[envVar]) {
@@ -50,14 +55,11 @@ requiredEnvVars.forEach((envVar) => {
     }
 });
 const app = (0, express_1.default)();
-const allowedOrigins = [
+const allowedOrigins = Array.from(new Set([
     'http://localhost:5173',
-    'https://gnani-study-hub.vercel.app'
-];
-if (process.env.CLIENT_URL) {
-    allowedOrigins.push(process.env.CLIENT_URL);
-    allowedOrigins.push(process.env.CLIENT_URL.replace(/\/$/, ''));
-}
+    'https://gnani-study-hub.vercel.app',
+    ...(process.env.CLIENT_URL ? [process.env.CLIENT_URL, process.env.CLIENT_URL.replace(/\/$/, '')] : [])
+]));
 app.use((0, cors_1.default)({
     origin: allowedOrigins,
     credentials: true

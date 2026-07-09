@@ -7,8 +7,17 @@ exports.connectDB = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const connectDB = async () => {
     try {
-        mongoose_1.default.set('debug', true);
-        const conn = await mongoose_1.default.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/lifeos');
+        if (process.env.NODE_ENV !== 'production') {
+            mongoose_1.default.set('debug', true);
+        }
+        const dbUri = process.env.MONGODB_URI;
+        if (!dbUri) {
+            if (process.env.NODE_ENV === 'production') {
+                console.error('❌ CRITICAL: MONGODB_URI is missing in production environment. Terminating process.');
+                process.exit(1);
+            }
+        }
+        const conn = await mongoose_1.default.connect(dbUri || 'mongodb://localhost:27017/lifeos');
         console.log(`📡 MongoDB Connected Globally: ${conn.connection.host}`);
     }
     catch (error) {
