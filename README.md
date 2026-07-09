@@ -125,6 +125,99 @@ GNANI/
 ```
 
 ---
+# 📸 Application Screenshots
+
+---
+
+## 🌙 Dashboard (Dark Mode)
+
+The dark-themed dashboard provides an immersive study environment with AI-powered insights, focus timer, quick actions, productivity statistics, motivational quotes, and weekly progress tracking.
+
+<p align="center">
+  <img src="images/dashboard-dark.jpeg" alt="Dashboard Dark" width="100%">
+</p>
+
+---
+
+## ☀️ Dashboard (Light Mode)
+
+The light-themed dashboard offers the same productivity features with a clean and modern interface, making it comfortable for daytime usage.
+
+<p align="center">
+  <img src="images/dashboard-light.jpeg" alt="Dashboard Light" width="100%">
+</p>
+
+---
+
+## 👤 Profile Settings
+
+Manage your personal profile by updating your profile picture, name, and account information. Users can easily customize their identity and manage account preferences.
+
+<p align="center">
+  <img src="images/profile-settings.jpeg" alt="Profile Settings" width="100%">
+</p>
+
+---
+
+## 🎨 Appearance Settings
+
+Personalize the application with Light Mode, Dark Mode, or System Theme. Users can also choose custom accent colors to match their preferred interface style.
+
+<p align="center">
+  <img src="images/appearance-settings.jpeg" alt="Appearance Settings" width="100%">
+</p>
+
+---
+
+## ⚙️ User Preferences
+
+Configure language preferences, timezone, email notifications, push notifications, and weekly/monthly productivity reports to personalize the overall experience.
+
+<p align="center">
+  <img src="images/preferences.jpeg" alt="Preferences" width="100%">
+</p>
+
+---
+
+## 🔒 Password & Security
+
+Enhance account security with password management, Two-Factor Authentication (2FA), active session monitoring, and secure device management.
+
+<p align="center">
+  <img src="images/security.jpeg" alt="Security Settings" width="100%">
+</p>
+
+---
+
+## 📅 Calendar Planner
+
+Organize daily, weekly, and monthly study schedules with an interactive calendar. Users can add tasks, manage deadlines, and keep track of upcoming activities.
+
+<p align="center">
+  <img src="images/calendar.jpeg" alt="Calendar Planner" width="100%">
+</p>
+
+---
+
+## 📈 Habit Tracker
+
+Track study habits, monitor streaks, analyze weekly performance, earn XP, and maintain consistency through an intuitive habit management system.
+
+<p align="center">
+  <img src="images/habits.jpeg" alt="Habit Tracker" width="100%">
+</p>
+
+---
+
+## 🔑 Authentication System
+
+A secure authentication page supporting Email & Password login, Google OAuth, GitHub OAuth, Remember Me functionality, and password recovery.
+
+<p align="center">
+  <img src="images/login.jpeg" alt="Login Page" width="100%">
+</p>
+
+---
 
 ## 🚀 Getting Started
 
