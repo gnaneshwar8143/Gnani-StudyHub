@@ -123,8 +123,6 @@ GNANI/
 │   └── vite.config.ts
 └── README.md
 ```
-
----
 # 📸 Application Screenshots
 
 ---
