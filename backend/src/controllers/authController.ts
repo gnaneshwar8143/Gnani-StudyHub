@@ -24,10 +24,16 @@ const sendEmail = async (to: string, subject: string, html: string): Promise<voi
     throw new Error('SMTP_CONFIG_MISSING');
   }
 
+  console.log(`📨 [SMTP DISPATCH] Dispatching mail to ${to} via ${smtpHost}:${smtpPort} (From: ${smtpFrom})...`);
+
   const transporter = nodemailer.createTransport({
     host: smtpHost,
     port: smtpPort,
     secure: smtpPort === 465,
+    requireTLS: smtpPort === 587,
+    connectionTimeout: 8000,   // 8s connection timeout
+    greetingTimeout: 8000,     // 8s greeting timeout
+    socketTimeout: 8000,       // 8s socket idle timeout
     auth: {
       user: smtpUser,
       pass: smtpPass
@@ -41,7 +47,13 @@ const sendEmail = async (to: string, subject: string, html: string): Promise<voi
     html
   };
 
-  await transporter.sendMail(mailOptions);
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log(`✉️ [SMTP DISPATCH] Email successfully dispatched to ${to}`);
+  } catch (error: any) {
+    console.error(`❌ [SMTP DISPATCH ERROR] Failed to send email to ${to}:`, error.stack || error.message || error);
+    throw error;
+  }
 };
 
 const mapMailError = (error: any): string => {
