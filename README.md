@@ -303,11 +303,8 @@ Ensure you have the following installed locally:
     MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.example.mongodb.net/lifeos
     
 
-    SMTP_HOST=smtp.gmail.com
-    SMTP_PORT=587
-    SMTP_USER=your_email_here
-    SMTP_PASS=your_app_password_here
-    SMTP_FROM=your_email_here
+    RESEND_API_KEY=re_your_api_key_here
+    RESEND_FROM_EMAIL=Gnani Support <onboarding@resend.dev>
     CLIENT_URL=https://gnani-study-hub.vercel.app
     GOOGLE_CLIENT_ID=your_google_client_id_here
     GOOGLE_CLIENT_SECRET=your_google_client_secret_here

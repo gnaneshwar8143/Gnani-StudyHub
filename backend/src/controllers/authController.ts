@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 import { User } from '../models/User';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
-import nodemailer from 'nodemailer';
 import axios from 'axios';
+import { sendVerificationEmail, sendPasswordResetEmail } from '../services/emailService';
 
 const generateTokens = (userId: string) => {
   const secret = process.env.JWT_SECRET || process.env.JWT_ACCESS_SECRET || 'fallback_secret_123';
@@ -13,60 +13,11 @@ const generateTokens = (userId: string) => {
   return { accessToken, refreshToken };
 };
 
-const sendEmail = async (to: string, subject: string, html: string): Promise<void> => {
-  const smtpHost = process.env.SMTP_HOST;
-  const smtpPort = Number(process.env.SMTP_PORT || 587);
-  const smtpUser = process.env.SMTP_USER;
-  const smtpPass = process.env.SMTP_PASS;
-  const smtpFrom = process.env.SMTP_FROM || smtpUser;
-
-  if (!smtpHost || !smtpUser || !smtpPass) {
-    throw new Error('SMTP_CONFIG_MISSING');
-  }
-
-  console.log(`📨 [SMTP DISPATCH] Dispatching mail to ${to} via ${smtpHost}:${smtpPort} (From: ${smtpFrom})...`);
-
-  const transporter = nodemailer.createTransport({
-    host: smtpHost,
-    port: smtpPort,
-    secure: smtpPort === 465,
-    requireTLS: smtpPort === 587,
-    connectionTimeout: 8000,   // 8s connection timeout
-    greetingTimeout: 8000,     // 8s greeting timeout
-    socketTimeout: 8000,       // 8s socket idle timeout
-    auth: {
-      user: smtpUser,
-      pass: smtpPass
-    }
-  });
-
-  const mailOptions = {
-    from: `"Gnani Support" <${smtpFrom}>`,
-    to,
-    subject,
-    html
-  };
-
-  try {
-    await transporter.sendMail(mailOptions);
-    console.log(`✉️ [SMTP DISPATCH] Email successfully dispatched to ${to}`);
-  } catch (error: any) {
-    console.error(`❌ [SMTP DISPATCH ERROR] Failed to send email to ${to}:`, error.stack || error.message || error);
-    throw error;
-  }
-};
-
 const mapMailError = (error: any): string => {
   if (error.message === 'SMTP_CONFIG_MISSING') {
     return 'Server email configuration is missing or incomplete.';
   }
-  if (error.code === 'EAUTH') {
-    return 'Email service authentication failed. Please verify the SMTP settings or App Password.';
-  }
-  if (error.code === 'ECONNREFUSED' || error.code === 'ENOTFOUND') {
-    return 'Could not connect to the email server. Please check your network connection.';
-  }
-  return 'Failed to send verification email. Please check your email address and try again.';
+  return error.message || 'Failed to dispatch email. Please check your address and try again.';
 };
 
 export const signup = async (req: Request, res: Response): Promise<void> => {
@@ -96,24 +47,7 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
     const verifyUrl = `${clientUrl}/verify-email?token=${verificationToken}`;
     
     try {
-      await sendEmail(
-        email,
-        'Gnani Email Verification',
-        `
-          <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e4e4e7; border-radius: 12px;">
-            <h2 style="color: #7c5cff;">Gnani Email Verification</h2>
-            <p>Hello ${user.name},</p>
-            <p>Thank you for registering at Gnani! Click the button below to verify your email address:</p>
-            <div style="margin: 25px 0;">
-              <a href="${verifyUrl}" style="background-color: #7c5cff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">Verify Email</a>
-            </div>
-            <p>Or copy and paste this link into your browser:</p>
-            <p><a href="${verifyUrl}">${verifyUrl}</a></p>
-            <hr style="border: 0; border-top: 1px solid #e4e4e7; margin: 20px 0;">
-            <p style="font-size: 11px; color: #a1a1aa;">If you did not create this account, you can safely ignore this email.</p>
-          </div>
-        `
-      );
+      await sendVerificationEmail(email, user.name, verifyUrl);
     } catch (mailErr) {
       // Revert/delete the user if mail dispatch fails
       await User.deleteOne({ _id: user._id });
@@ -217,24 +151,7 @@ export const forgotPassword = async (req: Request, res: Response): Promise<void>
     const resetUrl = `${clientUrl}/reset-password/${resetToken}`;
 
     try {
-      await sendEmail(
-        email,
-        'Gnani Password Reset Request',
-        `
-          <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e4e4e7; border-radius: 12px;">
-            <h2 style="color: #7c5cff;">Gnani Password Reset</h2>
-            <p>Hello ${user.name},</p>
-            <p>We received a request to reset your password. Click the button below to set a new password:</p>
-            <div style="margin: 25px 0;">
-              <a href="${resetUrl}" style="background-color: #7c5cff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">Reset Password</a>
-            </div>
-            <p>Or copy and paste this link into your browser:</p>
-            <p><a href="${resetUrl}">${resetUrl}</a></p>
-            <hr style="border: 0; border-top: 1px solid #e4e4e7; margin: 20px 0;">
-            <p style="font-size: 11px; color: #a1a1aa;">This link will expire in 1 hour. If you did not request this reset, you can safely ignore this email.</p>
-          </div>
-        `
-      );
+      await sendPasswordResetEmail(email, user.name, resetUrl);
     } catch (mailErr) {
       // Revert token changes on mail fail
       user.resetPasswordToken = undefined;

@@ -9,7 +9,6 @@ import objectiveRoutes from './routes/objectiveRoutes';
 import authRoutes from './routes/authRoutes';
 import profileRoutes from './routes/profileRoutes';
 import userRoutes from './routes/userRoutes';
-import nodemailer from 'nodemailer';
 
 // Captured System Logs for Production Diagnostics
 export const systemLogs: string[] = [];
@@ -34,11 +33,7 @@ const requiredEnvVars = [
   'MONGODB_URI',
   'JWT_SECRET',
   'JWT_REFRESH_SECRET',
-  'SMTP_HOST',
-  'SMTP_PORT',
-  'SMTP_USER',
-  'SMTP_PASS',
-  'SMTP_FROM',
+  'RESEND_API_KEY',
   'CLIENT_URL',
   'GOOGLE_CLIENT_ID',
   'GOOGLE_CLIENT_SECRET',
@@ -82,42 +77,16 @@ app.use((req: any, res: any, next: any) => {
 // Establish connection matrix to MongoDB database instance
 connectDB();
 
-// Verify SMTP Mail Server Connection on Startup
-const verifySMTP = async () => {
-  const smtpHost = process.env.SMTP_HOST;
-  const smtpPort = Number(process.env.SMTP_PORT || 587);
-  const smtpUser = process.env.SMTP_USER;
-  const smtpPass = process.env.SMTP_PASS;
-
-  if (!smtpHost || !smtpUser || !smtpPass) {
-    console.error('⚠️ [SMTP CONFIG WARNING] Required SMTP parameters are missing from environment!');
-    return;
+// Verify Resend Mail Server Connection on Startup
+const verifyResend = async () => {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error('❌ [Resend Startup Error] RESEND_API_KEY is not defined in the environment variables!');
+    process.exit(1);
   }
-
-  console.log(`📡 [SMTP DIAGNOSTIC] Verifying connection to mail server: ${smtpHost}:${smtpPort} (User: ${smtpUser})...`);
-
-  const transporter = nodemailer.createTransport({
-    host: smtpHost,
-    port: smtpPort,
-    secure: smtpPort === 465,
-    requireTLS: smtpPort === 587,
-    connectionTimeout: 10000, // 10s connection timeout
-    greetingTimeout: 10000,   // 10s greeting timeout
-    socketTimeout: 10000,     // 10s socket idle timeout
-    auth: {
-      user: smtpUser,
-      pass: smtpPass
-    }
-  });
-
-  try {
-    await transporter.verify();
-    console.log('✅ [SMTP DIAGNOSTIC] SMTP Handshake Successful! Mail server is ready to dispatch emails.');
-  } catch (error: any) {
-    console.error('❌ [SMTP DIAGNOSTIC ERROR] Mail Server Connection Failed!', error.stack || error.message || error);
-  }
+  console.log('📡 [Resend Diagnostic] Resend API Key is loaded successfully. Ready to dispatch emails.');
 };
-verifySMTP();
+verifyResend();
 
 // Core Route Middleware Mount Arrays
 app.use('/api/auth', authRoutes);
