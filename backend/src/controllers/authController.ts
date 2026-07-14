@@ -364,7 +364,7 @@ export const googleCallback = async (req: Request, res: Response): Promise<void>
 
       googleUser = userRes.data;
     } catch (error: any) {
-      console.error('Google OAuth error:', error.response?.data || error.message);
+      console.error('Google OAuth error (inner):', error.stack || error.response?.data || error.message || error);
       res.redirect(`${clientUrl}/?error=google_oauth_failed`);
       return;
     }
@@ -414,7 +414,7 @@ export const googleCallback = async (req: Request, res: Response): Promise<void>
 
     res.redirect(`${clientUrl}/oauth-success?token=${accessToken}&user=${encodeURIComponent(JSON.stringify(userObj))}`);
   } catch (error: any) {
-    console.error('Google OAuth error:', error.response?.data || error.message);
+    console.error('Google OAuth error (outer):', error.stack || error.response?.data || error.message || error);
     res.redirect(`${clientUrl}/?error=google_oauth_failed`);
   }
 };
@@ -495,7 +495,7 @@ export const githubCallback = async (req: Request, res: Response): Promise<void>
         email = primaryEmail ? primaryEmail.email : emailsRes.data[0]?.email;
       }
     } catch (error: any) {
-      console.error('GitHub OAuth error:', error.response?.data || error.message);
+      console.error('GitHub OAuth error (inner):', error.stack || error.response?.data || error.message || error);
       res.redirect(`${clientUrl}/?error=github_oauth_failed`);
       return;
     }
@@ -545,7 +545,7 @@ export const githubCallback = async (req: Request, res: Response): Promise<void>
 
     res.redirect(`${clientUrl}/oauth-success?token=${accessToken}&user=${encodeURIComponent(JSON.stringify(userObj))}`);
   } catch (error: any) {
-    console.error('GitHub OAuth error:', error.response?.data || error.message);
+    console.error('GitHub OAuth error (outer):', error.stack || error.response?.data || error.message || error);
     res.redirect(`${clientUrl}/?error=github_oauth_failed`);
   }
 };
