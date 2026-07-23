@@ -300,18 +300,16 @@ Ensure you have the following installed locally:
 2.  **Configure Environment Variables:**
     Create a `.env` file in the `backend/` directory based on the template below:
     ```env
-    MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.example.mongodb.net/lifeos
-    
-
-    RESEND_API_KEY=re_your_api_key_here
-    RESEND_FROM_EMAIL=Gnani Support <onboarding@resend.dev>
-    CLIENT_URL=https://gnani-study-hub.vercel.app
-    GOOGLE_CLIENT_ID=your_google_client_id_here
-    GOOGLE_CLIENT_SECRET=your_google_client_secret_here
-    GOOGLE_CALLBACK_URL=http://localhost:5000/api/auth/google/callback
-    GITHUB_CLIENT_ID=your_github_client_id_here
-    GITHUB_CLIENT_SECRET=your_github_client_secret_here
-    GITHUB_CALLBACK_URL=http://localhost:5000/api/auth/github/callback
+    MONGODB_URI=
+    RESEND_API_KEY=
+    RESEND_FROM_EMAIL=
+    CLIENT_URL=
+    GOOGLE_CLIENT_ID=
+    GOOGLE_CLIENT_SECRET=
+    GOOGLE_CALLBACK_URL=
+    GITHUB_CLIENT_ID=
+    GITHUB_CLIENT_SECRET=
+    GITHUB_CALLBACK_URL=
     ```
 
 3.  **Launch the Backend Server:**
