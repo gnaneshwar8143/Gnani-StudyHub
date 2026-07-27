@@ -33,7 +33,6 @@ const requiredEnvVars = [
   'MONGODB_URI',
   'JWT_SECRET',
   'JWT_REFRESH_SECRET',
-  'RESEND_API_KEY',
   'CLIENT_URL',
   'GOOGLE_CLIENT_ID',
   'GOOGLE_CLIENT_SECRET',
@@ -47,6 +46,13 @@ requiredEnvVars.forEach((envVar) => {
     process.exit(1);
   }
 });
+
+const hasSmtp = Boolean(process.env.SMTP_USER && process.env.SMTP_PASS);
+const hasResend = Boolean(process.env.RESEND_API_KEY);
+
+if (!hasSmtp && !hasResend) {
+  console.warn('⚠️ [STARTUP WARNING] No email provider configured! Set (SMTP_USER & SMTP_PASS) or RESEND_API_KEY.');
+}
 
 const app = express();
 
