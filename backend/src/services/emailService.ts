@@ -1,7 +1,15 @@
+import dns from 'dns';
 import nodemailer from 'nodemailer';
 
+// Force DNS resolution to prefer IPv4 first globally
+try {
+  dns.setDefaultResultOrder('ipv4first');
+} catch (e) {
+  // Ignored if unsupported in legacy Node environments
+}
+
 const host = process.env.SMTP_HOST || 'smtp.gmail.com';
-const port = Number(process.env.SMTP_PORT) || 587;
+const port = Number(process.env.SMTP_PORT) || 465;
 const secure = process.env.SMTP_SECURE === 'true' || port === 465;
 const user = process.env.SMTP_USER || '';
 const pass = process.env.SMTP_PASS || '';
@@ -10,26 +18,31 @@ const fromAddress = process.env.FROM_EMAIL || user || 'Gnani Support <noreply@gn
 
 /**
  * Configure Nodemailer Transporter
+ * - family: 4 forces IPv4 socket connection to prevent Render ETIMEDOUT on IPv6 addresses (2607:f8b0:4004:c21::6d:587)
  */
 export const transporter = nodemailer.createTransport({
   host,
   port,
-  secure, // true for 465, false for 587
+  secure, // true for 465 (SSL), false for 587 (STARTTLS)
   requireTLS: !secure,
+  family: 4, // Force IPv4 networking socket
   auth: {
     user,
     pass,
   },
-  connectionTimeout: 10000,
-  greetingTimeout: 10000,
-  socketTimeout: 15000,
-});
+  connectionTimeout: 15000,
+  greetingTimeout: 15000,
+  socketTimeout: 20000,
+  tls: {
+    rejectUnauthorized: false,
+  },
+} as nodemailer.TransportOptions);
 
 /**
  * Verify Transporter connection during server startup
  */
 export const verifyTransporterOnStartup = async (): Promise<boolean> => {
-  console.log(`📡 [SMTP Startup Verification] Connecting to ${host}:${port} as User: ${user || 'UNCONFIGURED'}...`);
+  console.log(`📡 [SMTP Startup Verification] Connecting to ${host}:${port} (IPv4 mode, secure=${secure}) as User: ${user || 'UNCONFIGURED'}...`);
   
   if (!user || !pass) {
     console.error('❌ [SMTP Startup Error] SMTP_USER or SMTP_PASS is missing in environment variables!');
@@ -147,6 +160,46 @@ export const sendPasswordResetEmail = async (to: string, name: string, resetUrl:
   } catch (error: any) {
     console.error(`❌ [Email Service Error] Failed to send password reset email to ${to}:`);
     console.error(error.stack || error.message || error);
+    throw error;
+  }
+};
+
+/**
+ * Send a contact form email using Nodemailer Gmail SMTP
+ */
+export const sendContactEmail = async (fromEmail: string, name: string, message: string): Promise<nodemailer.SentMessageInfo> => {
+  console.log(`📨 [Email Service Queue] Queuing contact form message from: ${fromEmail}`);
+
+  if (!user || !pass) {
+    console.error('❌ [Email Service Error] SMTP_USER or SMTP_PASS is missing.');
+    throw new Error('SMTP_CONFIG_MISSING');
+  }
+
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e4e4e7; border-radius: 12px; background-color: #ffffff;">
+      <div style="text-align: center; padding-bottom: 20px;">
+        <h2 style="color: #7c5cff; margin: 0;">Gnani Support Contact Form</h2>
+      </div>
+      <div style="padding: 20px; background-color: #f4f4f5; border-radius: 8px;">
+        <p><strong>From:</strong> ${name} (&lt;${fromEmail}&gt;)</p>
+        <p><strong>Message:</strong></p>
+        <p style="white-space: pre-wrap; background: #ffffff; padding: 15px; border-radius: 6px; border: 1px solid #e4e4e7;">${message}</p>
+      </div>
+    </div>
+  `;
+
+  try {
+    const info = await transporter.sendMail({
+      from: fromAddress,
+      to: user,
+      replyTo: fromEmail,
+      subject: `[Gnani Support] Message from ${name}`,
+      html,
+    });
+    console.log(`✉️ [Email Service Sent] Contact form email delivered. Message ID: ${info.messageId}`);
+    return info;
+  } catch (error: any) {
+    console.error(`❌ [Email Service Error] Failed to send contact email:`, error.stack || error.message || error);
     throw error;
   }
 };
