@@ -52,12 +52,21 @@ const app = express();
 
 const allowedOrigins = Array.from(new Set([
   'http://localhost:5173',
+  'http://localhost:4173',
+  'http://localhost:3000',
   'https://gnani-study-hub.vercel.app',
   ...(process.env.CLIENT_URL ? [process.env.CLIENT_URL, process.env.CLIENT_URL.replace(/\/$/, '')] : [])
 ]));
 
 app.use(cors({
-  origin: allowedOrigins,
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    const isAllowed = allowedOrigins.includes(origin) || origin.endsWith('.vercel.app');
+    if (isAllowed) {
+      return callback(null, true);
+    }
+    return callback(null, false);
+  },
   credentials: true
 }));
 

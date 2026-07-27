@@ -6,8 +6,11 @@ import axios from 'axios';
 import { sendVerificationEmail, sendPasswordResetEmail } from '../services/emailService';
 
 const generateTokens = (userId: string) => {
-  const secret = process.env.JWT_SECRET || process.env.JWT_ACCESS_SECRET || 'fallback_secret_123';
-  const refreshSecret = process.env.JWT_REFRESH_SECRET || 'fallback_refresh_123';
+  const secret = process.env.JWT_SECRET || process.env.JWT_ACCESS_SECRET;
+  const refreshSecret = process.env.JWT_REFRESH_SECRET;
+  if (!secret || !refreshSecret) {
+    throw new Error('JWT configuration missing in server environment.');
+  }
   const accessToken = jwt.sign({ userId }, secret, { expiresIn: '15m' });
   const refreshToken = jwt.sign({ userId }, refreshSecret, { expiresIn: '7d' });
   return { accessToken, refreshToken };

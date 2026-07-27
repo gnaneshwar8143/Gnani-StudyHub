@@ -123,76 +123,102 @@ export default function App() {
     }
   }, []);
 
-  // Handle verify-email, reset-password, and OAuth success/error callbacks
+  // Handle verify-email, reset-password, OAuth callbacks, and client-side route synchronization
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const pathname = window.location.pathname;
+    const handleRouteSync = () => {
+      const params = new URLSearchParams(window.location.search);
+      const pathname = window.location.pathname.replace(/\/$/, '') || '/';
 
-    // Check OAuth redirect success parameters
-    const oauthToken = params.get('token');
-    const oauthUserStr = params.get('user');
-    const isOAuthSuccess = pathname.includes('/oauth-success') || (oauthToken && oauthUserStr);
+      // Check OAuth redirect success parameters
+      const oauthToken = params.get('token');
+      const oauthUserStr = params.get('user');
+      const isOAuthSuccess = pathname.includes('/oauth-success') || (oauthToken && oauthUserStr);
 
-    if (isOAuthSuccess && oauthToken && oauthUserStr) {
-      try {
-        const decodedUser = JSON.parse(decodeURIComponent(oauthUserStr));
-        login(oauthToken, decodedUser);
+      if (isOAuthSuccess && oauthToken && oauthUserStr) {
+        try {
+          const decodedUser = JSON.parse(decodeURIComponent(oauthUserStr));
+          login(oauthToken, decodedUser);
+          window.history.replaceState({}, document.title, '/dashboard');
+          setActiveTab('dashboard');
+          return;
+        } catch (err) {
+          console.error('Failed to parse OAuth user payload:', err);
+          setError('❌ Social login session creation failed.');
+        }
+      }
+
+      // Check OAuth error query param
+      const oauthError = params.get('error');
+      if (oauthError) {
+        let errorMsg = 'Social authentication failed.';
+        if (oauthError === 'google_auth_cancelled') errorMsg = 'Google login was cancelled.';
+        if (oauthError === 'github_auth_cancelled') errorMsg = 'GitHub login was cancelled.';
+        if (oauthError === 'email_not_provided') errorMsg = 'OAuth provider did not return a valid email address.';
+        if (oauthError === 'google_oauth_failed') errorMsg = 'Google OAuth verification failed.';
+        if (oauthError === 'github_oauth_failed') errorMsg = 'GitHub OAuth verification failed.';
+        setError(`❌ ${errorMsg}`);
         window.history.replaceState({}, document.title, '/');
-      } catch (err) {
-        console.error('Failed to parse OAuth user payload:', err);
-        setError('❌ Social login session creation failed.');
       }
-    }
 
-    // Check OAuth error query param
-    const oauthError = params.get('error');
-    if (oauthError) {
-      let errorMsg = 'Social authentication failed.';
-      if (oauthError === 'google_auth_cancelled') errorMsg = 'Google login was cancelled.';
-      if (oauthError === 'github_auth_cancelled') errorMsg = 'GitHub login was cancelled.';
-      if (oauthError === 'email_not_provided') errorMsg = 'OAuth provider did not return a valid email address.';
-      if (oauthError === 'google_oauth_failed') errorMsg = 'Google OAuth verification failed.';
-      if (oauthError === 'github_oauth_failed') errorMsg = 'GitHub OAuth verification failed.';
-      setError(`❌ ${errorMsg}`);
-      window.history.replaceState({}, document.title, '/');
-    }
+      // Check Verification token
+      const verifyTokenVal = params.get('token') || params.get('verifyToken');
+      const isVerify = pathname.includes('/verify-email') || params.has('verifyToken');
 
-    // Check Verification token
-    const verifyTokenVal = params.get('token') || params.get('verifyToken');
-    const isVerify = pathname.includes('/verify-email') || params.has('verifyToken');
+      if (isVerify && verifyTokenVal && !isOAuthSuccess) {
+        setVerifyToken(verifyTokenVal);
+        setVerificationState('verifying');
+        
+        api.post('/auth/verify-email', { token: verifyTokenVal })
+          .then((res) => {
+            setVerificationState('success');
+            setVerificationMessage(res.data.message);
+          })
+          .catch((err) => {
+            setVerificationState('error');
+            setVerificationMessage(err.response?.data?.message || 'Verification link invalid or expired.');
+          });
+      }
 
-    if (isVerify && verifyTokenVal && !isOAuthSuccess) {
-      setVerifyToken(verifyTokenVal);
-      setVerificationState('verifying');
+      // Check Reset Password token
+      let resetTokenVal = params.get('resetToken');
+      const isReset = pathname.includes('/reset-password');
       
-      api.post('/auth/verify-email', { token: verifyTokenVal })
-        .then((res) => {
-          setVerificationState('success');
-          setVerificationMessage(res.data.message);
-        })
-        .catch((err) => {
-          setVerificationState('error');
-          setVerificationMessage(err.response?.data?.message || 'Verification link invalid or expired.');
-        });
-    }
-
-    // Check Reset Password token
-    let resetTokenVal = params.get('resetToken');
-    const isReset = pathname.includes('/reset-password');
-    
-    if (!resetTokenVal && pathname.includes('/reset-password/')) {
-      const parts = pathname.split('/reset-password/');
-      if (parts.length > 1 && parts[1]) {
-        resetTokenVal = parts[1];
+      if (!resetTokenVal && pathname.includes('/reset-password/')) {
+        const parts = pathname.split('/reset-password/');
+        if (parts.length > 1 && parts[1]) {
+          resetTokenVal = parts[1];
+        }
+      } else if (!resetTokenVal && isReset) {
+        resetTokenVal = params.get('token');
       }
-    } else if (!resetTokenVal && isReset) {
-      resetTokenVal = params.get('token');
-    }
 
-    if (resetTokenVal) {
-      setResetPasswordToken(resetTokenVal);
-    }
-  }, []);
+      if (resetTokenVal) {
+        setResetPasswordToken(resetTokenVal);
+        return;
+      }
+
+      // Route synchronization for guest and authenticated states
+      if (pathname === '/register' || pathname === '/signup') {
+        setIsLogin(false);
+      } else if (pathname === '/login' || pathname === '/signin') {
+        setIsLogin(true);
+      } else if (pathname === '/profile' || pathname === '/settings') {
+        setActiveTab('profile');
+      } else if (pathname === '/goals' || pathname === '/objectives' || pathname === '/tasks') {
+        setActiveTab('goals');
+      } else if (pathname === '/habits') {
+        setActiveTab('habits');
+      } else if (pathname === '/calendar') {
+        setActiveTab('calendar');
+      } else if (pathname === '/dashboard' || pathname === '/') {
+        setActiveTab('dashboard');
+      }
+    };
+
+    handleRouteSync();
+    window.addEventListener('popstate', handleRouteSync);
+    return () => window.removeEventListener('popstate', handleRouteSync);
+  }, [login]);
 
   // Lifted Objectives State
   const [objectives, setObjectives] = useState<Objective[]>([]);
@@ -609,6 +635,14 @@ export default function App() {
     );
   }
 
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab);
+    const targetPath = tab === 'dashboard' ? '/' : `/${tab}`;
+    if (window.location.pathname !== targetPath) {
+      window.history.pushState({}, document.title, targetPath);
+    }
+  };
+
   // Authenticated State View Control
   if (user) {
     const maxStreak = habits.length > 0 ? Math.max(...habits.map((h) => h.streak)) : 0;
@@ -616,7 +650,7 @@ export default function App() {
     return (
       <DashboardLayout 
         activeTab={activeTab} 
-        setActiveTab={setActiveTab}
+        setActiveTab={handleTabChange}
         stats={stats}
         maxStreak={maxStreak}
       >
@@ -983,6 +1017,9 @@ export default function App() {
                     setIsLogin(false);
                     setError('');
                     setSuccessMessage('');
+                    if (window.location.pathname !== '/register') {
+                      window.history.pushState({}, document.title, '/register');
+                    }
                   }}
                   className="text-brand-primary hover:text-brand-primary font-bold cursor-pointer transition-colors bg-transparent border-none outline-none"
                   aria-label="Create account"
@@ -999,6 +1036,9 @@ export default function App() {
                     setIsLogin(true);
                     setError('');
                     setSuccessMessage('');
+                    if (window.location.pathname !== '/login') {
+                      window.history.pushState({}, document.title, '/login');
+                    }
                   }}
                   className="text-brand-primary hover:text-brand-primary font-bold cursor-pointer transition-colors bg-transparent border-none outline-none"
                   aria-label="Sign in"
