@@ -20,6 +20,9 @@ const mapMailError = (error: any): string => {
   if (error.message === 'SMTP_CONFIG_MISSING') {
     return 'Server email configuration is missing or incomplete.';
   }
+  if (error.message && error.message.includes('API key')) {
+    return 'Resend Email API key is invalid or pending environment rotation.';
+  }
   return error.message || 'Failed to dispatch email. Please check your address and try again.';
 };
 
