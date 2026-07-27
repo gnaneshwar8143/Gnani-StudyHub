@@ -6,17 +6,19 @@ dist/
 dist-ssr/
 *.local
 out/
+backend/dist/
+frontend/dist/
 
 # Environment Variables & Secrets
 .env
-.env.production
-.env.development
-.env.local
-.env.*.local
+.env.*
+!.env.example
 backend/.env
+backend/.env.*
+!backend/.env.example
 frontend/.env
-backend/dist/
-frontend/dist/
+frontend/.env.*
+!frontend/.env.example
 
 # Debug and Coverage Logs
 npm-debug.log*
