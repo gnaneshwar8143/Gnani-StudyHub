@@ -34,6 +34,8 @@ const requiredEnvVars = [
   'JWT_SECRET',
   'JWT_REFRESH_SECRET',
   'CLIENT_URL',
+  'SMTP_USER',
+  'SMTP_PASS',
   'GOOGLE_CLIENT_ID',
   'GOOGLE_CLIENT_SECRET',
   'GITHUB_CLIENT_ID',
@@ -46,13 +48,6 @@ requiredEnvVars.forEach((envVar) => {
     process.exit(1);
   }
 });
-
-const hasSmtp = Boolean(process.env.SMTP_USER && process.env.SMTP_PASS);
-const hasResend = Boolean(process.env.RESEND_API_KEY);
-
-if (!hasSmtp && !hasResend) {
-  console.warn('⚠️ [STARTUP WARNING] No email provider configured! Set (SMTP_USER & SMTP_PASS) or RESEND_API_KEY.');
-}
 
 const app = express();
 
@@ -92,16 +87,10 @@ app.use((req: any, res: any, next: any) => {
 // Establish connection matrix to MongoDB database instance
 connectDB();
 
-// Verify Resend Mail Server Connection on Startup
-const verifyResend = async () => {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.error('❌ [Resend Startup Error] RESEND_API_KEY is not defined in the environment variables!');
-    process.exit(1);
-  }
-  console.log('📡 [Resend Diagnostic] Resend API Key is loaded successfully. Ready to dispatch emails.');
-};
-verifyResend();
+import { verifyTransporterOnStartup } from './services/emailService';
+
+// Verify SMTP Server Connection on Startup
+verifyTransporterOnStartup();
 
 // Core Route Middleware Mount Arrays
 app.use('/api/auth', authRoutes);

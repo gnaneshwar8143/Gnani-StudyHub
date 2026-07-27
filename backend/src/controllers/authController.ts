@@ -18,10 +18,13 @@ const generateTokens = (userId: string) => {
 
 const mapMailError = (error: any): string => {
   if (error.message === 'SMTP_CONFIG_MISSING') {
-    return 'Server email configuration is missing or incomplete.';
+    return 'Server SMTP configuration is missing or incomplete.';
   }
-  if (error.message && error.message.includes('API key')) {
-    return 'Resend Email API key is invalid or pending environment rotation.';
+  if (error.code === 'EAUTH' || (error.message && error.message.includes('Invalid login'))) {
+    return 'SMTP authentication failed. Please verify your SMTP_USER and Google App Password.';
+  }
+  if (error.code === 'ETIMEDOUT' || error.code === 'ESOCKET') {
+    return 'SMTP connection timed out. Please check network connectivity or SMTP_PORT settings.';
   }
   return error.message || 'Failed to dispatch email. Please check your address and try again.';
 };
