@@ -24,12 +24,21 @@ export interface Objective {
   scheduledDate?: string;
   scheduledTime?: string;
   taskType?: 'Due Date' | 'Reminder' | 'Repeat Schedule';
+  reminderType?: string;
+  reminderDateTime?: string;
+  reminderSent?: boolean;
 }
 
 interface CalendarPageProps {
   objectives: Objective[];
   onScheduleObjective: (id: string, date: string | undefined, time: string | undefined) => void;
-  onAddObjective: (title: string, priority: 'High' | 'Medium' | 'Low', status?: Objective['status'], dueDate?: string) => void;
+  onAddObjective: (
+    title: string, 
+    priority: 'High' | 'Medium' | 'Low', 
+    status?: Objective['status'], 
+    dueDate?: string,
+    extraFields?: Partial<Objective>
+  ) => void;
   onToggleObjective: (id: string) => void;
   onDeleteObjective: (id: string) => void;
   onUpdateObjective?: (id: string, updates: Partial<Objective>) => void;
@@ -56,6 +65,7 @@ export const CalendarPage: React.FC<CalendarPageProps> = ({
   const [newPriority, setNewPriority] = useState<'High' | 'Medium' | 'Low'>('Medium');
   const [newType, setNewType] = useState<'Due Date' | 'Reminder' | 'Repeat Schedule'>('Due Date');
   const [newTime, setNewTime] = useState('09:00');
+  const [newReminderType, setNewReminderType] = useState('At Task Time');
 
   // Edit form states
   const [editTitle, setEditTitle] = useState('');
@@ -63,6 +73,7 @@ export const CalendarPage: React.FC<CalendarPageProps> = ({
   const [editType, setEditType] = useState<'Due Date' | 'Reminder' | 'Repeat Schedule'>('Due Date');
   const [editDate, setEditDate] = useState('');
   const [editTime, setEditTime] = useState('');
+  const [editReminderType, setEditReminderType] = useState('At Task Time');
 
   const formatDateKey = (date: Date) => {
     const year = date.getFullYear();
@@ -150,22 +161,13 @@ export const CalendarPage: React.FC<CalendarPageProps> = ({
     if (!newTitle.trim()) return;
 
     const taskDateStr = selectedDateStr;
-    const tempId = Date.now().toString();
 
-    // Call standard add
-    onAddObjective(newTitle.trim(), newPriority, 'To Do', taskDateStr);
-
-    // Schedule time & custom taskType properties if update API is available
-    if (onUpdateObjective) {
-      setTimeout(() => {
-        // Find newly added item from states or update it
-        // To make it fully seamless, we can schedule the block and save custom attributes:
-        onScheduleObjective(tempId, taskDateStr, newTime);
-        onUpdateObjective(tempId, { taskType: newType });
-      }, 50);
-    } else {
-      onScheduleObjective(tempId, taskDateStr, newTime);
-    }
+    onAddObjective(newTitle.trim(), newPriority, 'To Do', taskDateStr, {
+      scheduledDate: taskDateStr,
+      scheduledTime: newTime,
+      taskType: newType,
+      reminderType: newReminderType,
+    });
 
     setNewTitle('');
     setShowAddModal(false);
@@ -178,6 +180,7 @@ export const CalendarPage: React.FC<CalendarPageProps> = ({
     setEditType(task.taskType || 'Due Date');
     setEditDate(task.dueDate || task.scheduledDate || selectedDateStr);
     setEditTime(task.scheduledTime || '09:00');
+    setEditReminderType(task.reminderType || 'At Task Time');
   };
 
   const handleSaveEdit = (e: React.FormEvent) => {
@@ -192,9 +195,9 @@ export const CalendarPage: React.FC<CalendarPageProps> = ({
         dueDate: editDate,
         scheduledDate: editDate,
         scheduledTime: editTime,
+        reminderType: editReminderType,
       });
     } else {
-      // Fallback updating via scheduler
       onScheduleObjective(showEditModal.id, editDate, editTime);
     }
 
@@ -630,6 +633,23 @@ export const CalendarPage: React.FC<CalendarPageProps> = ({
                   />
                 </div>
 
+                <div className="space-y-1.5 text-left">
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-brand-text-secondary">Reminder Time</label>
+                  <select
+                    value={newReminderType}
+                    onChange={(e) => setNewReminderType(e.target.value)}
+                    className="w-full bg-brand-bg border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-text-primary focus:outline-none focus:border-brand-primary/30 transition-colors"
+                  >
+                    <option value="At Task Time">At Task Time</option>
+                    <option value="10 Minutes Before">10 Minutes Before</option>
+                    <option value="30 Minutes Before">30 Minutes Before</option>
+                    <option value="1 Hour Before">1 Hour Before</option>
+                    <option value="2 Hours Before">2 Hours Before</option>
+                    <option value="Morning (8:00 AM)">Morning (8:00 AM)</option>
+                    <option value="1 Day Before">1 Day Before</option>
+                  </select>
+                </div>
+
                 <button
                   type="submit"
                   className="w-full py-2 bg-brand-primary hover:bg-brand-primary-hover text-white border-brand-primary text-xs font-bold rounded-xl transition-colors cursor-pointer select-none"
@@ -724,6 +744,23 @@ export const CalendarPage: React.FC<CalendarPageProps> = ({
                       className="w-full bg-brand-bg border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-text-primary focus:outline-none focus:border-brand-primary/30 transition-colors"
                     />
                   </div>
+                </div>
+
+                <div className="space-y-1.5 text-left">
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-brand-text-secondary">Reminder Time</label>
+                  <select
+                    value={editReminderType}
+                    onChange={(e) => setEditReminderType(e.target.value)}
+                    className="w-full bg-brand-bg border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-text-primary focus:outline-none focus:border-brand-primary/30 transition-colors"
+                  >
+                    <option value="At Task Time">At Task Time</option>
+                    <option value="10 Minutes Before">10 Minutes Before</option>
+                    <option value="30 Minutes Before">30 Minutes Before</option>
+                    <option value="1 Hour Before">1 Hour Before</option>
+                    <option value="2 Hours Before">2 Hours Before</option>
+                    <option value="Morning (8:00 AM)">Morning (8:00 AM)</option>
+                    <option value="1 Day Before">1 Day Before</option>
+                  </select>
                 </div>
 
                 <button

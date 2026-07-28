@@ -85,6 +85,18 @@ const objectiveSchema = new mongoose_1.Schema({
     completed: {
         type: Boolean,
         default: false
+    },
+    reminderType: {
+        type: String,
+        enum: ['At Task Time', '10 Minutes Before', '30 Minutes Before', '1 Hour Before', '2 Hours Before', 'Morning (8:00 AM)', '1 Day Before'],
+        default: 'At Task Time'
+    },
+    reminderDateTime: {
+        type: Date
+    },
+    reminderSent: {
+        type: Boolean,
+        default: false
     }
 }, {
     timestamps: true

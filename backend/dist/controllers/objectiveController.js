@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteObjective = exports.updateObjective = exports.createObjective = exports.getObjectives = void 0;
 const Objective_1 = __importDefault(require("../models/Objective"));
+const reminderScheduler_1 = require("../services/reminderScheduler");
 const getObjectives = async (req, res) => {
     try {
         const objectives = await Objective_1.default.find({ user: req.user?.id }).sort({ createdAt: -1 });
@@ -17,7 +18,9 @@ const getObjectives = async (req, res) => {
 exports.getObjectives = getObjectives;
 const createObjective = async (req, res) => {
     try {
-        const { title, description, taskType, calendarType, priority, status, dueDate, scheduledDate, scheduledTime } = req.body;
+        const { title, description, taskType, calendarType, priority, status, dueDate, scheduledDate, scheduledTime, reminderType } = req.body;
+        const taskDateStr = scheduledDate || (dueDate ? new Date(dueDate).toISOString().split('T')[0] : undefined);
+        const calculatedReminderDateTime = (0, reminderScheduler_1.calculateReminderDateTime)(taskDateStr, scheduledTime, reminderType);
         const objective = new Objective_1.default({
             user: req.user?.id,
             title,
@@ -27,8 +30,11 @@ const createObjective = async (req, res) => {
             priority: priority || 'Medium',
             status: status || 'To Do',
             dueDate,
-            scheduledDate,
-            scheduledTime
+            scheduledDate: taskDateStr,
+            scheduledTime,
+            reminderType: reminderType || 'At Task Time',
+            reminderDateTime: calculatedReminderDateTime,
+            reminderSent: false
         });
         const savedObjective = await objective.save();
         res.status(201).json(savedObjective);
@@ -47,8 +53,16 @@ const updateObjective = async (req, res) => {
             return res.status(404).json({ message: 'Objective not found or unauthorized' });
         }
         const updates = req.body;
-        // Do not allow updating the user field
         delete updates.user;
+        const taskDateStr = updates.scheduledDate || objective.scheduledDate || (updates.dueDate ? new Date(updates.dueDate).toISOString().split('T')[0] : undefined);
+        const timeStr = updates.scheduledTime || objective.scheduledTime;
+        const remType = updates.reminderType || objective.reminderType;
+        if (updates.scheduledDate || updates.scheduledTime || updates.reminderType) {
+            updates.reminderDateTime = (0, reminderScheduler_1.calculateReminderDateTime)(taskDateStr, timeStr, remType);
+            if (updates.reminderDateTime && updates.reminderDateTime > new Date()) {
+                updates.reminderSent = false;
+            }
+        }
         const updatedObjective = await Objective_1.default.findOneAndUpdate({ _id: id, user: req.user?.id }, { $set: updates }, { new: true, runValidators: true });
         res.json(updatedObjective);
     }

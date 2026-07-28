@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import Objective from '../models/Objective';
+import { calculateReminderDateTime } from '../services/reminderScheduler';
 
 interface AuthenticatedRequest extends Request {
   user?: {
@@ -19,7 +20,25 @@ export const getObjectives = async (req: AuthenticatedRequest, res: Response) =>
 
 export const createObjective = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const { title, description, taskType, calendarType, priority, status, dueDate, scheduledDate, scheduledTime } = req.body;
+    const { 
+      title, 
+      description, 
+      taskType, 
+      calendarType, 
+      priority, 
+      status, 
+      dueDate, 
+      scheduledDate, 
+      scheduledTime,
+      reminderType
+    } = req.body;
+
+    const taskDateStr = scheduledDate || (dueDate ? new Date(dueDate).toISOString().split('T')[0] : undefined);
+    const calculatedReminderDateTime = calculateReminderDateTime(
+      taskDateStr,
+      scheduledTime,
+      reminderType
+    );
 
     const objective = new Objective({
       user: req.user?.id,
@@ -30,8 +49,11 @@ export const createObjective = async (req: AuthenticatedRequest, res: Response) 
       priority: priority || 'Medium',
       status: status || 'To Do',
       dueDate,
-      scheduledDate,
-      scheduledTime
+      scheduledDate: taskDateStr,
+      scheduledTime,
+      reminderType: reminderType || 'At Task Time',
+      reminderDateTime: calculatedReminderDateTime,
+      reminderSent: false
     });
 
     const savedObjective = await objective.save();
@@ -53,9 +75,22 @@ export const updateObjective = async (req: AuthenticatedRequest, res: Response) 
     }
 
     const updates = req.body;
-    
-    // Do not allow updating the user field
     delete updates.user;
+
+    const taskDateStr = updates.scheduledDate || objective.scheduledDate || (updates.dueDate ? new Date(updates.dueDate).toISOString().split('T')[0] : undefined);
+    const timeStr = updates.scheduledTime || objective.scheduledTime;
+    const remType = updates.reminderType || objective.reminderType;
+
+    if (updates.scheduledDate || updates.scheduledTime || updates.reminderType) {
+      updates.reminderDateTime = calculateReminderDateTime(
+        taskDateStr,
+        timeStr,
+        remType
+      );
+      if (updates.reminderDateTime && updates.reminderDateTime > new Date()) {
+        updates.reminderSent = false;
+      }
+    }
 
     const updatedObjective = await Objective.findOneAndUpdate(
       { _id: id, user: req.user?.id },

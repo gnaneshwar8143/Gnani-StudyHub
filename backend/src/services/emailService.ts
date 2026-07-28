@@ -212,3 +212,45 @@ export const sendContactEmail = async (fromEmail: string, name: string, message:
   `;
   return sendEmail(smtpUser || fromEmail, name, `[Gnani Support] Message from ${name}`, html);
 };
+
+/**
+ * Send a task reminder email using Brevo HTTP API
+ */
+export const sendTaskReminderEmail = async (
+  to: string, 
+  name: string, 
+  taskTitle: string, 
+  scheduledDate?: string, 
+  scheduledTime?: string, 
+  priority?: string
+): Promise<any> => {
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e4e4e7; border-radius: 12px; background-color: #ffffff;">
+      <div style="text-align: center; padding-bottom: 20px;">
+        <h2 style="color: #7c5cff; margin: 0;">Gnani Task Reminder 🔔</h2>
+        <p style="color: #71717a; font-size: 14px;">Friendly reminder to complete your scheduled task</p>
+      </div>
+      <div style="padding: 20px; background-color: #f4f4f5; border-radius: 8px;">
+        <p style="color: #18181b; font-size: 15px;">Hello <strong>${name}</strong>,</p>
+        <p style="color: #3f3f46; font-size: 14px; line-height: 1.6;">
+          This is a reminder to complete your task on Gnani StudyHub:
+        </p>
+        <div style="background-color: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid #e4e4e7; margin: 15px 0;">
+          <h3 style="color: #18181b; margin: 0 0 8px 0; font-size: 16px;">${taskTitle}</h3>
+          ${scheduledDate ? `<p style="color: #71717a; font-size: 12px; margin: 4px 0;"><strong>Scheduled Date:</strong> ${scheduledDate}</p>` : ''}
+          ${scheduledTime ? `<p style="color: #71717a; font-size: 12px; margin: 4px 0;"><strong>Scheduled Time:</strong> ${scheduledTime}</p>` : ''}
+          ${priority ? `<p style="color: #71717a; font-size: 12px; margin: 4px 0;"><strong>Priority:</strong> ${priority}</p>` : ''}
+        </div>
+        <div style="text-align: center; margin-top: 25px;">
+          <a href="https://gnani-study-hub.vercel.app/calendar" style="background-color: #7c5cff; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 13px; display: inline-block;">
+            Open Workspace Calendar
+          </a>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 20px; color: #a1a1aa; font-size: 11px;">
+        <p>Gnani StudyHub Workspace • Automated Email Notification System</p>
+      </div>
+    </div>
+  `;
+  return sendEmail(to, name, 'Reminder: Complete Your Task', html);
+};

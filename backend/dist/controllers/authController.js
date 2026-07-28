@@ -7,52 +7,29 @@ exports.githubCallback = exports.githubRedirect = exports.googleCallback = expor
 const User_1 = require("../models/User");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const crypto_1 = __importDefault(require("crypto"));
-const nodemailer_1 = __importDefault(require("nodemailer"));
 const axios_1 = __importDefault(require("axios"));
+const emailService_1 = require("../services/emailService");
 const generateTokens = (userId) => {
-    const secret = process.env.JWT_SECRET || process.env.JWT_ACCESS_SECRET || 'fallback_secret_123';
-    const refreshSecret = process.env.JWT_REFRESH_SECRET || 'fallback_refresh_123';
+    const secret = process.env.JWT_SECRET || process.env.JWT_ACCESS_SECRET;
+    const refreshSecret = process.env.JWT_REFRESH_SECRET;
+    if (!secret || !refreshSecret) {
+        throw new Error('JWT configuration missing in server environment.');
+    }
     const accessToken = jsonwebtoken_1.default.sign({ userId }, secret, { expiresIn: '15m' });
     const refreshToken = jsonwebtoken_1.default.sign({ userId }, refreshSecret, { expiresIn: '7d' });
     return { accessToken, refreshToken };
 };
-const sendEmail = async (to, subject, html) => {
-    const smtpHost = process.env.SMTP_HOST;
-    const smtpPort = Number(process.env.SMTP_PORT || 587);
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
-    const smtpFrom = process.env.SMTP_FROM || smtpUser;
-    if (!smtpHost || !smtpUser || !smtpPass) {
-        throw new Error('SMTP_CONFIG_MISSING');
-    }
-    const transporter = nodemailer_1.default.createTransport({
-        host: smtpHost,
-        port: smtpPort,
-        secure: smtpPort === 465,
-        auth: {
-            user: smtpUser,
-            pass: smtpPass
-        }
-    });
-    const mailOptions = {
-        from: `"Gnani Support" <${smtpFrom}>`,
-        to,
-        subject,
-        html
-    };
-    await transporter.sendMail(mailOptions);
-};
 const mapMailError = (error) => {
     if (error.message === 'SMTP_CONFIG_MISSING') {
-        return 'Server email configuration is missing or incomplete.';
+        return 'Server SMTP configuration is missing or incomplete.';
     }
-    if (error.code === 'EAUTH') {
-        return 'Email service authentication failed. Please verify the SMTP settings or App Password.';
+    if (error.code === 'EAUTH' || (error.message && error.message.includes('Invalid login'))) {
+        return 'SMTP authentication failed. Please verify your SMTP_USER and Google App Password.';
     }
-    if (error.code === 'ECONNREFUSED' || error.code === 'ENOTFOUND') {
-        return 'Could not connect to the email server. Please check your network connection.';
+    if (error.code === 'ETIMEDOUT' || error.code === 'ESOCKET') {
+        return 'SMTP connection timed out. Please check network connectivity or SMTP_PORT settings.';
     }
-    return 'Failed to send verification email. Please check your email address and try again.';
+    return error.message || 'Failed to dispatch email. Please check your address and try again.';
 };
 const signup = async (req, res) => {
     try {
@@ -75,20 +52,7 @@ const signup = async (req, res) => {
         const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
         const verifyUrl = `${clientUrl}/verify-email?token=${verificationToken}`;
         try {
-            await sendEmail(email, 'Gnani Email Verification', `
-          <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e4e4e7; border-radius: 12px;">
-            <h2 style="color: #7c5cff;">Gnani Email Verification</h2>
-            <p>Hello ${user.name},</p>
-            <p>Thank you for registering at Gnani! Click the button below to verify your email address:</p>
-            <div style="margin: 25px 0;">
-              <a href="${verifyUrl}" style="background-color: #7c5cff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">Verify Email</a>
-            </div>
-            <p>Or copy and paste this link into your browser:</p>
-            <p><a href="${verifyUrl}">${verifyUrl}</a></p>
-            <hr style="border: 0; border-top: 1px solid #e4e4e7; margin: 20px 0;">
-            <p style="font-size: 11px; color: #a1a1aa;">If you did not create this account, you can safely ignore this email.</p>
-          </div>
-        `);
+            await (0, emailService_1.sendVerificationEmail)(email, user.name, verifyUrl);
         }
         catch (mailErr) {
             // Revert/delete the user if mail dispatch fails
@@ -183,20 +147,7 @@ const forgotPassword = async (req, res) => {
         const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
         const resetUrl = `${clientUrl}/reset-password/${resetToken}`;
         try {
-            await sendEmail(email, 'Gnani Password Reset Request', `
-          <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e4e4e7; border-radius: 12px;">
-            <h2 style="color: #7c5cff;">Gnani Password Reset</h2>
-            <p>Hello ${user.name},</p>
-            <p>We received a request to reset your password. Click the button below to set a new password:</p>
-            <div style="margin: 25px 0;">
-              <a href="${resetUrl}" style="background-color: #7c5cff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">Reset Password</a>
-            </div>
-            <p>Or copy and paste this link into your browser:</p>
-            <p><a href="${resetUrl}">${resetUrl}</a></p>
-            <hr style="border: 0; border-top: 1px solid #e4e4e7; margin: 20px 0;">
-            <p style="font-size: 11px; color: #a1a1aa;">This link will expire in 1 hour. If you did not request this reset, you can safely ignore this email.</p>
-          </div>
-        `);
+            await (0, emailService_1.sendPasswordResetEmail)(email, user.name, resetUrl);
         }
         catch (mailErr) {
             // Revert token changes on mail fail
@@ -327,7 +278,7 @@ const googleCallback = async (req, res) => {
                 googleUser = userRes.data;
             }
             catch (error) {
-                console.error('Google OAuth error:', error.response?.data || error.message);
+                console.error('Google OAuth error (inner):', error.stack || error.response?.data || error.message || error);
                 res.redirect(`${clientUrl}/?error=google_oauth_failed`);
                 return;
             }
@@ -373,7 +324,7 @@ const googleCallback = async (req, res) => {
         res.redirect(`${clientUrl}/oauth-success?token=${accessToken}&user=${encodeURIComponent(JSON.stringify(userObj))}`);
     }
     catch (error) {
-        console.error('Google OAuth error:', error.response?.data || error.message);
+        console.error('Google OAuth error (outer):', error.stack || error.response?.data || error.message || error);
         res.redirect(`${clientUrl}/?error=google_oauth_failed`);
     }
 };
@@ -446,7 +397,7 @@ const githubCallback = async (req, res) => {
                 }
             }
             catch (error) {
-                console.error('GitHub OAuth error:', error.response?.data || error.message);
+                console.error('GitHub OAuth error (inner):', error.stack || error.response?.data || error.message || error);
                 res.redirect(`${clientUrl}/?error=github_oauth_failed`);
                 return;
             }
@@ -492,7 +443,7 @@ const githubCallback = async (req, res) => {
         res.redirect(`${clientUrl}/oauth-success?token=${accessToken}&user=${encodeURIComponent(JSON.stringify(userObj))}`);
     }
     catch (error) {
-        console.error('GitHub OAuth error:', error.response?.data || error.message);
+        console.error('GitHub OAuth error (outer):', error.stack || error.response?.data || error.message || error);
         res.redirect(`${clientUrl}/?error=github_oauth_failed`);
     }
 };

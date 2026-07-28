@@ -12,6 +12,9 @@ export interface IObjective extends Document {
     scheduledTime?: string;
     progress: number;
     completed: boolean;
+    reminderType?: 'At Task Time' | '10 Minutes Before' | '30 Minutes Before' | '1 Hour Before' | '2 Hours Before' | 'Morning (8:00 AM)' | '1 Day Before';
+    reminderDateTime?: Date;
+    reminderSent?: boolean;
     createdAt: Date;
     updatedAt: Date;
 }

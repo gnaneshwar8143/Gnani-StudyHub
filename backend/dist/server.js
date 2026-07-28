@@ -37,12 +37,9 @@ const requiredEnvVars = [
     'MONGODB_URI',
     'JWT_SECRET',
     'JWT_REFRESH_SECRET',
-    'SMTP_HOST',
-    'SMTP_PORT',
+    'CLIENT_URL',
     'SMTP_USER',
     'SMTP_PASS',
-    'SMTP_FROM',
-    'CLIENT_URL',
     'GOOGLE_CLIENT_ID',
     'GOOGLE_CLIENT_SECRET',
     'GITHUB_CLIENT_ID',
@@ -57,11 +54,21 @@ requiredEnvVars.forEach((envVar) => {
 const app = (0, express_1.default)();
 const allowedOrigins = Array.from(new Set([
     'http://localhost:5173',
+    'http://localhost:4173',
+    'http://localhost:3000',
     'https://gnani-study-hub.vercel.app',
     ...(process.env.CLIENT_URL ? [process.env.CLIENT_URL, process.env.CLIENT_URL.replace(/\/$/, '')] : [])
 ]));
 app.use((0, cors_1.default)({
-    origin: allowedOrigins,
+    origin: (origin, callback) => {
+        if (!origin)
+            return callback(null, true);
+        const isAllowed = allowedOrigins.includes(origin) || origin.endsWith('.vercel.app');
+        if (isAllowed) {
+            return callback(null, true);
+        }
+        return callback(null, false);
+    },
     credentials: true
 }));
 // Request body payload parsing middleware
@@ -77,6 +84,12 @@ app.use((req, res, next) => {
 });
 // Establish connection matrix to MongoDB database instance
 (0, db_1.default)();
+const emailService_1 = require("./services/emailService");
+const reminderScheduler_1 = require("./services/reminderScheduler");
+// Verify SMTP Server Connection on Startup
+(0, emailService_1.verifyTransporterOnStartup)();
+// Initialize Task Reminder Scheduler (runs every 1 minute)
+(0, reminderScheduler_1.initReminderScheduler)();
 // Core Route Middleware Mount Arrays
 app.use('/api/auth', authRoutes_1.default);
 app.use('/api/habits', habitRoutes_1.default);

@@ -88,9 +88,13 @@ app.use((req: any, res: any, next: any) => {
 connectDB();
 
 import { verifyTransporterOnStartup } from './services/emailService';
+import { initReminderScheduler } from './services/reminderScheduler';
 
 // Verify SMTP Server Connection on Startup
 verifyTransporterOnStartup();
+
+// Initialize Task Reminder Scheduler (runs every 1 minute)
+initReminderScheduler();
 
 // Core Route Middleware Mount Arrays
 app.use('/api/auth', authRoutes);

@@ -40,7 +40,10 @@ const protect = async (req, res, next) => {
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         try {
             token = req.headers.authorization.split(' ')[1];
-            const secret = process.env.JWT_SECRET || process.env.JWT_ACCESS_SECRET || 'fallback_secret_123';
+            const secret = process.env.JWT_SECRET || process.env.JWT_ACCESS_SECRET || '';
+            if (!secret) {
+                return res.status(500).json({ message: 'Server JWT authentication secret is unconfigured.' });
+            }
             // Typecasting the verify method as any avoids legacy module typing blockages
             const decoded = jwt.verify(token, secret);
             req.user = { id: decoded.id || decoded.userId || '' };
