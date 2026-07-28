@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import Objective from '../models/Objective';
-import { calculateReminderDateTime } from '../services/reminderScheduler';
+import { calculateReminderDateTime, processPendingReminders } from '../services/reminderScheduler';
 
 interface AuthenticatedRequest extends Request {
   user?: {
@@ -57,6 +57,10 @@ export const createObjective = async (req: AuthenticatedRequest, res: Response) 
     });
 
     const savedObjective = await objective.save();
+
+    // Immediately trigger background check for due reminders
+    processPendingReminders();
+
     res.status(201).json(savedObjective);
   } catch (error: any) {
     res.status(400).json({ message: 'Failed to create objective', error: error.message });

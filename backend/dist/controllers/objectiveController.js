@@ -37,6 +37,8 @@ const createObjective = async (req, res) => {
             reminderSent: false
         });
         const savedObjective = await objective.save();
+        // Immediately trigger background check for due reminders
+        (0, reminderScheduler_1.processPendingReminders)();
         res.status(201).json(savedObjective);
     }
     catch (error) {

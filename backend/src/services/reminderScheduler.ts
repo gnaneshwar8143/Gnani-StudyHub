@@ -11,31 +11,58 @@ export const calculateReminderDateTime = (
   scheduledTime?: string,
   reminderType?: string
 ): Date | undefined => {
-  if (!scheduledDate) return undefined;
+  const type = reminderType || 'At Task Time';
+
+  // If date is omitted or set to At Task Time without specific future date, default to now
+  if (!scheduledDate) {
+    return new Date();
+  }
+
+  const todayStr = new Date().toISOString().split('T')[0] || '';
+
+  // If task is scheduled for today or earlier and reminder is "At Task Time", trigger immediately
+  if (type === 'At Task Time' && scheduledDate <= todayStr) {
+    return new Date();
+  }
 
   const timeStr = scheduledTime || '09:00';
   const baseDate = new Date(`${scheduledDate}T${timeStr}:00`);
-  if (isNaN(baseDate.getTime())) return undefined;
+  if (isNaN(baseDate.getTime())) {
+    return new Date();
+  }
 
-  const type = reminderType || 'At Task Time';
-
+  let targetDate: Date;
   switch (type) {
     case '10 Minutes Before':
-      return new Date(baseDate.getTime() - 10 * 60 * 1000);
+      targetDate = new Date(baseDate.getTime() - 10 * 60 * 1000);
+      break;
     case '30 Minutes Before':
-      return new Date(baseDate.getTime() - 30 * 60 * 1000);
+      targetDate = new Date(baseDate.getTime() - 30 * 60 * 1000);
+      break;
     case '1 Hour Before':
-      return new Date(baseDate.getTime() - 60 * 60 * 1000);
+      targetDate = new Date(baseDate.getTime() - 60 * 60 * 1000);
+      break;
     case '2 Hours Before':
-      return new Date(baseDate.getTime() - 2 * 60 * 60 * 1000);
+      targetDate = new Date(baseDate.getTime() - 2 * 60 * 60 * 1000);
+      break;
     case 'Morning (8:00 AM)':
-      return new Date(`${scheduledDate}T08:00:00`);
+      targetDate = new Date(`${scheduledDate}T08:00:00`);
+      break;
     case '1 Day Before':
-      return new Date(baseDate.getTime() - 24 * 60 * 60 * 1000);
+      targetDate = new Date(baseDate.getTime() - 24 * 60 * 60 * 1000);
+      break;
     case 'At Task Time':
     default:
-      return baseDate;
+      targetDate = baseDate;
+      break;
   }
+
+  // If calculated reminder date is in the past or now, return now so it triggers immediately
+  if (targetDate.getTime() <= Date.now()) {
+    return new Date();
+  }
+
+  return targetDate;
 };
 
 /**
@@ -60,6 +87,7 @@ export const processPendingReminders = async () => {
         
         // Send email reminder if user has an email
         if (userObj && userObj.email) {
+          console.log(`📧 [Reminder Scheduler] Sending reminder email to ${userObj.email} for task: "${task.title}"`);
           await sendTaskReminderEmail(
             userObj.email,
             userObj.name || 'User',
