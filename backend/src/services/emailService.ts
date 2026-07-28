@@ -1,5 +1,6 @@
 import dns from 'dns';
 import nodemailer from 'nodemailer';
+import axios from 'axios';
 
 // Force DNS resolution to prefer IPv4 first globally
 try {
@@ -8,27 +9,36 @@ try {
   // Ignored if unsupported in legacy Node environments
 }
 
-const host = process.env.SMTP_HOST || 'smtp.gmail.com';
-const port = Number(process.env.SMTP_PORT) || 465;
-const secure = process.env.SMTP_SECURE === 'true' || port === 465;
-const user = process.env.SMTP_USER || '';
-const pass = process.env.SMTP_PASS || '';
+const smtpHost = process.env.SMTP_HOST || 'smtp.gmail.com';
+const smtpPort = Number(process.env.SMTP_PORT) || 587;
+const smtpSecure = process.env.SMTP_SECURE === 'true' || smtpPort === 465;
+const smtpUser = process.env.SMTP_USER || '';
+const smtpPass = process.env.SMTP_PASS || '';
 
-const fromAddress = process.env.FROM_EMAIL || user || 'Gnani Support <noreply@gnani.app>';
+const fromAddress = process.env.FROM_EMAIL || smtpUser || 'Gnani Support <pochammalagnaneshwar912@gmail.com>';
+
+const extractCleanEmail = (addr: string): string => {
+  if (addr.includes('<') && addr.includes('>')) {
+    const parts = addr.split('<');
+    if (parts.length > 1 && parts[1]) {
+      return parts[1].replace('>', '').trim();
+    }
+  }
+  return addr.trim();
+};
 
 /**
- * Configure Nodemailer Transporter
- * - family: 4 forces IPv4 socket connection to prevent Render ETIMEDOUT on IPv6 addresses (2607:f8b0:4004:c21::6d:587)
+ * Configure Nodemailer Transporter as SMTP fallback
  */
 export const transporter = nodemailer.createTransport({
-  host,
-  port,
-  secure, // true for 465 (SSL), false for 587 (STARTTLS)
-  requireTLS: !secure,
-  family: 4, // Force IPv4 networking socket
+  host: smtpHost,
+  port: smtpPort,
+  secure: smtpSecure,
+  requireTLS: !smtpSecure,
+  family: 4,
   auth: {
-    user,
-    pass,
+    user: smtpUser,
+    pass: smtpPass,
   },
   connectionTimeout: 15000,
   greetingTimeout: 15000,
@@ -39,38 +49,93 @@ export const transporter = nodemailer.createTransport({
 } as nodemailer.TransportOptions);
 
 /**
- * Verify Transporter connection during server startup
+ * Verify Transporter connection / Brevo API during server startup
  */
 export const verifyTransporterOnStartup = async (): Promise<boolean> => {
-  console.log(`📡 [SMTP Startup Verification] Connecting to ${host}:${port} (IPv4 mode, secure=${secure}) as User: ${user || 'UNCONFIGURED'}...`);
-  
-  if (!user || !pass) {
-    console.error('❌ [SMTP Startup Error] SMTP_USER or SMTP_PASS is missing in environment variables!');
+  if (process.env.BREVO_API_KEY) {
+    console.log('📡 [Brevo API Service] Brevo API Key detected. Engine ready for HTTPS email delivery on Port 443.');
+    return true;
+  }
+
+  console.log(`📡 [SMTP Startup Verification] Connecting to ${smtpHost}:${smtpPort} (IPv4 mode, secure=${smtpSecure})...`);
+  if (!smtpUser || !smtpPass) {
+    console.warn('⚠️ [Email Service Warning] Neither BREVO_API_KEY nor SMTP credentials (SMTP_USER/SMTP_PASS) configured.');
     return false;
   }
 
   try {
     await transporter.verify();
-    console.log(`✅ [SMTP Startup Success] Successfully authenticated and verified connection to ${host}:${port}`);
+    console.log(`✅ [SMTP Startup Success] Authenticated and verified connection to ${smtpHost}:${smtpPort}`);
     return true;
   } catch (error: any) {
-    console.error(`❌ [SMTP Startup Connection Error] Failed to verify connection to ${host}:${port}:`);
-    console.error(error.stack || error.message || error);
+    console.error(`❌ [SMTP Startup Connection Error] Failed to verify connection to ${smtpHost}:${smtpPort}:`, error.message);
     return false;
   }
 };
 
 /**
- * Send a verification email using Nodemailer Gmail SMTP
+ * Send transactional email via Brevo HTTP API (Port 443 HTTPS) or Nodemailer SMTP fallback
  */
-export const sendVerificationEmail = async (to: string, name: string, verifyUrl: string): Promise<nodemailer.SentMessageInfo> => {
-  console.log(`📨 [Email Service Queue] Queuing verification email to: ${to}`);
+const sendEmail = async (toEmail: string, recipientName: string, subject: string, htmlContent: string): Promise<any> => {
+  const currentBrevoKey = process.env.BREVO_API_KEY;
 
-  if (!user || !pass) {
-    console.error('❌ [Email Service Error] SMTP_USER or SMTP_PASS is missing.');
-    throw new Error('SMTP_CONFIG_MISSING');
+  // 1. Try Brevo HTTP REST API (Bypasses all firewall port blocks)
+  if (currentBrevoKey) {
+    try {
+      console.log(`📨 [Brevo API Queue] Sending email to ${toEmail} via Brevo HTTPS API...`);
+      const response = await axios.post(
+        'https://api.brevo.com/v3/smtp/email',
+        {
+          sender: { name: 'Gnani Support', email: extractCleanEmail(fromAddress) },
+          to: [{ email: toEmail, name: recipientName }],
+          subject,
+          htmlContent,
+        },
+        {
+          headers: {
+            'accept': 'application/json',
+            'api-key': currentBrevoKey,
+            'content-type': 'application/json',
+          },
+          timeout: 15000,
+        }
+      );
+
+      console.log(`✉️ [Brevo API Sent] Email delivered to ${toEmail}. Message ID: ${response.data?.messageId}`);
+      return response.data;
+    } catch (error: any) {
+      console.error(`❌ [Brevo API Error] Failed to send email via Brevo API:`, error.response?.data || error.message);
+      if (!smtpUser || !smtpPass) throw error;
+      console.log('🔄 Falling back to Nodemailer SMTP...');
+    }
   }
 
+  // 2. Fallback to Nodemailer SMTP if configured
+  if (smtpUser && smtpPass) {
+    try {
+      console.log(`📨 [Nodemailer SMTP Queue] Sending email to ${toEmail} via SMTP...`);
+      const info = await transporter.sendMail({
+        from: fromAddress,
+        to: toEmail,
+        subject,
+        html: htmlContent,
+      });
+      console.log(`✉️ [Nodemailer SMTP Sent] Email delivered to ${toEmail}. Message ID: ${info.messageId}`);
+      return info;
+    } catch (error: any) {
+      console.error(`❌ [Nodemailer SMTP Error] Failed to send email via SMTP to ${toEmail}:`, error.message);
+      throw error;
+    }
+  }
+
+  console.error('❌ [Email Service Error] No active email provider configured (BREVO_API_KEY or SMTP_USER/SMTP_PASS missing).');
+  throw new Error('SMTP_CONFIG_MISSING');
+};
+
+/**
+ * Send a verification email
+ */
+export const sendVerificationEmail = async (to: string, name: string, verifyUrl: string): Promise<any> => {
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e4e4e7; border-radius: 12px; background-color: #ffffff;">
       <div style="text-align: center; padding-bottom: 20px;">
@@ -95,34 +160,13 @@ export const sendVerificationEmail = async (to: string, name: string, verifyUrl:
       </div>
     </div>
   `;
-
-  try {
-    const info = await transporter.sendMail({
-      from: fromAddress,
-      to,
-      subject: 'Verify your Gnani StudyHub Account',
-      html,
-    });
-    console.log(`✉️ [Email Service Sent] Verification email delivered to ${to}. Message ID: ${info.messageId}`);
-    return info;
-  } catch (error: any) {
-    console.error(`❌ [Email Service Error] Failed to send verification email to ${to}:`);
-    console.error(error.stack || error.message || error);
-    throw error;
-  }
+  return sendEmail(to, name, 'Verify your Gnani StudyHub Account', html);
 };
 
 /**
- * Send a password reset email using Nodemailer Gmail SMTP
+ * Send a password reset email
  */
-export const sendPasswordResetEmail = async (to: string, name: string, resetUrl: string): Promise<nodemailer.SentMessageInfo> => {
-  console.log(`📨 [Email Service Queue] Queuing password reset email to: ${to}`);
-
-  if (!user || !pass) {
-    console.error('❌ [Email Service Error] SMTP_USER or SMTP_PASS is missing.');
-    throw new Error('SMTP_CONFIG_MISSING');
-  }
-
+export const sendPasswordResetEmail = async (to: string, name: string, resetUrl: string): Promise<any> => {
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e4e4e7; border-radius: 12px; background-color: #ffffff;">
       <div style="text-align: center; padding-bottom: 20px;">
@@ -147,34 +191,13 @@ export const sendPasswordResetEmail = async (to: string, name: string, resetUrl:
       </div>
     </div>
   `;
-
-  try {
-    const info = await transporter.sendMail({
-      from: fromAddress,
-      to,
-      subject: 'Reset your Gnani StudyHub Password',
-      html,
-    });
-    console.log(`✉️ [Email Service Sent] Password reset email delivered to ${to}. Message ID: ${info.messageId}`);
-    return info;
-  } catch (error: any) {
-    console.error(`❌ [Email Service Error] Failed to send password reset email to ${to}:`);
-    console.error(error.stack || error.message || error);
-    throw error;
-  }
+  return sendEmail(to, name, 'Reset your Gnani StudyHub Password', html);
 };
 
 /**
- * Send a contact form email using Nodemailer Gmail SMTP
+ * Send a contact form email
  */
-export const sendContactEmail = async (fromEmail: string, name: string, message: string): Promise<nodemailer.SentMessageInfo> => {
-  console.log(`📨 [Email Service Queue] Queuing contact form message from: ${fromEmail}`);
-
-  if (!user || !pass) {
-    console.error('❌ [Email Service Error] SMTP_USER or SMTP_PASS is missing.');
-    throw new Error('SMTP_CONFIG_MISSING');
-  }
-
+export const sendContactEmail = async (fromEmail: string, name: string, message: string): Promise<any> => {
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e4e4e7; border-radius: 12px; background-color: #ffffff;">
       <div style="text-align: center; padding-bottom: 20px;">
@@ -187,19 +210,5 @@ export const sendContactEmail = async (fromEmail: string, name: string, message:
       </div>
     </div>
   `;
-
-  try {
-    const info = await transporter.sendMail({
-      from: fromAddress,
-      to: user,
-      replyTo: fromEmail,
-      subject: `[Gnani Support] Message from ${name}`,
-      html,
-    });
-    console.log(`✉️ [Email Service Sent] Contact form email delivered. Message ID: ${info.messageId}`);
-    return info;
-  } catch (error: any) {
-    console.error(`❌ [Email Service Error] Failed to send contact email:`, error.stack || error.message || error);
-    throw error;
-  }
+  return sendEmail(smtpUser || fromEmail, name, `[Gnani Support] Message from ${name}`, html);
 };
