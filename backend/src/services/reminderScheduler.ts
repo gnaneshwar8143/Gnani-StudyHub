@@ -4,74 +4,89 @@ import { User } from '../models/User';
 import { sendTaskReminderEmail } from './emailService';
 
 /**
- * Calculate the exact reminder Date object based on task schedule and reminder type
+ * Calculate the exact reminder Date object in UTC based on task schedule, reminder type, and user timezone offset.
+ * @param scheduledDate Date string in format YYYY-MM-DD
+ * @param scheduledTime Time string in format HH:mm
+ * @param reminderType Option string (e.g. 'At Task Time', '10 Minutes Before')
+ * @param timezoneOffset Minutes offset from JS Date.prototype.getTimezoneOffset() (e.g., -330 for UTC+5:30)
  */
 export const calculateReminderDateTime = (
   scheduledDate?: string,
   scheduledTime?: string,
-  reminderType?: string
+  reminderType?: string,
+  timezoneOffset?: number
 ): Date | undefined => {
-  const type = reminderType || 'At Task Time';
+  if (!scheduledDate) return undefined;
 
-  // If date is omitted or set to At Task Time without specific future date, default to now
-  if (!scheduledDate) {
-    return new Date();
-  }
+  const dateParts = scheduledDate.split('-');
+  if (dateParts.length < 3) return undefined;
 
-  const todayStr = new Date().toISOString().split('T')[0] || '';
+  const year = Number(dateParts[0]);
+  const month = Number(dateParts[1]);
+  const day = Number(dateParts[2]);
 
-  // If task is scheduled for today or earlier and reminder is "At Task Time", trigger immediately
-  if (type === 'At Task Time' && scheduledDate <= todayStr) {
-    return new Date();
-  }
+  if (isNaN(year) || isNaN(month) || isNaN(day) || !year || !month || !day) return undefined;
 
   const timeStr = scheduledTime || '09:00';
-  const baseDate = new Date(`${scheduledDate}T${timeStr}:00`);
-  if (isNaN(baseDate.getTime())) {
-    return new Date();
-  }
+  const timeParts = timeStr.split(':');
+  const hours = Number(timeParts[0]) || 0;
+  const minutes = Number(timeParts[1]) || 0;
 
-  let targetDate: Date;
+  // Use provided timezoneOffset (e.g. -330 for IST) or 0 if not provided
+  const offsetInMinutes = typeof timezoneOffset === 'number' ? timezoneOffset : 0;
+
+  // Convert local date/time + timezoneOffset to exact UTC Date
+  const localMinutes = hours * 60 + minutes;
+  const utcMinutes = localMinutes + offsetInMinutes;
+
+  const targetUtcDate = new Date(Date.UTC(year, month - 1, day, 0, utcMinutes, 0));
+
+  const type = reminderType || 'At Task Time';
+  let reminderUtcTime = targetUtcDate.getTime();
+
   switch (type) {
     case '10 Minutes Before':
-      targetDate = new Date(baseDate.getTime() - 10 * 60 * 1000);
+      reminderUtcTime -= 10 * 60 * 1000;
       break;
     case '30 Minutes Before':
-      targetDate = new Date(baseDate.getTime() - 30 * 60 * 1000);
+      reminderUtcTime -= 30 * 60 * 1000;
       break;
     case '1 Hour Before':
-      targetDate = new Date(baseDate.getTime() - 60 * 60 * 1000);
+      reminderUtcTime -= 60 * 60 * 1000;
       break;
     case '2 Hours Before':
-      targetDate = new Date(baseDate.getTime() - 2 * 60 * 60 * 1000);
+      reminderUtcTime -= 2 * 60 * 60 * 1000;
       break;
-    case 'Morning (8:00 AM)':
-      targetDate = new Date(`${scheduledDate}T08:00:00`);
+    case 'Morning (8:00 AM)': {
+      const morningUtcMinutes = 8 * 60 + offsetInMinutes;
+      reminderUtcTime = new Date(Date.UTC(year, month - 1, day, 0, morningUtcMinutes, 0)).getTime();
       break;
+    }
     case '1 Day Before':
-      targetDate = new Date(baseDate.getTime() - 24 * 60 * 60 * 1000);
+      reminderUtcTime -= 24 * 60 * 60 * 1000;
       break;
     case 'At Task Time':
     default:
-      targetDate = baseDate;
       break;
   }
 
-  // If calculated reminder date is in the past or now, return now so it triggers immediately
-  if (targetDate.getTime() <= Date.now()) {
+  const finalReminderDate = new Date(reminderUtcTime);
+
+  // If the calculated reminder time in UTC has ALREADY passed, return current UTC time so overdue tasks trigger immediately
+  if (finalReminderDate.getTime() <= Date.now()) {
     return new Date();
   }
 
-  return targetDate;
+  return finalReminderDate;
 };
 
 /**
- * Process pending reminders from MongoDB database
+ * Process pending reminders from MongoDB database by comparing UTC times
  */
 export const processPendingReminders = async () => {
   try {
     const now = new Date();
-    // Query pending reminders where reminderDateTime is due and reminderSent is not true
+    // Query pending reminders where reminderDateTime in UTC is due and reminderSent is not true
     const pendingTasks = await Objective.find({
       reminderSent: { $ne: true },
       reminderDateTime: { $lte: now }
@@ -79,7 +94,7 @@ export const processPendingReminders = async () => {
 
     if (pendingTasks.length === 0) return;
 
-    console.log(`⏰ [Reminder Scheduler] Found ${pendingTasks.length} pending reminder(s) to process.`);
+    console.log(`⏰ [Reminder Scheduler] Found ${pendingTasks.length} pending reminder(s) to process at ${now.toISOString()}.`);
 
     for (const task of pendingTasks) {
       try {
@@ -87,7 +102,7 @@ export const processPendingReminders = async () => {
         
         // Send email reminder if user has an email
         if (userObj && userObj.email) {
-          console.log(`📧 [Reminder Scheduler] Sending reminder email to ${userObj.email} for task: "${task.title}"`);
+          console.log(`📧 [Reminder Scheduler] Dispatching reminder email to ${userObj.email} for task: "${task.title}"`);
           await sendTaskReminderEmail(
             userObj.email,
             userObj.name || 'User',

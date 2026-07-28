@@ -18,9 +18,10 @@ const getObjectives = async (req, res) => {
 exports.getObjectives = getObjectives;
 const createObjective = async (req, res) => {
     try {
-        const { title, description, taskType, calendarType, priority, status, dueDate, scheduledDate, scheduledTime, reminderType } = req.body;
+        const { title, description, taskType, calendarType, priority, status, dueDate, scheduledDate, scheduledTime, reminderType, timezoneOffset } = req.body;
         const taskDateStr = scheduledDate || (dueDate ? new Date(dueDate).toISOString().split('T')[0] : undefined);
-        const calculatedReminderDateTime = (0, reminderScheduler_1.calculateReminderDateTime)(taskDateStr, scheduledTime, reminderType);
+        const offset = typeof timezoneOffset === 'number' ? timezoneOffset : undefined;
+        const calculatedReminderDateTime = (0, reminderScheduler_1.calculateReminderDateTime)(taskDateStr, scheduledTime, reminderType, offset);
         const objective = new Objective_1.default({
             user: req.user?.id,
             title,
@@ -32,6 +33,7 @@ const createObjective = async (req, res) => {
             dueDate,
             scheduledDate: taskDateStr,
             scheduledTime,
+            timezoneOffset: offset,
             reminderType: reminderType || 'At Task Time',
             reminderDateTime: calculatedReminderDateTime,
             reminderSent: false
@@ -59,13 +61,16 @@ const updateObjective = async (req, res) => {
         const taskDateStr = updates.scheduledDate || objective.scheduledDate || (updates.dueDate ? new Date(updates.dueDate).toISOString().split('T')[0] : undefined);
         const timeStr = updates.scheduledTime || objective.scheduledTime;
         const remType = updates.reminderType || objective.reminderType;
-        if (updates.scheduledDate || updates.scheduledTime || updates.reminderType) {
-            updates.reminderDateTime = (0, reminderScheduler_1.calculateReminderDateTime)(taskDateStr, timeStr, remType);
+        const offset = typeof updates.timezoneOffset === 'number' ? updates.timezoneOffset : objective.timezoneOffset;
+        if (updates.scheduledDate || updates.scheduledTime || updates.reminderType || updates.timezoneOffset) {
+            updates.reminderDateTime = (0, reminderScheduler_1.calculateReminderDateTime)(taskDateStr, timeStr, remType, offset);
             if (updates.reminderDateTime && updates.reminderDateTime > new Date()) {
                 updates.reminderSent = false;
             }
         }
         const updatedObjective = await Objective_1.default.findOneAndUpdate({ _id: id, user: req.user?.id }, { $set: updates }, { new: true, runValidators: true });
+        // Immediately trigger background check for due reminders
+        (0, reminderScheduler_1.processPendingReminders)();
         res.json(updatedObjective);
     }
     catch (error) {

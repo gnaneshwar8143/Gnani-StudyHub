@@ -23,6 +23,7 @@ export interface Objective {
   progress?: number;
   scheduledDate?: string;
   scheduledTime?: string;
+  timezoneOffset?: number;
   taskType?: 'Due Date' | 'Reminder' | 'Repeat Schedule';
   reminderType?: string;
   reminderDateTime?: string;
@@ -167,6 +168,7 @@ export const CalendarPage: React.FC<CalendarPageProps> = ({
       scheduledTime: newTime,
       taskType: newType,
       reminderType: newReminderType,
+      timezoneOffset: new Date().getTimezoneOffset(),
     });
 
     setNewTitle('');
@@ -196,6 +198,7 @@ export const CalendarPage: React.FC<CalendarPageProps> = ({
         scheduledDate: editDate,
         scheduledTime: editTime,
         reminderType: editReminderType,
+        timezoneOffset: new Date().getTimezoneOffset(),
       });
     } else {
       onScheduleObjective(showEditModal.id, editDate, editTime);

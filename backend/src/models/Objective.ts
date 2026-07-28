@@ -11,6 +11,7 @@ export interface IObjective extends Document {
   dueDate?: Date;
   scheduledDate?: string;
   scheduledTime?: string;
+  timezoneOffset?: number;
   progress: number;
   completed: boolean;
   reminderType?: 'At Task Time' | '10 Minutes Before' | '30 Minutes Before' | '1 Hour Before' | '2 Hours Before' | 'Morning (8:00 AM)' | '1 Day Before';
@@ -64,6 +65,9 @@ const objectiveSchema: Schema = new Schema(
     },
     scheduledTime: {
       type: String
+    },
+    timezoneOffset: {
+      type: Number
     },
     progress: {
       type: Number,

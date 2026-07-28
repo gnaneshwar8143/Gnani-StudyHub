@@ -78,6 +78,9 @@ const objectiveSchema = new mongoose_1.Schema({
     scheduledTime: {
         type: String
     },
+    timezoneOffset: {
+        type: Number
+    },
     progress: {
         type: Number,
         default: 0

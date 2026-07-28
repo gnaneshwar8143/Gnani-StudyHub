@@ -30,14 +30,18 @@ export const createObjective = async (req: AuthenticatedRequest, res: Response) 
       dueDate, 
       scheduledDate, 
       scheduledTime,
-      reminderType
+      reminderType,
+      timezoneOffset
     } = req.body;
 
     const taskDateStr = scheduledDate || (dueDate ? new Date(dueDate).toISOString().split('T')[0] : undefined);
+    const offset = typeof timezoneOffset === 'number' ? timezoneOffset : undefined;
+
     const calculatedReminderDateTime = calculateReminderDateTime(
       taskDateStr,
       scheduledTime,
-      reminderType
+      reminderType,
+      offset
     );
 
     const objective = new Objective({
@@ -51,6 +55,7 @@ export const createObjective = async (req: AuthenticatedRequest, res: Response) 
       dueDate,
       scheduledDate: taskDateStr,
       scheduledTime,
+      timezoneOffset: offset,
       reminderType: reminderType || 'At Task Time',
       reminderDateTime: calculatedReminderDateTime,
       reminderSent: false
@@ -84,12 +89,14 @@ export const updateObjective = async (req: AuthenticatedRequest, res: Response) 
     const taskDateStr = updates.scheduledDate || objective.scheduledDate || (updates.dueDate ? new Date(updates.dueDate).toISOString().split('T')[0] : undefined);
     const timeStr = updates.scheduledTime || objective.scheduledTime;
     const remType = updates.reminderType || objective.reminderType;
+    const offset = typeof updates.timezoneOffset === 'number' ? updates.timezoneOffset : objective.timezoneOffset;
 
-    if (updates.scheduledDate || updates.scheduledTime || updates.reminderType) {
+    if (updates.scheduledDate || updates.scheduledTime || updates.reminderType || updates.timezoneOffset) {
       updates.reminderDateTime = calculateReminderDateTime(
         taskDateStr,
         timeStr,
-        remType
+        remType,
+        offset
       );
       if (updates.reminderDateTime && updates.reminderDateTime > new Date()) {
         updates.reminderSent = false;
@@ -101,6 +108,9 @@ export const updateObjective = async (req: AuthenticatedRequest, res: Response) 
       { $set: updates },
       { new: true, runValidators: true }
     );
+
+    // Immediately trigger background check for due reminders
+    processPendingReminders();
 
     res.json(updatedObjective);
   } catch (error: any) {
