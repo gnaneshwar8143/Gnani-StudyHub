@@ -86,45 +86,74 @@ export const calculateReminderDateTime = (
 export const processPendingReminders = async () => {
   try {
     const now = new Date();
+    console.log(`\n🔍 [Reminder Check] Running tick at ${now.toISOString()}`);
+    console.log(`📡 [MongoDB Query] Objective.find({ reminderSent: { $ne: true }, reminderDateTime: { $lte: new Date("${now.toISOString()}") } })`);
+
     // Query pending reminders where reminderDateTime in UTC is due and reminderSent is not true
     const pendingTasks = await Objective.find({
       reminderSent: { $ne: true },
       reminderDateTime: { $lte: now }
     }).populate('user');
 
-    if (pendingTasks.length === 0) return;
+    console.log(`📋 [Reminder Check] Pending reminders found: ${pendingTasks.length}`);
 
-    console.log(`⏰ [Reminder Scheduler] Found ${pendingTasks.length} pending reminder(s) to process at ${now.toISOString()}.`);
+    if (pendingTasks.length === 0) {
+      // Diagnostic logging for why no reminders matched
+      try {
+        const total = await Objective.countDocuments();
+        const sent = await Objective.countDocuments({ reminderSent: true });
+        const future = await Objective.countDocuments({ reminderSent: { $ne: true }, reminderDateTime: { $gt: now } });
+        const noDate = await Objective.countDocuments({ reminderDateTime: { $exists: false } });
+        console.log(`📊 [Diagnostic] DB Totals -> Total: ${total} | Sent: ${sent} | Future Due: ${future} | No Reminder Date: ${noDate}`);
+      } catch (diagErr: any) {
+        console.warn('⚠️ [Diagnostic Warning] Could not fetch DB diagnostics:', diagErr.message);
+      }
+      return;
+    }
 
     for (const task of pendingTasks) {
       try {
         const userObj = task.user as any;
-        
-        // Send email reminder if user has an email
-        if (userObj && userObj.email) {
-          console.log(`📧 [Reminder Scheduler] Dispatching reminder email to ${userObj.email} for task: "${task.title}"`);
+        const recipientEmail = userObj?.email;
+
+        console.log(`--------------------------------------------------`);
+        console.log(`📌 Objective ID: ${task._id}`);
+        console.log(`📝 Title: "${task.title}"`);
+        console.log(`⚙️ reminderType: ${task.reminderType || 'At Task Time'}`);
+        console.log(`⏰ reminderDateTime (UTC): ${task.reminderDateTime ? new Date(task.reminderDateTime).toISOString() : 'N/A'}`);
+        console.log(`🕒 Current UTC Time: ${now.toISOString()}`);
+        console.log(`👤 Recipient Email: ${recipientEmail || 'MISSING'}`);
+
+        if (recipientEmail) {
+          console.log(`📧 [Sending Email] Dispatching reminder email to ${recipientEmail}...`);
+          
           await sendTaskReminderEmail(
-            userObj.email,
+            recipientEmail,
             userObj.name || 'User',
             task.title,
             task.scheduledDate,
             task.scheduledTime,
             task.priority
           );
+          
+          console.log(`✅ [Email Success] Email sent successfully to ${recipientEmail}`);
+        } else {
+          console.warn(`⚠️ [Email Warning] Task ID ${task._id} has no associated user email. Skipping email dispatch.`);
         }
 
         // Mark as sent to prevent duplicate reminders
         task.reminderSent = true;
         await task.save();
-        console.log(`✅ [Reminder Scheduler] Successfully sent reminder email for task ID: ${task._id}`);
+        console.log(`💾 [Update Success] Set reminderSent=true for Task ID: ${task._id}`);
       } catch (err: any) {
-        console.error(`❌ [Reminder Scheduler Error] Failed processing task ID ${task._id}:`, err.message || err);
+        console.error(`❌ [Reminder Email Failed] Error processing Task ID ${task._id}:`, err.stack || err.message || err);
+        // Mark as sent so single failing task doesn't block the loop forever
         task.reminderSent = true;
         await task.save();
       }
     }
   } catch (error: any) {
-    console.error('❌ [Reminder Scheduler Loop Error]:', error.message || error);
+    console.error('❌ [Reminder Scheduler Loop Error]:', error.stack || error.message || error);
   }
 };
 
@@ -132,7 +161,7 @@ export const processPendingReminders = async () => {
  * Initialize Node-Cron Scheduler running every 1 minute
  */
 export const initReminderScheduler = () => {
-  console.log('⏰ [Reminder Scheduler] Initializing background cron job (runs every 1 minute)...');
+  console.log('🚀 [Reminder Scheduler] Service started successfully. Cron job running every 1 minute.');
   
   // Run initial recovery check on server startup
   processPendingReminders();
