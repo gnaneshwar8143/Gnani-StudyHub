@@ -22,6 +22,19 @@ const createObjective = async (req, res) => {
         const taskDateStr = scheduledDate || (dueDate ? new Date(dueDate).toISOString().split('T')[0] : undefined);
         const offset = typeof timezoneOffset === 'number' ? timezoneOffset : undefined;
         const calculatedReminderDateTime = (0, reminderScheduler_1.calculateReminderDateTime)(taskDateStr, scheduledTime, reminderType, offset);
+        console.log('\n==================================================');
+        console.log('📝 [Task Creation Audit] Inputs before saving:');
+        console.log(`- Title: "${title}"`);
+        console.log(`- scheduledDate: ${scheduledDate || 'undefined'}`);
+        console.log(`- dueDate: ${dueDate || 'undefined'}`);
+        console.log(`- Resolved taskDateStr: ${taskDateStr || 'undefined'}`);
+        console.log(`- scheduledTime: ${scheduledTime || 'undefined'}`);
+        console.log(`- reminderType: ${reminderType || 'At Task Time'}`);
+        console.log(`- timezoneOffset: ${offset !== undefined ? offset : 'undefined (default 0)'}`);
+        console.log(`- Calculated reminderDateTime (UTC): ${calculatedReminderDateTime ? calculatedReminderDateTime.toISOString() : 'UNDEFINED / NULL'}`);
+        if (!calculatedReminderDateTime) {
+            console.warn('⚠️ [Audit Warning] reminderDateTime was NOT assigned! Reason:', !taskDateStr ? 'Neither scheduledDate nor dueDate was provided in request body.' : 'Task date string parsing failed.');
+        }
         const objective = new Objective_1.default({
             user: req.user?.id,
             title,
@@ -39,11 +52,30 @@ const createObjective = async (req, res) => {
             reminderSent: false
         });
         const savedObjective = await objective.save();
+        // Immediately reload from MongoDB to audit exact persisted values
+        const reloadedDoc = await Objective_1.default.findById(savedObjective._id);
+        console.log('💾 [MongoDB Save Audit] Persisted document in MongoDB:');
+        console.log(`- ID: ${reloadedDoc?._id}`);
+        console.log(`- reminderType: ${reloadedDoc?.reminderType}`);
+        console.log(`- reminderDateTime (UTC): ${reloadedDoc?.reminderDateTime ? new Date(reloadedDoc.reminderDateTime).toISOString() : 'UNDEFINED / NULL'}`);
+        console.log(`- reminderSent: ${reloadedDoc?.reminderSent}`);
+        console.log('==================================================\n');
+        if (calculatedReminderDateTime && reloadedDoc?.reminderDateTime) {
+            const calcMs = calculatedReminderDateTime.getTime();
+            const savedMs = new Date(reloadedDoc.reminderDateTime).getTime();
+            if (calcMs !== savedMs) {
+                console.error(`❌ [Audit Mismatch] Calculated UTC (${calculatedReminderDateTime.toISOString()}) differs from Saved UTC (${new Date(reloadedDoc.reminderDateTime).toISOString()})`);
+            }
+            else {
+                console.log('✅ [Audit Success] Persisted reminderDateTime matches calculated UTC exactly.');
+            }
+        }
         // Immediately trigger background check for due reminders
         (0, reminderScheduler_1.processPendingReminders)();
         res.status(201).json(savedObjective);
     }
     catch (error) {
+        console.error('❌ [Create Objective Audit Error]:', error.stack || error.message || error);
         res.status(400).json({ message: 'Failed to create objective', error: error.message });
     }
 };
@@ -68,12 +100,26 @@ const updateObjective = async (req, res) => {
                 updates.reminderSent = false;
             }
         }
+        console.log('\n==================================================');
+        console.log(`📝 [Task Update Audit] Updating Task ID: ${id}`);
+        console.log(`- Resolved taskDateStr: ${taskDateStr || 'undefined'}`);
+        console.log(`- timeStr: ${timeStr || 'undefined'}`);
+        console.log(`- remType: ${remType || 'At Task Time'}`);
+        console.log(`- offset: ${offset !== undefined ? offset : 'undefined'}`);
+        console.log(`- Updated reminderDateTime (UTC): ${updates.reminderDateTime ? updates.reminderDateTime.toISOString() : 'UNCHANGED'}`);
         const updatedObjective = await Objective_1.default.findOneAndUpdate({ _id: id, user: req.user?.id }, { $set: updates }, { new: true, runValidators: true });
+        console.log('💾 [MongoDB Update Audit] Persisted document after update:');
+        console.log(`- ID: ${updatedObjective?._id}`);
+        console.log(`- reminderType: ${updatedObjective?.reminderType}`);
+        console.log(`- reminderDateTime (UTC): ${updatedObjective?.reminderDateTime ? new Date(updatedObjective.reminderDateTime).toISOString() : 'UNDEFINED / NULL'}`);
+        console.log(`- reminderSent: ${updatedObjective?.reminderSent}`);
+        console.log('==================================================\n');
         // Immediately trigger background check for due reminders
         (0, reminderScheduler_1.processPendingReminders)();
         res.json(updatedObjective);
     }
     catch (error) {
+        console.error('❌ [Update Objective Audit Error]:', error.stack || error.message || error);
         res.status(400).json({ message: 'Failed to update objective', error: error.message });
     }
 };
