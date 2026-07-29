@@ -273,6 +273,12 @@ export default function App() {
       const resolvedReminderType = extraFields?.reminderType || 'At Task Time';
       const resolvedTimezoneOffset = typeof extraFields?.timezoneOffset === 'number' ? extraFields.timezoneOffset : new Date().getTimezoneOffset();
 
+      const rawType = (extraFields as any)?.taskType;
+      const validTaskType = (rawType === 'goal' || rawType === 'task') 
+        ? rawType 
+        : (activeTab === 'calendar' ? 'task' : 'goal');
+      const validCalendarType = (extraFields as any)?.calendarType || (rawType && rawType !== 'goal' && rawType !== 'task' ? rawType : 'Due Date');
+
       const payload = {
         title,
         priority,
@@ -282,9 +288,10 @@ export default function App() {
         scheduledTime: resolvedScheduledTime,
         reminderType: resolvedReminderType,
         timezoneOffset: resolvedTimezoneOffset,
-        taskType: activeTab === 'calendar' ? 'task' : 'goal',
         progress: status === 'Completed' ? 100 : status === 'In Review' ? 80 : status === 'In Progress' ? 40 : 0,
-        ...extraFields
+        ...extraFields,
+        taskType: validTaskType,
+        calendarType: validCalendarType
       };
 
       console.log('FINAL REQUEST BODY', payload);

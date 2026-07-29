@@ -24,7 +24,8 @@ export interface Objective {
   scheduledDate?: string;
   scheduledTime?: string;
   timezoneOffset?: number;
-  taskType?: 'Due Date' | 'Reminder' | 'Repeat Schedule';
+  taskType?: 'goal' | 'task' | string;
+  calendarType?: 'Due Date' | 'Reminder' | 'Repeat Schedule' | string;
   reminderType?: string;
   reminderDateTime?: string;
   reminderSent?: boolean;
@@ -176,7 +177,8 @@ export const CalendarPage: React.FC<CalendarPageProps> = ({
     onAddObjective(newTitle.trim(), newPriority, 'To Do', taskDateStr, {
       scheduledDate: taskDateStr,
       scheduledTime: timeStr,
-      taskType: newType,
+      taskType: 'task',
+      calendarType: newType,
       reminderType: remType,
       timezoneOffset: offset,
     });
@@ -189,7 +191,7 @@ export const CalendarPage: React.FC<CalendarPageProps> = ({
     setShowEditModal(task);
     setEditTitle(task.title);
     setEditPriority(task.priority);
-    setEditType(task.taskType || 'Due Date');
+    setEditType((task.calendarType as any) || 'Due Date');
     setEditDate(task.dueDate || task.scheduledDate || selectedDateStr);
     setEditTime(task.scheduledTime || '09:00');
     setEditReminderType(task.reminderType || 'At Task Time');
@@ -203,7 +205,8 @@ export const CalendarPage: React.FC<CalendarPageProps> = ({
       onUpdateObjective(showEditModal.id, {
         title: editTitle.trim(),
         priority: editPriority,
-        taskType: editType,
+        taskType: 'task',
+        calendarType: editType,
         dueDate: editDate,
         scheduledDate: editDate,
         scheduledTime: editTime,
