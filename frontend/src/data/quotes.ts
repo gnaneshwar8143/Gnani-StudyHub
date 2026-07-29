@@ -4622,21 +4622,6 @@ export const QUOTES_DATA: Quote[] = [
   },
   {
     "id": "158",
-    "quote": "All of us do not have equal talent. But, all of us have an equal opportunity to develop our talents.",
-    "author": "Dr. A. P. J. Abdul Kalam",
-    "category": "Education",
-    "language": "en",
-    "isVerified": true,
-    "translations": {
-      "en": {
-        "quote": "All of us do not have equal talent. But, all of us have an equal opportunity to develop our talents.",
-        "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Education"
-      }
-    }
-  },
-  {
-    "id": "159",
     "quote": "Be active! Take responsibility! Work for the things you believe in.",
     "author": "Dr. A. P. J. Abdul Kalam",
     "category": "Leadership",
@@ -4651,7 +4636,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "160",
+    "id": "159",
     "quote": "Confidence and hard work is the best medicine to kill the disease called failure.",
     "author": "Dr. A. P. J. Abdul Kalam",
     "category": "Confidence",
@@ -4666,7 +4651,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "161",
+    "id": "160",
     "quote": "Creativity is seeing the same thing but thinking something different.",
     "author": "Dr. A. P. J. Abdul Kalam",
     "category": "Innovation",
@@ -4681,7 +4666,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "162",
+    "id": "161",
     "quote": "Knowledge with action converts adversity into prosperity.",
     "author": "Dr. A. P. J. Abdul Kalam",
     "category": "Wisdom",
@@ -4696,7 +4681,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "163",
+    "id": "162",
     "quote": "While the rain forces all birds to find shelter, the eagle avoids rain by flying above the clouds. Problems are common, but attitude makes the difference.",
     "author": "Dr. A. P. J. Abdul Kalam",
     "category": "Character",
@@ -4711,7 +4696,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "164",
+    "id": "163",
     "quote": "Look at the sky. We are not alone. The whole universe is friendly to us and conspires only to give the best to those who dream and work.",
     "author": "Dr. A. P. J. Abdul Kalam",
     "category": "Motivation",
@@ -4726,7 +4711,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "165",
+    "id": "164",
     "quote": "Without your involvement you cannot succeed. With your involvement you cannot fail.",
     "author": "Dr. A. P. J. Abdul Kalam",
     "category": "Discipline",
@@ -4741,7 +4726,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "166",
+    "id": "165",
     "quote": "Take up one idea. Make that one idea your life - think of it, dream of it, live on that idea. Let the brain, muscles, nerves, every part of your body, be full of that idea, and just leave every other idea alone. This is the way to success.",
     "author": "Swami Vivekananda",
     "category": "Focus",
@@ -4756,7 +4741,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "167",
+    "id": "166",
     "quote": "In a day, when you don't come across any problems - you can be sure that you are traveling in a wrong path.",
     "author": "Swami Vivekananda",
     "category": "Character",
@@ -4771,7 +4756,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "168",
+    "id": "167",
     "quote": "Strength is Life, Weakness is Death.",
     "author": "Swami Vivekananda",
     "category": "Courage",
@@ -4786,7 +4771,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "169",
+    "id": "168",
     "quote": "The greatest sin is to think yourself weak.",
     "author": "Swami Vivekananda",
     "category": "Confidence",
@@ -4801,7 +4786,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "170",
+    "id": "169",
     "quote": "All power is within you; you can do anything and everything.",
     "author": "Swami Vivekananda",
     "category": "Confidence",
@@ -4816,7 +4801,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "171",
+    "id": "170",
     "quote": "Condition of your mind determines your destiny.",
     "author": "Swami Vivekananda",
     "category": "Discipline",
@@ -4831,7 +4816,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "172",
+    "id": "171",
     "quote": "Stand up, be bold, be strong. Take the whole responsibility on your own shoulders, and know that you are the creator of your own destiny.",
     "author": "Swami Vivekananda",
     "category": "Leadership",
@@ -4846,7 +4831,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "173",
+    "id": "172",
     "quote": "Ask nothing; want nothing in return. Give what you have to give; it will come back to you, but do not think of that now.",
     "author": "Swami Vivekananda",
     "category": "Kindness",
@@ -4861,7 +4846,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "174",
+    "id": "173",
     "quote": "Feel like a giant, even in the smallest tasks.",
     "author": "Swami Vivekananda",
     "category": "Motivation",
@@ -4876,7 +4861,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "175",
+    "id": "174",
     "quote": "Whatever you think that you will be. If you think yourself weak, weak you will be; if you think yourself strong, you will be.",
     "author": "Swami Vivekananda",
     "category": "Confidence",
@@ -4891,7 +4876,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "176",
+    "id": "175",
     "quote": "Desire, ignorance, and inequality - this is the trinity of bondage.",
     "author": "Swami Vivekananda",
     "category": "Wisdom",
@@ -4906,7 +4891,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "177",
+    "id": "176",
     "quote": "Experience is the only teacher we have. We may talk and reason all our lives, but we shall not understand a word of truth until we experience it ourselves.",
     "author": "Swami Vivekananda",
     "category": "Education",
@@ -4921,7 +4906,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "178",
+    "id": "177",
     "quote": "Dare to be free, dare to go as far as your thought leads, and dare to carry that out in your life.",
     "author": "Swami Vivekananda",
     "category": "Courage",
@@ -4936,7 +4921,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "179",
+    "id": "178",
     "quote": "Neither seek nor avoid, take what comes.",
     "author": "Swami Vivekananda",
     "category": "Life",
@@ -4951,7 +4936,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "180",
+    "id": "179",
     "quote": "They alone live, who live for others.",
     "author": "Swami Vivekananda",
     "category": "Kindness",
@@ -4966,7 +4951,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "181",
+    "id": "180",
     "quote": "When an idea exclusively occupies the mind, it is transformed into an actual physical or mental state.",
     "author": "Swami Vivekananda",
     "category": "Focus",
@@ -4981,7 +4966,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "182",
+    "id": "181",
     "quote": "Extremes are never good; balance is the law of nature.",
     "author": "Swami Vivekananda",
     "category": "Wisdom",
@@ -4996,7 +4981,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "183",
+    "id": "182",
     "quote": "Be faithful in small things because it is in them that your strength lies.",
     "author": "Mother Teresa",
     "category": "Discipline",
@@ -5011,7 +4996,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "184",
+    "id": "183",
     "quote": "The most terrible poverty is loneliness and the feeling of being unloved.",
     "author": "Mother Teresa",
     "category": "Wisdom",
@@ -5026,7 +5011,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "185",
+    "id": "184",
     "quote": "I alone cannot change the world, but I can cast a stone across the waters to create many ripples.",
     "author": "Mother Teresa",
     "category": "Leadership",
@@ -5041,7 +5026,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "186",
+    "id": "185",
     "quote": "Love is a fruit in season at all times, and within reach of every hand.",
     "author": "Mother Teresa",
     "category": "Kindness",
@@ -5056,7 +5041,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "187",
+    "id": "186",
     "quote": "If you cannot feed a hundred people, then feed just one.",
     "author": "Mother Teresa",
     "category": "Kindness",
@@ -5071,7 +5056,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "188",
+    "id": "187",
     "quote": "What can you do to promote world peace? Go home and love your family.",
     "author": "Mother Teresa",
     "category": "Life",
@@ -5086,7 +5071,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "189",
+    "id": "188",
     "quote": "God doesn't require us to succeed, he only requires that you try.",
     "author": "Mother Teresa",
     "category": "Hard Work",
@@ -5101,7 +5086,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "190",
+    "id": "189",
     "quote": "Joy is a net of love by which you can catch souls.",
     "author": "Mother Teresa",
     "category": "Life",
@@ -5116,7 +5101,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "191",
+    "id": "190",
     "quote": "The hunger for love is much more difficult to remove than the hunger for bread.",
     "author": "Mother Teresa",
     "category": "Wisdom",
@@ -5131,7 +5116,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "192",
+    "id": "191",
     "quote": "Never travel faster than your guardian angel can fly.",
     "author": "Mother Teresa",
     "category": "Wisdom",
@@ -5146,7 +5131,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "193",
+    "id": "192",
     "quote": "Life is a song, sing it. Life is a struggle, accept it.",
     "author": "Mother Teresa",
     "category": "Life",
@@ -5161,7 +5146,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "194",
+    "id": "193",
     "quote": "Let us always meet each other with a smile, for the smile is the beginning of love.",
     "author": "Mother Teresa",
     "category": "Kindness",
@@ -5176,7 +5161,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "195",
+    "id": "194",
     "quote": "Be the change that you wish to see in the world.",
     "author": "Mahatma Gandhi",
     "category": "Leadership",
@@ -5191,7 +5176,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "196",
+    "id": "195",
     "quote": "The best way to find yourself is to lose yourself in the service of others.",
     "author": "Mahatma Gandhi",
     "category": "Kindness",
@@ -5206,7 +5191,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "197",
+    "id": "196",
     "quote": "Live as if you were to die tomorrow. Learn as if you were to live forever.",
     "author": "Mahatma Gandhi",
     "category": "Education",
@@ -5221,7 +5206,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "198",
+    "id": "197",
     "quote": "An eye for an eye only ends up making the whole world blind.",
     "author": "Mahatma Gandhi",
     "category": "Wisdom",
@@ -5236,7 +5221,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "199",
+    "id": "198",
     "quote": "Strength does not come from physical capacity. It comes from an indomitable will.",
     "author": "Mahatma Gandhi",
     "category": "Courage",
@@ -5251,7 +5236,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "200",
+    "id": "199",
     "quote": "Happiness is when what you think, what you say, and what you do are in harmony.",
     "author": "Mahatma Gandhi",
     "category": "Life",
@@ -5266,7 +5251,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "201",
+    "id": "200",
     "quote": "Freedom is not worth having if it does not include the freedom to make mistakes.",
     "author": "Mahatma Gandhi",
     "category": "Wisdom",
@@ -5281,7 +5266,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "202",
+    "id": "201",
     "quote": "The weak can never forgive. Forgiveness is the attribute of the strong.",
     "author": "Mahatma Gandhi",
     "category": "Courage",
@@ -5296,7 +5281,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "203",
+    "id": "202",
     "quote": "A man is but the product of his thoughts. What he thinks, he becomes.",
     "author": "Mahatma Gandhi",
     "category": "Confidence",
@@ -5311,7 +5296,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "204",
+    "id": "203",
     "quote": "The future depends on what you do today.",
     "author": "Mahatma Gandhi",
     "category": "Motivation",
@@ -5326,7 +5311,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "205",
+    "id": "204",
     "quote": "You must not lose faith in humanity. Humanity is an ocean; if a few drops of the ocean are dirty, the ocean does not become dirty.",
     "author": "Mahatma Gandhi",
     "category": "Wisdom",
@@ -5341,7 +5326,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "206",
+    "id": "205",
     "quote": "In a gentle way, you can shake the world.",
     "author": "Mahatma Gandhi",
     "category": "Leadership",
@@ -5356,7 +5341,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "207",
+    "id": "206",
     "quote": "Service which is rendered without joy helps neither the servant nor the served.",
     "author": "Mahatma Gandhi",
     "category": "Kindness",
@@ -5371,7 +5356,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "208",
+    "id": "207",
     "quote": "Satisfaction lies in the effort, not in the attainment, full effort is full victory.",
     "author": "Mahatma Gandhi",
     "category": "Hard Work",
@@ -5386,7 +5371,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "209",
+    "id": "208",
     "quote": "It is easy to stand in the crowd, but it takes courage to stand alone.",
     "author": "Mahatma Gandhi",
     "category": "Courage",
@@ -5401,7 +5386,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "210",
+    "id": "209",
     "quote": "Hate the sin, love the sinner.",
     "author": "Mahatma Gandhi",
     "category": "Kindness",
@@ -5416,7 +5401,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "211",
+    "id": "210",
     "quote": "My life is my message.",
     "author": "Mahatma Gandhi",
     "category": "Character",
@@ -5431,7 +5416,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "212",
+    "id": "211",
     "quote": "Patience means the capacity for endurance.",
     "author": "Mahatma Gandhi",
     "category": "Perseverance",
@@ -5446,7 +5431,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "213",
+    "id": "212",
     "quote": "Silence is the best answer to anger.",
     "author": "Mahatma Gandhi",
     "category": "Discipline",
@@ -5461,7 +5446,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "214",
+    "id": "213",
     "quote": "To give pleasure to a single heart by a single act is better than a thousand heads bowing in prayer.",
     "author": "Mahatma Gandhi",
     "category": "Kindness",
@@ -5476,7 +5461,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "215",
+    "id": "214",
     "quote": "It always seems impossible until it's done.",
     "author": "Nelson Mandela",
     "category": "Motivation",
@@ -5491,7 +5476,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "216",
+    "id": "215",
     "quote": "Education is the most powerful weapon which you can use to change the world.",
     "author": "Nelson Mandela",
     "category": "Education",
@@ -5506,7 +5491,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "217",
+    "id": "216",
     "quote": "The greatest glory in living lies not in never falling, but in rising every time we fall.",
     "author": "Nelson Mandela",
     "category": "Perseverance",
@@ -5521,7 +5506,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "218",
+    "id": "217",
     "quote": "Do not judge me by my successes, judge me by how many times I fell down and got back up again.",
     "author": "Nelson Mandela",
     "category": "Perseverance",
@@ -5536,7 +5521,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "219",
+    "id": "218",
     "quote": "For to be free is not merely to cast off one's chains, but to live in a way that respects and enhances the freedom of others.",
     "author": "Nelson Mandela",
     "category": "Leadership",
@@ -5551,7 +5536,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "220",
+    "id": "219",
     "quote": "I learned that courage was not the absence of fear, but the triumph over it. The brave man is not he who does not feel afraid, but he who conquers that fear.",
     "author": "Nelson Mandela",
     "category": "Courage",
@@ -5566,7 +5551,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "221",
+    "id": "220",
     "quote": "A winner is a dreamer who never gives up.",
     "author": "Nelson Mandela",
     "category": "Perseverance",
@@ -5581,7 +5566,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "222",
+    "id": "221",
     "quote": "There is no passion to be found playing small - in settling for a life that is less than the one you are capable of living.",
     "author": "Nelson Mandela",
     "category": "Dreams",
@@ -5596,7 +5581,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "223",
+    "id": "222",
     "quote": "What counts in life is not the mere fact that we have lived. It is what difference we have made to the lives of others.",
     "author": "Nelson Mandela",
     "category": "Life",
@@ -5611,7 +5596,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "224",
+    "id": "223",
     "quote": "Resentment is like drinking poison and then hoping it will kill your enemies.",
     "author": "Nelson Mandela",
     "category": "Wisdom",
@@ -5626,7 +5611,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "225",
+    "id": "224",
     "quote": "Lead from the back — and let others believe they are in front.",
     "author": "Nelson Mandela",
     "category": "Leadership",
@@ -5641,7 +5626,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "226",
+    "id": "225",
     "quote": "May your choices reflect your hopes, not your fears.",
     "author": "Nelson Mandela",
     "category": "Confidence",
@@ -5656,7 +5641,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "227",
+    "id": "226",
     "quote": "When a man has done what he considers to be his duty to his people and his country, he can rest in peace.",
     "author": "Nelson Mandela",
     "category": "Character",
@@ -5671,7 +5656,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "228",
+    "id": "227",
     "quote": "Action without vision is only passing time, vision without action is merely day dreaming, but vision with action can change the world.",
     "author": "Nelson Mandela",
     "category": "Focus",
@@ -5686,7 +5671,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "229",
+    "id": "228",
     "quote": "Overcoming poverty is not a task of charity, it is an act of justice.",
     "author": "Nelson Mandela",
     "category": "Wisdom",
@@ -5701,7 +5686,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "230",
+    "id": "229",
     "quote": "After climbing a great hill, one only finds that there are many more hills to climb.",
     "author": "Nelson Mandela",
     "category": "Success",
@@ -5716,7 +5701,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "231",
+    "id": "230",
     "quote": "If you talk to a man in a language he understands, that goes to his head. If you talk to him in his language, that goes to his heart.",
     "author": "Nelson Mandela",
     "category": "Wisdom",
@@ -5731,7 +5716,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "232",
+    "id": "231",
     "quote": "A good head and good heart are always a formidable combination.",
     "author": "Nelson Mandela",
     "category": "Character",
@@ -5746,7 +5731,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "233",
+    "id": "232",
     "quote": "Money won't create success, the freedom to make it will.",
     "author": "Nelson Mandela",
     "category": "Success",
@@ -5761,7 +5746,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "234",
+    "id": "233",
     "quote": "Real leaders must be ready to sacrifice all for the freedom of their people.",
     "author": "Nelson Mandela",
     "category": "Leadership",
@@ -5776,7 +5761,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "235",
+    "id": "234",
     "quote": "Your time is limited, so don't waste it living someone else's life.",
     "author": "Steve Jobs",
     "category": "Life",
@@ -5791,7 +5776,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "236",
+    "id": "235",
     "quote": "Stay hungry, stay foolish.",
     "author": "Steve Jobs",
     "category": "Innovation",
@@ -5806,7 +5791,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "237",
+    "id": "236",
     "quote": "Innovation distinguishes between a leader and a follower.",
     "author": "Steve Jobs",
     "category": "Innovation",
@@ -5821,7 +5806,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "238",
+    "id": "237",
     "quote": "The only way to do great work is to love what you do.",
     "author": "Steve Jobs",
     "category": "Success",
@@ -5836,7 +5821,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "239",
+    "id": "238",
     "quote": "Have the courage to follow your heart and intuition. They somehow already know what you truly want to become.",
     "author": "Steve Jobs",
     "category": "Courage",
@@ -5851,7 +5836,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "240",
+    "id": "239",
     "quote": "Design is not just what it looks like and feels like. Design is how it works.",
     "author": "Steve Jobs",
     "category": "Innovation",
@@ -5866,7 +5851,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "241",
+    "id": "240",
     "quote": "Details matter, it's worth waiting to get it right.",
     "author": "Steve Jobs",
     "category": "Discipline",
@@ -5881,7 +5866,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "242",
+    "id": "241",
     "quote": "Be a yardstick of quality. Some people aren't used to an environment where excellence is expected.",
     "author": "Steve Jobs",
     "category": "Character",
@@ -5896,7 +5881,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "243",
+    "id": "242",
     "quote": "Sometimes when you innovate, you make mistakes. It is best to admit them quickly, and get on with improving your other innovations.",
     "author": "Steve Jobs",
     "category": "Innovation",
@@ -5911,7 +5896,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "244",
+    "id": "243",
     "quote": "I'm convinced that about half of what separates successful entrepreneurs from the non-successful ones is pure perseverance.",
     "author": "Steve Jobs",
     "category": "Perseverance",
@@ -5926,7 +5911,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "245",
+    "id": "244",
     "quote": "Great things in business are never done by one person. They're done by a team of people.",
     "author": "Steve Jobs",
     "category": "Leadership",
@@ -5941,7 +5926,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "246",
+    "id": "245",
     "quote": "Quality is more important than quantity. One home run is much better than two doubles.",
     "author": "Steve Jobs",
     "category": "Focus",
@@ -5956,7 +5941,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "247",
+    "id": "246",
     "quote": "You can't connect the dots looking forward; you can only connect them looking backward. So you have to trust that the dots will somehow connect in your future.",
     "author": "Steve Jobs",
     "category": "Confidence",
@@ -5971,7 +5956,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "248",
+    "id": "247",
     "quote": "My favorite things in life don't cost any money. It's really clear that the most precious resource we all have is time.",
     "author": "Steve Jobs",
     "category": "Wisdom",
@@ -5986,7 +5971,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "249",
+    "id": "248",
     "quote": "Don't let the noise of others' opinions drown out your own inner voice.",
     "author": "Steve Jobs",
     "category": "Confidence",
@@ -6001,7 +5986,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "250",
+    "id": "249",
     "quote": "Focusing is about saying No.",
     "author": "Steve Jobs",
     "category": "Focus",
@@ -6016,7 +6001,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "251",
+    "id": "250",
     "quote": "I want to put a ding in the universe.",
     "author": "Steve Jobs",
     "category": "Dreams",
@@ -6031,7 +6016,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "252",
+    "id": "251",
     "quote": "Deciding what not to do is as important as deciding what to do.",
     "author": "Steve Jobs",
     "category": "Focus",
@@ -6046,7 +6031,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "253",
+    "id": "252",
     "quote": "Simple can be harder than complex: You have to work hard to get your thinking clean to make it simple.",
     "author": "Steve Jobs",
     "category": "Wisdom",
@@ -6061,7 +6046,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "254",
+    "id": "253",
     "quote": "We're here to put a dent in the universe. Otherwise why else even be here?",
     "author": "Steve Jobs",
     "category": "Motivation",
@@ -6076,7 +6061,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "255",
+    "id": "254",
     "quote": "Before you start some work, always ask yourself three questions - Why am I doing it, What the results might be and Will I be successful.",
     "author": "Chanakya",
     "category": "Focus",
@@ -6091,7 +6076,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "256",
+    "id": "255",
     "quote": "A person should not be too honest. Straight trees are cut first and honest people are screwed first.",
     "author": "Chanakya",
     "category": "Wisdom",
@@ -6106,7 +6091,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "257",
+    "id": "256",
     "quote": "Education is the best friend. An educated person is respected everywhere. Education beats the beauty and the youth.",
     "author": "Chanakya",
     "category": "Education",
@@ -6121,7 +6106,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "258",
+    "id": "257",
     "quote": "Learn from the mistakes of others... you can't live long enough to make them all yourself.",
     "author": "Chanakya",
     "category": "Wisdom",
@@ -6136,7 +6121,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "259",
+    "id": "258",
     "quote": "Once you start working on something, don't be afraid of failure and don't abandon it. People who work sincerely are the happiest.",
     "author": "Chanakya",
     "category": "Hard Work",
@@ -6151,7 +6136,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "260",
+    "id": "259",
     "quote": "The fragrance of flowers spreads only in the direction of the wind. But the goodness of a person spreads in all direction.",
     "author": "Chanakya",
     "category": "Character",
@@ -6166,7 +6151,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "261",
+    "id": "260",
     "quote": "God is not present in idols. Your feelings are your God. The soul is your temple.",
     "author": "Chanakya",
     "category": "Wisdom",
@@ -6181,7 +6166,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "262",
+    "id": "261",
     "quote": "Books are as useful to a stupid person as a mirror is to a blind person.",
     "author": "Chanakya",
     "category": "Education",
@@ -6196,7 +6181,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "263",
+    "id": "262",
     "quote": "As soon as the fear approaches near, attack and destroy it.",
     "author": "Chanakya",
     "category": "Courage",
@@ -6211,7 +6196,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "264",
+    "id": "263",
     "quote": "A man is great by deeds, not by birth.",
     "author": "Chanakya",
     "category": "Character",
@@ -6226,7 +6211,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "265",
+    "id": "264",
     "quote": "Never make friendship with people who are above or below you in status. Such friendships will never give you any happiness.",
     "author": "Chanakya",
     "category": "Wisdom",
@@ -6241,7 +6226,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "266",
+    "id": "265",
     "quote": "Treat your kid like a darling for the first five years. For the next ten years, scold them. By the time they turn sixteen, treat them like a friend.",
     "author": "Chanakya",
     "category": "Wisdom",
@@ -6256,7 +6241,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "267",
+    "id": "266",
     "quote": "Over-attachment is the source of all sorrow.",
     "author": "Chanakya",
     "category": "Wisdom",
@@ -6271,7 +6256,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "268",
+    "id": "267",
     "quote": "Do not reveal what you have thought upon doing, but by wise council keep it secret determined to carry it into execution.",
     "author": "Chanakya",
     "category": "Discipline",
@@ -6286,7 +6271,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "269",
+    "id": "268",
     "quote": "Purity of speech, mind, and senses, a forgiving heart and a desire to serve are the ornaments of a noble soul.",
     "author": "Chanakya",
     "category": "Character",
@@ -6301,7 +6286,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "270",
+    "id": "269",
     "quote": "Wealth, a friend, a wife, and a kingdom may be regained, but this body when lost can never be acquired again.",
     "author": "Chanakya",
     "category": "Life",
@@ -6316,7 +6301,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "271",
+    "id": "270",
     "quote": "He who is overly attached to his family members experiences fear and sorrow, for the root of all grief is attachment.",
     "author": "Chanakya",
     "category": "Wisdom",
@@ -6331,7 +6316,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "272",
+    "id": "271",
     "quote": "Test a servant while in the discharge of his duty, a relative in difficulty, a friend in adversity, and a wife in misfortune.",
     "author": "Chanakya",
     "category": "Character",
@@ -6346,7 +6331,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "273",
+    "id": "272",
     "quote": "The biggest guru-mantra is: never share your secrets with anybody. It will destroy you.",
     "author": "Chanakya",
     "category": "Discipline",
@@ -6361,7 +6346,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "274",
+    "id": "273",
     "quote": "Accumulated wealth is saved by spending just as incoming fresh water is saved by letting out existing water.",
     "author": "Chanakya",
     "category": "Wisdom",
@@ -6376,7 +6361,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "275",
+    "id": "274",
     "quote": "The mind is everything. What you think you become.",
     "author": "Gautama Buddha",
     "category": "Focus",
@@ -6391,7 +6376,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "276",
+    "id": "275",
     "quote": "Three things cannot be long hidden: the sun, the moon, and the truth.",
     "author": "Gautama Buddha",
     "category": "Wisdom",
@@ -6406,7 +6391,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "277",
+    "id": "276",
     "quote": "Peace comes from within. Do not seek it without.",
     "author": "Gautama Buddha",
     "category": "Life",
@@ -6421,7 +6406,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "278",
+    "id": "277",
     "quote": "You will not be punished for your anger, you will be punished by your anger.",
     "author": "Gautama Buddha",
     "category": "Discipline",
@@ -6436,7 +6421,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "279",
+    "id": "278",
     "quote": "Health is the greatest gift, contentment the greatest wealth, faithfulness the best relationship.",
     "author": "Gautama Buddha",
     "category": "Wisdom",
@@ -6451,7 +6436,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "280",
+    "id": "279",
     "quote": "Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment.",
     "author": "Gautama Buddha",
     "category": "Focus",
@@ -6466,7 +6451,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "281",
+    "id": "280",
     "quote": "No one saves us but ourselves. No one can and no one may. We ourselves must walk the path.",
     "author": "Gautama Buddha",
     "category": "Confidence",
@@ -6481,7 +6466,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "282",
+    "id": "281",
     "quote": "Radiate boundless love towards the entire world.",
     "author": "Gautama Buddha",
     "category": "Kindness",
@@ -6496,7 +6481,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "283",
+    "id": "282",
     "quote": "In the end, only three things matter: how much you loved, how gently you lived, and how gracefully you let go of things not meant for you.",
     "author": "Gautama Buddha",
     "category": "Wisdom",
@@ -6511,7 +6496,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "284",
+    "id": "283",
     "quote": "Thousands of candles can be lighted from a single candle, and the life of the candle will not be shortened. Happiness never decreases by being shared.",
     "author": "Gautama Buddha",
     "category": "Kindness",
@@ -6526,7 +6511,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "285",
+    "id": "284",
     "quote": "Drop by drop is the water pot filled. Likewise, the wise man, gathering it little by little, fills himself with good.",
     "author": "Gautama Buddha",
     "category": "Perseverance",
@@ -6541,7 +6526,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "286",
+    "id": "285",
     "quote": "Work out your own salvation. Do not depend on others.",
     "author": "Gautama Buddha",
     "category": "Confidence",
@@ -6556,7 +6541,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "287",
+    "id": "286",
     "quote": "To understand everything is to forgive everything.",
     "author": "Gautama Buddha",
     "category": "Kindness",
@@ -6571,7 +6556,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "288",
+    "id": "287",
     "quote": "There is no path to peace; peace is the path.",
     "author": "Gautama Buddha",
     "category": "Wisdom",
@@ -6586,7 +6571,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "289",
+    "id": "288",
     "quote": "Better than a thousand hollow words, is one word that brings peace.",
     "author": "Gautama Buddha",
     "category": "Wisdom",
@@ -6601,7 +6586,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "290",
+    "id": "289",
     "quote": "If you truly loved yourself, you could never hurt another.",
     "author": "Gautama Buddha",
     "category": "Kindness",
@@ -6616,7 +6601,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "291",
+    "id": "290",
     "quote": "The secret of health for both mind and body is not to mourn for the past, nor to worry about the future, but to live the present moment wisely and earnestly.",
     "author": "Gautama Buddha",
     "category": "Focus",
@@ -6631,7 +6616,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "292",
+    "id": "291",
     "quote": "An idea that is developed and put into action is more important than an idea that exists only as an idea.",
     "author": "Gautama Buddha",
     "category": "Innovation",
@@ -6646,7 +6631,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "293",
+    "id": "292",
     "quote": "Purity or impurity depends on oneself, no one can purify another.",
     "author": "Gautama Buddha",
     "category": "Character",
@@ -6661,7 +6646,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "294",
+    "id": "293",
     "quote": "Conquer anger with non-anger. Conquer badness with goodness.",
     "author": "Gautama Buddha",
     "category": "Kindness",
@@ -6676,7 +6661,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "295",
+    "id": "294",
     "quote": "It does not matter how slowly you go as long as you do not stop.",
     "author": "Confucius",
     "category": "Perseverance",
@@ -6691,7 +6676,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "296",
+    "id": "295",
     "quote": "By three methods we may learn wisdom: First, by reflection, which is noblest; Second, by imitation, which is easiest; and third by experience, which is the bitterest.",
     "author": "Confucius",
     "category": "Education",
@@ -6706,7 +6691,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "297",
+    "id": "296",
     "quote": "Our greatest glory is not in never falling, but in rising every time we fall.",
     "author": "Confucius",
     "category": "Perseverance",
@@ -6721,7 +6706,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "298",
+    "id": "297",
     "quote": "Life is really simple, but we insist on making it complicated.",
     "author": "Confucius",
     "category": "Life",
@@ -6736,7 +6721,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "299",
+    "id": "298",
     "quote": "Real knowledge is to know the extent of one's ignorance.",
     "author": "Confucius",
     "category": "Education",
@@ -6751,7 +6736,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "300",
+    "id": "299",
     "quote": "When it is obvious that the goals cannot be reached, don't adjust the goals, adjust the action steps.",
     "author": "Confucius",
     "category": "Focus",
@@ -6766,7 +6751,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "301",
+    "id": "300",
     "quote": "He who conquers himself is the mightiest warrior.",
     "author": "Confucius",
     "category": "Discipline",
@@ -6781,7 +6766,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "302",
+    "id": "301",
     "quote": "The man who moves a mountain begins by carrying away small stones.",
     "author": "Confucius",
     "category": "Hard Work",
@@ -6796,7 +6781,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "303",
+    "id": "302",
     "quote": "Choose a job you love, and you will never have to work a day in your life.",
     "author": "Confucius",
     "category": "Success",
@@ -6811,7 +6796,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "304",
+    "id": "303",
     "quote": "Wherever you go, go with all your heart.",
     "author": "Confucius",
     "category": "Motivation",
@@ -6826,7 +6811,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "305",
+    "id": "304",
     "quote": "What the superior man seeks is in himself; what the small man seeks is in others.",
     "author": "Confucius",
     "category": "Character",
@@ -6841,7 +6826,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "306",
+    "id": "305",
     "quote": "To see what is right and not to do it is a want of courage, or of principle.",
     "author": "Confucius",
     "category": "Courage",
@@ -6856,7 +6841,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "307",
+    "id": "306",
     "quote": "If you make a mistake and do not correct it, this is called a mistake.",
     "author": "Confucius",
     "category": "Wisdom",
@@ -6871,7 +6856,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "308",
+    "id": "307",
     "quote": "Before you embark on a journey of revenge, dig two graves.",
     "author": "Confucius",
     "category": "Wisdom",
@@ -6886,7 +6871,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "309",
+    "id": "308",
     "quote": "The man who asks a question is a fool for a minute, the man who does not ask is a fool for life.",
     "author": "Confucius",
     "category": "Education",
@@ -6901,7 +6886,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "310",
+    "id": "309",
     "quote": "Silence is a true friend who never betrays.",
     "author": "Confucius",
     "category": "Wisdom",
@@ -6916,7 +6901,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "311",
+    "id": "310",
     "quote": "Wheresoever you go, go with all your heart.",
     "author": "Confucius",
     "category": "Motivation",
@@ -6931,7 +6916,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "312",
+    "id": "311",
     "quote": "To be wronged is nothing, unless you continue to remember it.",
     "author": "Confucius",
     "category": "Wisdom",
@@ -6946,7 +6931,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "313",
+    "id": "312",
     "quote": "Respect yourself and others will respect you.",
     "author": "Confucius",
     "category": "Confidence",
@@ -6961,7 +6946,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "314",
+    "id": "313",
     "quote": "Superior men are modest in their speech, but exceed in their actions.",
     "author": "Confucius",
     "category": "Character",
@@ -6976,7 +6961,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "315",
+    "id": "314",
     "quote": "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.",
     "author": "Albert Einstein",
     "category": "Innovation",
@@ -6991,7 +6976,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "316",
+    "id": "315",
     "quote": "Try not to become a man of success, but rather try to become a man of value.",
     "author": "Albert Einstein",
     "category": "Character",
@@ -7006,7 +6991,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "317",
+    "id": "316",
     "quote": "In the middle of difficulty lies opportunity.",
     "author": "Albert Einstein",
     "category": "Motivation",
@@ -7021,7 +7006,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "318",
+    "id": "317",
     "quote": "Life is like riding a bicycle. To keep your balance, you must keep moving.",
     "author": "Albert Einstein",
     "category": "Life",
@@ -7036,7 +7021,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "319",
+    "id": "318",
     "quote": "A person who never made a mistake never tried anything new.",
     "author": "Albert Einstein",
     "category": "Innovation",
@@ -7051,7 +7036,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "320",
+    "id": "319",
     "quote": "Logic will get you from A to B. Imagination will take you everywhere.",
     "author": "Albert Einstein",
     "category": "Innovation",
@@ -7066,7 +7051,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "321",
+    "id": "320",
     "quote": "Strive not to be a success, but rather to be of value.",
     "author": "Albert Einstein",
     "category": "Character",
@@ -7081,7 +7066,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "322",
+    "id": "321",
     "quote": "Learn from yesterday, live for today, hope for tomorrow. The important thing is not to stop questioning.",
     "author": "Albert Einstein",
     "category": "Education",
@@ -7096,7 +7081,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "323",
+    "id": "322",
     "quote": "Great spirits have always encountered violent opposition from mediocre minds.",
     "author": "Albert Einstein",
     "category": "Courage",
@@ -7111,7 +7096,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "324",
+    "id": "323",
     "quote": "The measure of intelligence is the ability to change.",
     "author": "Albert Einstein",
     "category": "Wisdom",
@@ -7126,7 +7111,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "325",
+    "id": "324",
     "quote": "Everything should be made as simple as possible, but not simpler.",
     "author": "Albert Einstein",
     "category": "Wisdom",
@@ -7141,7 +7126,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "326",
+    "id": "325",
     "quote": "We cannot solve our problems with the same thinking we used when we created them.",
     "author": "Albert Einstein",
     "category": "Innovation",
@@ -7156,7 +7141,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "327",
+    "id": "326",
     "quote": "Look deep into nature, and then you will understand everything better.",
     "author": "Albert Einstein",
     "category": "Wisdom",
@@ -7171,7 +7156,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "328",
+    "id": "327",
     "quote": "Weakness of attitude becomes weakness of character.",
     "author": "Albert Einstein",
     "category": "Character",
@@ -7186,7 +7171,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "329",
+    "id": "328",
     "quote": "Any fool can know. The point is to understand.",
     "author": "Albert Einstein",
     "category": "Education",
@@ -7201,7 +7186,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "330",
+    "id": "329",
     "quote": "There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle.",
     "author": "Albert Einstein",
     "category": "Life",
@@ -7216,7 +7201,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "331",
+    "id": "330",
     "quote": "Creativity is intelligence having fun.",
     "author": "Albert Einstein",
     "category": "Innovation",
@@ -7231,7 +7216,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "332",
+    "id": "331",
     "quote": "It's not that I'm so smart, it's just that I stay with problems longer.",
     "author": "Albert Einstein",
     "category": "Perseverance",
@@ -7246,7 +7231,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "333",
+    "id": "332",
     "quote": "Peace cannot be kept by force; it can only be achieved by understanding.",
     "author": "Albert Einstein",
     "category": "Wisdom",
@@ -7261,7 +7246,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "334",
+    "id": "333",
     "quote": "If you want to live a happy life, tie it to a goal, not to people or things.",
     "author": "Albert Einstein",
     "category": "Focus",
@@ -7276,7 +7261,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "335",
+    "id": "334",
     "quote": "You cannot change your future, but you can change your habits, and surely your habits will change your future.",
     "author": "Dr. A. P. J. Abdul Kalam",
     "category": "Success",
@@ -7291,7 +7276,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "336",
+    "id": "335",
     "quote": "To become unique, the challenge is to fight the hardest battle which anyone can imagine until you reach your destination.",
     "author": "Dr. A. P. J. Abdul Kalam",
     "category": "Perseverance",
@@ -7306,7 +7291,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "337",
+    "id": "336",
     "quote": "Active lies inside you, look deep into your heart, bring out your inner power and change the world.",
     "author": "Dr. A. P. J. Abdul Kalam",
     "category": "Motivation",
@@ -7321,7 +7306,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "338",
+    "id": "337",
     "quote": "Clear your mind of can't.",
     "author": "Dr. A. P. J. Abdul Kalam",
     "category": "Confidence",
@@ -7336,7 +7321,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "339",
+    "id": "338",
     "quote": "Courage is giving up your personal comfort for the benefit of humanity.",
     "author": "Dr. A. P. J. Abdul Kalam",
     "category": "Courage",
@@ -7351,7 +7336,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "340",
+    "id": "339",
     "quote": "Where can we go to find God if we cannot see Him in our own hearts and in every living being.",
     "author": "Swami Vivekananda",
     "category": "Wisdom",
@@ -7366,7 +7351,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "341",
+    "id": "340",
     "quote": "Fill the brain with high thoughts, highest ideals, place them day and night before you, and out of that will come great work.",
     "author": "Swami Vivekananda",
     "category": "Focus",
@@ -7381,7 +7366,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "342",
+    "id": "341",
     "quote": "Comfort is no test of truth. On the contrary, truth is often far from being comfortable.",
     "author": "Swami Vivekananda",
     "category": "Character",
@@ -7396,7 +7381,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "343",
+    "id": "342",
     "quote": "Work without love is slavery.",
     "author": "Mother Teresa",
     "category": "Hard Work",
@@ -7411,7 +7396,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "344",
+    "id": "343",
     "quote": "Be happy in the moment, that's enough. Each moment is all we need, not more.",
     "author": "Mother Teresa",
     "category": "Life",
@@ -7426,7 +7411,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "345",
+    "id": "344",
     "quote": "Disciplining oneself is the highest form of self-respect.",
     "author": "Mother Teresa",
     "category": "Discipline",
@@ -7441,7 +7426,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "346",
+    "id": "345",
     "quote": "Simple life, high thinking.",
     "author": "Mother Teresa",
     "category": "Wisdom",
@@ -7456,7 +7441,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "347",
+    "id": "346",
     "quote": "Love begins at home, and it is not how much we do... but how much love we put in that action.",
     "author": "Mother Teresa",
     "category": "Kindness",
@@ -7471,7 +7456,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "348",
+    "id": "347",
     "quote": "One of the greatest diseases is to be nobody to anybody.",
     "author": "Mother Teresa",
     "category": "Kindness",
@@ -7486,7 +7471,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "349",
+    "id": "348",
     "quote": "Honesty and frankness make you vulnerable. Be honest and frank anyway.",
     "author": "Mother Teresa",
     "category": "Character",
@@ -7501,7 +7486,7 @@ export const QUOTES_DATA: Quote[] = [
     }
   },
   {
-    "id": "350",
+    "id": "349",
     "quote": "Life is a beauty, admire it. Life is a dream, realize it.",
     "author": "Mother Teresa",
     "category": "Life",
