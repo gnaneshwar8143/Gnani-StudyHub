@@ -162,13 +162,23 @@ export const CalendarPage: React.FC<CalendarPageProps> = ({
     if (!newTitle.trim()) return;
 
     const taskDateStr = selectedDateStr;
+    const timeStr = newTime || '09:00';
+    const remType = newReminderType || 'At Task Time';
+    const offset = new Date().getTimezoneOffset();
+
+    console.log('Creating objective payload:', {
+      dueDate: taskDateStr,
+      scheduledTime: timeStr,
+      reminderType: remType,
+      timezoneOffset: offset
+    });
 
     onAddObjective(newTitle.trim(), newPriority, 'To Do', taskDateStr, {
       scheduledDate: taskDateStr,
-      scheduledTime: newTime,
+      scheduledTime: timeStr,
       taskType: newType,
-      reminderType: newReminderType,
-      timezoneOffset: new Date().getTimezoneOffset(),
+      reminderType: remType,
+      timezoneOffset: offset,
     });
 
     setNewTitle('');

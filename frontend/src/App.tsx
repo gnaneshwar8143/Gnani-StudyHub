@@ -264,17 +264,37 @@ export default function App() {
     title: string, 
     priority: 'High' | 'Medium' | 'Low', 
     status: Objective['status'] = 'To Do', 
-    dueDate?: string
+    dueDate?: string,
+    extraFields?: Partial<Objective>
   ) => {
     try {
-      const response = await api.post('/objectives', {
+      const resolvedDueDate = dueDate || extraFields?.dueDate || new Date(Date.now() + 86400000 * 3).toISOString().split('T')[0];
+      const resolvedScheduledTime = extraFields?.scheduledTime || '09:00';
+      const resolvedReminderType = extraFields?.reminderType || 'At Task Time';
+      const resolvedTimezoneOffset = typeof extraFields?.timezoneOffset === 'number' ? extraFields.timezoneOffset : new Date().getTimezoneOffset();
+
+      const payload = {
         title,
         priority,
         status,
-        dueDate: dueDate || new Date(Date.now() + 86400000 * 3).toISOString().split('T')[0],
+        dueDate: resolvedDueDate,
+        scheduledDate: extraFields?.scheduledDate || resolvedDueDate,
+        scheduledTime: resolvedScheduledTime,
+        reminderType: resolvedReminderType,
+        timezoneOffset: resolvedTimezoneOffset,
         taskType: activeTab === 'calendar' ? 'task' : 'goal',
-        progress: status === 'Completed' ? 100 : status === 'In Review' ? 80 : status === 'In Progress' ? 40 : 0
+        progress: status === 'Completed' ? 100 : status === 'In Review' ? 80 : status === 'In Progress' ? 40 : 0,
+        ...extraFields
+      };
+
+      console.log('Creating objective payload:', {
+        dueDate: payload.dueDate,
+        scheduledTime: payload.scheduledTime,
+        reminderType: payload.reminderType,
+        timezoneOffset: payload.timezoneOffset
       });
+
+      const response = await api.post('/objectives', payload);
       const newObj = { ...response.data, id: response.data._id };
       setObjectives(prev => [...prev, newObj]);
     } catch (err) {
@@ -343,10 +363,13 @@ export default function App() {
 
   const handleScheduleObjective = async (id: string, date: string | undefined, time: string | undefined) => {
     try {
-      const response = await api.put(`/objectives/${id}`, {
+      const payload = {
         scheduledDate: date,
-        scheduledTime: time
-      });
+        scheduledTime: time || '09:00',
+        timezoneOffset: new Date().getTimezoneOffset()
+      };
+      console.log('Scheduling objective payload:', payload);
+      const response = await api.put(`/objectives/${id}`, payload);
       const updated = { ...response.data, id: response.data._id };
       setObjectives(prev => prev.map(o => o.id === id ? updated : o));
     } catch (err) {
@@ -356,7 +379,17 @@ export default function App() {
 
   const handleUpdateObjective = async (id: string, updates: Partial<Objective>) => {
     try {
-      const response = await api.put(`/objectives/${id}`, updates);
+      const payload = {
+        ...updates,
+        timezoneOffset: typeof updates.timezoneOffset === 'number' ? updates.timezoneOffset : new Date().getTimezoneOffset()
+      };
+      console.log('Updating objective payload:', {
+        dueDate: payload.dueDate || payload.scheduledDate,
+        scheduledTime: payload.scheduledTime,
+        reminderType: payload.reminderType,
+        timezoneOffset: payload.timezoneOffset
+      });
+      const response = await api.put(`/objectives/${id}`, payload);
       const updated = { ...response.data, id: response.data._id };
       setObjectives(prev => prev.map(o => o.id === id ? updated : o));
     } catch (err) {

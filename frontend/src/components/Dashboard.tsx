@@ -49,6 +49,10 @@ export interface Objective {
   status: 'To Do' | 'In Progress' | 'In Review' | 'Completed';
   dueDate: string;
   progress?: number;
+  scheduledDate?: string;
+  scheduledTime?: string;
+  reminderType?: string;
+  timezoneOffset?: number;
 }
 
 interface DashboardProps {

@@ -18,6 +18,8 @@ export interface Objective {
   progress?: number; // 0 to 100
   scheduledDate?: string;
   scheduledTime?: string;
+  reminderType?: string;
+  timezoneOffset?: number;
 }
 
 interface GoalsBoardProps {
