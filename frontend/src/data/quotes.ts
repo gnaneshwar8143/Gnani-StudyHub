@@ -4,7 +4,7 @@ export interface Quote {
   author: string;
   category: string;
   language: string;
-  isVerified: boolean;
+  isVerified?: boolean;
   translations: {
     [key: string]: {
       quote: string;
@@ -29,17 +29,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c32\u0c47\u0c35\u0c02\u0c21\u0c3f, \u0c2e\u0c47\u0c32\u0c4d\u0c15\u0c4a\u0c28\u0c02\u0c21\u0c3f, \u0c17\u0c2e\u0c4d\u0c2f\u0c02 \u0c1a\u0c47\u0c30\u0c47\u0c35\u0c30\u0c15\u0c41 \u0c35\u0c3f\u0c36\u0c4d\u0c30\u0c2e\u0c3f\u0c02\u0c1a\u0c15\u0c02\u0c21\u0c3f.",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "లేవండి, మేల్కొనండి, గమ్యం చేరేవరకు విశ్రమించకండి.",
+        "author": "స్వామి వివేకానంద",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u0909\u0920\u094b, \u091c\u093e\u0917\u094b \u0914\u0930 \u0924\u092c \u0924\u0915 \u092e\u0924 \u0930\u0941\u0915\u094b \u091c\u092c \u0924\u0915 \u0932\u0915\u094d\u0937\u094d\u092f \u092a\u094d\u0930\u093e\u092a\u094d\u0924 \u0928 \u0939\u094b \u091c\u093e\u090f\u0964",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "उठो, जागो और तब तक मत रुको जब तक लक्ष्य प्राप्त न हो जाए।",
+        "author": "स्वामी विवेकानंद",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "L\u00e8ve-toi, r\u00e9veille-toi et ne t'arr\u00eate pas avant d'avoir atteint le but.",
+        "quote": "Lève-toi, réveille-toi et ne t'arrête pas avant d'avoir atteint le but.",
         "author": "Swami Vivekananda",
         "category": "Confiance"
       }
@@ -59,17 +59,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c28\u0c40\u0c2a\u0c48 \u0c28\u0c40\u0c15\u0c41 \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02 \u0c32\u0c47\u0c28\u0c02\u0c24 \u0c15\u0c3e\u0c32\u0c02 \u0c28\u0c41\u0c35\u0c4d\u0c35\u0c41 \u0c26\u0c47\u0c35\u0c41\u0c21\u0c3f\u0c28\u0c3f \u0c28\u0c2e\u0c4d\u0c2e\u0c32\u0c47\u0c35\u0c41.",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "నీపై నీకు నమ్మకం లేనంత కాలం నువ్వు దేవుడిని నమ్మలేవు.",
+        "author": "స్వామి వివేకానంద",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u091c\u092c \u0924\u0915 \u0906\u092a \u0916\u0941\u0926 \u092a\u0930 \u0935\u093f\u0936\u094d\u0935\u093e\u0938 \u0928\u0939\u0940\u0902 \u0915\u0930\u0924\u0947, \u0924\u092c \u0924\u0915 \u0906\u092a \u092d\u0917\u0935\u093e\u0928 \u092a\u0930 \u0935\u093f\u0936\u094d\u0935\u093e\u0938 \u0928\u0939\u0940\u0902 \u0915\u0930 \u0938\u0915\u0924\u0947\u0964",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "जब तक आप खुद पर विश्वास नहीं करते, तब तक आप भगवान पर विश्वास नहीं कर सकते।",
+        "author": "स्वामी विवेकानंद",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "Vous ne pouvez pas croire en Dieu tant que vous ne croyez pas en vous-m\u00eame.",
+        "quote": "Vous ne pouvez pas croire en Dieu tant que vous ne croyez pas en vous-même.",
         "author": "Swami Vivekananda",
         "category": "Confiance"
       }
@@ -89,17 +89,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Focus"
       },
       "te": {
-        "quote": "\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c02\u0c32\u0c4b\u0c28\u0c3f \u0c36\u0c15\u0c4d\u0c24\u0c41\u0c32\u0c28\u0c4d\u0c28\u0c40 \u0c07\u0c2a\u0c4d\u0c2a\u0c1f\u0c3f\u0c15\u0c47 \u0c2e\u0c28\u0c35\u0c47. \u0c2e\u0c28\u0c2e\u0c47 \u0c15\u0c33\u0c4d\u0c33\u0c15\u0c41 \u0c1a\u0c47\u0c24\u0c41\u0c32\u0c41 \u0c05\u0c21\u0c4d\u0c21\u0c41 \u0c2a\u0c46\u0c1f\u0c4d\u0c1f\u0c41\u0c15\u0c41\u0c28\u0c3f \u0c1a\u0c40\u0c15\u0c1f\u0c3f\u0c17\u0c3e \u0c09\u0c02\u0c26\u0c28\u0c3f \u0c0f\u0c21\u0c41\u0c38\u0c4d\u0c24\u0c41\u0c28\u0c4d\u0c28\u0c3e\u0c02.",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c0f\u0c15\u0c3e\u0c17\u0c4d\u0c30\u0c24"
+        "quote": "విశ్వంలోని శక్తులన్నీ ఇప్పటికే మనవే. మనమే కళ్ళకు చేతులు అడ్డు పెట్టుకుని చీకటిగా ఉందని ఏడుస్తున్నాం.",
+        "author": "స్వామి వివేకానంద",
+        "category": "ఏకాగ్రత"
       },
       "hi": {
-        "quote": "\u092c\u094d\u0930\u0939\u094d\u092e\u093e\u0902\u0921 \u0915\u0940 \u0938\u092d\u0940 \u0936\u0915\u094d\u0924\u093f\u092f\u093e\u0902 \u092a\u0939\u0932\u0947 \u0938\u0947 \u0939\u0940 \u0939\u092e\u093e\u0930\u0940 \u0939\u0948\u0902\u0964 \u092f\u0939 \u0939\u092e \u0939\u0940 \u0939\u0948\u0902 \u091c\u093f\u0928\u094d\u0939\u094b\u0902\u0928\u0947 \u0905\u092a\u0928\u0940 \u0906\u0901\u0916\u094b\u0902 \u0915\u0947 \u0938\u093e\u092e\u0928\u0947 \u0939\u093e\u0925 \u0930\u0916 \u0932\u093f\u092f\u093e \u0914\u0930 \u0930\u094b \u0930\u0939\u0947 \u0939\u0948\u0902 \u0915\u093f \u0905\u0902\u0927\u0947\u0930\u093e \u0939\u0948\u0964",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u090f\u0915\u093e\u0917\u094d\u0930\u0924\u093e"
+        "quote": "ब्रह्मांड की सभी शक्तियां पहले से ही हमारी हैं। यह हम ही हैं जिन्होंने अपनी आँखों के सामने हाथ रख लिया और रो रहे हैं कि अंधेरा है।",
+        "author": "स्वामी विवेकानंद",
+        "category": "एकाग्रता"
       },
       "fr": {
-        "quote": "Toutes les forces de l'univers sont d\u00e9j\u00e0 en nous. C'est nous qui fermons les yeux et crions qu'il fait noir.",
+        "quote": "Toutes les forces de l'univers sont déjà en nous. C'est nous qui fermons les yeux et crions qu'il fait noir.",
         "author": "Swami Vivekananda",
         "category": "Focus"
       }
@@ -119,17 +119,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Learning"
       },
       "te": {
-        "quote": "\u0c38\u0c24\u0c4d\u0c2f\u0c3e\u0c28\u0c4d\u0c28\u0c3f \u0c35\u0c47\u0c2f\u0c3f \u0c30\u0c15\u0c3e\u0c32\u0c41\u0c17\u0c3e \u0c1a\u0c46\u0c2a\u0c4d\u0c2a\u0c35\u0c1a\u0c4d\u0c1a\u0c41, \u0c05\u0c2f\u0c3f\u0c28\u0c3e \u0c2a\u0c4d\u0c30\u0c24\u0c3f \u0c12\u0c15\u0c4d\u0c15\u0c1f\u0c40 \u0c38\u0c24\u0c4d\u0c2f\u0c2e\u0c47.",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c28\u0c47\u0c30\u0c4d\u0c1a\u0c41\u0c15\u0c4b\u0c35\u0c21\u0c02"
+        "quote": "సత్యాన్ని వేయి రకాలుగా చెప్పవచ్చు, అయినా ప్రతి ఒక్కటీ సత్యమే.",
+        "author": "స్వామి వివేకానంద",
+        "category": "నేర్చుకోవడం"
       },
       "hi": {
-        "quote": "\u0938\u0924\u094d\u092f \u0915\u094b \u0939\u091c\u093e\u0930 \u0905\u0932\u0917-\u0905\u0932\u0917 \u0924\u0930\u0940\u0915\u094b\u0902 \u0938\u0947 \u0915\u0939\u093e \u091c\u093e \u0938\u0915\u0924\u093e \u0939\u0948, \u092b\u093f\u0930 \u092d\u0940 \u0939\u0930 \u090f\u0915 \u0938\u0924\u094d\u092f \u0939\u094b \u0938\u0915\u0924\u093e \u0939\u0948\u0964",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0938\u0940\u0916\u0928\u093e"
+        "quote": "सत्य को हजार अलग-अलग तरीकों से कहा जा सकता है, फिर भी हर एक सत्य हो सकता है।",
+        "author": "स्वामी विवेकानंद",
+        "category": "सीखना"
       },
       "fr": {
-        "quote": "La v\u00e9rit\u00e9 peut \u00eatre \u00e9nonc\u00e9e de mille mani\u00e8res diff\u00e9rentes, pourtant chacune peut \u00eatre vraie.",
+        "quote": "La vérité peut être énoncée de mille manières différentes, pourtant chacune peut être vraie.",
         "author": "Swami Vivekananda",
         "category": "Apprentissage"
       }
@@ -149,17 +149,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Service"
       },
       "te": {
-        "quote": "\u0c0e\u0c35\u0c30\u0c3f\u0c28\u0c40 \u0c28\u0c3f\u0c02\u0c26\u0c3f\u0c02\u0c1a\u0c15\u0c02\u0c21\u0c3f: \u0c38\u0c39\u0c3e\u0c2f\u0c02 \u0c1a\u0c47\u0c2f\u0c17\u0c32\u0c3f\u0c17\u0c3f\u0c24\u0c47 \u0c1a\u0c47\u0c2f\u0c02\u0c21\u0c3f. \u0c32\u0c47\u0c15\u0c2a\u0c4b\u0c24\u0c47 \u0c26\u0c02\u0c21\u0c02 \u0c2a\u0c46\u0c1f\u0c4d\u0c1f\u0c3f \u0c2e\u0c40 \u0c26\u0c3e\u0c30\u0c3f\u0c28 \u0c2e\u0c40\u0c30\u0c41 \u0c38\u0c3e\u0c17\u0c02\u0c21\u0c3f.",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c38\u0c47\u0c35"
+        "quote": "ఎవరినీ నిందించకండి: సహాయం చేయగలిగితే చేయండి. లేకపోతే దండం పెట్టి మీ దారిన మీరు సాగండి.",
+        "author": "స్వామి వివేకానంద",
+        "category": "సేవ"
       },
       "hi": {
-        "quote": "\u0915\u093f\u0938\u0940 \u0915\u0940 \u0928\u093f\u0902\u0926\u093e \u0928 \u0915\u0930\u0947\u0902: \u092f\u0926\u093f \u0906\u092a \u092e\u0926\u0926 \u0915\u093e \u0939\u093e\u0925 \u092c\u0922\u093c\u093e \u0938\u0915\u0924\u0947 \u0939\u0948\u0902, \u0924\u094b \u0910\u0938\u093e \u0915\u0930\u0947\u0902\u0964 \u092f\u0926\u093f \u0928\u0939\u0940\u0902 \u0915\u0930 \u0938\u0915\u0924\u0947, \u0924\u094b \u0939\u093e\u0925 \u091c\u094b\u0921\u093c\u0947\u0902, \u0906\u0936\u0940\u0930\u094d\u0935\u093e\u0926 \u0926\u0947\u0902 \u0914\u0930 \u0909\u0928\u094d\u0939\u0947\u0902 \u0905\u092a\u0928\u0947 \u0930\u093e\u0938\u094d\u0924\u0947 \u091c\u093e\u0928\u0947 \u0926\u0947\u0902\u0964",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0938\u0947\u0935\u093e"
+        "quote": "किसी की निंदा न करें: यदि आप मदद का हाथ बढ़ा सकते हैं, तो ऐसा करें। यदि नहीं कर सकते, तो हाथ जोड़ें, आशीर्वाद दें और उन्हें अपने रास्ते जाने दें।",
+        "author": "स्वामी विवेकानंद",
+        "category": "सेवा"
       },
       "fr": {
-        "quote": "Ne condamnez personne: si vous pouvez tendre une main secourable, faites-le. Sinon, joignez les mains, b\u00e9nissez-les et laissez-les suivre leur chemin.",
+        "quote": "Ne condamnez personne: si vous pouvez tendre une main secourable, faites-le. Sinon, joignez les mains, bénissez-les et laissez-les suivre leur chemin.",
         "author": "Swami Vivekananda",
         "category": "Service"
       }
@@ -179,19 +179,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Education"
       },
       "te": {
-        "quote": "\u0c2e\u0c46\u0c26\u0c21\u0c41, \u0c15\u0c02\u0c21\u0c30\u0c3e\u0c32\u0c41 \u0c12\u0c15\u0c47\u0c38\u0c3e\u0c30\u0c3f \u0c05\u0c2d\u0c3f\u0c35\u0c43\u0c26\u0c4d\u0c27\u0c3f \u0c1a\u0c46\u0c02\u0c26\u0c3e\u0c32\u0c3f.",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c35\u0c3f\u0c26\u0c4d\u0c2f"
+        "quote": "మెదడు, కండరాలు ఒకేసారి అభివృద్ధి చెందాలి.",
+        "author": "స్వామి వివేకానంద",
+        "category": "విద్య"
       },
       "hi": {
-        "quote": "\u092e\u0938\u094d\u0924\u093f\u0937\u094d\u0915 \u0914\u0930 \u092e\u093e\u0902\u0938\u092a\u0947\u0936\u093f\u092f\u094b\u0902 \u0915\u093e \u0935\u093f\u0915\u093e\u0938 \u090f\u0915 \u0938\u093e\u0925 \u0939\u094b\u0928\u093e \u091a\u093e\u0939\u093f\u090f\u0964",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0936\u093f\u0915\u094d\u0937\u093e"
+        "quote": "मस्तिष्क और मांसपेशियों का विकास एक साथ होना चाहिए।",
+        "author": "स्वामी विवेकानंद",
+        "category": "शिक्षा"
       },
       "fr": {
-        "quote": "Le cerveau et les muscles doivent se d\u00e9velopper simultan\u00e9ment.",
+        "quote": "Le cerveau et les muscles doivent se développer simultanément.",
         "author": "Swami Vivekananda",
-        "category": "\u00c9ducation"
+        "category": "Éducation"
       }
     }
   },
@@ -209,17 +209,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Discipline"
       },
       "te": {
-        "quote": "\u0c2e\u0c28 \u0c06\u0c32\u0c4b\u0c1a\u0c28\u0c32\u0c47 \u0c2e\u0c28\u0c32\u0c4d\u0c28\u0c3f \u0c24\u0c2f\u0c3e\u0c30\u0c41\u0c1a\u0c47\u0c38\u0c4d\u0c24\u0c3e\u0c2f\u0c3f; \u0c15\u0c3e\u0c2c\u0c1f\u0c4d\u0c1f\u0c3f \u0c2e\u0c40\u0c30\u0c41 \u0c0f\u0c2e\u0c3f \u0c06\u0c32\u0c4b\u0c1a\u0c3f\u0c38\u0c4d\u0c24\u0c41\u0c28\u0c4d\u0c28\u0c3e\u0c30\u0c4b \u0c1c\u0c3e\u0c17\u0c4d\u0c30\u0c24\u0c4d\u0c24 \u0c35\u0c39\u0c3f\u0c02\u0c1a\u0c02\u0c21\u0c3f. \u0c2a\u0c26\u0c3e\u0c32\u0c41 \u0c26\u0c4d\u0c35\u0c3f\u0c24\u0c40\u0c2f\u0c2e\u0c48\u0c28\u0c35\u0c3f.",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c15\u0c4d\u0c30\u0c2e\u0c36\u0c3f\u0c15\u0c4d\u0c37\u0c23"
+        "quote": "మన ఆలోచనలే మనల్ని తయారుచేస్తాయి; కాబట్టి మీరు ఏమి ఆలోచిస్తున్నారో జాగ్రత్త వహించండి. పదాలు ద్వితీయమైనవి.",
+        "author": "స్వామి వివేకానంద",
+        "category": "క్రమశిక్షణ"
       },
       "hi": {
-        "quote": "\u0939\u092e \u0935\u0939\u0940 \u0939\u0948\u0902 \u091c\u094b \u0939\u092e\u093e\u0930\u0947 \u0935\u093f\u091a\u093e\u0930\u094b\u0902 \u0928\u0947 \u0939\u092e\u0947\u0902 \u092c\u0928\u093e\u092f\u093e \u0939\u0948; \u0907\u0938\u0932\u093f\u090f \u0927\u094d\u092f\u093e\u0928 \u0930\u0916\u0947\u0902 \u0915\u093f \u0906\u092a \u0915\u094d\u092f\u093e \u0938\u094b\u091a\u0924\u0947 \u0939\u0948\u0902\u0964 \u0936\u092c\u094d\u0926 \u0917\u094c\u0923 \u0939\u0948\u0902\u0964 \u0935\u093f\u091a\u093e\u0930 \u091c\u0940\u0935\u093f\u0924 \u0930\u0939\u0924\u0947 \u0939\u0948\u0902; \u0935\u0947 \u092c\u0939\u0941\u0924 \u0926\u0942\u0930 \u0924\u0915 \u092f\u093e\u0924\u094d\u0930\u093e \u0915\u0930\u0924\u0947 \u0939\u0948\u0902\u0964",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0905\u0928\u0941\u0936\u093e\u0938\u0928"
+        "quote": "हम वही हैं जो हमारे विचारों ने हमें बनाया है; इसलिए ध्यान रखें कि आप क्या सोचते हैं। शब्द गौण हैं। विचार जीवित रहते हैं; वे बहुत दूर तक यात्रा करते हैं।",
+        "author": "स्वामी विवेकानंद",
+        "category": "अनुशासन"
       },
       "fr": {
-        "quote": "Nous sommes ce que nos pens\u00e9es ont fait de nous; prenez donc soin de ce que vous pensez. Les mots sont secondaires. Les pens\u00e9es vivent; elles voyagent loin.",
+        "quote": "Nous sommes ce que nos pensées ont fait de nous; prenez donc soin de ce que vous pensez. Les mots sont secondaires. Les pensées vivent; elles voyagent loin.",
         "author": "Swami Vivekananda",
         "category": "Discipline"
       }
@@ -239,19 +239,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Dreams"
       },
       "te": {
-        "quote": "\u0c39\u0c43\u0c26\u0c2f\u0c3e\u0c28\u0c3f\u0c15\u0c3f, \u0c2e\u0c46\u0c26\u0c21\u0c41\u0c15\u0c41 \u0c2e\u0c27\u0c4d\u0c2f \u0c18\u0c30\u0c4d\u0c37\u0c23 \u0c35\u0c1a\u0c4d\u0c1a\u0c3f\u0c28\u0c2a\u0c4d\u0c2a\u0c41\u0c21\u0c41 \u0c39\u0c43\u0c26\u0c2f\u0c3e\u0c28\u0c4d\u0c28\u0c3f \u0c05\u0c28\u0c41\u0c38\u0c30\u0c3f\u0c02\u0c1a\u0c02\u0c21\u0c3f.",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c15\u0c32\u0c32\u0c41"
+        "quote": "హృదయానికి, మెదడుకు మధ్య ఘర్షణ వచ్చినప్పుడు హృదయాన్ని అనుసరించండి.",
+        "author": "స్వామి వివేకానంద",
+        "category": "కలలు"
       },
       "hi": {
-        "quote": "\u0926\u093f\u0932 \u0914\u0930 \u0926\u093f\u092e\u093e\u0917 \u0915\u0947 \u091f\u0915\u0930\u093e\u0935 \u092e\u0947\u0902 \u0926\u093f\u0932 \u0915\u0940 \u0938\u0941\u0928\u094b\u0964",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0938\u092a\u0928\u0947"
+        "quote": "दिल और दिमाग के टकराव में दिल की सुनो।",
+        "author": "स्वामी विवेकानंद",
+        "category": "सपने"
       },
       "fr": {
-        "quote": "Dans un conflit entre le c\u0153ur et le cerveau, suivez votre c\u0153ur.",
+        "quote": "Dans un conflit entre le cœur et le cerveau, suivez votre cœur.",
         "author": "Swami Vivekananda",
-        "category": "R\u00eaves"
+        "category": "Rêves"
       }
     }
   },
@@ -269,17 +269,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Learning"
       },
       "te": {
-        "quote": "\u0c2e\u0c40\u0c30\u0c41 \u0c32\u0c4b\u0c2a\u0c32\u0c3f \u0c28\u0c41\u0c02\u0c21\u0c3f \u0c2a\u0c46\u0c30\u0c17\u0c3e\u0c32\u0c3f. \u0c2e\u0c40\u0c15\u0c41 \u0c0e\u0c35\u0c30\u0c42 \u0c28\u0c47\u0c30\u0c4d\u0c2a\u0c3f\u0c02\u0c1a\u0c32\u0c47\u0c30\u0c41, \u0c0e\u0c35\u0c30\u0c42 \u0c2e\u0c3f\u0c2e\u0c4d\u0c2e\u0c32\u0c4d\u0c28\u0c3f \u0c06\u0c27\u0c4d\u0c2f\u0c3e\u0c24\u0c4d\u0c2e\u0c3f\u0c15\u0c02\u0c17\u0c3e \u0c2e\u0c3e\u0c30\u0c4d\u0c1a\u0c32\u0c47\u0c30\u0c41. \u0c2e\u0c40 \u0c06\u0c24\u0c4d\u0c2e \u0c15\u0c02\u0c1f\u0c47 \u0c17\u0c4a\u0c2a\u0c4d\u0c2a \u0c17\u0c41\u0c30\u0c41\u0c35\u0c41 \u0c32\u0c47\u0c21\u0c41.",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c28\u0c47\u0c30\u0c4d\u0c1a\u0c41\u0c15\u0c4b\u0c35\u0c21\u0c02"
+        "quote": "మీరు లోపలి నుండి పెరగాలి. మీకు ఎవరూ నేర్పించలేరు, ఎవరూ మిమ్మల్ని ఆధ్యాత్మికంగా మార్చలేరు. మీ ఆత్మ కంటే గొప్ప గురువు లేడు.",
+        "author": "స్వామి వివేకానంద",
+        "category": "నేర్చుకోవడం"
       },
       "hi": {
-        "quote": "\u0906\u092a\u0915\u094b \u0905\u0902\u0926\u0930 \u0938\u0947 \u092c\u093e\u0939\u0930 \u0915\u0940 \u0913\u0930 \u092c\u0922\u093c\u0928\u093e \u0939\u094b\u0917\u093e\u0964 \u0915\u094b\u0908 \u0906\u092a\u0915\u094b \u0938\u093f\u0916\u093e \u0928\u0939\u0940\u0902 \u0938\u0915\u0924\u093e, \u0915\u094b\u0908 \u0906\u092a\u0915\u094b \u0906\u0927\u094d\u092f\u093e\u0924\u094d\u092e\u093f\u0915 \u0928\u0939\u0940\u0902 \u092c\u0928\u093e \u0938\u0915\u0924\u093e\u0964 \u0906\u092a\u0915\u0940 \u0905\u092a\u0928\u0940 \u0906\u0924\u094d\u092e\u093e \u0915\u0947 \u0905\u0932\u093e\u0935\u093e \u0915\u094b\u0908 \u0926\u0942\u0938\u0930\u093e \u0936\u093f\u0915\u094d\u0937\u0915 \u0928\u0939\u0940\u0902 \u0939\u0948\u0964",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0938\u0940\u0916\u0928\u093e"
+        "quote": "आपको अंदर से बाहर की ओर बढ़ना होगा। कोई आपको सिखा नहीं सकता, कोई आपको आध्यात्मिक नहीं बना सकता। आपकी अपनी आत्मा के अलावा कोई दूसरा शिक्षक नहीं है।",
+        "author": "स्वामी विवेकानंद",
+        "category": "सीखना"
       },
       "fr": {
-        "quote": "Vous devez grandir de l'int\u00e9rieur. Nul ne peut vous enseigner, nul ne peut vous rendre spirituel. Il n'y a d'autre enseignant que votre propre \u00e2me.",
+        "quote": "Vous devez grandir de l'intérieur. Nul ne peut vous enseigner, nul ne peut vous rendre spirituel. Il n'y a d'autre enseignant que votre propre âme.",
         "author": "Swami Vivekananda",
         "category": "Apprentissage"
       }
@@ -299,19 +299,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2a\u0c35\u0c3f\u0c24\u0c4d\u0c30\u0c24, \u0c13\u0c30\u0c4d\u0c2a\u0c41, \u0c2a\u0c1f\u0c4d\u0c1f\u0c41\u0c26\u0c32 \u0c35\u0c3f\u0c1c\u0c2f\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c42\u0c21\u0c41 \u0c2e\u0c41\u0c16\u0c4d\u0c2f\u0c2e\u0c48\u0c28 \u0c05\u0c02\u0c36\u0c3e\u0c32\u0c41, \u0c2e\u0c30\u0c3f\u0c2f\u0c41 \u0c05\u0c28\u0c4d\u0c28\u0c3f\u0c02\u0c1f\u0c3f\u0c15\u0c02\u0c1f\u0c47 \u0c2e\u0c3f\u0c02\u0c1a\u0c3f \u0c2a\u0c4d\u0c30\u0c47\u0c2e.",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "పవిత్రత, ఓర్పు, పట్టుదల విజయానికి మూడు ముఖ్యమైన అంశాలు, మరియు అన్నింటికంటే మించి ప్రేమ.",
+        "author": "స్వామి వివేకానంద",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0938\u092b\u0932\u0924\u093e \u0915\u0947 \u0932\u093f\u090f \u092a\u0935\u093f\u0924\u094d\u0930\u0924\u093e, \u0927\u0948\u0930\u094d\u092f \u0914\u0930 \u0926\u0943\u0922\u093c\u0924\u093e \u0924\u0940\u0928 \u0906\u0935\u0936\u094d\u092f\u0915 \u091a\u0940\u091c\u0947\u0902 \u0939\u0948\u0902 \u0914\u0930 \u0938\u092c\u0938\u0947 \u092c\u0922\u093c\u0915\u0930, \u092a\u094d\u0930\u0947\u092e\u0964",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "सफलता के लिए पवित्रता, धैर्य और दृढ़ता तीन आवश्यक चीजें हैं और सबसे बढ़कर, प्रेम।",
+        "author": "स्वामी विवेकानंद",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "La puret\u00e9, la patience et la pers\u00e9v\u00e9rance sont les trois \u00e9l\u00e9ments essentiels du succ\u00e8s et, par-dessus tout, l'amour.",
+        "quote": "La pureté, la patience et la persévérance sont les trois éléments essentiels du succès et, par-dessus tout, l'amour.",
         "author": "Swami Vivekananda",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -329,17 +329,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Discipline"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #11)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c15\u0c4d\u0c30\u0c2e\u0c36\u0c3f\u0c15\u0c4d\u0c37\u0c23"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #11)",
+        "author": "స్వామి వివేకానంద",
+        "category": "క్రమశిక్షణ"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #11)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0905\u0928\u0941\u0936\u093e\u0938\u0928"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #11)",
+        "author": "स्वामी विवेकानंद",
+        "category": "अनुशासन"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #11)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #11)",
         "author": "Swami Vivekananda",
         "category": "Discipline"
       }
@@ -359,17 +359,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #12)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #12)",
+        "author": "స్వామి వివేకానంద",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #12)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #12)",
+        "author": "स्वामी विवेकानंद",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #12)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #12)",
         "author": "Swami Vivekananda",
         "category": "Confiance"
       }
@@ -389,17 +389,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Discipline"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #13)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c15\u0c4d\u0c30\u0c2e\u0c36\u0c3f\u0c15\u0c4d\u0c37\u0c23"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #13)",
+        "author": "స్వామి వివేకానంద",
+        "category": "క్రమశిక్షణ"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #13)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0905\u0928\u0941\u0936\u093e\u0938\u0928"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #13)",
+        "author": "स्वामी विवेकानंद",
+        "category": "अनुशासन"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #13)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #13)",
         "author": "Swami Vivekananda",
         "category": "Discipline"
       }
@@ -419,17 +419,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Service"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #14)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c38\u0c47\u0c35"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #14)",
+        "author": "స్వామి వివేకానంద",
+        "category": "సేవ"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #14)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0938\u0947\u0935\u093e"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #14)",
+        "author": "स्वामी विवेकानंद",
+        "category": "सेवा"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #14)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #14)",
         "author": "Swami Vivekananda",
         "category": "Service"
       }
@@ -449,17 +449,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #15)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #15)",
+        "author": "స్వామి వివేకానంద",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #15)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #15)",
+        "author": "स्वामी विवेकानंद",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #15)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #15)",
         "author": "Swami Vivekananda",
         "category": "Confiance"
       }
@@ -479,19 +479,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #16)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #16)",
+        "author": "స్వామి వివేకానంద",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #16)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #16)",
+        "author": "स्वामी विवेकानंद",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #16)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #16)",
         "author": "Swami Vivekananda",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -509,17 +509,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Discipline"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #17)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c15\u0c4d\u0c30\u0c2e\u0c36\u0c3f\u0c15\u0c4d\u0c37\u0c23"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #17)",
+        "author": "స్వామి వివేకానంద",
+        "category": "క్రమశిక్షణ"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #17)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0905\u0928\u0941\u0936\u093e\u0938\u0928"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #17)",
+        "author": "स्वामी विवेकानंद",
+        "category": "अनुशासन"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #17)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #17)",
         "author": "Swami Vivekananda",
         "category": "Discipline"
       }
@@ -539,17 +539,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #18)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #18)",
+        "author": "స్వామి వివేకానంద",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #18)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #18)",
+        "author": "स्वामी विवेकानंद",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #18)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #18)",
         "author": "Swami Vivekananda",
         "category": "Confiance"
       }
@@ -569,17 +569,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Discipline"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #19)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c15\u0c4d\u0c30\u0c2e\u0c36\u0c3f\u0c15\u0c4d\u0c37\u0c23"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #19)",
+        "author": "స్వామి వివేకానంద",
+        "category": "క్రమశిక్షణ"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #19)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0905\u0928\u0941\u0936\u093e\u0938\u0928"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #19)",
+        "author": "स्वामी विवेकानंद",
+        "category": "अनुशासन"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #19)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #19)",
         "author": "Swami Vivekananda",
         "category": "Discipline"
       }
@@ -599,19 +599,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Education"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #20)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c35\u0c3f\u0c26\u0c4d\u0c2f"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #20)",
+        "author": "స్వామి వివేకానంద",
+        "category": "విద్య"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #20)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0936\u093f\u0915\u094d\u0937\u093e"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #20)",
+        "author": "स्वामी विवेकानंद",
+        "category": "शिक्षा"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #20)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #20)",
         "author": "Swami Vivekananda",
-        "category": "\u00c9ducation"
+        "category": "Éducation"
       }
     }
   },
@@ -629,17 +629,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #21)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #21)",
+        "author": "స్వామి వివేకానంద",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #21)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #21)",
+        "author": "स्वामी विवेकानंद",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #21)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #21)",
         "author": "Swami Vivekananda",
         "category": "Confiance"
       }
@@ -659,19 +659,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #22)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #22)",
+        "author": "స్వామి వివేకానంద",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #22)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #22)",
+        "author": "स्वामी विवेकानंद",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #22)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #22)",
         "author": "Swami Vivekananda",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -689,17 +689,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Discipline"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #23)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c15\u0c4d\u0c30\u0c2e\u0c36\u0c3f\u0c15\u0c4d\u0c37\u0c23"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #23)",
+        "author": "స్వామి వివేకానంద",
+        "category": "క్రమశిక్షణ"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #23)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0905\u0928\u0941\u0936\u093e\u0938\u0928"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #23)",
+        "author": "स्वामी विवेकानंद",
+        "category": "अनुशासन"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #23)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #23)",
         "author": "Swami Vivekananda",
         "category": "Discipline"
       }
@@ -719,17 +719,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #24)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #24)",
+        "author": "స్వామి వివేకానంద",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #24)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #24)",
+        "author": "स्वामी विवेकानंद",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #24)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #24)",
         "author": "Swami Vivekananda",
         "category": "Confiance"
       }
@@ -749,19 +749,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Education"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #25)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c35\u0c3f\u0c26\u0c4d\u0c2f"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #25)",
+        "author": "స్వామి వివేకానంద",
+        "category": "విద్య"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #25)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0936\u093f\u0915\u094d\u0937\u093e"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #25)",
+        "author": "स्वामी विवेकानंद",
+        "category": "शिक्षा"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #25)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #25)",
         "author": "Swami Vivekananda",
-        "category": "\u00c9ducation"
+        "category": "Éducation"
       }
     }
   },
@@ -779,19 +779,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #26)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #26)",
+        "author": "స్వామి వివేకానంద",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #26)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #26)",
+        "author": "स्वामी विवेकानंद",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #26)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #26)",
         "author": "Swami Vivekananda",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -809,17 +809,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #27)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #27)",
+        "author": "స్వామి వివేకానంద",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #27)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #27)",
+        "author": "स्वामी विवेकानंद",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #27)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #27)",
         "author": "Swami Vivekananda",
         "category": "Confiance"
       }
@@ -839,17 +839,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Service"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #28)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c38\u0c47\u0c35"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #28)",
+        "author": "స్వామి వివేకానంద",
+        "category": "సేవ"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #28)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0938\u0947\u0935\u093e"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #28)",
+        "author": "स्वामी विवेकानंद",
+        "category": "सेवा"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #28)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #28)",
         "author": "Swami Vivekananda",
         "category": "Service"
       }
@@ -869,17 +869,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Discipline"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #29)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c15\u0c4d\u0c30\u0c2e\u0c36\u0c3f\u0c15\u0c4d\u0c37\u0c23"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #29)",
+        "author": "స్వామి వివేకానంద",
+        "category": "క్రమశిక్షణ"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #29)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0905\u0928\u0941\u0936\u093e\u0938\u0928"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #29)",
+        "author": "स्वामी विवेकानंद",
+        "category": "अनुशासन"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #29)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #29)",
         "author": "Swami Vivekananda",
         "category": "Discipline"
       }
@@ -899,17 +899,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #30)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #30)",
+        "author": "స్వామి వివేకానంద",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #30)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #30)",
+        "author": "स्वामी विवेकानंद",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #30)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #30)",
         "author": "Swami Vivekananda",
         "category": "Confiance"
       }
@@ -929,17 +929,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Discipline"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #31)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c15\u0c4d\u0c30\u0c2e\u0c36\u0c3f\u0c15\u0c4d\u0c37\u0c23"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #31)",
+        "author": "స్వామి వివేకానంద",
+        "category": "క్రమశిక్షణ"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #31)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0905\u0928\u0941\u0936\u093e\u0938\u0928"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #31)",
+        "author": "स्वामी विवेकानंद",
+        "category": "अनुशासन"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #31)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #31)",
         "author": "Swami Vivekananda",
         "category": "Discipline"
       }
@@ -959,19 +959,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #32)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #32)",
+        "author": "స్వామి వివేకానంద",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #32)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #32)",
+        "author": "स्वामी विवेकानंद",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #32)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #32)",
         "author": "Swami Vivekananda",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -989,17 +989,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #33)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #33)",
+        "author": "స్వామి వివేకానంద",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #33)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #33)",
+        "author": "स्वामी विवेकानंद",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #33)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #33)",
         "author": "Swami Vivekananda",
         "category": "Confiance"
       }
@@ -1019,19 +1019,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #34)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #34)",
+        "author": "స్వామి వివేకానంద",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #34)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #34)",
+        "author": "स्वामी विवेकानंद",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #34)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #34)",
         "author": "Swami Vivekananda",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -1049,19 +1049,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Education"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #35)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c35\u0c3f\u0c26\u0c4d\u0c2f"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #35)",
+        "author": "స్వామి వివేకానంద",
+        "category": "విద్య"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #35)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0936\u093f\u0915\u094d\u0937\u093e"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #35)",
+        "author": "स्वामी विवेकानंद",
+        "category": "शिक्षा"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #35)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #35)",
         "author": "Swami Vivekananda",
-        "category": "\u00c9ducation"
+        "category": "Éducation"
       }
     }
   },
@@ -1079,17 +1079,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #36)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #36)",
+        "author": "స్వామి వివేకానంద",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #36)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #36)",
+        "author": "स्वामी विवेकानंद",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #36)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #36)",
         "author": "Swami Vivekananda",
         "category": "Confiance"
       }
@@ -1109,17 +1109,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Discipline"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #37)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c15\u0c4d\u0c30\u0c2e\u0c36\u0c3f\u0c15\u0c4d\u0c37\u0c23"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #37)",
+        "author": "స్వామి వివేకానంద",
+        "category": "క్రమశిక్షణ"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #37)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0905\u0928\u0941\u0936\u093e\u0938\u0928"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #37)",
+        "author": "स्वामी विवेकानंद",
+        "category": "अनुशासन"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #37)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #37)",
         "author": "Swami Vivekananda",
         "category": "Discipline"
       }
@@ -1139,19 +1139,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #38)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #38)",
+        "author": "స్వామి వివేకానంద",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #38)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #38)",
+        "author": "स्वामी विवेकानंद",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #38)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #38)",
         "author": "Swami Vivekananda",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -1169,17 +1169,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #39)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #39)",
+        "author": "స్వామి వివేకానంద",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #39)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #39)",
+        "author": "स्वामी विवेकानंद",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #39)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #39)",
         "author": "Swami Vivekananda",
         "category": "Confiance"
       }
@@ -1199,19 +1199,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Education"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #40)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c35\u0c3f\u0c26\u0c4d\u0c2f"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #40)",
+        "author": "స్వామి వివేకానంద",
+        "category": "విద్య"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #40)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0936\u093f\u0915\u094d\u0937\u093e"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #40)",
+        "author": "स्वामी विवेकानंद",
+        "category": "शिक्षा"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #40)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #40)",
         "author": "Swami Vivekananda",
-        "category": "\u00c9ducation"
+        "category": "Éducation"
       }
     }
   },
@@ -1229,17 +1229,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Discipline"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #41)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c15\u0c4d\u0c30\u0c2e\u0c36\u0c3f\u0c15\u0c4d\u0c37\u0c23"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #41)",
+        "author": "స్వామి వివేకానంద",
+        "category": "క్రమశిక్షణ"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #41)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0905\u0928\u0941\u0936\u093e\u0938\u0928"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #41)",
+        "author": "स्वामी विवेकानंद",
+        "category": "अनुशासन"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #41)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #41)",
         "author": "Swami Vivekananda",
         "category": "Discipline"
       }
@@ -1259,17 +1259,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #42)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #42)",
+        "author": "స్వామి వివేకానంద",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #42)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #42)",
+        "author": "स्वामी विवेकानंद",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #42)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #42)",
         "author": "Swami Vivekananda",
         "category": "Confiance"
       }
@@ -1289,17 +1289,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Discipline"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #43)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c15\u0c4d\u0c30\u0c2e\u0c36\u0c3f\u0c15\u0c4d\u0c37\u0c23"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #43)",
+        "author": "స్వామి వివేకానంద",
+        "category": "క్రమశిక్షణ"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #43)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0905\u0928\u0941\u0936\u093e\u0938\u0928"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #43)",
+        "author": "स्वामी विवेकानंद",
+        "category": "अनुशासन"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #43)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #43)",
         "author": "Swami Vivekananda",
         "category": "Discipline"
       }
@@ -1319,19 +1319,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #44)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #44)",
+        "author": "స్వామి వివేకానంద",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #44)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #44)",
+        "author": "स्वामी विवेकानंद",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #44)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #44)",
         "author": "Swami Vivekananda",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -1349,17 +1349,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #45)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #45)",
+        "author": "స్వామి వివేకానంద",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #45)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #45)",
+        "author": "स्वामी विवेकानंद",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #45)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #45)",
         "author": "Swami Vivekananda",
         "category": "Confiance"
       }
@@ -1379,19 +1379,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #46)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #46)",
+        "author": "స్వామి వివేకానంద",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #46)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #46)",
+        "author": "स्वामी विवेकानंद",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #46)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #46)",
         "author": "Swami Vivekananda",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -1409,17 +1409,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Discipline"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #47)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c15\u0c4d\u0c30\u0c2e\u0c36\u0c3f\u0c15\u0c4d\u0c37\u0c23"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #47)",
+        "author": "స్వామి వివేకానంద",
+        "category": "క్రమశిక్షణ"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #47)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0905\u0928\u0941\u0936\u093e\u0938\u0928"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #47)",
+        "author": "स्वामी विवेकानंद",
+        "category": "अनुशासन"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #47)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #47)",
         "author": "Swami Vivekananda",
         "category": "Discipline"
       }
@@ -1439,17 +1439,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #48)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #48)",
+        "author": "స్వామి వివేకానంద",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #48)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #48)",
+        "author": "स्वामी विवेकानंद",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #48)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #48)",
         "author": "Swami Vivekananda",
         "category": "Confiance"
       }
@@ -1469,17 +1469,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Service"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #49)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c38\u0c47\u0c35"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #49)",
+        "author": "స్వామి వివేకానంద",
+        "category": "సేవ"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #49)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0938\u0947\u0935\u093e"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #49)",
+        "author": "स्वामी विवेकानंद",
+        "category": "सेवा"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #49)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #49)",
         "author": "Swami Vivekananda",
         "category": "Service"
       }
@@ -1499,19 +1499,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Education"
       },
       "te": {
-        "quote": "\u0c2c\u0c32\u0c2e\u0c47 \u0c1c\u0c40\u0c35\u0c3f\u0c24\u0c02, \u0c2c\u0c32\u0c39\u0c40\u0c28\u0c24\u0c2f\u0c47 \u0c2e\u0c30\u0c23\u0c02. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #50)",
-        "author": "\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c35\u0c3f\u0c35\u0c47\u0c15\u0c3e\u0c28\u0c02\u0c26",
-        "category": "\u0c35\u0c3f\u0c26\u0c4d\u0c2f"
+        "quote": "బలమే జీవితం, బలహీనతయే మరణం. (ఉల్లేఖన #50)",
+        "author": "స్వామి వివేకానంద",
+        "category": "విద్య"
       },
       "hi": {
-        "quote": "\u0936\u0915\u094d\u0924\u093f \u091c\u0940\u0935\u0928 \u0939\u0948, \u0915\u092e\u091c\u094b\u0930\u0940 \u092e\u0943\u0924\u094d\u092f\u0941 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #50)",
-        "author": "\u0938\u094d\u0935\u093e\u092e\u0940 \u0935\u093f\u0935\u0947\u0915\u093e\u0928\u0902\u0926",
-        "category": "\u0936\u093f\u0915\u094d\u0937\u093e"
+        "quote": "शक्ति जीवन है, कमजोरी मृत्यु है। (संदर्भ #50)",
+        "author": "स्वामी विवेकानंद",
+        "category": "शिक्षा"
       },
       "fr": {
-        "quote": "La force est la vie, la faiblesse est la mort. (R\u00e9f #50)",
+        "quote": "La force est la vie, la faiblesse est la mort. (Réf #50)",
         "author": "Swami Vivekananda",
-        "category": "\u00c9ducation"
+        "category": "Éducation"
       }
     }
   },
@@ -1529,19 +1529,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Dreams"
       },
       "te": {
-        "quote": "\u0c15\u0c32\u0c32\u0c41 \u0c05\u0c02\u0c1f\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c28\u0c3f\u0c26\u0c4d\u0c30\u0c2a\u0c4b\u0c2f\u0c47\u0c1f\u0c2a\u0c4d\u0c2a\u0c41\u0c21\u0c41 \u0c1a\u0c42\u0c38\u0c47\u0c35\u0c3f \u0c15\u0c3e\u0c35\u0c41, \u0c2e\u0c3f\u0c2e\u0c4d\u0c2e\u0c32\u0c4d\u0c28\u0c3f \u0c28\u0c3f\u0c26\u0c4d\u0c30\u0c2a\u0c4b\u0c28\u0c3f\u0c35\u0c4d\u0c35\u0c28\u0c3f\u0c35\u0c47 \u0c15\u0c32\u0c32\u0c41.",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c15\u0c32\u0c32\u0c41"
+        "quote": "కలలు అంటే మీరు నిద్రపోయేటప్పుడు చూసేవి కావు, మిమ్మల్ని నిద్రపోనివ్వనివే కలలు.",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "కలలు"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0935\u094b \u0928\u0939\u0940\u0902 \u091c\u094b \u0939\u092e \u0938\u094b\u0924\u0947 \u0939\u0941\u090f \u0926\u0947\u0916\u0924\u0947 \u0939\u0948\u0902, \u0938\u092a\u0928\u0947 \u0935\u094b \u0939\u0948\u0902 \u091c\u094b \u0939\u092e\u0947\u0902 \u0938\u094b\u0928\u0947 \u0928\u0939\u0940\u0902 \u0926\u0947\u0924\u0947\u0964",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092a\u0928\u0947"
+        "quote": "सपने वो नहीं जो हम सोते हुए देखते हैं, सपने वो हैं जो हमें सोने नहीं देते।",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सपने"
       },
       "fr": {
-        "quote": "Le r\u00eave n'est pas ce que vous voyez en dormant, c'est ce qui vous emp\u00eache de dormir.",
+        "quote": "Le rêve n'est pas ce que vous voyez en dormant, c'est ce qui vous empêche de dormir.",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "R\u00eaves"
+        "category": "Rêves"
       }
     }
   },
@@ -1559,17 +1559,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Focus"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2f\u0c02\u0c32\u0c4b \u0c35\u0c3f\u0c1c\u0c2f\u0c02 \u0c38\u0c3e\u0c27\u0c3f\u0c02\u0c1a\u0c3e\u0c32\u0c02\u0c1f\u0c47, \u0c2e\u0c40 \u0c27\u0c4d\u0c2f\u0c3e\u0c38 \u0c05\u0c02\u0c24\u0c3e \u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2f\u0c02 \u0c2e\u0c40\u0c26\u0c47 \u0c09\u0c02\u0c21\u0c3e\u0c32\u0c3f.",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c0f\u0c15\u0c3e\u0c17\u0c4d\u0c30\u0c24"
+        "quote": "మీ లక్ష్యంలో విజయం సాధించాలంటే, మీ ధ్యాస అంతా లక్ష్యం మీదే ఉండాలి.",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "ఏకాగ్రత"
       },
       "hi": {
-        "quote": "\u0905\u092a\u0928\u0947 \u092e\u093f\u0936\u0928 \u092e\u0947\u0902 \u0938\u092b\u0932 \u0939\u094b\u0928\u0947 \u0915\u0947 \u0932\u093f\u090f, \u0906\u092a\u0915\u0947 \u092a\u093e\u0938 \u0905\u092a\u0928\u0947 \u0932\u0915\u094d\u0937\u094d\u092f \u0915\u0947 \u092a\u094d\u0930\u0924\u093f \u090f\u0915\u0928\u093f\u0937\u094d\u0920 \u092d\u0915\u094d\u0924\u093f \u0939\u094b\u0928\u0940 \u091a\u093e\u0939\u093f\u090f\u0964",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u090f\u0915\u093e\u0917\u094d\u0930\u0924\u093e"
+        "quote": "अपने मिशन में सफल होने के लिए, आपके पास अपने लक्ष्य के प्रति एकनिष्ठ भक्ति होनी चाहिए।",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "एकाग्रता"
       },
       "fr": {
-        "quote": "Pour r\u00e9ussir votre mission, vous devez avoir un d\u00e9vouement exclusif \u00e0 votre objectif.",
+        "quote": "Pour réussir votre mission, vous devez avoir un dévouement exclusif à votre objectif.",
         "author": "Dr. A. P. J. Abdul Kalam",
         "category": "Focus"
       }
@@ -1589,19 +1589,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Hard Work"
       },
       "te": {
-        "quote": "\u0c28\u0c41\u0c35\u0c4d\u0c35\u0c41 \u0c38\u0c42\u0c30\u0c4d\u0c2f\u0c41\u0c21\u0c3f\u0c32\u0c3e \u0c2a\u0c4d\u0c30\u0c15\u0c3e\u0c36\u0c3f\u0c02\u0c1a\u0c3e\u0c32\u0c02\u0c1f\u0c47, \u0c2e\u0c4a\u0c26\u0c1f \u0c38\u0c42\u0c30\u0c4d\u0c2f\u0c41\u0c21\u0c3f\u0c32\u0c3e \u0c2e\u0c02\u0c21\u0c3e\u0c32\u0c3f.",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c15\u0c37\u0c4d\u0c1f\u0c2a\u0c21\u0c1f\u0c02"
+        "quote": "నువ్వు సూర్యుడిలా ప్రకాశించాలంటే, మొదట సూర్యుడిలా మండాలి.",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "కష్టపడటం"
       },
       "hi": {
-        "quote": "\u0905\u0917\u0930 \u0924\u0941\u092e \u0938\u0942\u0930\u091c \u0915\u0940 \u0924\u0930\u0939 \u091a\u092e\u0915\u0928\u093e \u091a\u093e\u0939\u0924\u0947 \u0939\u094b, \u0924\u094b \u092a\u0939\u0932\u0947 \u0938\u0942\u0930\u091c \u0915\u0940 \u0924\u0930\u0939 \u091c\u0932\u0928\u093e \u0938\u0940\u0916\u094b\u0964",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0915\u0921\u093c\u0940 \u092e\u0947\u0939\u0928\u0924"
+        "quote": "अगर तुम सूरज की तरह चमकना चाहते हो, तो पहले सूरज की तरह जलना सीखो।",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "कड़ी मेहनत"
       },
       "fr": {
-        "quote": "Si vous voulez briller comme un soleil, commencez par br\u00fbler comme un soleil.",
+        "quote": "Si vous voulez briller comme un soleil, commencez par brûler comme un soleil.",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Travail Acharn\u00e9"
+        "category": "Travail Acharné"
       }
     }
   },
@@ -1619,19 +1619,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Education"
       },
       "te": {
-        "quote": "\u0c2e\u0c28\u0c02\u0c26\u0c30\u0c3f\u0c15\u0c40 \u0c38\u0c2e\u0c3e\u0c28 \u0c2a\u0c4d\u0c30\u0c24\u0c3f\u0c2d \u0c09\u0c02\u0c21\u0c15\u0c2a\u0c4b\u0c35\u0c1a\u0c4d\u0c1a\u0c41. \u0c15\u0c3e\u0c28\u0c40, \u0c2e\u0c28 \u0c2a\u0c4d\u0c30\u0c24\u0c3f\u0c2d\u0c28\u0c41 \u0c2a\u0c46\u0c02\u0c2a\u0c4a\u0c02\u0c26\u0c3f\u0c02\u0c1a\u0c41\u0c15\u0c4b\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c28\u0c02\u0c26\u0c30\u0c3f\u0c15\u0c40 \u0c38\u0c2e\u0c3e\u0c28 \u0c05\u0c35\u0c15\u0c3e\u0c36\u0c02 \u0c09\u0c02\u0c26\u0c3f.",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c35\u0c3f\u0c26\u0c4d\u0c2f"
+        "quote": "మనందరికీ సమాన ప్రతిభ ఉండకపోవచ్చు. కానీ, మన ప్రతిభను పెంపొందించుకోవడానికి మనందరికీ సమాన అవకాశం ఉంది.",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "విద్య"
       },
       "hi": {
-        "quote": "\u0939\u092e \u0938\u092d\u0940 \u0915\u0947 \u092a\u093e\u0938 \u0938\u092e\u093e\u0928 \u092a\u094d\u0930\u0924\u093f\u092d\u093e \u0928\u0939\u0940\u0902 \u0939\u094b\u0924\u0940 \u0939\u0948\u0964 \u0932\u0947\u0915\u093f\u0928, \u0939\u092e \u0938\u092d\u0940 \u0915\u0947 \u092a\u093e\u0938 \u0905\u092a\u0928\u0940 \u092a\u094d\u0930\u0924\u093f\u092d\u093e \u0915\u094b \u0935\u093f\u0915\u0938\u093f\u0924 \u0915\u0930\u0928\u0947 \u0915\u093e \u0938\u092e\u093e\u0928 \u0905\u0935\u0938\u0930 \u0939\u094b\u0924\u093e \u0939\u0948\u0964",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0936\u093f\u0915\u094d\u0937\u093e"
+        "quote": "हम सभी के पास समान प्रतिभा नहीं होती है। लेकिन, हम सभी के पास अपनी प्रतिभा को विकसित करने का समान अवसर होता है।",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "शिक्षा"
       },
       "fr": {
-        "quote": "Nous n'avons pas tous le m\u00eame talent. Mais nous avons tous une opportunit\u00e9 \u00e9gale de d\u00e9velopper nos talents.",
+        "quote": "Nous n'avons pas tous le même talent. Mais nous avons tous une opportunité égale de développer nos talents.",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "\u00c9ducation"
+        "category": "Éducation"
       }
     }
   },
@@ -1649,19 +1649,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2e\u0c4a\u0c26\u0c1f\u0c3f \u0c35\u0c3f\u0c1c\u0c2f\u0c02 \u0c24\u0c30\u0c4d\u0c35\u0c3e\u0c24 \u0c35\u0c3f\u0c36\u0c4d\u0c30\u0c2e\u0c3f\u0c02\u0c1a\u0c15\u0c02\u0c21\u0c3f, \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c30\u0c46\u0c02\u0c21\u0c4b\u0c38\u0c3e\u0c30\u0c3f \u0c35\u0c3f\u0c2b\u0c32\u0c2e\u0c48\u0c24\u0c47 \u0c2e\u0c4a\u0c26\u0c1f\u0c3f \u0c35\u0c3f\u0c1c\u0c2f\u0c02 \u0c05\u0c26\u0c43\u0c37\u0c4d\u0c1f\u0c2e\u0c47\u0c28\u0c28\u0c3f \u0c1a\u0c46\u0c2a\u0c4d\u0c2a\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c1a\u0c3e\u0c32\u0c3e \u0c2e\u0c02\u0c26\u0c3f \u0c0e\u0c26\u0c41\u0c30\u0c41\u0c1a\u0c42\u0c38\u0c4d\u0c24\u0c41\u0c02\u0c1f\u0c3e\u0c30\u0c41.",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "మొదటి విజయం తర్వాత విశ్రమించకండి, ఎందుకంటే రెండోసారి విఫలమైతే మొదటి విజయం అదృష్టమేనని చెప్పడానికి చాలా మంది ఎదురుచూస్తుంటారు.",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0905\u092a\u0928\u0940 \u092a\u0939\u0932\u0940 \u091c\u0940\u0924 \u0915\u0947 \u092c\u093e\u0926 \u0906\u0930\u093e\u092e \u092e\u0924 \u0915\u0930\u094b \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0905\u0917\u0930 \u0924\u0941\u092e \u0926\u0942\u0938\u0930\u0940 \u092c\u093e\u0930 \u092e\u0947\u0902 \u0905\u0938\u092b\u0932 \u0939\u094b \u0917\u090f, \u0924\u094b \u0915\u0908 \u0932\u094b\u0917 \u092f\u0939 \u0915\u0939\u0928\u0947 \u0915\u0947 \u0932\u093f\u090f \u0907\u0902\u0924\u091c\u093e\u0930 \u0915\u0930 \u0930\u0939\u0947 \u0939\u0948\u0902 \u0915\u093f \u0924\u0941\u092e\u094d\u0939\u093e\u0930\u0940 \u092a\u0939\u0932\u0940 \u091c\u0940\u0924 \u0938\u093f\u0930\u094d\u092b \u0915\u093f\u0938\u094d\u092e\u0924 \u0925\u0940\u0964",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "अपनी पहली जीत के बाद आराम मत करो क्योंकि अगर तुम दूसरी बार में असफल हो गए, तो कई लोग यह कहने के लिए इंतजार कर रहे हैं कि तुम्हारी पहली जीत सिर्फ किस्मत थी।",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "Ne vous reposez pas apr\u00e8s votre premi\u00e8re victoire, car si vous \u00e9chouez \u00e0 la seconde, de nombreuses l\u00e8vres attendent de dire que votre premi\u00e8re victoire n'\u00e9tait que de la chance.",
+        "quote": "Ne vous reposez pas après votre première victoire, car si vous échouez à la seconde, de nombreuses lèvres attendent de dire que votre première victoire n'était que de la chance.",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -1679,17 +1679,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02 \u0c38\u0c3e\u0c27\u0c3f\u0c02\u0c1a\u0c3e\u0c32\u0c28\u0c47 \u0c28\u0c3e \u0c38\u0c02\u0c15\u0c32\u0c4d\u0c2a\u0c02 \u0c2c\u0c32\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c1f\u0c47 \u0c35\u0c48\u0c2b\u0c32\u0c4d\u0c2f\u0c02 \u0c28\u0c28\u0c4d\u0c28\u0c41 \u0c0e\u0c2a\u0c4d\u0c2a\u0c1f\u0c3f\u0c15\u0c40 \u0c13\u0c21\u0c3f\u0c02\u0c1a\u0c32\u0c47\u0c26\u0c41.",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "విజయం సాధించాలనే నా సంకల్పం బలంగా ఉంటే వైఫల్యం నన్ను ఎప్పటికీ ఓడించలేదు.",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u0905\u0917\u0930 \u0938\u092b\u0932 \u0939\u094b\u0928\u0947 \u0915\u093e \u092e\u0947\u0930\u093e \u0938\u0902\u0915\u0932\u094d\u092a \u0915\u093e\u092b\u0940 \u092e\u091c\u092c\u0942\u0924 \u0939\u0948, \u0924\u094b \u0905\u0938\u092b\u0932\u0924\u093e \u092e\u0941\u091d\u0947 \u0915\u092d\u0940 \u092a\u091b\u093e\u0921\u093c \u0928\u0939\u0940\u0902 \u092a\u093e\u090f\u0917\u0940\u0964",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "अगर सफल होने का मेरा संकल्प काफी मजबूत है, तो असफलता मुझे कभी पछाड़ नहीं पाएगी।",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "L'\u00e9chec ne me rattrapera jamais si ma d\u00e9termination \u00e0 r\u00e9ussir est assez forte.",
+        "quote": "L'échec ne me rattrapera jamais si ma détermination à réussir est assez forte.",
         "author": "Dr. A. P. J. Abdul Kalam",
         "category": "Confiance"
       }
@@ -1709,19 +1709,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Hard Work"
       },
       "te": {
-        "quote": "\u0c35\u0c48\u0c2b\u0c32\u0c4d\u0c2f\u0c02 \u0c05\u0c28\u0c47 \u0c35\u0c4d\u0c2f\u0c3e\u0c27\u0c3f\u0c28\u0c3f \u0c1a\u0c02\u0c2a\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02, \u0c36\u0c4d\u0c30\u0c2e \u0c05\u0c28\u0c47\u0c35\u0c3f \u0c09\u0c24\u0c4d\u0c24\u0c2e\u0c2e\u0c48\u0c28 \u0c2e\u0c02\u0c26\u0c41\u0c32\u0c41. \u0c07\u0c26\u0c3f \u0c2e\u0c3f\u0c2e\u0c4d\u0c2e\u0c32\u0c4d\u0c28\u0c3f \u0c35\u0c3f\u0c1c\u0c2f\u0c35\u0c02\u0c24\u0c2e\u0c48\u0c28 \u0c35\u0c4d\u0c2f\u0c15\u0c4d\u0c24\u0c3f\u0c17\u0c3e \u0c1a\u0c47\u0c38\u0c4d\u0c24\u0c41\u0c02\u0c26\u0c3f.",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c15\u0c37\u0c4d\u0c1f\u0c2a\u0c21\u0c1f\u0c02"
+        "quote": "వైఫల్యం అనే వ్యాధిని చంపడానికి ఆత్మవిశ్వాసం, శ్రమ అనేవి ఉత్తమమైన మందులు. ఇది మిమ్మల్ని విజయవంతమైన వ్యక్తిగా చేస్తుంది.",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "కష్టపడటం"
       },
       "hi": {
-        "quote": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938 \u0914\u0930 \u0915\u0921\u093c\u0940 \u092e\u0947\u0939\u0928\u0924 \u0935\u093f\u092b\u0932\u0924\u093e \u0928\u093e\u092e\u0915 \u092c\u0940\u092e\u093e\u0930\u0940 \u0915\u094b \u092e\u093e\u0930\u0928\u0947 \u0915\u0940 \u0938\u092c\u0938\u0947 \u0905\u091a\u094d\u091b\u0940 \u0926\u0935\u093e \u0939\u0948\u0964 \u092f\u0939 \u0906\u092a\u0915\u094b \u090f\u0915 \u0938\u092b\u0932 \u0907\u0902\u0938\u093e\u0928 \u092c\u0928\u093e\u090f\u0917\u0940\u0964",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0915\u0921\u093c\u0940 \u092e\u0947\u0939\u0928\u0924"
+        "quote": "आत्मविश्वास और कड़ी मेहनत विफलता नामक बीमारी को मारने की सबसे अच्छी दवा है। यह आपको एक सफल इंसान बनाएगी।",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "कड़ी मेहनत"
       },
       "fr": {
-        "quote": "La confiance et le travail acharn\u00e9 sont le meilleur rem\u00e8de pour tuer la maladie appel\u00e9e \u00e9chec. Cela fera de vous une personne prosp\u00e8re.",
+        "quote": "La confiance et le travail acharné sont le meilleur remède pour tuer la maladie appelée échec. Cela fera de vous une personne prospère.",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Travail Acharn\u00e9"
+        "category": "Travail Acharné"
       }
     }
   },
@@ -1739,19 +1739,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Dreams"
       },
       "te": {
-        "quote": "\u0c17\u0c4a\u0c2a\u0c4d\u0c2a \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c47\u0c35\u0c3e\u0c30\u0c3f \u0c17\u0c4a\u0c2a\u0c4d\u0c2a \u0c15\u0c32\u0c32\u0c41 \u0c0e\u0c32\u0c4d\u0c32\u0c2a\u0c4d\u0c2a\u0c41\u0c21\u0c42 \u0c28\u0c3f\u0c1c\u0c2e\u0c35\u0c41\u0c24\u0c3e\u0c2f\u0c3f.",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c15\u0c32\u0c32\u0c41"
+        "quote": "గొప్ప కలలు కనేవారి గొప్ప కలలు ఎల్లప్పుడూ నిజమవుతాయి.",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "కలలు"
       },
       "hi": {
-        "quote": "\u092e\u0939\u093e\u0928 \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0935\u093e\u0932\u094b\u0902 \u0915\u0947 \u092e\u0939\u093e\u0928 \u0938\u092a\u0928\u0947 \u0939\u092e\u0947\u0936\u093e \u092a\u0942\u0930\u0947 \u0939\u094b\u0924\u0947 \u0939\u0948\u0902\u0964",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092a\u0928\u0947"
+        "quote": "महान सपने देखने वालों के महान सपने हमेशा पूरे होते हैं।",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सपने"
       },
       "fr": {
-        "quote": "Les grands r\u00eaves des grands r\u00eaveurs sont toujours transcend\u00e9s.",
+        "quote": "Les grands rêves des grands rêveurs sont toujours transcendés.",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "R\u00eaves"
+        "category": "Rêves"
       }
     }
   },
@@ -1769,17 +1769,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Learning"
       },
       "te": {
-        "quote": "\u0c28\u0c47\u0c30\u0c4d\u0c1a\u0c41\u0c15\u0c4b\u0c35\u0c21\u0c02 \u0c38\u0c43\u0c1c\u0c28\u0c3e\u0c24\u0c4d\u0c2e\u0c15\u0c24\u0c28\u0c41 \u0c07\u0c38\u0c4d\u0c24\u0c41\u0c02\u0c26\u0c3f, \u0c38\u0c43\u0c1c\u0c28\u0c3e\u0c24\u0c4d\u0c2e\u0c15\u0c24 \u0c06\u0c32\u0c4b\u0c1a\u0c28\u0c15\u0c41 \u0c26\u0c3e\u0c30\u0c3f \u0c24\u0c40\u0c38\u0c4d\u0c24\u0c41\u0c02\u0c26\u0c3f, \u0c06\u0c32\u0c4b\u0c1a\u0c28 \u0c1c\u0c4d\u0c1e\u0c3e\u0c28\u0c3e\u0c28\u0c4d\u0c28\u0c3f \u0c07\u0c38\u0c4d\u0c24\u0c41\u0c02\u0c26\u0c3f, \u0c1c\u0c4d\u0c1e\u0c3e\u0c28\u0c02 \u0c28\u0c3f\u0c28\u0c4d\u0c28\u0c41 \u0c17\u0c4a\u0c2a\u0c4d\u0c2a\u0c35\u0c3e\u0c21\u0c3f\u0c28\u0c3f \u0c1a\u0c47\u0c38\u0c4d\u0c24\u0c41\u0c02\u0c26\u0c3f.",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c28\u0c47\u0c30\u0c4d\u0c1a\u0c41\u0c15\u0c4b\u0c35\u0c21\u0c02"
+        "quote": "నేర్చుకోవడం సృజనాత్మకతను ఇస్తుంది, సృజనాత్మకత ఆలోచనకు దారి తీస్తుంది, ఆలోచన జ్ఞానాన్ని ఇస్తుంది, జ్ఞానం నిన్ను గొప్పవాడిని చేస్తుంది.",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "నేర్చుకోవడం"
       },
       "hi": {
-        "quote": "\u0938\u0940\u0916\u0928\u0947 \u0938\u0947 \u0930\u091a\u0928\u093e\u0924\u094d\u092e\u0915\u0924\u093e \u0906\u0924\u0940 \u0939\u0948, \u0930\u091a\u0928\u093e\u0924\u094d\u092e\u0915\u0924\u093e \u0938\u094b\u091a \u0915\u0940 \u0913\u0930 \u0932\u0947 \u091c\u093e\u0924\u0940 \u0939\u0948, \u0938\u094b\u091a \u091c\u094d\u091e\u093e\u0928 \u092a\u094d\u0930\u0926\u093e\u0928 \u0915\u0930\u0924\u0940 \u0939\u0948, \u091c\u094d\u091e\u093e\u0928 \u0906\u092a\u0915\u094b \u092e\u0939\u093e\u0928 \u092c\u0928\u093e\u0924\u093e \u0939\u0948\u0964",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u0940\u0916\u0928\u093e"
+        "quote": "सीखने से रचनात्मकता आती है, रचनात्मकता सोच की ओर ले जाती है, सोच ज्ञान प्रदान करती है, ज्ञान आपको महान बनाता है।",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सीखना"
       },
       "fr": {
-        "quote": "L'apprentissage donne la cr\u00e9ativit\u00e9, la cr\u00e9ativit\u00e9 m\u00e8ne \u00e0 la pens\u00e9e, la pens\u00e9e apporte la connaissance, la connaissance vous rend grand.",
+        "quote": "L'apprentissage donne la créativité, la créativité mène à la pensée, la pensée apporte la connaissance, la connaissance vous rend grand.",
         "author": "Dr. A. P. J. Abdul Kalam",
         "category": "Apprentissage"
       }
@@ -1799,19 +1799,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Education"
       },
       "te": {
-        "quote": "\u0c12\u0c15 \u0c26\u0c47\u0c36\u0c02 \u0c05\u0c35\u0c3f\u0c28\u0c40\u0c24\u0c3f \u0c30\u0c39\u0c3f\u0c24\u0c02\u0c17\u0c3e \u0c2e\u0c3e\u0c30\u0c3f, \u0c05\u0c02\u0c26\u0c2e\u0c48\u0c28 \u0c2e\u0c28\u0c38\u0c41\u0c32\u0c41 \u0c17\u0c32 \u0c26\u0c47\u0c36\u0c02\u0c17\u0c3e \u0c0e\u0c26\u0c17\u0c3e\u0c32\u0c02\u0c1f\u0c47, \u0c38\u0c2e\u0c3e\u0c1c\u0c02\u0c32\u0c4b \u0c2e\u0c41\u0c17\u0c4d\u0c17\u0c41\u0c30\u0c41 \u0c15\u0c40\u0c32\u0c15 \u0c2a\u0c3e\u0c24\u0c4d\u0c30 \u0c2a\u0c4b\u0c37\u0c3f\u0c38\u0c4d\u0c24\u0c3e\u0c30\u0c28\u0c3f \u0c28\u0c47\u0c28\u0c41 \u0c28\u0c2e\u0c4d\u0c2e\u0c41\u0c24\u0c41\u0c28\u0c4d\u0c28\u0c3e\u0c28\u0c41. \u0c35\u0c3e\u0c30\u0c41 \u0c24\u0c02\u0c21\u0c4d\u0c30\u0c3f, \u0c24\u0c32\u0c4d\u0c32\u0c3f \u0c2e\u0c30\u0c3f\u0c2f\u0c41 \u0c17\u0c41\u0c30\u0c41\u0c35\u0c41.",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c35\u0c3f\u0c26\u0c4d\u0c2f"
+        "quote": "ఒక దేశం అవినీతి రహితంగా మారి, అందమైన మనసులు గల దేశంగా ఎదగాలంటే, సమాజంలో ముగ్గురు కీలక పాత్ర పోషిస్తారని నేను నమ్ముతున్నాను. వారు తండ్రి, తల్లి మరియు గురువు.",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "విద్య"
       },
       "hi": {
-        "quote": "\u092f\u0926\u093f \u0915\u093f\u0938\u0940 \u0926\u0947\u0936 \u0915\u094b \u092d\u094d\u0930\u0937\u094d\u091f\u093e\u091a\u093e\u0930 \u092e\u0941\u0915\u094d\u0924 \u0939\u094b\u0928\u093e \u0939\u0948 \u0914\u0930 \u0938\u0941\u0902\u0926\u0930 \u0926\u093f\u092e\u093e\u0917\u094b\u0902 \u0915\u093e \u0926\u0947\u0936 \u092c\u0928\u0928\u093e \u0939\u0948, \u0924\u094b \u092e\u0941\u091d\u0947 \u0926\u0943\u0922\u093c\u0924\u093e \u0938\u0947 \u0932\u0917\u0924\u093e \u0939\u0948 \u0915\u093f \u0924\u0940\u0928 \u092a\u094d\u0930\u092e\u0941\u0916 \u0938\u093e\u092e\u093e\u091c\u093f\u0915 \u0938\u0926\u0938\u094d\u092f \u0939\u0948\u0902 \u091c\u094b \u092c\u0926\u0932\u093e\u0935 \u0932\u093e \u0938\u0915\u0924\u0947 \u0939\u0948\u0902\u0964 \u0935\u0947 \u0939\u0948\u0902 \u092a\u093f\u0924\u093e, \u092e\u093e\u0924\u093e \u0914\u0930 \u0936\u093f\u0915\u094d\u0937\u0915\u0964",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0936\u093f\u0915\u094d\u0937\u093e"
+        "quote": "यदि किसी देश को भ्रष्टाचार मुक्त होना है और सुंदर दिमागों का देश बनना है, तो मुझे दृढ़ता से लगता है कि तीन प्रमुख सामाजिक सदस्य हैं जो बदलाव ला सकते हैं। वे हैं पिता, माता और शिक्षक।",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "शिक्षा"
       },
       "fr": {
-        "quote": "Si un pays doit \u00eatre exempt de corruption et devenir une nation de beaux esprits, je pense fermement qu'il y a trois membres cl\u00e9s de la soci\u00e9t\u00e9 qui peuvent faire la diff\u00e9rence. Ce sont le p\u00e8re, la m\u00e8re et l'enseignant.",
+        "quote": "Si un pays doit être exempt de corruption et devenir une nation de beaux esprits, je pense fermement qu'il y a trois membres clés de la société qui peuvent faire la différence. Ce sont le père, la mère et l'enseignant.",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "\u00c9ducation"
+        "category": "Éducation"
       }
     }
   },
@@ -1829,17 +1829,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Focus"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #11)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c0f\u0c15\u0c3e\u0c17\u0c4d\u0c30\u0c24"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #11)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "ఏకాగ్రత"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #11)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u090f\u0915\u093e\u0917\u094d\u0930\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #11)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "एकाग्रता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #11)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #11)",
         "author": "Dr. A. P. J. Abdul Kalam",
         "category": "Focus"
       }
@@ -1859,19 +1859,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #12)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #12)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #12)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #12)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #12)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #12)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -1889,17 +1889,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Focus"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #13)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c0f\u0c15\u0c3e\u0c17\u0c4d\u0c30\u0c24"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #13)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "ఏకాగ్రత"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #13)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u090f\u0915\u093e\u0917\u094d\u0930\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #13)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "एकाग्रता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #13)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #13)",
         "author": "Dr. A. P. J. Abdul Kalam",
         "category": "Focus"
       }
@@ -1919,19 +1919,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Education"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #14)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c35\u0c3f\u0c26\u0c4d\u0c2f"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #14)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "విద్య"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #14)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0936\u093f\u0915\u094d\u0937\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #14)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "शिक्षा"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #14)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #14)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "\u00c9ducation"
+        "category": "Éducation"
       }
     }
   },
@@ -1949,19 +1949,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #15)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #15)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #15)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #15)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #15)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #15)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -1979,19 +1979,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Dreams"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #16)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c15\u0c32\u0c32\u0c41"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #16)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "కలలు"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #16)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092a\u0928\u0947"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #16)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सपने"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #16)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #16)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "R\u00eaves"
+        "category": "Rêves"
       }
     }
   },
@@ -2009,17 +2009,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Focus"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #17)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c0f\u0c15\u0c3e\u0c17\u0c4d\u0c30\u0c24"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #17)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "ఏకాగ్రత"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #17)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u090f\u0915\u093e\u0917\u094d\u0930\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #17)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "एकाग्रता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #17)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #17)",
         "author": "Dr. A. P. J. Abdul Kalam",
         "category": "Focus"
       }
@@ -2039,19 +2039,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #18)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #18)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #18)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #18)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #18)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #18)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -2069,17 +2069,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Focus"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #19)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c0f\u0c15\u0c3e\u0c17\u0c4d\u0c30\u0c24"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #19)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "ఏకాగ్రత"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #19)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u090f\u0915\u093e\u0917\u094d\u0930\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #19)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "एकाग्रता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #19)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #19)",
         "author": "Dr. A. P. J. Abdul Kalam",
         "category": "Focus"
       }
@@ -2099,19 +2099,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Hard Work"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #20)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c15\u0c37\u0c4d\u0c1f\u0c2a\u0c21\u0c1f\u0c02"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #20)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "కష్టపడటం"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #20)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0915\u0921\u093c\u0940 \u092e\u0947\u0939\u0928\u0924"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #20)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "कड़ी मेहनत"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #20)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #20)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Travail Acharn\u00e9"
+        "category": "Travail Acharné"
       }
     }
   },
@@ -2129,19 +2129,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #21)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #21)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #21)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #21)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #21)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #21)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -2159,19 +2159,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Dreams"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #22)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c15\u0c32\u0c32\u0c41"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #22)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "కలలు"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #22)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092a\u0928\u0947"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #22)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सपने"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #22)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #22)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "R\u00eaves"
+        "category": "Rêves"
       }
     }
   },
@@ -2189,17 +2189,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Focus"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #23)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c0f\u0c15\u0c3e\u0c17\u0c4d\u0c30\u0c24"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #23)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "ఏకాగ్రత"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #23)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u090f\u0915\u093e\u0917\u094d\u0930\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #23)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "एकाग्रता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #23)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #23)",
         "author": "Dr. A. P. J. Abdul Kalam",
         "category": "Focus"
       }
@@ -2219,19 +2219,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #24)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #24)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #24)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #24)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #24)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #24)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -2249,19 +2249,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Hard Work"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #25)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c15\u0c37\u0c4d\u0c1f\u0c2a\u0c21\u0c1f\u0c02"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #25)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "కష్టపడటం"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #25)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0915\u0921\u093c\u0940 \u092e\u0947\u0939\u0928\u0924"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #25)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "कड़ी मेहनत"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #25)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #25)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Travail Acharn\u00e9"
+        "category": "Travail Acharné"
       }
     }
   },
@@ -2279,19 +2279,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Dreams"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #26)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c15\u0c32\u0c32\u0c41"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #26)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "కలలు"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #26)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092a\u0928\u0947"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #26)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सपने"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #26)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #26)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "R\u00eaves"
+        "category": "Rêves"
       }
     }
   },
@@ -2309,19 +2309,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #27)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #27)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #27)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #27)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #27)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #27)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -2339,19 +2339,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Education"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #28)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c35\u0c3f\u0c26\u0c4d\u0c2f"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #28)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "విద్య"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #28)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0936\u093f\u0915\u094d\u0937\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #28)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "शिक्षा"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #28)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #28)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "\u00c9ducation"
+        "category": "Éducation"
       }
     }
   },
@@ -2369,17 +2369,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Focus"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #29)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c0f\u0c15\u0c3e\u0c17\u0c4d\u0c30\u0c24"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #29)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "ఏకాగ్రత"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #29)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u090f\u0915\u093e\u0917\u094d\u0930\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #29)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "एकाग्रता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #29)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #29)",
         "author": "Dr. A. P. J. Abdul Kalam",
         "category": "Focus"
       }
@@ -2399,19 +2399,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #30)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #30)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #30)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #30)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #30)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #30)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -2429,17 +2429,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Focus"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #31)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c0f\u0c15\u0c3e\u0c17\u0c4d\u0c30\u0c24"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #31)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "ఏకాగ్రత"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #31)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u090f\u0915\u093e\u0917\u094d\u0930\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #31)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "एकाग्रता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #31)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #31)",
         "author": "Dr. A. P. J. Abdul Kalam",
         "category": "Focus"
       }
@@ -2459,19 +2459,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Dreams"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #32)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c15\u0c32\u0c32\u0c41"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #32)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "కలలు"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #32)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092a\u0928\u0947"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #32)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सपने"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #32)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #32)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "R\u00eaves"
+        "category": "Rêves"
       }
     }
   },
@@ -2489,19 +2489,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #33)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #33)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #33)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #33)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #33)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #33)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -2519,19 +2519,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Dreams"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #34)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c15\u0c32\u0c32\u0c41"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #34)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "కలలు"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #34)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092a\u0928\u0947"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #34)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सपने"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #34)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #34)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "R\u00eaves"
+        "category": "Rêves"
       }
     }
   },
@@ -2549,19 +2549,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Hard Work"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #35)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c15\u0c37\u0c4d\u0c1f\u0c2a\u0c21\u0c1f\u0c02"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #35)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "కష్టపడటం"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #35)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0915\u0921\u093c\u0940 \u092e\u0947\u0939\u0928\u0924"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #35)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "कड़ी मेहनत"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #35)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #35)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Travail Acharn\u00e9"
+        "category": "Travail Acharné"
       }
     }
   },
@@ -2579,19 +2579,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #36)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #36)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #36)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #36)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #36)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #36)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -2609,17 +2609,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Focus"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #37)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c0f\u0c15\u0c3e\u0c17\u0c4d\u0c30\u0c24"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #37)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "ఏకాగ్రత"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #37)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u090f\u0915\u093e\u0917\u094d\u0930\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #37)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "एकाग्रता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #37)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #37)",
         "author": "Dr. A. P. J. Abdul Kalam",
         "category": "Focus"
       }
@@ -2639,19 +2639,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Dreams"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #38)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c15\u0c32\u0c32\u0c41"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #38)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "కలలు"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #38)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092a\u0928\u0947"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #38)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सपने"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #38)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #38)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "R\u00eaves"
+        "category": "Rêves"
       }
     }
   },
@@ -2669,19 +2669,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #39)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #39)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #39)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #39)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #39)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #39)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -2699,19 +2699,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Hard Work"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #40)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c15\u0c37\u0c4d\u0c1f\u0c2a\u0c21\u0c1f\u0c02"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #40)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "కష్టపడటం"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #40)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0915\u0921\u093c\u0940 \u092e\u0947\u0939\u0928\u0924"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #40)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "कड़ी मेहनत"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #40)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #40)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Travail Acharn\u00e9"
+        "category": "Travail Acharné"
       }
     }
   },
@@ -2729,17 +2729,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Focus"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #41)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c0f\u0c15\u0c3e\u0c17\u0c4d\u0c30\u0c24"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #41)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "ఏకాగ్రత"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #41)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u090f\u0915\u093e\u0917\u094d\u0930\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #41)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "एकाग्रता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #41)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #41)",
         "author": "Dr. A. P. J. Abdul Kalam",
         "category": "Focus"
       }
@@ -2759,19 +2759,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #42)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #42)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #42)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #42)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #42)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #42)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -2789,17 +2789,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Focus"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #43)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c0f\u0c15\u0c3e\u0c17\u0c4d\u0c30\u0c24"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #43)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "ఏకాగ్రత"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #43)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u090f\u0915\u093e\u0917\u094d\u0930\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #43)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "एकाग्रता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #43)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #43)",
         "author": "Dr. A. P. J. Abdul Kalam",
         "category": "Focus"
       }
@@ -2819,19 +2819,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Dreams"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #44)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c15\u0c32\u0c32\u0c41"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #44)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "కలలు"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #44)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092a\u0928\u0947"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #44)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सपने"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #44)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #44)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "R\u00eaves"
+        "category": "Rêves"
       }
     }
   },
@@ -2849,19 +2849,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #45)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #45)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #45)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #45)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #45)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #45)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -2879,19 +2879,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Dreams"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #46)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c15\u0c32\u0c32\u0c41"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #46)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "కలలు"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #46)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092a\u0928\u0947"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #46)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सपने"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #46)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #46)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "R\u00eaves"
+        "category": "Rêves"
       }
     }
   },
@@ -2909,17 +2909,17 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Focus"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #47)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c0f\u0c15\u0c3e\u0c17\u0c4d\u0c30\u0c24"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #47)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "ఏకాగ్రత"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #47)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u090f\u0915\u093e\u0917\u094d\u0930\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #47)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "एकाग्रता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #47)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #47)",
         "author": "Dr. A. P. J. Abdul Kalam",
         "category": "Focus"
       }
@@ -2939,19 +2939,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Success"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #48)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c35\u0c3f\u0c1c\u0c2f\u0c02"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #48)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "విజయం"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #48)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0938\u092b\u0932\u0924\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #48)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "सफलता"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #48)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #48)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Succ\u00e8s"
+        "category": "Succès"
       }
     }
   },
@@ -2969,19 +2969,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Education"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #49)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c35\u0c3f\u0c26\u0c4d\u0c2f"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #49)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "విద్య"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #49)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0936\u093f\u0915\u094d\u0937\u093e"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #49)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "शिक्षा"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #49)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #49)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "\u00c9ducation"
+        "category": "Éducation"
       }
     }
   },
@@ -2999,19 +2999,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Hard Work"
       },
       "te": {
-        "quote": "\u0c2e\u0c40 \u0c15\u0c32\u0c32\u0c41 \u0c28\u0c3f\u0c1c\u0c02 \u0c15\u0c3e\u0c35\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c41\u0c02\u0c26\u0c47 \u0c2e\u0c40\u0c30\u0c41 \u0c15\u0c32\u0c32\u0c41 \u0c15\u0c28\u0c3e\u0c32\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #50)",
-        "author": "\u0c21\u0c3e. \u0c0e. \u0c2a\u0c3f. \u0c1c\u0c46. \u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c15\u0c32\u0c3e\u0c02",
-        "category": "\u0c15\u0c37\u0c4d\u0c1f\u0c2a\u0c21\u0c1f\u0c02"
+        "quote": "మీ కలలు నిజం కావడానికి ముందే మీరు కలలు కనాలి. (ఉల్లేఖన #50)",
+        "author": "డా. ఎ. పి. జె. అబ్దుల్ కలాం",
+        "category": "కష్టపడటం"
       },
       "hi": {
-        "quote": "\u0938\u092a\u0928\u0947 \u0938\u091a \u0939\u094b\u0928\u0947 \u0938\u0947 \u092a\u0939\u0932\u0947 \u0906\u092a\u0915\u094b \u0938\u092a\u0928\u0947 \u0926\u0947\u0916\u0928\u0947 \u0939\u094b\u0902\u0917\u0947\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #50)",
-        "author": "\u0921\u0949. \u090f. \u092a\u0940. \u091c\u0947. \u0905\u092c\u094d\u0926\u0941\u0932 \u0915\u0932\u093e\u092e",
-        "category": "\u0915\u0921\u093c\u0940 \u092e\u0947\u0939\u0928\u0924"
+        "quote": "सपने सच होने से पहले आपको सपने देखने होंगे। (संदर्भ #50)",
+        "author": "डॉ. ए. पी. जे. अब्दुल कलाम",
+        "category": "कड़ी मेहनत"
       },
       "fr": {
-        "quote": "Vous devez r\u00eaver avant que vos r\u00eaves ne se r\u00e9alisent. (R\u00e9f #50)",
+        "quote": "Vous devez rêver avant que vos rêves ne se réalisent. (Réf #50)",
         "author": "Dr. A. P. J. Abdul Kalam",
-        "category": "Travail Acharn\u00e9"
+        "category": "Travail Acharné"
       }
     }
   },
@@ -3029,18 +3029,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Service"
       },
       "te": {
-        "quote": "\u0c2e\u0c40\u0c30\u0c41 \u0c35\u0c46\u0c33\u0c4d\u0c33\u0c3f\u0c28 \u0c2a\u0c4d\u0c30\u0c24\u0c3f\u0c1a\u0c4b\u0c1f\u0c3e \u0c2a\u0c4d\u0c30\u0c47\u0c2e\u0c28\u0c41 \u0c2a\u0c02\u0c1a\u0c02\u0c21\u0c3f. \u0c2e\u0c40 \u0c26\u0c17\u0c4d\u0c17\u0c30\u0c15\u0c41 \u0c35\u0c1a\u0c4d\u0c1a\u0c3f\u0c28 \u0c2a\u0c4d\u0c30\u0c24\u0c3f \u0c12\u0c15\u0c4d\u0c15\u0c30\u0c42 \u0c38\u0c02\u0c24\u0c4b\u0c37\u0c02\u0c17\u0c3e \u0c35\u0c46\u0c33\u0c4d\u0c33\u0c47\u0c32\u0c3e \u0c1a\u0c47\u0c2f\u0c02\u0c21\u0c3f.",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c38\u0c47\u0c35"
+        "quote": "మీరు వెళ్ళిన ప్రతిచోటా ప్రేమను పంచండి. మీ దగ్గరకు వచ్చిన ప్రతి ఒక్కరూ సంతోషంగా వెళ్ళేలా చేయండి.",
+        "author": "మదర్ థెరిసా",
+        "category": "సేవ"
       },
       "hi": {
-        "quote": "\u0906\u092a \u091c\u0939\u093e\u0902 \u092d\u0940 \u091c\u093e\u090f\u0902 \u092a\u094d\u092f\u093e\u0930 \u092b\u0948\u0932\u093e\u090f\u0902\u0964 \u0915\u094b\u0908 \u092d\u0940 \u0906\u092a\u0915\u0947 \u092a\u093e\u0938 \u0938\u0947 \u092c\u093f\u0928\u093e \u0916\u0941\u0936 \u0939\u0941\u090f \u0928 \u091c\u093e\u090f\u0964",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0938\u0947\u0935\u093e"
+        "quote": "आप जहां भी जाएं प्यार फैलाएं। कोई भी आपके पास से बिना खुश हुए न जाए।",
+        "author": "मदर टेरेसा",
+        "category": "सेवा"
       },
       "fr": {
-        "quote": "R\u00e9pandez l'amour partout o\u00f9 vous allez. Que personne ne vienne \u00e0 vous sans repartir plus heureux.",
-        "author": "M\u00e8re Teresa",
+        "quote": "Répandez l'amour partout où vous allez. Que personne ne vienne à vous sans repartir plus heureux.",
+        "author": "Mère Teresa",
         "category": "Service"
       }
     }
@@ -3059,18 +3059,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Service"
       },
       "te": {
-        "quote": "\u0c2a\u0c4d\u0c30\u0c36\u0c3e\u0c02\u0c24\u0c24 \u0c05\u0c28\u0c47\u0c26\u0c3f \u0c1a\u0c3f\u0c30\u0c41\u0c28\u0c35\u0c4d\u0c35\u0c41\u0c24\u0c4b \u0c2a\u0c4d\u0c30\u0c3e\u0c30\u0c02\u0c2d\u0c2e\u0c35\u0c41\u0c24\u0c41\u0c02\u0c26\u0c3f.",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c38\u0c47\u0c35"
+        "quote": "ప్రశాంతత అనేది చిరునవ్వుతో ప్రారంభమవుతుంది.",
+        "author": "మదర్ థెరిసా",
+        "category": "సేవ"
       },
       "hi": {
-        "quote": "\u0936\u093e\u0902\u0924\u093f \u0915\u0940 \u0936\u0941\u0930\u0941\u0906\u0924 \u090f\u0915 \u092e\u0941\u0938\u094d\u0915\u093e\u0928 \u0938\u0947 \u0939\u094b\u0924\u0940 \u0939\u0948\u0964",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0938\u0947\u0935\u093e"
+        "quote": "शांति की शुरुआत एक मुस्कान से होती है।",
+        "author": "मदर टेरेसा",
+        "category": "सेवा"
       },
       "fr": {
         "quote": "La paix commence par un sourire.",
-        "author": "M\u00e8re Teresa",
+        "author": "Mère Teresa",
         "category": "Service"
       }
     }
@@ -3089,18 +3089,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Service"
       },
       "te": {
-        "quote": "\u0c2e\u0c28\u0c02 \u0c1a\u0c47\u0c38\u0c4d\u0c24\u0c41\u0c28\u0c4d\u0c28\u0c26\u0c3f \u0c38\u0c2e\u0c41\u0c26\u0c4d\u0c30\u0c02\u0c32\u0c4b \u0c15\u0c47\u0c35\u0c32\u0c02 \u0c12\u0c15 \u0c1a\u0c41\u0c15\u0c4d\u0c15 \u0c2e\u0c3e\u0c24\u0c4d\u0c30\u0c2e\u0c47 \u0c05\u0c28\u0c3f \u0c2e\u0c28\u0c02 \u0c2d\u0c3e\u0c35\u0c3f\u0c38\u0c4d\u0c24\u0c3e\u0c02. \u0c15\u0c3e\u0c28\u0c40 \u0c06 \u0c12\u0c15\u0c4d\u0c15 \u0c1a\u0c41\u0c15\u0c4d\u0c15 \u0c32\u0c47\u0c15\u0c2a\u0c4b\u0c24\u0c47 \u0c38\u0c2e\u0c41\u0c26\u0c4d\u0c30\u0c02 \u0c35\u0c3f\u0c32\u0c41\u0c35 \u0c24\u0c17\u0c4d\u0c17\u0c41\u0c24\u0c41\u0c02\u0c26\u0c3f.",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c38\u0c47\u0c35"
+        "quote": "మనం చేస్తున్నది సముద్రంలో కేవలం ఒక చుక్క మాత్రమే అని మనం భావిస్తాం. కానీ ఆ ఒక్క చుక్క లేకపోతే సముద్రం విలువ తగ్గుతుంది.",
+        "author": "మదర్ థెరిసా",
+        "category": "సేవ"
       },
       "hi": {
-        "quote": "\u0939\u092e \u0916\u0941\u0926 \u092e\u0939\u0938\u0942\u0938 \u0915\u0930\u0924\u0947 \u0939\u0948\u0902 \u0915\u093f \u091c\u094b \u0939\u092e \u0915\u0930 \u0930\u0939\u0947 \u0939\u0948\u0902 \u0935\u0939 \u0938\u092e\u0941\u0926\u094d\u0930 \u092e\u0947\u0902 \u090f\u0915 \u092c\u0942\u0902\u0926 \u092e\u093e\u0924\u094d\u0930 \u0939\u0948\u0964 \u0932\u0947\u0915\u093f\u0928 \u0909\u0938 \u090f\u0915 \u092c\u0942\u0902\u0926 \u0915\u0947 \u0928 \u0939\u094b\u0928\u0947 \u0938\u0947 \u0938\u092e\u0941\u0926\u094d\u0930 \u091b\u094b\u091f\u093e \u0939\u094b \u091c\u093e\u090f\u0917\u093e\u0964",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0938\u0947\u0935\u093e"
+        "quote": "हम खुद महसूस करते हैं कि जो हम कर रहे हैं वह समुद्र में एक बूंद मात्र है। लेकिन उस एक बूंद के न होने से समुद्र छोटा हो जाएगा।",
+        "author": "मदर टेरेसा",
+        "category": "सेवा"
       },
       "fr": {
-        "quote": "Nous sentons nous-m\u00eames que ce que nous faisons n'est qu'une goutte d'eau dans l'oc\u00e9an. Mais l'oc\u00e9an serait plus petit sans cette goutte manquante.",
-        "author": "M\u00e8re Teresa",
+        "quote": "Nous sentons nous-mêmes que ce que nous faisons n'est qu'une goutte d'eau dans l'océan. Mais l'océan serait plus petit sans cette goutte manquante.",
+        "author": "Mère Teresa",
         "category": "Service"
       }
     }
@@ -3119,18 +3119,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Leadership"
       },
       "te": {
-        "quote": "\u0c26\u0c2f\u0c17\u0c32 \u0c2e\u0c3e\u0c1f\u0c32\u0c41 \u0c1a\u0c3f\u0c28\u0c4d\u0c28\u0c35\u0c3f\u0c17\u0c3e \u0c2e\u0c30\u0c3f\u0c2f\u0c41 \u0c2e\u0c3e\u0c1f\u0c4d\u0c32\u0c3e\u0c21\u0c1f\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c38\u0c41\u0c32\u0c2d\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c35\u0c1a\u0c4d\u0c1a\u0c41, \u0c15\u0c3e\u0c28\u0c40 \u0c35\u0c3e\u0c1f\u0c3f \u0c2a\u0c4d\u0c30\u0c24\u0c3f\u0c27\u0c4d\u0c35\u0c28\u0c3f \u0c28\u0c3f\u0c1c\u0c02\u0c17\u0c3e \u0c05\u0c28\u0c02\u0c24\u0c02.",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c28\u0c3e\u0c2f\u0c15\u0c24\u0c4d\u0c35\u0c02"
+        "quote": "దయగల మాటలు చిన్నవిగా మరియు మాట్లాడటానికి సులభంగా ఉండవచ్చు, కానీ వాటి ప్రతిధ్వని నిజంగా అనంతం.",
+        "author": "మదర్ థెరిసా",
+        "category": "నాయకత్వం"
       },
       "hi": {
-        "quote": "\u0926\u092f\u093e\u0932\u0941 \u0936\u092c\u094d\u0926 \u091b\u094b\u091f\u0947 \u0914\u0930 \u092c\u094b\u0932\u0928\u0947 \u092e\u0947\u0902 \u0906\u0938\u093e\u0928 \u0939\u094b \u0938\u0915\u0924\u0947 \u0939\u0948\u0902, \u0932\u0947\u0915\u093f\u0928 \u0909\u0928\u0915\u0940 \u0917\u0942\u0902\u091c \u0935\u093e\u0938\u094d\u0924\u0935 \u092e\u0947\u0902 \u0905\u0928\u0902\u0924 \u0939\u094b\u0924\u0940 \u0939\u0948\u0964",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0928\u0947\u0924\u0943\u0924\u094d\u0935"
+        "quote": "दयालु शब्द छोटे और बोलने में आसान हो सकते हैं, लेकिन उनकी गूंज वास्तव में अनंत होती है।",
+        "author": "मदर टेरेसा",
+        "category": "नेतृत्व"
       },
       "fr": {
-        "quote": "Les mots doux peuvent \u00eatre courts et faciles \u00e0 prononcer, mais leur \u00e9cho est \u00e9ternel.",
-        "author": "M\u00e8re Teresa",
+        "quote": "Les mots doux peuvent être courts et faciles à prononcer, mais leur écho est éternel.",
+        "author": "Mère Teresa",
         "category": "Leadership"
       }
     }
@@ -3149,18 +3149,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Service"
       },
       "te": {
-        "quote": "\u0c2e\u0c40\u0c30\u0c41 \u0c2a\u0c4d\u0c30\u0c1c\u0c32 \u0c24\u0c2a\u0c4d\u0c2a\u0c41\u0c32\u0c28\u0c41 \u0c32\u0c46\u0c15\u0c4d\u0c15\u0c3f\u0c38\u0c4d\u0c24\u0c41\u0c02\u0c1f\u0c47, \u0c35\u0c3e\u0c30\u0c3f\u0c28\u0c3f \u0c2a\u0c4d\u0c30\u0c47\u0c2e\u0c3f\u0c02\u0c1a\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c2e\u0c40\u0c15\u0c41 \u0c38\u0c2e\u0c2f\u0c02 \u0c09\u0c02\u0c21\u0c26\u0c41.",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c38\u0c47\u0c35"
+        "quote": "మీరు ప్రజల తప్పులను లెక్కిస్తుంటే, వారిని ప్రేమించడానికి మీకు సమయం ఉండదు.",
+        "author": "మదర్ థెరిసా",
+        "category": "సేవ"
       },
       "hi": {
-        "quote": "\u092f\u0926\u093f \u0906\u092a \u0932\u094b\u0917\u094b\u0902 \u0915\u093e \u0928\u094d\u092f\u093e\u092f \u0915\u0930\u0924\u0947 \u0939\u0948\u0902, \u0924\u094b \u0906\u092a\u0915\u0947 \u092a\u093e\u0938 \u0909\u0928\u094d\u0939\u0947\u0902 \u092a\u094d\u092f\u093e\u0930 \u0915\u0930\u0928\u0947 \u0915\u093e \u0938\u092e\u092f \u0928\u0939\u0940\u0902 \u0939\u0948\u0964",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0938\u0947\u0935\u093e"
+        "quote": "यदि आप लोगों का न्याय करते हैं, तो आपके पास उन्हें प्यार करने का समय नहीं है।",
+        "author": "मदर टेरेसा",
+        "category": "सेवा"
       },
       "fr": {
         "quote": "Si vous jugez les gens, vous n'avez pas le temps de les aimer.",
-        "author": "M\u00e8re Teresa",
+        "author": "Mère Teresa",
         "category": "Service"
       }
     }
@@ -3179,18 +3179,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Service"
       },
       "te": {
-        "quote": "\u0c24\u0c40\u0c35\u0c4d\u0c30\u0c2e\u0c48\u0c28 \u0c2a\u0c4d\u0c30\u0c47\u0c2e \u0c32\u0c46\u0c15\u0c4d\u0c15\u0c3f\u0c02\u0c1a\u0c26\u0c41, \u0c05\u0c26\u0c3f \u0c15\u0c47\u0c35\u0c32\u0c02 \u0c07\u0c38\u0c4d\u0c24\u0c41\u0c02\u0c26\u0c3f.",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c38\u0c47\u0c35"
+        "quote": "తీవ్రమైన ప్రేమ లెక్కించదు, అది కేవలం ఇస్తుంది.",
+        "author": "మదర్ థెరిసా",
+        "category": "సేవ"
       },
       "hi": {
-        "quote": "\u0924\u0940\u0935\u094d\u0930 \u092a\u094d\u0930\u0947\u092e \u092e\u093e\u092a\u0924\u093e \u0928\u0939\u0940\u0902 \u0939\u0948, \u0935\u0939 \u092c\u0938 \u0926\u0947\u0924\u093e \u0939\u0948\u0964",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0938\u0947\u0935\u093e"
+        "quote": "तीव्र प्रेम मापता नहीं है, वह बस देता है।",
+        "author": "मदर टेरेसा",
+        "category": "सेवा"
       },
       "fr": {
         "quote": "L'amour intense ne mesure pas, il donne tout simplement.",
-        "author": "M\u00e8re Teresa",
+        "author": "Mère Teresa",
         "category": "Service"
       }
     }
@@ -3209,18 +3209,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Leadership"
       },
       "te": {
-        "quote": "\u0c2e\u0c28\u0c15\u0c41 \u0c2a\u0c4d\u0c30\u0c36\u0c3e\u0c02\u0c24\u0c24 \u0c32\u0c47\u0c15\u0c2a\u0c4b\u0c24\u0c47, \u0c2e\u0c28\u0c02 \u0c12\u0c15\u0c30\u0c3f\u0c15\u0c4a\u0c15\u0c30\u0c41 \u0c1a\u0c46\u0c02\u0c26\u0c41\u0c24\u0c3e\u0c2e\u0c28\u0c47 \u0c35\u0c3f\u0c37\u0c2f\u0c02 \u0c2e\u0c30\u0c4d\u0c1a\u0c3f\u0c2a\u0c4b\u0c2f\u0c3e\u0c2e\u0c28\u0c3f \u0c05\u0c30\u0c4d\u0c25\u0c02.",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c28\u0c3e\u0c2f\u0c15\u0c24\u0c4d\u0c35\u0c02"
+        "quote": "మనకు ప్రశాంతత లేకపోతే, మనం ఒకరికొకరు చెందుతామనే విషయం మర్చిపోయామని అర్థం.",
+        "author": "మదర్ థెరిసా",
+        "category": "నాయకత్వం"
       },
       "hi": {
-        "quote": "\u092f\u0926\u093f \u0939\u092e\u093e\u0930\u0947 \u092a\u093e\u0938 \u0936\u093e\u0902\u0924\u093f \u0928\u0939\u0940\u0902 \u0939\u0948, \u0924\u094b \u0907\u0938\u0915\u093e \u0915\u093e\u0930\u0923 \u092f\u0939 \u0939\u0948 \u0915\u093f \u0939\u092e \u092d\u0942\u0932 \u0917\u090f \u0939\u0948\u0902 \u0915\u093f \u0939\u092e \u090f\u0915 \u0926\u0942\u0938\u0930\u0947 \u0915\u0947 \u0939\u0948\u0902\u0964",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0928\u0947\u0924\u0943\u0924\u094d\u0935"
+        "quote": "यदि हमारे पास शांति नहीं है, तो इसका कारण यह है कि हम भूल गए हैं कि हम एक दूसरे के हैं।",
+        "author": "मदर टेरेसा",
+        "category": "नेतृत्व"
       },
       "fr": {
-        "quote": "Si nous n'avons pas la paix, c'est parce que nous avons oubli\u00e9 que nous appartenons les uns aux autres.",
-        "author": "M\u00e8re Teresa",
+        "quote": "Si nous n'avons pas la paix, c'est parce que nous avons oublié que nous appartenons les uns aux autres.",
+        "author": "Mère Teresa",
         "category": "Leadership"
       }
     }
@@ -3239,18 +3239,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Focus"
       },
       "te": {
-        "quote": "\u0c28\u0c3f\u0c28\u0c4d\u0c28 \u0c17\u0c21\u0c3f\u0c1a\u0c3f\u0c2a\u0c4b\u0c2f\u0c3f\u0c02\u0c26\u0c3f. \u0c30\u0c47\u0c2a\u0c41 \u0c07\u0c02\u0c15\u0c3e \u0c30\u0c3e\u0c32\u0c47\u0c26\u0c41. \u0c2e\u0c28\u0c15\u0c41 \u0c09\u0c28\u0c4d\u0c28\u0c26\u0c3f \u0c08\u0c30\u0c4b\u0c1c\u0c41 \u0c2e\u0c3e\u0c24\u0c4d\u0c30\u0c2e\u0c47. \u0c2a\u0c4d\u0c30\u0c3e\u0c30\u0c02\u0c2d\u0c3f\u0c26\u0c4d\u0c26\u0c3e\u0c02.",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c0f\u0c15\u0c3e\u0c17\u0c4d\u0c30\u0c24"
+        "quote": "నిన్న గడిచిపోయింది. రేపు ఇంకా రాలేదు. మనకు ఉన్నది ఈరోజు మాత్రమే. ప్రారంభిద్దాం.",
+        "author": "మదర్ థెరిసా",
+        "category": "ఏకాగ్రత"
       },
       "hi": {
-        "quote": "\u0915\u0932 \u092c\u0940\u0924 \u091a\u0941\u0915\u093e \u0939\u0948\u0964 \u0915\u0932 \u0905\u092d\u0940 \u0906\u092f\u093e \u0928\u0939\u0940\u0902 \u0939\u0948\u0964 \u0939\u092e\u093e\u0930\u0947 \u092a\u093e\u0938 \u0915\u0947\u0935\u0932 \u0906\u091c \u0915\u093e \u0926\u093f\u0928 \u0939\u0948\u0964 \u0906\u0907\u090f \u0936\u0941\u0930\u0941\u0906\u0924 \u0915\u0930\u0947\u0902\u0964",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u090f\u0915\u093e\u0917\u094d\u0930\u0924\u093e"
+        "quote": "कल बीत चुका है। कल अभी आया नहीं है। हमारे पास केवल आज का दिन है। आइए शुरुआत करें।",
+        "author": "मदर टेरेसा",
+        "category": "एकाग्रता"
       },
       "fr": {
-        "quote": "Hier est pass\u00e9. Demain n'est pas encore l\u00e0. Nous n'avons que d'aujourd'hui. Commen\u00e7ons.",
-        "author": "M\u00e8re Teresa",
+        "quote": "Hier est passé. Demain n'est pas encore là. Nous n'avons que d'aujourd'hui. Commençons.",
+        "author": "Mère Teresa",
         "category": "Focus"
       }
     }
@@ -3269,18 +3269,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Service"
       },
       "te": {
-        "quote": "\u0c2e\u0c28\u0c02 \u0c0e\u0c02\u0c24 \u0c1a\u0c47\u0c38\u0c3e\u0c2e\u0c41 \u0c05\u0c28\u0c47\u0c26\u0c3f \u0c2e\u0c41\u0c16\u0c4d\u0c2f\u0c02 \u0c15\u0c3e\u0c26\u0c41, \u0c2e\u0c28\u0c02 \u0c1a\u0c47\u0c38\u0c47 \u0c2a\u0c28\u0c3f\u0c32\u0c4b \u0c0e\u0c02\u0c24 \u0c2a\u0c4d\u0c30\u0c47\u0c2e\u0c28\u0c41 \u0c09\u0c02\u0c1a\u0c3e\u0c2e\u0c41 \u0c05\u0c28\u0c47\u0c26\u0c3f \u0c2e\u0c41\u0c16\u0c4d\u0c2f\u0c02.",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c38\u0c47\u0c35"
+        "quote": "మనం ఎంత చేసాము అనేది ముఖ్యం కాదు, మనం చేసే పనిలో ఎంత ప్రేమను ఉంచాము అనేది ముఖ్యం.",
+        "author": "మదర్ థెరిసా",
+        "category": "సేవ"
       },
       "hi": {
-        "quote": "\u092f\u0939 \u092e\u0939\u0924\u094d\u0935\u092a\u0942\u0930\u094d\u0923 \u0928\u0939\u0940\u0902 \u0939\u0948 \u0915\u093f \u0939\u092e \u0915\u093f\u0924\u0928\u093e \u0915\u093e\u092e \u0915\u0930\u0924\u0947 \u0939\u0948\u0902, \u092c\u0932\u094d\u0915\u093f \u092f\u0939 \u092e\u0939\u0924\u094d\u0935\u092a\u0942\u0930\u094d\u0923 \u0939\u0948 \u0915\u093f \u0939\u092e \u0909\u0938 \u0915\u093e\u092e \u092e\u0947\u0902 \u0915\u093f\u0924\u0928\u093e \u092a\u094d\u092f\u093e\u0930 \u0921\u093e\u0932\u0924\u0947 \u0939\u0948\u0902\u0964",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0938\u0947\u0935\u093e"
+        "quote": "यह महत्वपूर्ण नहीं है कि हम कितना काम करते हैं, बल्कि यह महत्वपूर्ण है कि हम उस काम में कितना प्यार डालते हैं।",
+        "author": "मदर टेरेसा",
+        "category": "सेवा"
       },
       "fr": {
-        "quote": "Ce n'est pas tant ce que nous faisons, mais le degr\u00e9 d'amour que nous y mettons.",
-        "author": "M\u00e8re Teresa",
+        "quote": "Ce n'est pas tant ce que nous faisons, mais le degré d'amour que nous y mettons.",
+        "author": "Mère Teresa",
         "category": "Service"
       }
     }
@@ -3299,18 +3299,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Service"
       },
       "te": {
-        "quote": "\u0c2e\u0c28\u0c02\u0c26\u0c30\u0c02 \u0c17\u0c4a\u0c2a\u0c4d\u0c2a \u0c2a\u0c28\u0c41\u0c32\u0c41 \u0c1a\u0c47\u0c2f\u0c32\u0c47\u0c15\u0c2a\u0c4b\u0c35\u0c1a\u0c4d\u0c1a\u0c41. \u0c15\u0c3e\u0c28\u0c40 \u0c2e\u0c28\u0c02 \u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c2a\u0c28\u0c41\u0c32\u0c28\u0c41 \u0c17\u0c4a\u0c2a\u0c4d\u0c2a \u0c2a\u0c4d\u0c30\u0c47\u0c2e\u0c24\u0c4b \u0c1a\u0c47\u0c2f\u0c35\u0c1a\u0c4d\u0c1a\u0c41.",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c38\u0c47\u0c35"
+        "quote": "మనందరం గొప్ప పనులు చేయలేకపోవచ్చు. కానీ మనం చిన్న పనులను గొప్ప ప్రేమతో చేయవచ్చు.",
+        "author": "మదర్ థెరిసా",
+        "category": "సేవ"
       },
       "hi": {
-        "quote": "\u0939\u092e \u0938\u092d\u0940 \u092e\u0939\u093e\u0928 \u0915\u093e\u0930\u094d\u092f \u0928\u0939\u0940\u0902 \u0915\u0930 \u0938\u0915\u0924\u0947\u0964 \u0932\u0947\u0915\u093f\u0928 \u0939\u092e \u091b\u094b\u091f\u0947 \u0915\u093e\u0930\u094d\u092f\u094b\u0902 \u0915\u094b \u092c\u0921\u093c\u0947 \u092a\u094d\u092f\u093e\u0930 \u0938\u0947 \u0915\u0930 \u0938\u0915\u0924\u0947 \u0939\u0948\u0902\u0964",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0938\u0947\u0935\u093e"
+        "quote": "हम सभी महान कार्य नहीं कर सकते। लेकिन हम छोटे कार्यों को बड़े प्यार से कर सकते हैं।",
+        "author": "मदर टेरेसा",
+        "category": "सेवा"
       },
       "fr": {
         "quote": "Nous ne pouvons pas tous faire de grandes choses. Mais nous pouvons faire de petites choses avec un grand amour.",
-        "author": "M\u00e8re Teresa",
+        "author": "Mère Teresa",
         "category": "Service"
       }
     }
@@ -3329,18 +3329,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Leadership"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #11)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c28\u0c3e\u0c2f\u0c15\u0c24\u0c4d\u0c35\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #11)",
+        "author": "మదర్ థెరిసా",
+        "category": "నాయకత్వం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #11)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0928\u0947\u0924\u0943\u0924\u094d\u0935"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #11)",
+        "author": "मदर टेरेसा",
+        "category": "नेतृत्व"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #11)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #11)",
+        "author": "Mère Teresa",
         "category": "Leadership"
       }
     }
@@ -3359,18 +3359,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #12)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #12)",
+        "author": "మదర్ థెరిసా",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #12)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #12)",
+        "author": "मदर टेरेसा",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #12)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #12)",
+        "author": "Mère Teresa",
         "category": "Confiance"
       }
     }
@@ -3389,18 +3389,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Leadership"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #13)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c28\u0c3e\u0c2f\u0c15\u0c24\u0c4d\u0c35\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #13)",
+        "author": "మదర్ థెరిసా",
+        "category": "నాయకత్వం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #13)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0928\u0947\u0924\u0943\u0924\u094d\u0935"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #13)",
+        "author": "मदर टेरेसा",
+        "category": "नेतृत्व"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #13)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #13)",
+        "author": "Mère Teresa",
         "category": "Leadership"
       }
     }
@@ -3419,19 +3419,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Dreams"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #14)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c15\u0c32\u0c32\u0c41"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #14)",
+        "author": "మదర్ థెరిసా",
+        "category": "కలలు"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #14)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0938\u092a\u0928\u0947"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #14)",
+        "author": "मदर टेरेसा",
+        "category": "सपने"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #14)",
-        "author": "M\u00e8re Teresa",
-        "category": "R\u00eaves"
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #14)",
+        "author": "Mère Teresa",
+        "category": "Rêves"
       }
     }
   },
@@ -3449,18 +3449,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #15)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #15)",
+        "author": "మదర్ థెరిసా",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #15)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #15)",
+        "author": "मदर टेरेसा",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #15)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #15)",
+        "author": "Mère Teresa",
         "category": "Confiance"
       }
     }
@@ -3479,18 +3479,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Service"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #16)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c38\u0c47\u0c35"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #16)",
+        "author": "మదర్ థెరిసా",
+        "category": "సేవ"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #16)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0938\u0947\u0935\u093e"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #16)",
+        "author": "मदर टेरेसा",
+        "category": "सेवा"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #16)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #16)",
+        "author": "Mère Teresa",
         "category": "Service"
       }
     }
@@ -3509,18 +3509,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Leadership"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #17)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c28\u0c3e\u0c2f\u0c15\u0c24\u0c4d\u0c35\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #17)",
+        "author": "మదర్ థెరిసా",
+        "category": "నాయకత్వం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #17)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0928\u0947\u0924\u0943\u0924\u094d\u0935"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #17)",
+        "author": "मदर टेरेसा",
+        "category": "नेतृत्व"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #17)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #17)",
+        "author": "Mère Teresa",
         "category": "Leadership"
       }
     }
@@ -3539,18 +3539,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #18)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #18)",
+        "author": "మదర్ థెరిసా",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #18)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #18)",
+        "author": "मदर टेरेसा",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #18)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #18)",
+        "author": "Mère Teresa",
         "category": "Confiance"
       }
     }
@@ -3569,18 +3569,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Leadership"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #19)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c28\u0c3e\u0c2f\u0c15\u0c24\u0c4d\u0c35\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #19)",
+        "author": "మదర్ థెరిసా",
+        "category": "నాయకత్వం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #19)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0928\u0947\u0924\u0943\u0924\u094d\u0935"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #19)",
+        "author": "मदर टेरेसा",
+        "category": "नेतृत्व"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #19)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #19)",
+        "author": "Mère Teresa",
         "category": "Leadership"
       }
     }
@@ -3599,18 +3599,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Focus"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #20)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c0f\u0c15\u0c3e\u0c17\u0c4d\u0c30\u0c24"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #20)",
+        "author": "మదర్ థెరిసా",
+        "category": "ఏకాగ్రత"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #20)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u090f\u0915\u093e\u0917\u094d\u0930\u0924\u093e"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #20)",
+        "author": "मदर टेरेसा",
+        "category": "एकाग्रता"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #20)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #20)",
+        "author": "Mère Teresa",
         "category": "Focus"
       }
     }
@@ -3629,18 +3629,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #21)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #21)",
+        "author": "మదర్ థెరిసా",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #21)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #21)",
+        "author": "मदर टेरेसा",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #21)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #21)",
+        "author": "Mère Teresa",
         "category": "Confiance"
       }
     }
@@ -3659,18 +3659,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Service"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #22)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c38\u0c47\u0c35"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #22)",
+        "author": "మదర్ థెరిసా",
+        "category": "సేవ"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #22)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0938\u0947\u0935\u093e"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #22)",
+        "author": "मदर टेरेसा",
+        "category": "सेवा"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #22)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #22)",
+        "author": "Mère Teresa",
         "category": "Service"
       }
     }
@@ -3689,18 +3689,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Leadership"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #23)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c28\u0c3e\u0c2f\u0c15\u0c24\u0c4d\u0c35\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #23)",
+        "author": "మదర్ థెరిసా",
+        "category": "నాయకత్వం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #23)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0928\u0947\u0924\u0943\u0924\u094d\u0935"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #23)",
+        "author": "मदर टेरेसा",
+        "category": "नेतृत्व"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #23)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #23)",
+        "author": "Mère Teresa",
         "category": "Leadership"
       }
     }
@@ -3719,18 +3719,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #24)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #24)",
+        "author": "మదర్ థెరిసా",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #24)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #24)",
+        "author": "मदर टेरेसा",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #24)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #24)",
+        "author": "Mère Teresa",
         "category": "Confiance"
       }
     }
@@ -3749,18 +3749,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Focus"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #25)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c0f\u0c15\u0c3e\u0c17\u0c4d\u0c30\u0c24"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #25)",
+        "author": "మదర్ థెరిసా",
+        "category": "ఏకాగ్రత"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #25)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u090f\u0915\u093e\u0917\u094d\u0930\u0924\u093e"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #25)",
+        "author": "मदर टेरेसा",
+        "category": "एकाग्रता"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #25)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #25)",
+        "author": "Mère Teresa",
         "category": "Focus"
       }
     }
@@ -3779,18 +3779,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Service"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #26)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c38\u0c47\u0c35"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #26)",
+        "author": "మదర్ థెరిసా",
+        "category": "సేవ"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #26)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0938\u0947\u0935\u093e"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #26)",
+        "author": "मदर टेरेसा",
+        "category": "सेवा"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #26)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #26)",
+        "author": "Mère Teresa",
         "category": "Service"
       }
     }
@@ -3809,18 +3809,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #27)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #27)",
+        "author": "మదర్ థెరిసా",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #27)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #27)",
+        "author": "मदर टेरेसा",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #27)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #27)",
+        "author": "Mère Teresa",
         "category": "Confiance"
       }
     }
@@ -3839,19 +3839,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Dreams"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #28)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c15\u0c32\u0c32\u0c41"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #28)",
+        "author": "మదర్ థెరిసా",
+        "category": "కలలు"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #28)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0938\u092a\u0928\u0947"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #28)",
+        "author": "मदर टेरेसा",
+        "category": "सपने"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #28)",
-        "author": "M\u00e8re Teresa",
-        "category": "R\u00eaves"
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #28)",
+        "author": "Mère Teresa",
+        "category": "Rêves"
       }
     }
   },
@@ -3869,18 +3869,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Leadership"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #29)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c28\u0c3e\u0c2f\u0c15\u0c24\u0c4d\u0c35\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #29)",
+        "author": "మదర్ థెరిసా",
+        "category": "నాయకత్వం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #29)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0928\u0947\u0924\u0943\u0924\u094d\u0935"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #29)",
+        "author": "मदर टेरेसा",
+        "category": "नेतृत्व"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #29)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #29)",
+        "author": "Mère Teresa",
         "category": "Leadership"
       }
     }
@@ -3899,18 +3899,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #30)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #30)",
+        "author": "మదర్ థెరిసా",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #30)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #30)",
+        "author": "मदर टेरेसा",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #30)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #30)",
+        "author": "Mère Teresa",
         "category": "Confiance"
       }
     }
@@ -3929,18 +3929,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Leadership"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #31)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c28\u0c3e\u0c2f\u0c15\u0c24\u0c4d\u0c35\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #31)",
+        "author": "మదర్ థెరిసా",
+        "category": "నాయకత్వం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #31)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0928\u0947\u0924\u0943\u0924\u094d\u0935"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #31)",
+        "author": "मदर टेरेसा",
+        "category": "नेतृत्व"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #31)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #31)",
+        "author": "Mère Teresa",
         "category": "Leadership"
       }
     }
@@ -3959,18 +3959,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Service"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #32)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c38\u0c47\u0c35"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #32)",
+        "author": "మదర్ థెరిసా",
+        "category": "సేవ"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #32)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0938\u0947\u0935\u093e"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #32)",
+        "author": "मदर टेरेसा",
+        "category": "सेवा"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #32)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #32)",
+        "author": "Mère Teresa",
         "category": "Service"
       }
     }
@@ -3989,18 +3989,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #33)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #33)",
+        "author": "మదర్ థెరిసా",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #33)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #33)",
+        "author": "मदर टेरेसा",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #33)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #33)",
+        "author": "Mère Teresa",
         "category": "Confiance"
       }
     }
@@ -4019,18 +4019,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Service"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #34)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c38\u0c47\u0c35"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #34)",
+        "author": "మదర్ థెరిసా",
+        "category": "సేవ"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #34)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0938\u0947\u0935\u093e"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #34)",
+        "author": "मदर टेरेसा",
+        "category": "सेवा"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #34)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #34)",
+        "author": "Mère Teresa",
         "category": "Service"
       }
     }
@@ -4049,18 +4049,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Focus"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #35)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c0f\u0c15\u0c3e\u0c17\u0c4d\u0c30\u0c24"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #35)",
+        "author": "మదర్ థెరిసా",
+        "category": "ఏకాగ్రత"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #35)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u090f\u0915\u093e\u0917\u094d\u0930\u0924\u093e"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #35)",
+        "author": "मदर टेरेसा",
+        "category": "एकाग्रता"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #35)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #35)",
+        "author": "Mère Teresa",
         "category": "Focus"
       }
     }
@@ -4079,18 +4079,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #36)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #36)",
+        "author": "మదర్ థెరిసా",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #36)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #36)",
+        "author": "मदर टेरेसा",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #36)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #36)",
+        "author": "Mère Teresa",
         "category": "Confiance"
       }
     }
@@ -4109,18 +4109,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Leadership"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #37)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c28\u0c3e\u0c2f\u0c15\u0c24\u0c4d\u0c35\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #37)",
+        "author": "మదర్ థెరిసా",
+        "category": "నాయకత్వం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #37)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0928\u0947\u0924\u0943\u0924\u094d\u0935"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #37)",
+        "author": "मदर टेरेसा",
+        "category": "नेतृत्व"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #37)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #37)",
+        "author": "Mère Teresa",
         "category": "Leadership"
       }
     }
@@ -4139,18 +4139,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Service"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #38)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c38\u0c47\u0c35"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #38)",
+        "author": "మదర్ థెరిసా",
+        "category": "సేవ"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #38)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0938\u0947\u0935\u093e"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #38)",
+        "author": "मदर टेरेसा",
+        "category": "सेवा"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #38)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #38)",
+        "author": "Mère Teresa",
         "category": "Service"
       }
     }
@@ -4169,18 +4169,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #39)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #39)",
+        "author": "మదర్ థెరిసా",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #39)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #39)",
+        "author": "मदर टेरेसा",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #39)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #39)",
+        "author": "Mère Teresa",
         "category": "Confiance"
       }
     }
@@ -4199,18 +4199,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Focus"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #40)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c0f\u0c15\u0c3e\u0c17\u0c4d\u0c30\u0c24"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #40)",
+        "author": "మదర్ థెరిసా",
+        "category": "ఏకాగ్రత"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #40)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u090f\u0915\u093e\u0917\u094d\u0930\u0924\u093e"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #40)",
+        "author": "मदर टेरेसा",
+        "category": "एकाग्रता"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #40)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #40)",
+        "author": "Mère Teresa",
         "category": "Focus"
       }
     }
@@ -4229,18 +4229,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Leadership"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #41)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c28\u0c3e\u0c2f\u0c15\u0c24\u0c4d\u0c35\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #41)",
+        "author": "మదర్ థెరిసా",
+        "category": "నాయకత్వం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #41)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0928\u0947\u0924\u0943\u0924\u094d\u0935"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #41)",
+        "author": "मदर टेरेसा",
+        "category": "नेतृत्व"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #41)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #41)",
+        "author": "Mère Teresa",
         "category": "Leadership"
       }
     }
@@ -4259,18 +4259,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #42)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #42)",
+        "author": "మదర్ థెరిసా",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #42)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #42)",
+        "author": "मदर टेरेसा",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #42)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #42)",
+        "author": "Mère Teresa",
         "category": "Confiance"
       }
     }
@@ -4289,18 +4289,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Leadership"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #43)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c28\u0c3e\u0c2f\u0c15\u0c24\u0c4d\u0c35\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #43)",
+        "author": "మదర్ థెరిసా",
+        "category": "నాయకత్వం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #43)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0928\u0947\u0924\u0943\u0924\u094d\u0935"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #43)",
+        "author": "मदर टेरेसा",
+        "category": "नेतृत्व"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #43)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #43)",
+        "author": "Mère Teresa",
         "category": "Leadership"
       }
     }
@@ -4319,18 +4319,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Service"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #44)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c38\u0c47\u0c35"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #44)",
+        "author": "మదర్ థెరిసా",
+        "category": "సేవ"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #44)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0938\u0947\u0935\u093e"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #44)",
+        "author": "मदर टेरेसा",
+        "category": "सेवा"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #44)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #44)",
+        "author": "Mère Teresa",
         "category": "Service"
       }
     }
@@ -4349,18 +4349,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #45)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #45)",
+        "author": "మదర్ థెరిసా",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #45)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #45)",
+        "author": "मदर टेरेसा",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #45)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #45)",
+        "author": "Mère Teresa",
         "category": "Confiance"
       }
     }
@@ -4379,18 +4379,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Service"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #46)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c38\u0c47\u0c35"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #46)",
+        "author": "మదర్ థెరిసా",
+        "category": "సేవ"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #46)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0938\u0947\u0935\u093e"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #46)",
+        "author": "मदर टेरेसा",
+        "category": "सेवा"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #46)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #46)",
+        "author": "Mère Teresa",
         "category": "Service"
       }
     }
@@ -4409,18 +4409,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Leadership"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #47)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c28\u0c3e\u0c2f\u0c15\u0c24\u0c4d\u0c35\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #47)",
+        "author": "మదర్ థెరిసా",
+        "category": "నాయకత్వం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #47)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0928\u0947\u0924\u0943\u0924\u094d\u0935"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #47)",
+        "author": "मदर टेरेसा",
+        "category": "नेतृत्व"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #47)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #47)",
+        "author": "Mère Teresa",
         "category": "Leadership"
       }
     }
@@ -4439,18 +4439,18 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Confidence"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #48)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c06\u0c24\u0c4d\u0c2e\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c3e\u0c38\u0c02"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #48)",
+        "author": "మదర్ థెరిసా",
+        "category": "ఆత్మవిశ్వాసం"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #48)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0906\u0924\u094d\u092e\u0935\u093f\u0936\u094d\u0935\u093e\u0938"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #48)",
+        "author": "मदर टेरेसा",
+        "category": "आत्मविश्वास"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #48)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #48)",
+        "author": "Mère Teresa",
         "category": "Confiance"
       }
     }
@@ -4469,19 +4469,19 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Dreams"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #49)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c15\u0c32\u0c32\u0c41"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #49)",
+        "author": "మదర్ థెరిసా",
+        "category": "కలలు"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #49)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u0938\u092a\u0928\u0947"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #49)",
+        "author": "मदर टेरेसा",
+        "category": "सपने"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #49)",
-        "author": "M\u00e8re Teresa",
-        "category": "R\u00eaves"
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #49)",
+        "author": "Mère Teresa",
+        "category": "Rêves"
       }
     }
   },
@@ -4499,19 +4499,3019 @@ export const QUOTES_DATA: Quote[] = [
         "category": "Focus"
       },
       "te": {
-        "quote": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c35\u0c3f\u0c37\u0c2f\u0c3e\u0c32\u0c32\u0c4b \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c21\u0c02\u0c21\u0c3f \u0c0e\u0c02\u0c26\u0c41\u0c15\u0c02\u0c1f\u0c47 \u0c35\u0c3e\u0c1f\u0c3f\u0c32\u0c4b\u0c28\u0c47 \u0c2e\u0c40 \u0c2c\u0c32\u0c02 \u0c09\u0c02\u0c1f\u0c41\u0c02\u0c26\u0c3f. (\u0c09\u0c32\u0c4d\u0c32\u0c47\u0c16\u0c28 #50)",
-        "author": "\u0c2e\u0c26\u0c30\u0c4d \u0c25\u0c46\u0c30\u0c3f\u0c38\u0c3e",
-        "category": "\u0c0f\u0c15\u0c3e\u0c17\u0c4d\u0c30\u0c24"
+        "quote": "చిన్న విషయాలలో నమ్మకంగా ఉండండి ఎందుకంటే వాటిలోనే మీ బలం ఉంటుంది. (ఉల్లేఖన #50)",
+        "author": "మదర్ థెరిసా",
+        "category": "ఏకాగ్రత"
       },
       "hi": {
-        "quote": "\u091b\u094b\u091f\u0940-\u091b\u094b\u091f\u0940 \u092c\u093e\u0924\u094b\u0902 \u092e\u0947\u0902 \u0935\u092b\u093e\u0926\u093e\u0930 \u0930\u0939\u0947\u0902 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0909\u0928\u094d\u0939\u0940\u0902 \u092e\u0947\u0902 \u0906\u092a\u0915\u0940 \u0924\u093e\u0915\u0924 \u091b\u093f\u092a\u0940 \u0939\u0948\u0964 (\u0938\u0902\u0926\u0930\u094d\u092d #50)",
-        "author": "\u092e\u0926\u0930 \u091f\u0947\u0930\u0947\u0938\u093e",
-        "category": "\u090f\u0915\u093e\u0917\u094d\u0930\u0924\u093e"
+        "quote": "छोटी-छोटी बातों में वफादार रहें क्योंकि उन्हीं में आपकी ताकत छिपी है। (संदर्भ #50)",
+        "author": "मदर टेरेसा",
+        "category": "एकाग्रता"
       },
       "fr": {
-        "quote": "Soyez fid\u00e8le dans les petites choses car c'est en elles que r\u00e9side votre force. (R\u00e9f #50)",
-        "author": "M\u00e8re Teresa",
+        "quote": "Soyez fidèle dans les petites choses car c'est en elles que réside votre force. (Réf #50)",
+        "author": "Mère Teresa",
         "category": "Focus"
+      }
+    }
+  },
+  {
+    "id": "151",
+    "quote": "Dream, dream, dream. Dreams transform into thoughts and thoughts result in action.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Dreams",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Dream, dream, dream. Dreams transform into thoughts and thoughts result in action.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Dreams"
+      }
+    }
+  },
+  {
+    "id": "152",
+    "quote": "You have to dream before your dreams can come true.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Dreams",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "You have to dream before your dreams can come true.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Dreams"
+      }
+    }
+  },
+  {
+    "id": "153",
+    "quote": "Excellence happens not by accident. It is a process.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Excellence happens not by accident. It is a process.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "154",
+    "quote": "Thinking should become your capital asset, no matter whatever ups and downs you come across in your life.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Thinking should become your capital asset, no matter whatever ups and downs you come across in your life.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "155",
+    "quote": "Man needs his difficulties because they are necessary to enjoy success.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Success",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Man needs his difficulties because they are necessary to enjoy success.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Success"
+      }
+    }
+  },
+  {
+    "id": "156",
+    "quote": "Small aim is a crime; have great aim.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Motivation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Small aim is a crime; have great aim.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Motivation"
+      }
+    }
+  },
+  {
+    "id": "157",
+    "quote": "If four things are followed - having a great aim, acquiring knowledge, hard work, and perseverance - then anything can be achieved.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Success",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "If four things are followed - having a great aim, acquiring knowledge, hard work, and perseverance - then anything can be achieved.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Success"
+      }
+    }
+  },
+  {
+    "id": "158",
+    "quote": "All of us do not have equal talent. But, all of us have an equal opportunity to develop our talents.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Education",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "All of us do not have equal talent. But, all of us have an equal opportunity to develop our talents.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Education"
+      }
+    }
+  },
+  {
+    "id": "159",
+    "quote": "Be active! Take responsibility! Work for the things you believe in.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Leadership",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Be active! Take responsibility! Work for the things you believe in.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Leadership"
+      }
+    }
+  },
+  {
+    "id": "160",
+    "quote": "Confidence and hard work is the best medicine to kill the disease called failure.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Confidence",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Confidence and hard work is the best medicine to kill the disease called failure.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Confidence"
+      }
+    }
+  },
+  {
+    "id": "161",
+    "quote": "Creativity is seeing the same thing but thinking something different.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Innovation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Creativity is seeing the same thing but thinking something different.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Innovation"
+      }
+    }
+  },
+  {
+    "id": "162",
+    "quote": "Knowledge with action converts adversity into prosperity.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Knowledge with action converts adversity into prosperity.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "163",
+    "quote": "While the rain forces all birds to find shelter, the eagle avoids rain by flying above the clouds. Problems are common, but attitude makes the difference.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Character",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "While the rain forces all birds to find shelter, the eagle avoids rain by flying above the clouds. Problems are common, but attitude makes the difference.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Character"
+      }
+    }
+  },
+  {
+    "id": "164",
+    "quote": "Look at the sky. We are not alone. The whole universe is friendly to us and conspires only to give the best to those who dream and work.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Motivation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Look at the sky. We are not alone. The whole universe is friendly to us and conspires only to give the best to those who dream and work.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Motivation"
+      }
+    }
+  },
+  {
+    "id": "165",
+    "quote": "Without your involvement you cannot succeed. With your involvement you cannot fail.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Discipline",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Without your involvement you cannot succeed. With your involvement you cannot fail.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Discipline"
+      }
+    }
+  },
+  {
+    "id": "166",
+    "quote": "Take up one idea. Make that one idea your life - think of it, dream of it, live on that idea. Let the brain, muscles, nerves, every part of your body, be full of that idea, and just leave every other idea alone. This is the way to success.",
+    "author": "Swami Vivekananda",
+    "category": "Focus",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Take up one idea. Make that one idea your life - think of it, dream of it, live on that idea. Let the brain, muscles, nerves, every part of your body, be full of that idea, and just leave every other idea alone. This is the way to success.",
+        "author": "Swami Vivekananda",
+        "category": "Focus"
+      }
+    }
+  },
+  {
+    "id": "167",
+    "quote": "In a day, when you don't come across any problems - you can be sure that you are traveling in a wrong path.",
+    "author": "Swami Vivekananda",
+    "category": "Character",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "In a day, when you don't come across any problems - you can be sure that you are traveling in a wrong path.",
+        "author": "Swami Vivekananda",
+        "category": "Character"
+      }
+    }
+  },
+  {
+    "id": "168",
+    "quote": "Strength is Life, Weakness is Death.",
+    "author": "Swami Vivekananda",
+    "category": "Courage",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Strength is Life, Weakness is Death.",
+        "author": "Swami Vivekananda",
+        "category": "Courage"
+      }
+    }
+  },
+  {
+    "id": "169",
+    "quote": "The greatest sin is to think yourself weak.",
+    "author": "Swami Vivekananda",
+    "category": "Confidence",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "The greatest sin is to think yourself weak.",
+        "author": "Swami Vivekananda",
+        "category": "Confidence"
+      }
+    }
+  },
+  {
+    "id": "170",
+    "quote": "All power is within you; you can do anything and everything.",
+    "author": "Swami Vivekananda",
+    "category": "Confidence",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "All power is within you; you can do anything and everything.",
+        "author": "Swami Vivekananda",
+        "category": "Confidence"
+      }
+    }
+  },
+  {
+    "id": "171",
+    "quote": "Condition of your mind determines your destiny.",
+    "author": "Swami Vivekananda",
+    "category": "Discipline",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Condition of your mind determines your destiny.",
+        "author": "Swami Vivekananda",
+        "category": "Discipline"
+      }
+    }
+  },
+  {
+    "id": "172",
+    "quote": "Stand up, be bold, be strong. Take the whole responsibility on your own shoulders, and know that you are the creator of your own destiny.",
+    "author": "Swami Vivekananda",
+    "category": "Leadership",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Stand up, be bold, be strong. Take the whole responsibility on your own shoulders, and know that you are the creator of your own destiny.",
+        "author": "Swami Vivekananda",
+        "category": "Leadership"
+      }
+    }
+  },
+  {
+    "id": "173",
+    "quote": "Ask nothing; want nothing in return. Give what you have to give; it will come back to you, but do not think of that now.",
+    "author": "Swami Vivekananda",
+    "category": "Kindness",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Ask nothing; want nothing in return. Give what you have to give; it will come back to you, but do not think of that now.",
+        "author": "Swami Vivekananda",
+        "category": "Kindness"
+      }
+    }
+  },
+  {
+    "id": "174",
+    "quote": "Feel like a giant, even in the smallest tasks.",
+    "author": "Swami Vivekananda",
+    "category": "Motivation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Feel like a giant, even in the smallest tasks.",
+        "author": "Swami Vivekananda",
+        "category": "Motivation"
+      }
+    }
+  },
+  {
+    "id": "175",
+    "quote": "Whatever you think that you will be. If you think yourself weak, weak you will be; if you think yourself strong, you will be.",
+    "author": "Swami Vivekananda",
+    "category": "Confidence",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Whatever you think that you will be. If you think yourself weak, weak you will be; if you think yourself strong, you will be.",
+        "author": "Swami Vivekananda",
+        "category": "Confidence"
+      }
+    }
+  },
+  {
+    "id": "176",
+    "quote": "Desire, ignorance, and inequality - this is the trinity of bondage.",
+    "author": "Swami Vivekananda",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Desire, ignorance, and inequality - this is the trinity of bondage.",
+        "author": "Swami Vivekananda",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "177",
+    "quote": "Experience is the only teacher we have. We may talk and reason all our lives, but we shall not understand a word of truth until we experience it ourselves.",
+    "author": "Swami Vivekananda",
+    "category": "Education",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Experience is the only teacher we have. We may talk and reason all our lives, but we shall not understand a word of truth until we experience it ourselves.",
+        "author": "Swami Vivekananda",
+        "category": "Education"
+      }
+    }
+  },
+  {
+    "id": "178",
+    "quote": "Dare to be free, dare to go as far as your thought leads, and dare to carry that out in your life.",
+    "author": "Swami Vivekananda",
+    "category": "Courage",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Dare to be free, dare to go as far as your thought leads, and dare to carry that out in your life.",
+        "author": "Swami Vivekananda",
+        "category": "Courage"
+      }
+    }
+  },
+  {
+    "id": "179",
+    "quote": "Neither seek nor avoid, take what comes.",
+    "author": "Swami Vivekananda",
+    "category": "Life",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Neither seek nor avoid, take what comes.",
+        "author": "Swami Vivekananda",
+        "category": "Life"
+      }
+    }
+  },
+  {
+    "id": "180",
+    "quote": "They alone live, who live for others.",
+    "author": "Swami Vivekananda",
+    "category": "Kindness",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "They alone live, who live for others.",
+        "author": "Swami Vivekananda",
+        "category": "Kindness"
+      }
+    }
+  },
+  {
+    "id": "181",
+    "quote": "When an idea exclusively occupies the mind, it is transformed into an actual physical or mental state.",
+    "author": "Swami Vivekananda",
+    "category": "Focus",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "When an idea exclusively occupies the mind, it is transformed into an actual physical or mental state.",
+        "author": "Swami Vivekananda",
+        "category": "Focus"
+      }
+    }
+  },
+  {
+    "id": "182",
+    "quote": "Extremes are never good; balance is the law of nature.",
+    "author": "Swami Vivekananda",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Extremes are never good; balance is the law of nature.",
+        "author": "Swami Vivekananda",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "183",
+    "quote": "Be faithful in small things because it is in them that your strength lies.",
+    "author": "Mother Teresa",
+    "category": "Discipline",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Be faithful in small things because it is in them that your strength lies.",
+        "author": "Mother Teresa",
+        "category": "Discipline"
+      }
+    }
+  },
+  {
+    "id": "184",
+    "quote": "The most terrible poverty is loneliness and the feeling of being unloved.",
+    "author": "Mother Teresa",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "The most terrible poverty is loneliness and the feeling of being unloved.",
+        "author": "Mother Teresa",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "185",
+    "quote": "I alone cannot change the world, but I can cast a stone across the waters to create many ripples.",
+    "author": "Mother Teresa",
+    "category": "Leadership",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "I alone cannot change the world, but I can cast a stone across the waters to create many ripples.",
+        "author": "Mother Teresa",
+        "category": "Leadership"
+      }
+    }
+  },
+  {
+    "id": "186",
+    "quote": "Love is a fruit in season at all times, and within reach of every hand.",
+    "author": "Mother Teresa",
+    "category": "Kindness",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Love is a fruit in season at all times, and within reach of every hand.",
+        "author": "Mother Teresa",
+        "category": "Kindness"
+      }
+    }
+  },
+  {
+    "id": "187",
+    "quote": "If you cannot feed a hundred people, then feed just one.",
+    "author": "Mother Teresa",
+    "category": "Kindness",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "If you cannot feed a hundred people, then feed just one.",
+        "author": "Mother Teresa",
+        "category": "Kindness"
+      }
+    }
+  },
+  {
+    "id": "188",
+    "quote": "What can you do to promote world peace? Go home and love your family.",
+    "author": "Mother Teresa",
+    "category": "Life",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "What can you do to promote world peace? Go home and love your family.",
+        "author": "Mother Teresa",
+        "category": "Life"
+      }
+    }
+  },
+  {
+    "id": "189",
+    "quote": "God doesn't require us to succeed, he only requires that you try.",
+    "author": "Mother Teresa",
+    "category": "Hard Work",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "God doesn't require us to succeed, he only requires that you try.",
+        "author": "Mother Teresa",
+        "category": "Hard Work"
+      }
+    }
+  },
+  {
+    "id": "190",
+    "quote": "Joy is a net of love by which you can catch souls.",
+    "author": "Mother Teresa",
+    "category": "Life",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Joy is a net of love by which you can catch souls.",
+        "author": "Mother Teresa",
+        "category": "Life"
+      }
+    }
+  },
+  {
+    "id": "191",
+    "quote": "The hunger for love is much more difficult to remove than the hunger for bread.",
+    "author": "Mother Teresa",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "The hunger for love is much more difficult to remove than the hunger for bread.",
+        "author": "Mother Teresa",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "192",
+    "quote": "Never travel faster than your guardian angel can fly.",
+    "author": "Mother Teresa",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Never travel faster than your guardian angel can fly.",
+        "author": "Mother Teresa",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "193",
+    "quote": "Life is a song, sing it. Life is a struggle, accept it.",
+    "author": "Mother Teresa",
+    "category": "Life",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Life is a song, sing it. Life is a struggle, accept it.",
+        "author": "Mother Teresa",
+        "category": "Life"
+      }
+    }
+  },
+  {
+    "id": "194",
+    "quote": "Let us always meet each other with a smile, for the smile is the beginning of love.",
+    "author": "Mother Teresa",
+    "category": "Kindness",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Let us always meet each other with a smile, for the smile is the beginning of love.",
+        "author": "Mother Teresa",
+        "category": "Kindness"
+      }
+    }
+  },
+  {
+    "id": "195",
+    "quote": "Be the change that you wish to see in the world.",
+    "author": "Mahatma Gandhi",
+    "category": "Leadership",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Be the change that you wish to see in the world.",
+        "author": "Mahatma Gandhi",
+        "category": "Leadership"
+      }
+    }
+  },
+  {
+    "id": "196",
+    "quote": "The best way to find yourself is to lose yourself in the service of others.",
+    "author": "Mahatma Gandhi",
+    "category": "Kindness",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "The best way to find yourself is to lose yourself in the service of others.",
+        "author": "Mahatma Gandhi",
+        "category": "Kindness"
+      }
+    }
+  },
+  {
+    "id": "197",
+    "quote": "Live as if you were to die tomorrow. Learn as if you were to live forever.",
+    "author": "Mahatma Gandhi",
+    "category": "Education",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Live as if you were to die tomorrow. Learn as if you were to live forever.",
+        "author": "Mahatma Gandhi",
+        "category": "Education"
+      }
+    }
+  },
+  {
+    "id": "198",
+    "quote": "An eye for an eye only ends up making the whole world blind.",
+    "author": "Mahatma Gandhi",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "An eye for an eye only ends up making the whole world blind.",
+        "author": "Mahatma Gandhi",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "199",
+    "quote": "Strength does not come from physical capacity. It comes from an indomitable will.",
+    "author": "Mahatma Gandhi",
+    "category": "Courage",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Strength does not come from physical capacity. It comes from an indomitable will.",
+        "author": "Mahatma Gandhi",
+        "category": "Courage"
+      }
+    }
+  },
+  {
+    "id": "200",
+    "quote": "Happiness is when what you think, what you say, and what you do are in harmony.",
+    "author": "Mahatma Gandhi",
+    "category": "Life",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Happiness is when what you think, what you say, and what you do are in harmony.",
+        "author": "Mahatma Gandhi",
+        "category": "Life"
+      }
+    }
+  },
+  {
+    "id": "201",
+    "quote": "Freedom is not worth having if it does not include the freedom to make mistakes.",
+    "author": "Mahatma Gandhi",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Freedom is not worth having if it does not include the freedom to make mistakes.",
+        "author": "Mahatma Gandhi",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "202",
+    "quote": "The weak can never forgive. Forgiveness is the attribute of the strong.",
+    "author": "Mahatma Gandhi",
+    "category": "Courage",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "The weak can never forgive. Forgiveness is the attribute of the strong.",
+        "author": "Mahatma Gandhi",
+        "category": "Courage"
+      }
+    }
+  },
+  {
+    "id": "203",
+    "quote": "A man is but the product of his thoughts. What he thinks, he becomes.",
+    "author": "Mahatma Gandhi",
+    "category": "Confidence",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "A man is but the product of his thoughts. What he thinks, he becomes.",
+        "author": "Mahatma Gandhi",
+        "category": "Confidence"
+      }
+    }
+  },
+  {
+    "id": "204",
+    "quote": "The future depends on what you do today.",
+    "author": "Mahatma Gandhi",
+    "category": "Motivation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "The future depends on what you do today.",
+        "author": "Mahatma Gandhi",
+        "category": "Motivation"
+      }
+    }
+  },
+  {
+    "id": "205",
+    "quote": "You must not lose faith in humanity. Humanity is an ocean; if a few drops of the ocean are dirty, the ocean does not become dirty.",
+    "author": "Mahatma Gandhi",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "You must not lose faith in humanity. Humanity is an ocean; if a few drops of the ocean are dirty, the ocean does not become dirty.",
+        "author": "Mahatma Gandhi",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "206",
+    "quote": "In a gentle way, you can shake the world.",
+    "author": "Mahatma Gandhi",
+    "category": "Leadership",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "In a gentle way, you can shake the world.",
+        "author": "Mahatma Gandhi",
+        "category": "Leadership"
+      }
+    }
+  },
+  {
+    "id": "207",
+    "quote": "Service which is rendered without joy helps neither the servant nor the served.",
+    "author": "Mahatma Gandhi",
+    "category": "Kindness",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Service which is rendered without joy helps neither the servant nor the served.",
+        "author": "Mahatma Gandhi",
+        "category": "Kindness"
+      }
+    }
+  },
+  {
+    "id": "208",
+    "quote": "Satisfaction lies in the effort, not in the attainment, full effort is full victory.",
+    "author": "Mahatma Gandhi",
+    "category": "Hard Work",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Satisfaction lies in the effort, not in the attainment, full effort is full victory.",
+        "author": "Mahatma Gandhi",
+        "category": "Hard Work"
+      }
+    }
+  },
+  {
+    "id": "209",
+    "quote": "It is easy to stand in the crowd, but it takes courage to stand alone.",
+    "author": "Mahatma Gandhi",
+    "category": "Courage",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "It is easy to stand in the crowd, but it takes courage to stand alone.",
+        "author": "Mahatma Gandhi",
+        "category": "Courage"
+      }
+    }
+  },
+  {
+    "id": "210",
+    "quote": "Hate the sin, love the sinner.",
+    "author": "Mahatma Gandhi",
+    "category": "Kindness",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Hate the sin, love the sinner.",
+        "author": "Mahatma Gandhi",
+        "category": "Kindness"
+      }
+    }
+  },
+  {
+    "id": "211",
+    "quote": "My life is my message.",
+    "author": "Mahatma Gandhi",
+    "category": "Character",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "My life is my message.",
+        "author": "Mahatma Gandhi",
+        "category": "Character"
+      }
+    }
+  },
+  {
+    "id": "212",
+    "quote": "Patience means the capacity for endurance.",
+    "author": "Mahatma Gandhi",
+    "category": "Perseverance",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Patience means the capacity for endurance.",
+        "author": "Mahatma Gandhi",
+        "category": "Perseverance"
+      }
+    }
+  },
+  {
+    "id": "213",
+    "quote": "Silence is the best answer to anger.",
+    "author": "Mahatma Gandhi",
+    "category": "Discipline",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Silence is the best answer to anger.",
+        "author": "Mahatma Gandhi",
+        "category": "Discipline"
+      }
+    }
+  },
+  {
+    "id": "214",
+    "quote": "To give pleasure to a single heart by a single act is better than a thousand heads bowing in prayer.",
+    "author": "Mahatma Gandhi",
+    "category": "Kindness",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "To give pleasure to a single heart by a single act is better than a thousand heads bowing in prayer.",
+        "author": "Mahatma Gandhi",
+        "category": "Kindness"
+      }
+    }
+  },
+  {
+    "id": "215",
+    "quote": "It always seems impossible until it's done.",
+    "author": "Nelson Mandela",
+    "category": "Motivation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "It always seems impossible until it's done.",
+        "author": "Nelson Mandela",
+        "category": "Motivation"
+      }
+    }
+  },
+  {
+    "id": "216",
+    "quote": "Education is the most powerful weapon which you can use to change the world.",
+    "author": "Nelson Mandela",
+    "category": "Education",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Education is the most powerful weapon which you can use to change the world.",
+        "author": "Nelson Mandela",
+        "category": "Education"
+      }
+    }
+  },
+  {
+    "id": "217",
+    "quote": "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+    "author": "Nelson Mandela",
+    "category": "Perseverance",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+        "author": "Nelson Mandela",
+        "category": "Perseverance"
+      }
+    }
+  },
+  {
+    "id": "218",
+    "quote": "Do not judge me by my successes, judge me by how many times I fell down and got back up again.",
+    "author": "Nelson Mandela",
+    "category": "Perseverance",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Do not judge me by my successes, judge me by how many times I fell down and got back up again.",
+        "author": "Nelson Mandela",
+        "category": "Perseverance"
+      }
+    }
+  },
+  {
+    "id": "219",
+    "quote": "For to be free is not merely to cast off one's chains, but to live in a way that respects and enhances the freedom of others.",
+    "author": "Nelson Mandela",
+    "category": "Leadership",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "For to be free is not merely to cast off one's chains, but to live in a way that respects and enhances the freedom of others.",
+        "author": "Nelson Mandela",
+        "category": "Leadership"
+      }
+    }
+  },
+  {
+    "id": "220",
+    "quote": "I learned that courage was not the absence of fear, but the triumph over it. The brave man is not he who does not feel afraid, but he who conquers that fear.",
+    "author": "Nelson Mandela",
+    "category": "Courage",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "I learned that courage was not the absence of fear, but the triumph over it. The brave man is not he who does not feel afraid, but he who conquers that fear.",
+        "author": "Nelson Mandela",
+        "category": "Courage"
+      }
+    }
+  },
+  {
+    "id": "221",
+    "quote": "A winner is a dreamer who never gives up.",
+    "author": "Nelson Mandela",
+    "category": "Perseverance",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "A winner is a dreamer who never gives up.",
+        "author": "Nelson Mandela",
+        "category": "Perseverance"
+      }
+    }
+  },
+  {
+    "id": "222",
+    "quote": "There is no passion to be found playing small - in settling for a life that is less than the one you are capable of living.",
+    "author": "Nelson Mandela",
+    "category": "Dreams",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "There is no passion to be found playing small - in settling for a life that is less than the one you are capable of living.",
+        "author": "Nelson Mandela",
+        "category": "Dreams"
+      }
+    }
+  },
+  {
+    "id": "223",
+    "quote": "What counts in life is not the mere fact that we have lived. It is what difference we have made to the lives of others.",
+    "author": "Nelson Mandela",
+    "category": "Life",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "What counts in life is not the mere fact that we have lived. It is what difference we have made to the lives of others.",
+        "author": "Nelson Mandela",
+        "category": "Life"
+      }
+    }
+  },
+  {
+    "id": "224",
+    "quote": "Resentment is like drinking poison and then hoping it will kill your enemies.",
+    "author": "Nelson Mandela",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Resentment is like drinking poison and then hoping it will kill your enemies.",
+        "author": "Nelson Mandela",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "225",
+    "quote": "Lead from the back — and let others believe they are in front.",
+    "author": "Nelson Mandela",
+    "category": "Leadership",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Lead from the back — and let others believe they are in front.",
+        "author": "Nelson Mandela",
+        "category": "Leadership"
+      }
+    }
+  },
+  {
+    "id": "226",
+    "quote": "May your choices reflect your hopes, not your fears.",
+    "author": "Nelson Mandela",
+    "category": "Confidence",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "May your choices reflect your hopes, not your fears.",
+        "author": "Nelson Mandela",
+        "category": "Confidence"
+      }
+    }
+  },
+  {
+    "id": "227",
+    "quote": "When a man has done what he considers to be his duty to his people and his country, he can rest in peace.",
+    "author": "Nelson Mandela",
+    "category": "Character",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "When a man has done what he considers to be his duty to his people and his country, he can rest in peace.",
+        "author": "Nelson Mandela",
+        "category": "Character"
+      }
+    }
+  },
+  {
+    "id": "228",
+    "quote": "Action without vision is only passing time, vision without action is merely day dreaming, but vision with action can change the world.",
+    "author": "Nelson Mandela",
+    "category": "Focus",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Action without vision is only passing time, vision without action is merely day dreaming, but vision with action can change the world.",
+        "author": "Nelson Mandela",
+        "category": "Focus"
+      }
+    }
+  },
+  {
+    "id": "229",
+    "quote": "Overcoming poverty is not a task of charity, it is an act of justice.",
+    "author": "Nelson Mandela",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Overcoming poverty is not a task of charity, it is an act of justice.",
+        "author": "Nelson Mandela",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "230",
+    "quote": "After climbing a great hill, one only finds that there are many more hills to climb.",
+    "author": "Nelson Mandela",
+    "category": "Success",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "After climbing a great hill, one only finds that there are many more hills to climb.",
+        "author": "Nelson Mandela",
+        "category": "Success"
+      }
+    }
+  },
+  {
+    "id": "231",
+    "quote": "If you talk to a man in a language he understands, that goes to his head. If you talk to him in his language, that goes to his heart.",
+    "author": "Nelson Mandela",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "If you talk to a man in a language he understands, that goes to his head. If you talk to him in his language, that goes to his heart.",
+        "author": "Nelson Mandela",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "232",
+    "quote": "A good head and good heart are always a formidable combination.",
+    "author": "Nelson Mandela",
+    "category": "Character",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "A good head and good heart are always a formidable combination.",
+        "author": "Nelson Mandela",
+        "category": "Character"
+      }
+    }
+  },
+  {
+    "id": "233",
+    "quote": "Money won't create success, the freedom to make it will.",
+    "author": "Nelson Mandela",
+    "category": "Success",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Money won't create success, the freedom to make it will.",
+        "author": "Nelson Mandela",
+        "category": "Success"
+      }
+    }
+  },
+  {
+    "id": "234",
+    "quote": "Real leaders must be ready to sacrifice all for the freedom of their people.",
+    "author": "Nelson Mandela",
+    "category": "Leadership",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Real leaders must be ready to sacrifice all for the freedom of their people.",
+        "author": "Nelson Mandela",
+        "category": "Leadership"
+      }
+    }
+  },
+  {
+    "id": "235",
+    "quote": "Your time is limited, so don't waste it living someone else's life.",
+    "author": "Steve Jobs",
+    "category": "Life",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Your time is limited, so don't waste it living someone else's life.",
+        "author": "Steve Jobs",
+        "category": "Life"
+      }
+    }
+  },
+  {
+    "id": "236",
+    "quote": "Stay hungry, stay foolish.",
+    "author": "Steve Jobs",
+    "category": "Innovation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Stay hungry, stay foolish.",
+        "author": "Steve Jobs",
+        "category": "Innovation"
+      }
+    }
+  },
+  {
+    "id": "237",
+    "quote": "Innovation distinguishes between a leader and a follower.",
+    "author": "Steve Jobs",
+    "category": "Innovation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Innovation distinguishes between a leader and a follower.",
+        "author": "Steve Jobs",
+        "category": "Innovation"
+      }
+    }
+  },
+  {
+    "id": "238",
+    "quote": "The only way to do great work is to love what you do.",
+    "author": "Steve Jobs",
+    "category": "Success",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "The only way to do great work is to love what you do.",
+        "author": "Steve Jobs",
+        "category": "Success"
+      }
+    }
+  },
+  {
+    "id": "239",
+    "quote": "Have the courage to follow your heart and intuition. They somehow already know what you truly want to become.",
+    "author": "Steve Jobs",
+    "category": "Courage",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Have the courage to follow your heart and intuition. They somehow already know what you truly want to become.",
+        "author": "Steve Jobs",
+        "category": "Courage"
+      }
+    }
+  },
+  {
+    "id": "240",
+    "quote": "Design is not just what it looks like and feels like. Design is how it works.",
+    "author": "Steve Jobs",
+    "category": "Innovation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Design is not just what it looks like and feels like. Design is how it works.",
+        "author": "Steve Jobs",
+        "category": "Innovation"
+      }
+    }
+  },
+  {
+    "id": "241",
+    "quote": "Details matter, it's worth waiting to get it right.",
+    "author": "Steve Jobs",
+    "category": "Discipline",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Details matter, it's worth waiting to get it right.",
+        "author": "Steve Jobs",
+        "category": "Discipline"
+      }
+    }
+  },
+  {
+    "id": "242",
+    "quote": "Be a yardstick of quality. Some people aren't used to an environment where excellence is expected.",
+    "author": "Steve Jobs",
+    "category": "Character",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Be a yardstick of quality. Some people aren't used to an environment where excellence is expected.",
+        "author": "Steve Jobs",
+        "category": "Character"
+      }
+    }
+  },
+  {
+    "id": "243",
+    "quote": "Sometimes when you innovate, you make mistakes. It is best to admit them quickly, and get on with improving your other innovations.",
+    "author": "Steve Jobs",
+    "category": "Innovation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Sometimes when you innovate, you make mistakes. It is best to admit them quickly, and get on with improving your other innovations.",
+        "author": "Steve Jobs",
+        "category": "Innovation"
+      }
+    }
+  },
+  {
+    "id": "244",
+    "quote": "I'm convinced that about half of what separates successful entrepreneurs from the non-successful ones is pure perseverance.",
+    "author": "Steve Jobs",
+    "category": "Perseverance",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "I'm convinced that about half of what separates successful entrepreneurs from the non-successful ones is pure perseverance.",
+        "author": "Steve Jobs",
+        "category": "Perseverance"
+      }
+    }
+  },
+  {
+    "id": "245",
+    "quote": "Great things in business are never done by one person. They're done by a team of people.",
+    "author": "Steve Jobs",
+    "category": "Leadership",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Great things in business are never done by one person. They're done by a team of people.",
+        "author": "Steve Jobs",
+        "category": "Leadership"
+      }
+    }
+  },
+  {
+    "id": "246",
+    "quote": "Quality is more important than quantity. One home run is much better than two doubles.",
+    "author": "Steve Jobs",
+    "category": "Focus",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Quality is more important than quantity. One home run is much better than two doubles.",
+        "author": "Steve Jobs",
+        "category": "Focus"
+      }
+    }
+  },
+  {
+    "id": "247",
+    "quote": "You can't connect the dots looking forward; you can only connect them looking backward. So you have to trust that the dots will somehow connect in your future.",
+    "author": "Steve Jobs",
+    "category": "Confidence",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "You can't connect the dots looking forward; you can only connect them looking backward. So you have to trust that the dots will somehow connect in your future.",
+        "author": "Steve Jobs",
+        "category": "Confidence"
+      }
+    }
+  },
+  {
+    "id": "248",
+    "quote": "My favorite things in life don't cost any money. It's really clear that the most precious resource we all have is time.",
+    "author": "Steve Jobs",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "My favorite things in life don't cost any money. It's really clear that the most precious resource we all have is time.",
+        "author": "Steve Jobs",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "249",
+    "quote": "Don't let the noise of others' opinions drown out your own inner voice.",
+    "author": "Steve Jobs",
+    "category": "Confidence",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Don't let the noise of others' opinions drown out your own inner voice.",
+        "author": "Steve Jobs",
+        "category": "Confidence"
+      }
+    }
+  },
+  {
+    "id": "250",
+    "quote": "Focusing is about saying No.",
+    "author": "Steve Jobs",
+    "category": "Focus",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Focusing is about saying No.",
+        "author": "Steve Jobs",
+        "category": "Focus"
+      }
+    }
+  },
+  {
+    "id": "251",
+    "quote": "I want to put a ding in the universe.",
+    "author": "Steve Jobs",
+    "category": "Dreams",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "I want to put a ding in the universe.",
+        "author": "Steve Jobs",
+        "category": "Dreams"
+      }
+    }
+  },
+  {
+    "id": "252",
+    "quote": "Deciding what not to do is as important as deciding what to do.",
+    "author": "Steve Jobs",
+    "category": "Focus",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Deciding what not to do is as important as deciding what to do.",
+        "author": "Steve Jobs",
+        "category": "Focus"
+      }
+    }
+  },
+  {
+    "id": "253",
+    "quote": "Simple can be harder than complex: You have to work hard to get your thinking clean to make it simple.",
+    "author": "Steve Jobs",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Simple can be harder than complex: You have to work hard to get your thinking clean to make it simple.",
+        "author": "Steve Jobs",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "254",
+    "quote": "We're here to put a dent in the universe. Otherwise why else even be here?",
+    "author": "Steve Jobs",
+    "category": "Motivation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "We're here to put a dent in the universe. Otherwise why else even be here?",
+        "author": "Steve Jobs",
+        "category": "Motivation"
+      }
+    }
+  },
+  {
+    "id": "255",
+    "quote": "Before you start some work, always ask yourself three questions - Why am I doing it, What the results might be and Will I be successful.",
+    "author": "Chanakya",
+    "category": "Focus",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Before you start some work, always ask yourself three questions - Why am I doing it, What the results might be and Will I be successful.",
+        "author": "Chanakya",
+        "category": "Focus"
+      }
+    }
+  },
+  {
+    "id": "256",
+    "quote": "A person should not be too honest. Straight trees are cut first and honest people are screwed first.",
+    "author": "Chanakya",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "A person should not be too honest. Straight trees are cut first and honest people are screwed first.",
+        "author": "Chanakya",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "257",
+    "quote": "Education is the best friend. An educated person is respected everywhere. Education beats the beauty and the youth.",
+    "author": "Chanakya",
+    "category": "Education",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Education is the best friend. An educated person is respected everywhere. Education beats the beauty and the youth.",
+        "author": "Chanakya",
+        "category": "Education"
+      }
+    }
+  },
+  {
+    "id": "258",
+    "quote": "Learn from the mistakes of others... you can't live long enough to make them all yourself.",
+    "author": "Chanakya",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Learn from the mistakes of others... you can't live long enough to make them all yourself.",
+        "author": "Chanakya",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "259",
+    "quote": "Once you start working on something, don't be afraid of failure and don't abandon it. People who work sincerely are the happiest.",
+    "author": "Chanakya",
+    "category": "Hard Work",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Once you start working on something, don't be afraid of failure and don't abandon it. People who work sincerely are the happiest.",
+        "author": "Chanakya",
+        "category": "Hard Work"
+      }
+    }
+  },
+  {
+    "id": "260",
+    "quote": "The fragrance of flowers spreads only in the direction of the wind. But the goodness of a person spreads in all direction.",
+    "author": "Chanakya",
+    "category": "Character",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "The fragrance of flowers spreads only in the direction of the wind. But the goodness of a person spreads in all direction.",
+        "author": "Chanakya",
+        "category": "Character"
+      }
+    }
+  },
+  {
+    "id": "261",
+    "quote": "God is not present in idols. Your feelings are your God. The soul is your temple.",
+    "author": "Chanakya",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "God is not present in idols. Your feelings are your God. The soul is your temple.",
+        "author": "Chanakya",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "262",
+    "quote": "Books are as useful to a stupid person as a mirror is to a blind person.",
+    "author": "Chanakya",
+    "category": "Education",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Books are as useful to a stupid person as a mirror is to a blind person.",
+        "author": "Chanakya",
+        "category": "Education"
+      }
+    }
+  },
+  {
+    "id": "263",
+    "quote": "As soon as the fear approaches near, attack and destroy it.",
+    "author": "Chanakya",
+    "category": "Courage",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "As soon as the fear approaches near, attack and destroy it.",
+        "author": "Chanakya",
+        "category": "Courage"
+      }
+    }
+  },
+  {
+    "id": "264",
+    "quote": "A man is great by deeds, not by birth.",
+    "author": "Chanakya",
+    "category": "Character",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "A man is great by deeds, not by birth.",
+        "author": "Chanakya",
+        "category": "Character"
+      }
+    }
+  },
+  {
+    "id": "265",
+    "quote": "Never make friendship with people who are above or below you in status. Such friendships will never give you any happiness.",
+    "author": "Chanakya",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Never make friendship with people who are above or below you in status. Such friendships will never give you any happiness.",
+        "author": "Chanakya",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "266",
+    "quote": "Treat your kid like a darling for the first five years. For the next ten years, scold them. By the time they turn sixteen, treat them like a friend.",
+    "author": "Chanakya",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Treat your kid like a darling for the first five years. For the next ten years, scold them. By the time they turn sixteen, treat them like a friend.",
+        "author": "Chanakya",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "267",
+    "quote": "Over-attachment is the source of all sorrow.",
+    "author": "Chanakya",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Over-attachment is the source of all sorrow.",
+        "author": "Chanakya",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "268",
+    "quote": "Do not reveal what you have thought upon doing, but by wise council keep it secret determined to carry it into execution.",
+    "author": "Chanakya",
+    "category": "Discipline",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Do not reveal what you have thought upon doing, but by wise council keep it secret determined to carry it into execution.",
+        "author": "Chanakya",
+        "category": "Discipline"
+      }
+    }
+  },
+  {
+    "id": "269",
+    "quote": "Purity of speech, mind, and senses, a forgiving heart and a desire to serve are the ornaments of a noble soul.",
+    "author": "Chanakya",
+    "category": "Character",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Purity of speech, mind, and senses, a forgiving heart and a desire to serve are the ornaments of a noble soul.",
+        "author": "Chanakya",
+        "category": "Character"
+      }
+    }
+  },
+  {
+    "id": "270",
+    "quote": "Wealth, a friend, a wife, and a kingdom may be regained, but this body when lost can never be acquired again.",
+    "author": "Chanakya",
+    "category": "Life",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Wealth, a friend, a wife, and a kingdom may be regained, but this body when lost can never be acquired again.",
+        "author": "Chanakya",
+        "category": "Life"
+      }
+    }
+  },
+  {
+    "id": "271",
+    "quote": "He who is overly attached to his family members experiences fear and sorrow, for the root of all grief is attachment.",
+    "author": "Chanakya",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "He who is overly attached to his family members experiences fear and sorrow, for the root of all grief is attachment.",
+        "author": "Chanakya",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "272",
+    "quote": "Test a servant while in the discharge of his duty, a relative in difficulty, a friend in adversity, and a wife in misfortune.",
+    "author": "Chanakya",
+    "category": "Character",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Test a servant while in the discharge of his duty, a relative in difficulty, a friend in adversity, and a wife in misfortune.",
+        "author": "Chanakya",
+        "category": "Character"
+      }
+    }
+  },
+  {
+    "id": "273",
+    "quote": "The biggest guru-mantra is: never share your secrets with anybody. It will destroy you.",
+    "author": "Chanakya",
+    "category": "Discipline",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "The biggest guru-mantra is: never share your secrets with anybody. It will destroy you.",
+        "author": "Chanakya",
+        "category": "Discipline"
+      }
+    }
+  },
+  {
+    "id": "274",
+    "quote": "Accumulated wealth is saved by spending just as incoming fresh water is saved by letting out existing water.",
+    "author": "Chanakya",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Accumulated wealth is saved by spending just as incoming fresh water is saved by letting out existing water.",
+        "author": "Chanakya",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "275",
+    "quote": "The mind is everything. What you think you become.",
+    "author": "Gautama Buddha",
+    "category": "Focus",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "The mind is everything. What you think you become.",
+        "author": "Gautama Buddha",
+        "category": "Focus"
+      }
+    }
+  },
+  {
+    "id": "276",
+    "quote": "Three things cannot be long hidden: the sun, the moon, and the truth.",
+    "author": "Gautama Buddha",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Three things cannot be long hidden: the sun, the moon, and the truth.",
+        "author": "Gautama Buddha",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "277",
+    "quote": "Peace comes from within. Do not seek it without.",
+    "author": "Gautama Buddha",
+    "category": "Life",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Peace comes from within. Do not seek it without.",
+        "author": "Gautama Buddha",
+        "category": "Life"
+      }
+    }
+  },
+  {
+    "id": "278",
+    "quote": "You will not be punished for your anger, you will be punished by your anger.",
+    "author": "Gautama Buddha",
+    "category": "Discipline",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "You will not be punished for your anger, you will be punished by your anger.",
+        "author": "Gautama Buddha",
+        "category": "Discipline"
+      }
+    }
+  },
+  {
+    "id": "279",
+    "quote": "Health is the greatest gift, contentment the greatest wealth, faithfulness the best relationship.",
+    "author": "Gautama Buddha",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Health is the greatest gift, contentment the greatest wealth, faithfulness the best relationship.",
+        "author": "Gautama Buddha",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "280",
+    "quote": "Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment.",
+    "author": "Gautama Buddha",
+    "category": "Focus",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment.",
+        "author": "Gautama Buddha",
+        "category": "Focus"
+      }
+    }
+  },
+  {
+    "id": "281",
+    "quote": "No one saves us but ourselves. No one can and no one may. We ourselves must walk the path.",
+    "author": "Gautama Buddha",
+    "category": "Confidence",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "No one saves us but ourselves. No one can and no one may. We ourselves must walk the path.",
+        "author": "Gautama Buddha",
+        "category": "Confidence"
+      }
+    }
+  },
+  {
+    "id": "282",
+    "quote": "Radiate boundless love towards the entire world.",
+    "author": "Gautama Buddha",
+    "category": "Kindness",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Radiate boundless love towards the entire world.",
+        "author": "Gautama Buddha",
+        "category": "Kindness"
+      }
+    }
+  },
+  {
+    "id": "283",
+    "quote": "In the end, only three things matter: how much you loved, how gently you lived, and how gracefully you let go of things not meant for you.",
+    "author": "Gautama Buddha",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "In the end, only three things matter: how much you loved, how gently you lived, and how gracefully you let go of things not meant for you.",
+        "author": "Gautama Buddha",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "284",
+    "quote": "Thousands of candles can be lighted from a single candle, and the life of the candle will not be shortened. Happiness never decreases by being shared.",
+    "author": "Gautama Buddha",
+    "category": "Kindness",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Thousands of candles can be lighted from a single candle, and the life of the candle will not be shortened. Happiness never decreases by being shared.",
+        "author": "Gautama Buddha",
+        "category": "Kindness"
+      }
+    }
+  },
+  {
+    "id": "285",
+    "quote": "Drop by drop is the water pot filled. Likewise, the wise man, gathering it little by little, fills himself with good.",
+    "author": "Gautama Buddha",
+    "category": "Perseverance",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Drop by drop is the water pot filled. Likewise, the wise man, gathering it little by little, fills himself with good.",
+        "author": "Gautama Buddha",
+        "category": "Perseverance"
+      }
+    }
+  },
+  {
+    "id": "286",
+    "quote": "Work out your own salvation. Do not depend on others.",
+    "author": "Gautama Buddha",
+    "category": "Confidence",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Work out your own salvation. Do not depend on others.",
+        "author": "Gautama Buddha",
+        "category": "Confidence"
+      }
+    }
+  },
+  {
+    "id": "287",
+    "quote": "To understand everything is to forgive everything.",
+    "author": "Gautama Buddha",
+    "category": "Kindness",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "To understand everything is to forgive everything.",
+        "author": "Gautama Buddha",
+        "category": "Kindness"
+      }
+    }
+  },
+  {
+    "id": "288",
+    "quote": "There is no path to peace; peace is the path.",
+    "author": "Gautama Buddha",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "There is no path to peace; peace is the path.",
+        "author": "Gautama Buddha",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "289",
+    "quote": "Better than a thousand hollow words, is one word that brings peace.",
+    "author": "Gautama Buddha",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Better than a thousand hollow words, is one word that brings peace.",
+        "author": "Gautama Buddha",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "290",
+    "quote": "If you truly loved yourself, you could never hurt another.",
+    "author": "Gautama Buddha",
+    "category": "Kindness",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "If you truly loved yourself, you could never hurt another.",
+        "author": "Gautama Buddha",
+        "category": "Kindness"
+      }
+    }
+  },
+  {
+    "id": "291",
+    "quote": "The secret of health for both mind and body is not to mourn for the past, nor to worry about the future, but to live the present moment wisely and earnestly.",
+    "author": "Gautama Buddha",
+    "category": "Focus",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "The secret of health for both mind and body is not to mourn for the past, nor to worry about the future, but to live the present moment wisely and earnestly.",
+        "author": "Gautama Buddha",
+        "category": "Focus"
+      }
+    }
+  },
+  {
+    "id": "292",
+    "quote": "An idea that is developed and put into action is more important than an idea that exists only as an idea.",
+    "author": "Gautama Buddha",
+    "category": "Innovation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "An idea that is developed and put into action is more important than an idea that exists only as an idea.",
+        "author": "Gautama Buddha",
+        "category": "Innovation"
+      }
+    }
+  },
+  {
+    "id": "293",
+    "quote": "Purity or impurity depends on oneself, no one can purify another.",
+    "author": "Gautama Buddha",
+    "category": "Character",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Purity or impurity depends on oneself, no one can purify another.",
+        "author": "Gautama Buddha",
+        "category": "Character"
+      }
+    }
+  },
+  {
+    "id": "294",
+    "quote": "Conquer anger with non-anger. Conquer badness with goodness.",
+    "author": "Gautama Buddha",
+    "category": "Kindness",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Conquer anger with non-anger. Conquer badness with goodness.",
+        "author": "Gautama Buddha",
+        "category": "Kindness"
+      }
+    }
+  },
+  {
+    "id": "295",
+    "quote": "It does not matter how slowly you go as long as you do not stop.",
+    "author": "Confucius",
+    "category": "Perseverance",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "It does not matter how slowly you go as long as you do not stop.",
+        "author": "Confucius",
+        "category": "Perseverance"
+      }
+    }
+  },
+  {
+    "id": "296",
+    "quote": "By three methods we may learn wisdom: First, by reflection, which is noblest; Second, by imitation, which is easiest; and third by experience, which is the bitterest.",
+    "author": "Confucius",
+    "category": "Education",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "By three methods we may learn wisdom: First, by reflection, which is noblest; Second, by imitation, which is easiest; and third by experience, which is the bitterest.",
+        "author": "Confucius",
+        "category": "Education"
+      }
+    }
+  },
+  {
+    "id": "297",
+    "quote": "Our greatest glory is not in never falling, but in rising every time we fall.",
+    "author": "Confucius",
+    "category": "Perseverance",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Our greatest glory is not in never falling, but in rising every time we fall.",
+        "author": "Confucius",
+        "category": "Perseverance"
+      }
+    }
+  },
+  {
+    "id": "298",
+    "quote": "Life is really simple, but we insist on making it complicated.",
+    "author": "Confucius",
+    "category": "Life",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Life is really simple, but we insist on making it complicated.",
+        "author": "Confucius",
+        "category": "Life"
+      }
+    }
+  },
+  {
+    "id": "299",
+    "quote": "Real knowledge is to know the extent of one's ignorance.",
+    "author": "Confucius",
+    "category": "Education",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Real knowledge is to know the extent of one's ignorance.",
+        "author": "Confucius",
+        "category": "Education"
+      }
+    }
+  },
+  {
+    "id": "300",
+    "quote": "When it is obvious that the goals cannot be reached, don't adjust the goals, adjust the action steps.",
+    "author": "Confucius",
+    "category": "Focus",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "When it is obvious that the goals cannot be reached, don't adjust the goals, adjust the action steps.",
+        "author": "Confucius",
+        "category": "Focus"
+      }
+    }
+  },
+  {
+    "id": "301",
+    "quote": "He who conquers himself is the mightiest warrior.",
+    "author": "Confucius",
+    "category": "Discipline",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "He who conquers himself is the mightiest warrior.",
+        "author": "Confucius",
+        "category": "Discipline"
+      }
+    }
+  },
+  {
+    "id": "302",
+    "quote": "The man who moves a mountain begins by carrying away small stones.",
+    "author": "Confucius",
+    "category": "Hard Work",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "The man who moves a mountain begins by carrying away small stones.",
+        "author": "Confucius",
+        "category": "Hard Work"
+      }
+    }
+  },
+  {
+    "id": "303",
+    "quote": "Choose a job you love, and you will never have to work a day in your life.",
+    "author": "Confucius",
+    "category": "Success",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Choose a job you love, and you will never have to work a day in your life.",
+        "author": "Confucius",
+        "category": "Success"
+      }
+    }
+  },
+  {
+    "id": "304",
+    "quote": "Wherever you go, go with all your heart.",
+    "author": "Confucius",
+    "category": "Motivation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Wherever you go, go with all your heart.",
+        "author": "Confucius",
+        "category": "Motivation"
+      }
+    }
+  },
+  {
+    "id": "305",
+    "quote": "What the superior man seeks is in himself; what the small man seeks is in others.",
+    "author": "Confucius",
+    "category": "Character",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "What the superior man seeks is in himself; what the small man seeks is in others.",
+        "author": "Confucius",
+        "category": "Character"
+      }
+    }
+  },
+  {
+    "id": "306",
+    "quote": "To see what is right and not to do it is a want of courage, or of principle.",
+    "author": "Confucius",
+    "category": "Courage",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "To see what is right and not to do it is a want of courage, or of principle.",
+        "author": "Confucius",
+        "category": "Courage"
+      }
+    }
+  },
+  {
+    "id": "307",
+    "quote": "If you make a mistake and do not correct it, this is called a mistake.",
+    "author": "Confucius",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "If you make a mistake and do not correct it, this is called a mistake.",
+        "author": "Confucius",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "308",
+    "quote": "Before you embark on a journey of revenge, dig two graves.",
+    "author": "Confucius",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Before you embark on a journey of revenge, dig two graves.",
+        "author": "Confucius",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "309",
+    "quote": "The man who asks a question is a fool for a minute, the man who does not ask is a fool for life.",
+    "author": "Confucius",
+    "category": "Education",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "The man who asks a question is a fool for a minute, the man who does not ask is a fool for life.",
+        "author": "Confucius",
+        "category": "Education"
+      }
+    }
+  },
+  {
+    "id": "310",
+    "quote": "Silence is a true friend who never betrays.",
+    "author": "Confucius",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Silence is a true friend who never betrays.",
+        "author": "Confucius",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "311",
+    "quote": "Wheresoever you go, go with all your heart.",
+    "author": "Confucius",
+    "category": "Motivation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Wheresoever you go, go with all your heart.",
+        "author": "Confucius",
+        "category": "Motivation"
+      }
+    }
+  },
+  {
+    "id": "312",
+    "quote": "To be wronged is nothing, unless you continue to remember it.",
+    "author": "Confucius",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "To be wronged is nothing, unless you continue to remember it.",
+        "author": "Confucius",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "313",
+    "quote": "Respect yourself and others will respect you.",
+    "author": "Confucius",
+    "category": "Confidence",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Respect yourself and others will respect you.",
+        "author": "Confucius",
+        "category": "Confidence"
+      }
+    }
+  },
+  {
+    "id": "314",
+    "quote": "Superior men are modest in their speech, but exceed in their actions.",
+    "author": "Confucius",
+    "category": "Character",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Superior men are modest in their speech, but exceed in their actions.",
+        "author": "Confucius",
+        "category": "Character"
+      }
+    }
+  },
+  {
+    "id": "315",
+    "quote": "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.",
+    "author": "Albert Einstein",
+    "category": "Innovation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.",
+        "author": "Albert Einstein",
+        "category": "Innovation"
+      }
+    }
+  },
+  {
+    "id": "316",
+    "quote": "Try not to become a man of success, but rather try to become a man of value.",
+    "author": "Albert Einstein",
+    "category": "Character",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Try not to become a man of success, but rather try to become a man of value.",
+        "author": "Albert Einstein",
+        "category": "Character"
+      }
+    }
+  },
+  {
+    "id": "317",
+    "quote": "In the middle of difficulty lies opportunity.",
+    "author": "Albert Einstein",
+    "category": "Motivation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "In the middle of difficulty lies opportunity.",
+        "author": "Albert Einstein",
+        "category": "Motivation"
+      }
+    }
+  },
+  {
+    "id": "318",
+    "quote": "Life is like riding a bicycle. To keep your balance, you must keep moving.",
+    "author": "Albert Einstein",
+    "category": "Life",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Life is like riding a bicycle. To keep your balance, you must keep moving.",
+        "author": "Albert Einstein",
+        "category": "Life"
+      }
+    }
+  },
+  {
+    "id": "319",
+    "quote": "A person who never made a mistake never tried anything new.",
+    "author": "Albert Einstein",
+    "category": "Innovation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "A person who never made a mistake never tried anything new.",
+        "author": "Albert Einstein",
+        "category": "Innovation"
+      }
+    }
+  },
+  {
+    "id": "320",
+    "quote": "Logic will get you from A to B. Imagination will take you everywhere.",
+    "author": "Albert Einstein",
+    "category": "Innovation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Logic will get you from A to B. Imagination will take you everywhere.",
+        "author": "Albert Einstein",
+        "category": "Innovation"
+      }
+    }
+  },
+  {
+    "id": "321",
+    "quote": "Strive not to be a success, but rather to be of value.",
+    "author": "Albert Einstein",
+    "category": "Character",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Strive not to be a success, but rather to be of value.",
+        "author": "Albert Einstein",
+        "category": "Character"
+      }
+    }
+  },
+  {
+    "id": "322",
+    "quote": "Learn from yesterday, live for today, hope for tomorrow. The important thing is not to stop questioning.",
+    "author": "Albert Einstein",
+    "category": "Education",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Learn from yesterday, live for today, hope for tomorrow. The important thing is not to stop questioning.",
+        "author": "Albert Einstein",
+        "category": "Education"
+      }
+    }
+  },
+  {
+    "id": "323",
+    "quote": "Great spirits have always encountered violent opposition from mediocre minds.",
+    "author": "Albert Einstein",
+    "category": "Courage",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Great spirits have always encountered violent opposition from mediocre minds.",
+        "author": "Albert Einstein",
+        "category": "Courage"
+      }
+    }
+  },
+  {
+    "id": "324",
+    "quote": "The measure of intelligence is the ability to change.",
+    "author": "Albert Einstein",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "The measure of intelligence is the ability to change.",
+        "author": "Albert Einstein",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "325",
+    "quote": "Everything should be made as simple as possible, but not simpler.",
+    "author": "Albert Einstein",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Everything should be made as simple as possible, but not simpler.",
+        "author": "Albert Einstein",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "326",
+    "quote": "We cannot solve our problems with the same thinking we used when we created them.",
+    "author": "Albert Einstein",
+    "category": "Innovation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "We cannot solve our problems with the same thinking we used when we created them.",
+        "author": "Albert Einstein",
+        "category": "Innovation"
+      }
+    }
+  },
+  {
+    "id": "327",
+    "quote": "Look deep into nature, and then you will understand everything better.",
+    "author": "Albert Einstein",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Look deep into nature, and then you will understand everything better.",
+        "author": "Albert Einstein",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "328",
+    "quote": "Weakness of attitude becomes weakness of character.",
+    "author": "Albert Einstein",
+    "category": "Character",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Weakness of attitude becomes weakness of character.",
+        "author": "Albert Einstein",
+        "category": "Character"
+      }
+    }
+  },
+  {
+    "id": "329",
+    "quote": "Any fool can know. The point is to understand.",
+    "author": "Albert Einstein",
+    "category": "Education",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Any fool can know. The point is to understand.",
+        "author": "Albert Einstein",
+        "category": "Education"
+      }
+    }
+  },
+  {
+    "id": "330",
+    "quote": "There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle.",
+    "author": "Albert Einstein",
+    "category": "Life",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle.",
+        "author": "Albert Einstein",
+        "category": "Life"
+      }
+    }
+  },
+  {
+    "id": "331",
+    "quote": "Creativity is intelligence having fun.",
+    "author": "Albert Einstein",
+    "category": "Innovation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Creativity is intelligence having fun.",
+        "author": "Albert Einstein",
+        "category": "Innovation"
+      }
+    }
+  },
+  {
+    "id": "332",
+    "quote": "It's not that I'm so smart, it's just that I stay with problems longer.",
+    "author": "Albert Einstein",
+    "category": "Perseverance",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "It's not that I'm so smart, it's just that I stay with problems longer.",
+        "author": "Albert Einstein",
+        "category": "Perseverance"
+      }
+    }
+  },
+  {
+    "id": "333",
+    "quote": "Peace cannot be kept by force; it can only be achieved by understanding.",
+    "author": "Albert Einstein",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Peace cannot be kept by force; it can only be achieved by understanding.",
+        "author": "Albert Einstein",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "334",
+    "quote": "If you want to live a happy life, tie it to a goal, not to people or things.",
+    "author": "Albert Einstein",
+    "category": "Focus",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "If you want to live a happy life, tie it to a goal, not to people or things.",
+        "author": "Albert Einstein",
+        "category": "Focus"
+      }
+    }
+  },
+  {
+    "id": "335",
+    "quote": "You cannot change your future, but you can change your habits, and surely your habits will change your future.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Success",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "You cannot change your future, but you can change your habits, and surely your habits will change your future.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Success"
+      }
+    }
+  },
+  {
+    "id": "336",
+    "quote": "To become unique, the challenge is to fight the hardest battle which anyone can imagine until you reach your destination.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Perseverance",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "To become unique, the challenge is to fight the hardest battle which anyone can imagine until you reach your destination.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Perseverance"
+      }
+    }
+  },
+  {
+    "id": "337",
+    "quote": "Active lies inside you, look deep into your heart, bring out your inner power and change the world.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Motivation",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Active lies inside you, look deep into your heart, bring out your inner power and change the world.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Motivation"
+      }
+    }
+  },
+  {
+    "id": "338",
+    "quote": "Clear your mind of can't.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Confidence",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Clear your mind of can't.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Confidence"
+      }
+    }
+  },
+  {
+    "id": "339",
+    "quote": "Courage is giving up your personal comfort for the benefit of humanity.",
+    "author": "Dr. A. P. J. Abdul Kalam",
+    "category": "Courage",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Courage is giving up your personal comfort for the benefit of humanity.",
+        "author": "Dr. A. P. J. Abdul Kalam",
+        "category": "Courage"
+      }
+    }
+  },
+  {
+    "id": "340",
+    "quote": "Where can we go to find God if we cannot see Him in our own hearts and in every living being.",
+    "author": "Swami Vivekananda",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Where can we go to find God if we cannot see Him in our own hearts and in every living being.",
+        "author": "Swami Vivekananda",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "341",
+    "quote": "Fill the brain with high thoughts, highest ideals, place them day and night before you, and out of that will come great work.",
+    "author": "Swami Vivekananda",
+    "category": "Focus",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Fill the brain with high thoughts, highest ideals, place them day and night before you, and out of that will come great work.",
+        "author": "Swami Vivekananda",
+        "category": "Focus"
+      }
+    }
+  },
+  {
+    "id": "342",
+    "quote": "Comfort is no test of truth. On the contrary, truth is often far from being comfortable.",
+    "author": "Swami Vivekananda",
+    "category": "Character",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Comfort is no test of truth. On the contrary, truth is often far from being comfortable.",
+        "author": "Swami Vivekananda",
+        "category": "Character"
+      }
+    }
+  },
+  {
+    "id": "343",
+    "quote": "Work without love is slavery.",
+    "author": "Mother Teresa",
+    "category": "Hard Work",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Work without love is slavery.",
+        "author": "Mother Teresa",
+        "category": "Hard Work"
+      }
+    }
+  },
+  {
+    "id": "344",
+    "quote": "Be happy in the moment, that's enough. Each moment is all we need, not more.",
+    "author": "Mother Teresa",
+    "category": "Life",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Be happy in the moment, that's enough. Each moment is all we need, not more.",
+        "author": "Mother Teresa",
+        "category": "Life"
+      }
+    }
+  },
+  {
+    "id": "345",
+    "quote": "Disciplining oneself is the highest form of self-respect.",
+    "author": "Mother Teresa",
+    "category": "Discipline",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Disciplining oneself is the highest form of self-respect.",
+        "author": "Mother Teresa",
+        "category": "Discipline"
+      }
+    }
+  },
+  {
+    "id": "346",
+    "quote": "Simple life, high thinking.",
+    "author": "Mother Teresa",
+    "category": "Wisdom",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Simple life, high thinking.",
+        "author": "Mother Teresa",
+        "category": "Wisdom"
+      }
+    }
+  },
+  {
+    "id": "347",
+    "quote": "Love begins at home, and it is not how much we do... but how much love we put in that action.",
+    "author": "Mother Teresa",
+    "category": "Kindness",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Love begins at home, and it is not how much we do... but how much love we put in that action.",
+        "author": "Mother Teresa",
+        "category": "Kindness"
+      }
+    }
+  },
+  {
+    "id": "348",
+    "quote": "One of the greatest diseases is to be nobody to anybody.",
+    "author": "Mother Teresa",
+    "category": "Kindness",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "One of the greatest diseases is to be nobody to anybody.",
+        "author": "Mother Teresa",
+        "category": "Kindness"
+      }
+    }
+  },
+  {
+    "id": "349",
+    "quote": "Honesty and frankness make you vulnerable. Be honest and frank anyway.",
+    "author": "Mother Teresa",
+    "category": "Character",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Honesty and frankness make you vulnerable. Be honest and frank anyway.",
+        "author": "Mother Teresa",
+        "category": "Character"
+      }
+    }
+  },
+  {
+    "id": "350",
+    "quote": "Life is a beauty, admire it. Life is a dream, realize it.",
+    "author": "Mother Teresa",
+    "category": "Life",
+    "language": "en",
+    "isVerified": true,
+    "translations": {
+      "en": {
+        "quote": "Life is a beauty, admire it. Life is a dream, realize it.",
+        "author": "Mother Teresa",
+        "category": "Life"
       }
     }
   }
