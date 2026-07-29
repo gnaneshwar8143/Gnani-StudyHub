@@ -11,6 +11,7 @@ const router = express_1.default.Router();
 router.use(authMiddleware_1.protect);
 router.get('/', objectiveController_1.getObjectives);
 router.post('/', objectiveController_1.createObjective);
+router.post('/test-2min-reminder', objectiveController_1.create2MinTestReminder);
 router.put('/:id', objectiveController_1.updateObjective);
 router.delete('/:id', objectiveController_1.deleteObjective);
 exports.default = router;

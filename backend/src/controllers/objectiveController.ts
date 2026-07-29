@@ -187,3 +187,75 @@ export const deleteObjective = async (req: AuthenticatedRequest, res: Response) 
     res.status(400).json({ message: 'Failed to delete objective', error: error.message });
   }
 };
+
+export const create2MinTestReminder = async (req: AuthenticatedRequest, res: Response) => {
+  try {
+    const timezoneOffset = typeof req.body?.timezoneOffset === 'number' 
+      ? req.body.timezoneOffset 
+      : (typeof req.query?.timezoneOffset === 'string' ? Number(req.query.timezoneOffset) : -330);
+
+    // Calculate 2 minutes in the future local time
+    const localNowMs = Date.now() - (timezoneOffset * 60 * 1000);
+    const localFutureDateObj = new Date(localNowMs + 2 * 60 * 1000);
+
+    const year = localFutureDateObj.getUTCFullYear();
+    const month = String(localFutureDateObj.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(localFutureDateObj.getUTCDate()).padStart(2, '0');
+    const hours = String(localFutureDateObj.getUTCHours()).padStart(2, '0');
+    const minutes = String(localFutureDateObj.getUTCMinutes()).padStart(2, '0');
+
+    const scheduledDate = `${year}-${month}-${day}`;
+    const scheduledTime = `${hours}:${minutes}`;
+
+    const calculatedReminderDateTime = calculateReminderDateTime(
+      scheduledDate,
+      scheduledTime,
+      'At Task Time',
+      timezoneOffset
+    );
+
+    const objective = new Objective({
+      user: req.user?.id,
+      title: `Test 2-Min Reminder (${scheduledTime})`,
+      priority: 'High',
+      status: 'To Do',
+      taskType: 'task',
+      calendarType: 'Reminder',
+      scheduledDate,
+      scheduledTime,
+      timezoneOffset,
+      reminderType: 'At Task Time',
+      reminderDateTime: calculatedReminderDateTime,
+      reminderSent: false
+    });
+
+    const saved = await objective.save();
+
+    const nowUtc = new Date();
+    const remUtc = saved.reminderDateTime ? new Date(saved.reminderDateTime) : undefined;
+    const diffSec = remUtc ? (remUtc.getTime() - nowUtc.getTime()) / 1000 : 0;
+
+    console.log('\n==================================================');
+    console.log('🧪 [2-Min Reminder Diagnostic Task Created]');
+    console.log(`- Task ID: ${saved._id}`);
+    console.log(`- Scheduled Date (Local): ${scheduledDate}`);
+    console.log(`- Scheduled Time (Local): ${scheduledTime}`);
+    console.log(`- Current UTC: ${nowUtc.toISOString()}`);
+    console.log(`- Stored reminderDateTime (UTC): ${remUtc ? remUtc.toISOString() : 'N/A'}`);
+    console.log(`- Difference in seconds until reminder: ${diffSec.toFixed(1)}s`);
+    console.log('==================================================\n');
+
+    res.status(201).json({
+      message: '2-Minute Test Reminder created successfully!',
+      task: saved,
+      diagnostics: {
+        currentUTC: nowUtc.toISOString(),
+        storedReminderDateTimeUTC: remUtc ? remUtc.toISOString() : null,
+        differenceInSeconds: Number(diffSec.toFixed(1))
+      }
+    });
+  } catch (error: any) {
+    console.error('❌ [2-Min Test Creation Error]:', error.stack || error.message);
+    res.status(400).json({ message: 'Failed to create test reminder', error: error.message });
+  }
+};

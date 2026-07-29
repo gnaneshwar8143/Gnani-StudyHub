@@ -149,18 +149,29 @@ export const processPendingReminders = async () => {
         const recipientEmail = userObj?.email;
 
         if (recipientEmail) {
-          console.log(`📧 [Sending Email] Dispatching reminder email to ${recipientEmail} for Task ID: ${task._id}`);
+          try {
+            console.log(`📧 [Sending Email] Dispatching reminder email to ${recipientEmail} for Task ID: ${task._id}`);
           
-          await sendTaskReminderEmail(
-            recipientEmail,
-            userObj.name || 'User',
-            task.title,
-            task.scheduledDate,
-            task.scheduledTime,
-            task.priority
-          );
-          
-          console.log(`✅ [Email Success] Email sent successfully to ${recipientEmail}`);
+            const result = await sendTaskReminderEmail(
+              recipientEmail,
+              userObj.name || 'User',
+              task.title,
+              task.scheduledDate,
+              task.scheduledTime,
+              task.priority
+            );
+            
+            console.log(`✅ [Email Success] Email sent successfully to ${recipientEmail}. Response:`, JSON.stringify(result || {}));
+          } catch (err: any) {
+            console.error('==================================================');
+            console.error(`❌ [Email Delivery Failure Audit] Task ID: ${task._id}`);
+            console.error(`- Recipient Email: ${(task.user as any)?.email || 'N/A'}`);
+            console.error(`- Email Subject: Reminder: Complete Your Task`);
+            console.error(`- Brevo API Response Data:`, err.response?.data ? JSON.stringify(err.response.data) : 'N/A');
+            console.error(`- SMTP Transporter Response:`, err.response || 'N/A');
+            console.error(`- Nodemailer Error Stack:`, err.stack || err.message || err);
+            console.error('==================================================\n');
+          }
         } else {
           console.warn(`⚠️ [Email Warning] Task ID ${task._id} has no associated user email. Skipping email dispatch.`);
         }
