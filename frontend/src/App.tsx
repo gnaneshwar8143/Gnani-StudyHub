@@ -287,12 +287,7 @@ export default function App() {
         ...extraFields
       };
 
-      console.log('Creating objective payload:', {
-        dueDate: payload.dueDate,
-        scheduledTime: payload.scheduledTime,
-        reminderType: payload.reminderType,
-        timezoneOffset: payload.timezoneOffset
-      });
+      console.log('FINAL REQUEST BODY', payload);
 
       const response = await api.post('/objectives', payload);
       const newObj = { ...response.data, id: response.data._id };
@@ -368,7 +363,7 @@ export default function App() {
         scheduledTime: time || '09:00',
         timezoneOffset: new Date().getTimezoneOffset()
       };
-      console.log('Scheduling objective payload:', payload);
+      console.log('FINAL REQUEST BODY', payload);
       const response = await api.put(`/objectives/${id}`, payload);
       const updated = { ...response.data, id: response.data._id };
       setObjectives(prev => prev.map(o => o.id === id ? updated : o));
@@ -383,12 +378,7 @@ export default function App() {
         ...updates,
         timezoneOffset: typeof updates.timezoneOffset === 'number' ? updates.timezoneOffset : new Date().getTimezoneOffset()
       };
-      console.log('Updating objective payload:', {
-        dueDate: payload.dueDate || payload.scheduledDate,
-        scheduledTime: payload.scheduledTime,
-        reminderType: payload.reminderType,
-        timezoneOffset: payload.timezoneOffset
-      });
+      console.log('FINAL REQUEST BODY', payload);
       const response = await api.put(`/objectives/${id}`, payload);
       const updated = { ...response.data, id: response.data._id };
       setObjectives(prev => prev.map(o => o.id === id ? updated : o));
