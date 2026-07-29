@@ -86,46 +86,70 @@ export const calculateReminderDateTime = (
 export const processPendingReminders = async () => {
   try {
     const now = new Date();
-    console.log(`\n🔍 [Reminder Check] Running tick at ${now.toISOString()}`);
-    console.log(`📡 [MongoDB Query] Objective.find({ reminderSent: { $ne: true }, reminderDateTime: { $lte: new Date("${now.toISOString()}") } })`);
+    console.log(`\n🔍 [Reminder Check Tick] Current Server Environment:`);
+    console.log(`- Current server timezone: ${Intl.DateTimeFormat().resolvedOptions().timeZone || process.env.TZ || 'UTC'}`);
+    console.log(`- Current server UTC time: ${now.toISOString()}`);
+    console.log(`- Current server local time: ${now.toString()}`);
 
-    // Query pending reminders where reminderDateTime in UTC is due and reminderSent is not true
-    const pendingTasks = await Objective.find({
-      reminderSent: { $ne: true },
-      reminderDateTime: { $lte: now }
-    }).populate('user');
+    // Audit all un-sent tasks in MongoDB
+    const unSentTasks = await Objective.find({ reminderSent: { $ne: true } }).populate('user');
+    console.log(`📋 [DB Audit] Total un-sent tasks in database (reminderSent != true): ${unSentTasks.length}`);
 
-    console.log(`📋 [Reminder Check] Pending reminders found: ${pendingTasks.length}`);
+    for (const task of unSentTasks) {
+      const remDate = task.reminderDateTime ? new Date(task.reminderDateTime) : undefined;
+      const remMs = remDate ? remDate.getTime() : undefined;
+      const nowMs = now.getTime();
+      const diffMs = remMs !== undefined ? remMs - nowMs : undefined;
+      const diffSec = diffMs !== undefined ? diffMs / 1000 : undefined;
+      const isDue = remMs !== undefined && remMs <= nowMs;
+      
+      const offsetMin = typeof task.timezoneOffset === 'number' ? task.timezoneOffset : 0;
+      // Convert stored UTC to User Local Time string for audit logging
+      const userLocalTime = remDate ? new Date(remDate.getTime() - offsetMin * 60 * 1000).toISOString().replace('Z', ` (Offset ${offsetMin}m)`) : 'N/A';
 
-    if (pendingTasks.length === 0) {
-      // Diagnostic logging for why no reminders matched
-      try {
-        const total = await Objective.countDocuments();
-        const sent = await Objective.countDocuments({ reminderSent: true });
-        const future = await Objective.countDocuments({ reminderSent: { $ne: true }, reminderDateTime: { $gt: now } });
-        const noDate = await Objective.countDocuments({ reminderDateTime: { $exists: false } });
-        console.log(`📊 [Diagnostic] DB Totals -> Total: ${total} | Sent: ${sent} | Future Due: ${future} | No Reminder Date: ${noDate}`);
-      } catch (diagErr: any) {
-        console.warn('⚠️ [Diagnostic Warning] Could not fetch DB diagnostics:', diagErr.message);
+      let decision = 'SKIP';
+      let reason = 'Future reminder';
+
+      if (!task.reminderDateTime) {
+        reason = 'Missing reminderDateTime';
+      } else if (remMs === undefined || isNaN(remMs)) {
+        reason = 'Invalid reminderDateTime';
+      } else if (task.reminderSent) {
+        reason = 'reminderSent already true';
+      } else if (isDue) {
+        decision = 'SEND';
+        reason = 'Reminder due now or overdue';
       }
-      return;
-    }
 
-    for (const task of pendingTasks) {
-      try {
+      console.log('==============================');
+      console.log(`Task ID: ${task._id}`);
+      console.log(`Title: "${task.title}"`);
+      console.log(`dueDate: ${task.dueDate ? new Date(task.dueDate).toISOString() : 'N/A'}`);
+      console.log(`scheduledDate: ${task.scheduledDate || 'N/A'}`);
+      console.log(`scheduledTime: ${task.scheduledTime || 'N/A'}`);
+      console.log(`reminderType: ${task.reminderType || 'N/A'}`);
+      console.log(`timezoneOffset: ${task.timezoneOffset !== undefined ? task.timezoneOffset : 'N/A'}`);
+      console.log(`Stored reminderDateTime (UTC): ${remDate ? remDate.toISOString() : 'MISSING / UNDEFINED'}`);
+      console.log(`Current UTC Time: ${now.toISOString()}`);
+      console.log(`Milliseconds Difference: ${diffMs !== undefined ? diffMs : 'N/A'}`);
+      console.log(`Seconds Difference: ${diffSec !== undefined ? diffSec : 'N/A'}`);
+      console.log(`Is reminderDateTime <= Date.now() ?: ${isDue ? 'YES (TRUE)' : 'NO (FALSE)'}`);
+      console.log(`Decision: ${decision}`);
+      console.log(`Reason: ${reason}`);
+
+      if (decision === 'SKIP' && remDate) {
+        console.log(`Expected send time (UTC): ${remDate.toISOString()}`);
+        console.log(`Expected send time (User Local Time): ${userLocalTime}`);
+      }
+      console.log('==============================\n');
+
+      // Dispatch email ONLY if decision is SEND
+      if (decision === 'SEND') {
         const userObj = task.user as any;
         const recipientEmail = userObj?.email;
 
-        console.log(`--------------------------------------------------`);
-        console.log(`📌 Objective ID: ${task._id}`);
-        console.log(`📝 Title: "${task.title}"`);
-        console.log(`⚙️ reminderType: ${task.reminderType || 'At Task Time'}`);
-        console.log(`⏰ reminderDateTime (UTC): ${task.reminderDateTime ? new Date(task.reminderDateTime).toISOString() : 'N/A'}`);
-        console.log(`🕒 Current UTC Time: ${now.toISOString()}`);
-        console.log(`👤 Recipient Email: ${recipientEmail || 'MISSING'}`);
-
         if (recipientEmail) {
-          console.log(`📧 [Sending Email] Dispatching reminder email to ${recipientEmail}...`);
+          console.log(`📧 [Sending Email] Dispatching reminder email to ${recipientEmail} for Task ID: ${task._id}`);
           
           await sendTaskReminderEmail(
             recipientEmail,
@@ -145,11 +169,6 @@ export const processPendingReminders = async () => {
         task.reminderSent = true;
         await task.save();
         console.log(`💾 [Update Success] Set reminderSent=true for Task ID: ${task._id}`);
-      } catch (err: any) {
-        console.error(`❌ [Reminder Email Failed] Error processing Task ID ${task._id}:`, err.stack || err.message || err);
-        // Mark as sent so single failing task doesn't block the loop forever
-        task.reminderSent = true;
-        await task.save();
       }
     }
   } catch (error: any) {
