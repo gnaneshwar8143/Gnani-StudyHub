@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { useTranslation } from '../context/I18nContext';
 import { motion } from 'framer-motion';
+import { AnimatedLogo } from './common/AnimatedLogo';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -49,6 +50,11 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
       {/* Sidebar */}
       <aside className="w-64 border-r border-brand-border bg-brand-sidebar flex flex-col justify-between p-5 flex-shrink-0 z-10">
         <div>
+          {/* Brand Header */}
+          <div className="flex items-center gap-3 px-3 pb-4 mb-3 border-b border-brand-border/40 select-none">
+            <AnimatedLogo type="sidebar" size={44} />
+          </div>
+
           {/* Navigation */}
           <nav className="space-y-2">
             {navigation.map((item) => {

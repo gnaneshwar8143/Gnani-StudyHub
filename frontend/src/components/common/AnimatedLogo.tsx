@@ -17,19 +17,18 @@ export const AnimatedLogo: React.FC<AnimatedLogoProps> = ({
   const isHeader = type === 'header';
   const isProfile = type === 'profile';
 
-  // Map to the user's exact requested dimensions
+  // Map to exact requested dimensions:
+  // Login/Register: 110px, Navbar/Header: 44px, Sidebar: 44px
   const finalSize = size || (
-    isLogin ? 180 :
-    isSidebar ? 180 :
+    isLogin ? 110 :
+    isSidebar ? 44 :
     isCollapsed ? 40 :
     isHeader ? 44 :
-    isProfile ? 64 :
-    52
+    isProfile ? 56 :
+    44
   );
 
-  // Login page uses the full logo with "GNANI" text; others use the square icon-only version
-  const useFullLogo = isLogin;
-  const logoSrc = useFullLogo ? '/gnani-logo-full.png' : '/gnani-logo.png';
+  const logoSrc = '/gnani-logo.png';
 
   return (
     <div 
@@ -37,7 +36,7 @@ export const AnimatedLogo: React.FC<AnimatedLogoProps> = ({
       style={{ 
         width: finalSize, 
         height: finalSize,
-        padding: isSidebar ? '10px' : '0px',
+        padding: '0px',
         boxSizing: 'border-box'
       }}
     >
